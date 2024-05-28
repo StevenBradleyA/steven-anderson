@@ -10,7 +10,13 @@ const RaceTrack = () => {
     const { scene } = useGLTF('/raceTrack.glb');
 
     return (
-        <RigidBody type="fixed" position={[0, 0, 0]} colliders="trimesh">
+        <RigidBody
+            type="fixed"
+            position={[0, 0, 0]}
+            colliders="trimesh"
+            friction={1}
+            restitution={0}
+        >
             <primitive object={scene} />
         </RigidBody>
     );
