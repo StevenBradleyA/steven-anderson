@@ -1,23 +1,23 @@
 'use client';
 
-import React, { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useGLTF } from '@react-three/drei';
-import RaceTrack from './raceTrack';
-import CustomCamera from './Camera';
-
-const config = { cyberTruck: false };
+import React, { Suspense, useRef, useMemo } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Physics } from '@react-three/rapier';
+import RaceTrack from './RaceTrack';
+import CustomOrbitControls from './CustomOrbit';
+import Cube from './Models/Cube';
 
 const ThreeScene = () => {
     return (
-        <Canvas>
+        <Canvas camera={{ position: [10, 10, 10], near: 0.1, far: 30000 }}>
             <Suspense fallback={null}>
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[10, 10, 5]} intensity={1} />
-                <OrbitControls />
-
-                <RaceTrack />
-                <CustomCamera config={config} />
+                <CustomOrbitControls />
+                <Physics>
+                    <Cube />
+                    <RaceTrack />
+                </Physics>
             </Suspense>
         </Canvas>
     );
