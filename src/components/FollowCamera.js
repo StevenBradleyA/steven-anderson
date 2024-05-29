@@ -3,7 +3,11 @@ import * as THREE from 'three';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export default function FollowCamera({ carRef }) {
+export default function FollowCamera({
+    carRef,
+    backHelperRef,
+    frontHelperRef,
+}) {
     const { camera } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
     const initialCameraPosition = useRef(new THREE.Vector3());
@@ -14,7 +18,7 @@ export default function FollowCamera({ carRef }) {
     }, [camera]);
 
     useFrame(() => {
-        if (carRef.current) {
+        if (carRef.current && backHelperRef.current) {
             const targetPosition = carRef.current.translation();
 
             // Desired camera position (fixed height and behind the car)
@@ -34,10 +38,15 @@ export default function FollowCamera({ carRef }) {
             });
 
             // Update the camera target position (horizontal tracking only)
+               // Update the camera target to look at the back helper
+               const backHelperPosition = new THREE.Vector3();
+               backHelperRef.current.getWorldPosition(backHelperPosition);
+
+
             gsap.to(cameraTarget.current, {
-                x: targetPosition.x,
-                y: targetPosition.y, // Use the same y as the car for accurate lookAt
-                z: targetPosition.z,
+                x: backHelperPosition.x,
+                y: backHelperPosition.y, // Use the same y as the car for accurate lookAt
+                z: backHelperPosition.z,
                 duration: 0.5,
                 ease: 'power2.out',
                 onUpdate: () => camera.lookAt(cameraTarget.current),

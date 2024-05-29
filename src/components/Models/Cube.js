@@ -3,19 +3,22 @@ import { RigidBody } from '@react-three/rapier';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 
-const Cube = ({ carRef }) => {
+const Cube = ({ carRef, frontHelperRef, backHelperRef,  }) => {
     const { scene: carBody } = useGLTF('/models/ae86.glb');
     const { scene: lfw } = useGLTF('/models/leftFrontWheel.glb');
     const { scene: lbw } = useGLTF('/models/leftBackWheel.glb');
     const { scene: rfw } = useGLTF('/models/rightFrontWheel.glb');
     const { scene: rbw } = useGLTF('/models/rightBackWheel.glb');
 
+   
+
     // sizing
-    carBody.scale.set(15, 15, 15);
-    lfw.scale.set(15, 15, 15); // Adjust the scale as needed
-    lbw.scale.set(15, 15, 15); // Adjust the scale as needed
-    rfw.scale.set(15, 15, 15); // Adjust the scale as needed
-    rbw.scale.set(15, 15, 15); // Adjust the scale as needed
+    const scale = 15;
+    carBody.scale.set(scale, scale, scale);
+    lfw.scale.set(scale, scale, scale);
+    lbw.scale.set(scale, scale, scale);
+    rfw.scale.set(scale, scale, scale);
+    rbw.scale.set(scale, scale, scale);
 
     // movement
     const [moveForward, setMoveForward] = useState(false);
@@ -136,12 +139,20 @@ const Cube = ({ carRef }) => {
             linearDamping={3}
             angularDamping={2}
         >
-            <group>
+            <group position={[-2000, 0, 0]}>
                 <primitive object={carBody} />
                 <primitive object={lfw} />
                 <primitive object={lbw} />
                 <primitive object={rfw} />
                 <primitive object={rbw} />
+                <mesh ref={frontHelperRef} position={[0, 50, 130]}>
+                    <sphereGeometry args={[5, 5, 5]} />
+                    <meshBasicMaterial color="red" />
+                </mesh>
+                <mesh ref={backHelperRef} position={[0, 50, -150]}>
+                    <sphereGeometry args={[5, 5, 5]} />
+                    <meshBasicMaterial color="blue" />
+                </mesh>
             </group>
         </RigidBody>
     );
