@@ -34,51 +34,37 @@ const Ae86 = () => {
     const [isPovCamera, setIsPovCamera] = useState(false);
     const carPosition = [-2000, 0, 0];
 
+    // user's pressed keys
+    const [keysPressed, setKeysPressed] = useState({});
     // movement
     const [moveForward, setMoveForward] = useState(false);
     const [moveBackward, setMoveBackward] = useState(false);
+    const [steerLeft, setSteerLeft] = useState(false);
+    const [steerRight, setSteerRight] = useState(false);
     const [turnLeft, setTurnLeft] = useState(false);
     const [turnRight, setTurnRight] = useState(false);
 
-    const [position, setPosition] = useState([0, 0, 0]);
+    // const [position, setPosition] = useState([0, 0, 0]);
+    const [position, setPosition] = useState(new THREE.Vector3(0, 0, 0));
     const [rotation, setRotation] = useState([0, 0, 0]);
-    const [speed, setSpeed] = useState(0);
-    const [forwardAcceleration, setForwardAcceleration] = useState(0.5);
-    const [reverseAcceleration, setReverseAcceleration] = useState(0.3);
-    const [braking, setBraking] = useState(0.1);
+    const [currentSpeed, setCurrentSpeed] = useState(0);
+    const [yawAngle, setYawAngle] = useState(0);
+    const topSpeed = 8;
+    const forwardAcceleration = 0.5;
+    const reverseAcceleration = 0.3;
+    const braking = 0.1;
+    const turnSpeed = 2;
 
     // console.log(speed)
 
     // Handle keyboard input
     useEffect(() => {
         const handleKeyDown = (event) => {
-            if (event.key === 'ArrowUp') {
-                setMoveForward(true);
-            }
-            if (event.key === 'ArrowDown') {
-                setMoveBackward(true);
-            }
-            if (event.key === 'ArrowLeft') {
-                setTurnLeft(true);
-            }
-            if (event.key === 'ArrowRight') {
-                setTurnRight(true);
-            }
+            setKeysPressed((prevKeys) => ({ ...prevKeys, [event.key]: true }));
         };
 
         const handleKeyUp = (event) => {
-            if (event.key === 'ArrowUp') {
-                setMoveForward(false);
-            }
-            if (event.key === 'ArrowDown') {
-                setMoveBackward(false);
-            }
-            if (event.key === 'ArrowLeft') {
-                setTurnLeft(false);
-            }
-            if (event.key === 'ArrowRight') {
-                setTurnRight(false);
-            }
+            setKeysPressed((prevKeys) => ({ ...prevKeys, [event.key]: false }));
         };
 
         window.addEventListener('keydown', handleKeyDown);
@@ -89,25 +75,43 @@ const Ae86 = () => {
             window.removeEventListener('keyup', handleKeyUp);
         };
     }, []);
-    useFrame(() => {
-        if (moveForward)
-            setSpeed((prevSpeed) => prevSpeed + forwardAcceleration);
-        if (moveBackward)
-            setSpeed((prevSpeed) => prevSpeed - reverseAcceleration);
-        if (!moveForward && !moveBackward)
-            setSpeed((prevSpeed) => Math.max(prevSpeed - braking, 0));
 
-        if (lfwRef.current && rfwRef.current) {
-            if (turnLeft) {
-                lfwRef.current.rotation.y = Math.PI / 9;
-                rfwRef.current.rotation.y = Math.PI / 9;
-            } else {
-                lfwRef.current.rotation.y = 0;
-                rfwRef.current.rotation.y = 0;
+
+
+    useFrame(() => {
+        // Speed management
+        const moveForward = keysPressed['ArrowUp'];
+        const moveBackward = keysPressed['ArrowDown'];
+        const steerLeft = keysPressed['ArrowLeft'];
+        const steerRight = keysPressed['ArrowRight'];
+        const turnLeft = moveForward && steerLeft;
+        const turnRight = moveForward && steerRight;
+
+
+
+
+        if (moveForward) {
+            if (currentSpeed < topSpeed) {
+                setCurrentSpeed((prevSpeed) => prevSpeed + forwardAcceleration);
+            }
+        } else if (moveBackward) {
+            if (currentSpeed > -topSpeed) {
+                setCurrentSpeed((prevSpeed) => prevSpeed - reverseAcceleration);
+            }
+        } else {
+            if (currentSpeed > 0) {
+                setCurrentSpeed((prevSpeed) => Math.max(0, prevSpeed - braking));
+            } else if (currentSpeed < 0) {
+                setCurrentSpeed((prevSpeed) => Math.min(0, prevSpeed + braking));
             }
         }
+
+        // Rotate wheels for steering
         if (lfwRef.current && rfwRef.current) {
-            if (turnRight) {
+            if (steerLeft) {
+                lfwRef.current.rotation.y = Math.PI / 9;
+                rfwRef.current.rotation.y = Math.PI / 9;
+            } else if (steerRight) {
                 lfwRef.current.rotation.y = -Math.PI / 9;
                 rfwRef.current.rotation.y = -Math.PI / 9;
             } else {
@@ -116,9 +120,29 @@ const Ae86 = () => {
             }
         }
 
-        if (carRef.current && carRef.current.position) {
-            carRef.current.position.z += speed;
+        // Turn the car only when moving forward and turning
+        if (moveForward) {
+            if (turnLeft) {
+                setYawAngle((prevAngle) => prevAngle + turnSpeed);
+            } else if (turnRight) {
+                setYawAngle((prevAngle) => prevAngle - turnSpeed);
+            }
         }
+
+        // Calculate the new position based on the current speed and yaw angle
+        const angleInRadians = yawAngle * (Math.PI / 180);
+        const newPosition = position.clone();
+        newPosition.x += currentSpeed * Math.sin(angleInRadians);
+        newPosition.z += currentSpeed * Math.cos(angleInRadians);
+
+        // Update the position and rotation of the car
+        if (carRef.current) {
+            carRef.current.position.copy(newPosition);
+            carRef.current.rotation.y = angleInRadians;
+        }
+
+        // Update the state position
+        setPosition(newPosition);
     });
 
     const carBodyColor = new THREE.Color(0xff0000);
