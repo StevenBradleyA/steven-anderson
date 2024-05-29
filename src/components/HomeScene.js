@@ -30,9 +30,9 @@ const ThreeScene = () => {
             <Suspense fallback={null}>
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[10, 10, 5]} intensity={1} />
-                {/* <CustomOrbitControls /> */}
+                <CustomOrbitControls />
                 <Physics gravity={[0, -500, 0]}>
-                    <FollowCamera carRef={carRef} />
+                    {/* <FollowCamera carRef={carRef} /> */}
                     <Cube carRef={carRef} />
                     <RaceTrack />
                 </Physics>
