@@ -2,12 +2,13 @@
 'use client';
 
 import React, { useMemo } from 'react';
-import { useGLTF } from '@react-three/drei';
+import { useGLTF, useTexture } from '@react-three/drei';
 import { RigidBody, Collider } from '@react-three/rapier';
 import * as THREE from 'three';
 
 const RaceTrack = () => {
     const { scene } = useGLTF('/raceTrack.glb');
+    // useTexture
 
     return (
         <RigidBody
