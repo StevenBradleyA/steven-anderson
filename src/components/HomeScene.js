@@ -1,12 +1,11 @@
 'use client';
 
-import React, { Suspense, useRef, useMemo } from 'react';
+import React, { Suspense, useRef, useMemo, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Physics } from '@react-three/rapier';
 import RaceTrack from './RaceTrack';
+import Ae86 from './Models/ae86';
 import CustomOrbitControls from './CustomOrbit';
-import Cube from './Models/Cube';
-import FollowCamera from './FollowCamera';
 
 export const Controls = {
     forward: 'forward',
@@ -17,10 +16,8 @@ export const Controls = {
 };
 
 const ThreeScene = () => {
-    const carRef = useRef();
     const isOnFloor = useRef();
-    const frontHelperRef = useRef();
-    const backHelperRef = useRef();
+
     // maybe prevent movement in the air
 
     // okay so user should be able to adjust height via scroll wheel.
@@ -31,18 +28,14 @@ const ThreeScene = () => {
             <Suspense fallback={null}>
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[10, 10, 5]} intensity={1} />
-                {/* <CustomOrbitControls /> */}
+                <CustomOrbitControls />
                 <Physics gravity={[0, -500, 0]}>
-                    <FollowCamera
+                    {/* <FollowCamera
                         carRef={carRef}
                         frontHelperRef={frontHelperRef}
                         backHelperRef={backHelperRef}
-                    />
-                    <Cube
-                        carRef={carRef}
-                        backHelperRef={backHelperRef}
-                        frontHelperRef={frontHelperRef}
-                    />
+                    /> */}
+                    <Ae86 />
                     <RaceTrack />
                 </Physics>
             </Suspense>
