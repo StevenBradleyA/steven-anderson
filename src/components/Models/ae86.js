@@ -45,29 +45,17 @@ const TofuCar = () => {
     const frontHelperRef = useRef();
     const backHelperRef = useRef();
     const [isPovCamera, setIsPovCamera] = useState(false);
-    const [carPosition, setCarPosition] = useState([0, 100, 0]);
+
+    const [torqueFactor, setTorqueFactor] = useState(8);
 
     // user's pressed keys
     const [keysPressed, setKeysPressed] = useState({});
     const [currentSpeed, setCurrentSpeed] = useState(0);
-    const [yawAngle, setYawAngle] = useState(0);
     const topSpeed = 99999999;
     const forwardAcceleration = 999999;
     const reverseAcceleration = 999999;
     const braking = 9999999;
-    const turnSpeed = Math.PI / 180;
     const steerAngle = Math.PI / 9;
-
-    const [fwColliderRotate, setFwColliderRotate] = useState([
-        0,
-        0,
-        Math.PI / 2,
-    ]);
-    const [rwColliderRotate, setRwColliderRotate] = useState([
-        0,
-        0,
-        Math.PI / 2,
-    ]);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -101,9 +89,6 @@ const TofuCar = () => {
             (moveForward && steerRight) || (moveBackward && steerRight);
 
         if (moveForward) {
-            // if (currentSpeed < topSpeed) {
-            //     setCurrentSpeed((prevSpeed) => prevSpeed + forwardAcceleration);
-            // }
             if (currentSpeed < topSpeed) {
                 setCurrentSpeed((prevSpeed) => {
                     const accelerationFactor =
@@ -130,19 +115,16 @@ const TofuCar = () => {
             if (steerLeft) {
                 lfwParentRef.current.rotation.y = steerAngle;
                 rfwParentRef.current.rotation.y = steerAngle;
-                // setFwColliderRotate([0, steerAngle, Math.PI / 2]);
             } else if (steerRight) {
                 lfwParentRef.current.rotation.y = -steerAngle;
                 rfwParentRef.current.rotation.y = -steerAngle;
-                // setFwColliderRotate([0, -steerAngle, Math.PI / 2]);
             } else {
                 lfwParentRef.current.rotation.y = 0;
                 rfwParentRef.current.rotation.y = 0;
-                // setFwColliderRotate([0, 0, Math.PI / 2]);
             }
         }
-        // Add spinning effect to the wheels
-        const wheelRotationSpeed = currentSpeed / 12; // Adjust the divisor to control the spin speed
+        // wheel visual spinning effect
+        const wheelRotationSpeed = currentSpeed / 12; //  divisor controls visual spin speed
         if (
             lfwRef.current &&
             rfwRef.current &&
@@ -153,24 +135,9 @@ const TofuCar = () => {
             rfwRef.current.rotation.x -= wheelRotationSpeed;
             lbwRef.current.rotation.x -= wheelRotationSpeed;
             rbwRef.current.rotation.x -= wheelRotationSpeed;
-            // setFwColliderRotate([-wheelRotationSpeed, 0, Math.PI / 2]);
-            // setRwColliderRotate([-wheelRotationSpeed, 0, Math.PI / 2]);
-        }
-        // Turn the car only when moving forward and turning
-        if (moveForward) {
-            if (turnLeft) {
-                setYawAngle((prevAngle) => prevAngle + turnSpeed);
-            } else if (turnRight) {
-                setYawAngle((prevAngle) => prevAngle - turnSpeed);
-            }
-        } else if (moveBackward) {
-            if (turnLeft) {
-                setYawAngle((prevAngle) => prevAngle - turnSpeed);
-            } else if (turnRight) {
-                setYawAngle((prevAngle) => prevAngle + turnSpeed);
-            }
         }
 
+        console.log(currentSpeed);
         if (carRef.current) {
             const car = carRef.current;
 
@@ -200,93 +167,70 @@ const TofuCar = () => {
                 true
             );
 
-            // Calculate and apply torque for turning
-            const torque = new THREE.Vector3(0, steerAngle, 0); // Torque around the Y-axis for turning
-            car.applyTorqueImpulse(torque);
+            // TORQUE TURNING
+
+            const torque = new THREE.Vector3(0, 1, 0); // Torque around the Y-axis
+
+            // Adjust torque direction based on current speed
+            if (currentSpeed < 0) {
+                torque.set(0, -1, 0);
+            }
+
+            if (currentSpeed < (topSpeed * 1) / 3) {
+                setTorqueFactor(20);
+            }
+            if (currentSpeed < (topSpeed * 1) / 2) {
+                setTorqueFactor(15);
+            }
+            if (currentSpeed < (topSpeed * 1) / 2) {
+                setTorqueFactor(10);
+            }
+
+            // Apply torque for turning
+            if (turnLeft) {
+                const leftTorque = torque.multiplyScalar(
+                    Math.abs(currentSpeed) * torqueFactor
+                ); //  Torque Sideways multiplier
+                car.applyTorqueImpulse(
+                    { x: leftTorque.x, y: leftTorque.y, z: leftTorque.z },
+                    true
+                );
+            } else if (turnRight) {
+                const rightTorque = torque.multiplyScalar(
+                    -Math.abs(currentSpeed) * torqueFactor
+                ); //  Torque Sideways multiplier
+                car.applyTorqueImpulse(
+                    { x: rightTorque.x, y: rightTorque.y, z: rightTorque.z },
+                    true
+                );
+            }
+
+            // -------INPULSE TURNING AT AN ANGLE WORKING ------
+            // const leftVector = new THREE.Vector3(1, 0, 0);
+            // const rightVector = new THREE.Vector3(-1, 0, 0);
+            // if (currentSpeed < 0) {
+            //     leftVector.set(-1, 0, 0);
+            //     rightVector.set(1, 0, 0);
+            // }
+
+            // if (turnLeft) {
+            //     const leftImpulse = leftVector.multiplyScalar(currentSpeed);
+            //     car.applyImpulse(
+            //         { x: leftImpulse.x, y: leftImpulse.y, z: leftImpulse.z },
+            //         true
+            //     );
+            // } else if (turnRight) {
+            //     const rightImpulse = rightVector.multiplyScalar(currentSpeed);
+            //     car.applyImpulse(
+            //         { x: rightImpulse.x, y: rightImpulse.y, z: rightImpulse.z },
+            //         true
+            //     );
+            // }
+            // ------END IMPULSE--------
         } else {
             console.error('carRef.current is undefined');
         }
-
-        // Working Forward Movement only
-        // const angleInRadians = yawAngle * (Math.PI / 180);
-        // const impulse = new THREE.Vector3(
-        //     currentSpeed * Math.sin(angleInRadians),
-        //     0,
-        //     currentSpeed * Math.cos(angleInRadians)
-        // );
-
-        // if (carRef.current) {
-        //     const car = carRef.current;
-
-        //     // Get the current rotation quaternion
-        //     const rotation = car.rotation(); // This should return a quaternion or a rotation vector
-
-        //     // Create a Three.js quaternion from the rotation
-        //     const carQuaternion = new THREE.Quaternion(
-        //         rotation.x,
-        //         rotation.y,
-        //         rotation.z,
-        //         rotation.w
-        //     );
-
-        //     // Define the forward vector in the car's local space
-        //     const forwardVector = new THREE.Vector3(0, 0, 1); // Forward in local space
-
-        //     // Rotate the forward vector by the car's current orientation
-        //     forwardVector.applyQuaternion(carQuaternion);
-
-        //     // Scale the forward vector by the current speed to get the impulse
-        //     const impulse = forwardVector.multiplyScalar(currentSpeed);
-
-        //     // Apply the impulse to the car's physics body
-        //     car.applyImpulse(
-        //         { x: impulse.x, y: impulse.y, z: impulse.z },
-        //         true
-        //     );
-        // } else {
-        //     console.error('carRef.current is undefined');
-        // }
     });
-
-    // Working Forward Movement only
-    // const angleInRadians = yawAngle * (Math.PI / 180);
-    // const impulse = new THREE.Vector3(
-    //     currentSpeed * Math.sin(angleInRadians),
-    //     0,
-    //     currentSpeed * Math.cos(angleInRadians)
-    // );
-
-    // if (carRef.current) {
-    //     const car = carRef.current;
-
-    //     // Get the current rotation quaternion
-    //     const rotation = car.rotation(); // This should return a quaternion or a rotation vector
-
-    //     // Create a Three.js quaternion from the rotation
-    //     const carQuaternion = new THREE.Quaternion(
-    //         rotation.x,
-    //         rotation.y,
-    //         rotation.z,
-    //         rotation.w
-    //     );
-
-    //     // Define the forward vector in the car's local space
-    //     const forwardVector = new THREE.Vector3(0, 0, 1); // Forward in local space
-
-    //     // Rotate the forward vector by the car's current orientation
-    //     forwardVector.applyQuaternion(carQuaternion);
-
-    //     // Scale the forward vector by the current speed to get the impulse
-    //     const impulse = forwardVector.multiplyScalar(currentSpeed);
-
-    //     // Apply the impulse to the car's physics body
-    //     car.applyImpulse(
-    //         { x: impulse.x, y: impulse.y, z: impulse.z },
-    //         true
-    //     );
-    // } else {
-    //     console.error('carRef.current is undefined');
-    // }
 
     const carBodyColor = new THREE.Color(0x1e90ff);
     const carBodyMaterial = new THREE.MeshStandardMaterial({
@@ -532,7 +476,8 @@ const TofuCar = () => {
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
-                            rotation={fwColliderRotate} // friction={0.5}
+                            rotation={[0, 0, Math.PI / 2]}
+                            // friction={0.5}
                             ref={lfwColliderRef}
                         />
                         <group ref={lfwRef}>
@@ -568,7 +513,8 @@ const TofuCar = () => {
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[-0.85, 0, 0]}
-                            rotation={fwColliderRotate} // friction={0.5}
+                            rotation={[0, 0, Math.PI / 2]}
+                            // friction={0.5}
                             ref={rfwColliderRef}
                         />
 
@@ -613,7 +559,8 @@ const TofuCar = () => {
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[-0.85, 0, 0]}
-                            rotation={rwColliderRotate}
+                            rotation={[0, 0, Math.PI / 2]}
+
                             // friction={0.5}
                         />
                         <mesh
@@ -655,7 +602,7 @@ const TofuCar = () => {
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
-                            rotation={rwColliderRotate}
+                            rotation={[0, 0, Math.PI / 2]}
                             // friction={0.5}
                         />
                         <mesh
@@ -698,200 +645,42 @@ export default TofuCar;
 // <CustomCamera isPovCamera={isPovCamera} carPosition={carPosition} />
 // </>
 
-// useFrame(() => {
-//     // Speed management
-//     const moveForward = keysPressed['ArrowUp'];
-//     const moveBackward = keysPressed['ArrowDown'];
-//     const steerLeft = keysPressed['ArrowLeft'];
-//     const steerRight = keysPressed['ArrowRight'];
-//     const turnLeft =
-//         (moveForward && steerLeft) || (moveBackward && steerLeft);
-//     const turnRight =
-//         (moveForward && steerRight) || (moveBackward && steerRight);
+// Working Forward Movement only
+// const angleInRadians = yawAngle * (Math.PI / 180);
+// const impulse = new THREE.Vector3(
+//     currentSpeed * Math.sin(angleInRadians),
+//     0,
+//     currentSpeed * Math.cos(angleInRadians)
+// );
 
-//     if (moveForward) {
-//         if (currentSpeed < topSpeed) {
-//             setCurrentSpeed((prevSpeed) => {
-//                 const accelerationFactor =
-//                     (topSpeed - prevSpeed) / topSpeed;
-//                 return prevSpeed + forwardAcceleration * accelerationFactor;
-//             });
-//         }
-//     } else if (moveBackward) {
-//         if (currentSpeed > -topSpeed) {
-//             setCurrentSpeed((prevSpeed) => prevSpeed - reverseAcceleration);
-//         }
-//     } else {
-//         if (currentSpeed > 0) {
-//             setCurrentSpeed((prevSpeed) =>
-//                 Math.max(0, prevSpeed - braking)
-//             );
-//         } else if (currentSpeed < 0) {
-//             setCurrentSpeed((prevSpeed) =>
-//                 Math.min(0, prevSpeed + braking)
-//             );
-//         }
-//     }
+// if (carRef.current) {
+//     const car = carRef.current;
 
-//     // Rotate wheels for steering
-//     if (lfwRef.current && rfwRef.current) {
-//         if (steerLeft) {
-//             lfwRef.current.rotation.y = Math.PI / 9;
-//             rfwRef.current.rotation.y = Math.PI / 9;
-//         } else if (steerRight) {
-//             lfwRef.current.rotation.y = -Math.PI / 9;
-//             rfwRef.current.rotation.y = -Math.PI / 9;
-//         } else {
-//             lfwRef.current.rotation.y = 0;
-//             rfwRef.current.rotation.y = 0;
-//         }
-//     }
+//     // Get the current rotation quaternion
+//     const rotation = car.rotation(); // This should return a quaternion or a rotation vector
 
-//     // Adjust the turn factor based on the current speed
-//     const speedFactor = Math.abs(currentSpeed) / topSpeed;
-//     const effectiveTurnSpeed = turnSpeed * (1 - speedFactor * 0.2);
-//     // Turn the car based on the movement direction
-//     if (moveForward) {
-//         if (turnLeft) {
-//             setYawAngle((prevAngle) => prevAngle + effectiveTurnSpeed);
-//         } else if (turnRight) {
-//             setYawAngle((prevAngle) => prevAngle - effectiveTurnSpeed);
-//         }
-//     } else if (moveBackward) {
-//         if (turnLeft) {
-//             setYawAngle((prevAngle) => prevAngle - effectiveTurnSpeed);
-//         } else if (turnRight) {
-//             setYawAngle((prevAngle) => prevAngle + effectiveTurnSpeed);
-//         }
-//     }
+//     // Create a Three.js quaternion from the rotation
+//     const carQuaternion = new THREE.Quaternion(
+//         rotation.x,
+//         rotation.y,
+//         rotation.z,
+//         rotation.w
+//     );
 
-//     // Calculate the new position based on the current speed and yaw angle
-//     const angleInRadians = yawAngle * (Math.PI / 180);
-//     const newPosition = position.clone();
-//     newPosition.x += currentSpeed * Math.sin(angleInRadians);
-//     newPosition.z += currentSpeed * Math.cos(angleInRadians);
+//     // Define the forward vector in the car's local space
+//     const forwardVector = new THREE.Vector3(0, 0, 1); // Forward in local space
 
-//     // Update the position and rotation of the car
-//     if (carRef.current) {
-//         carRef.current.position.copy(newPosition);
-//         carRef.current.rotation.y = angleInRadians;
-//     }
+//     // Rotate the forward vector by the car's current orientation
+//     forwardVector.applyQuaternion(carQuaternion);
 
-//     // Update the state position
-//     setPosition(newPosition);
-// });
+//     // Scale the forward vector by the current speed to get the impulse
+//     const impulse = forwardVector.multiplyScalar(currentSpeed);
 
-// console.log(speed)
-
-// Handle keyboard input
-// useEffect(() => {
-//     const handleKeyDown = (event) => {
-//         setKeysPressed((prevKeys) => ({ ...prevKeys, [event.key]: true }));
-//     };
-
-//     const handleKeyUp = (event) => {
-//         setKeysPressed((prevKeys) => ({ ...prevKeys, [event.key]: false }));
-//     };
-
-//     window.addEventListener('keydown', handleKeyDown);
-//     window.addEventListener('keyup', handleKeyUp);
-
-//     return () => {
-//         window.removeEventListener('keydown', handleKeyDown);
-//         window.removeEventListener('keyup', handleKeyUp);
-//     };
-// }, []);
-
-// useFrame(() => {
-//     // Speed management
-//     const moveForward = keysPressed['ArrowUp'];
-//     const moveBackward = keysPressed['ArrowDown'];
-//     const steerLeft = keysPressed['ArrowLeft'];
-//     const steerRight = keysPressed['ArrowRight'];
-//     const turnLeft =
-//         (moveForward && steerLeft) || (moveBackward && steerLeft);
-//     const turnRight =
-//         (moveForward && steerRight) || (moveBackward && steerRight);
-
-//     if (moveForward) {
-//         // if (currentSpeed < topSpeed) {
-//         //     setCurrentSpeed((prevSpeed) => prevSpeed + forwardAcceleration);
-//         // }
-//         if (currentSpeed < topSpeed) {
-//             setCurrentSpeed((prevSpeed) => {
-//                 const accelerationFactor =
-//                     (topSpeed - prevSpeed) / topSpeed;
-//                 return prevSpeed + forwardAcceleration * accelerationFactor;
-//             });
-//         }
-//     } else if (moveBackward) {
-//         if (currentSpeed > -topSpeed) {
-//             setCurrentSpeed((prevSpeed) => prevSpeed - reverseAcceleration);
-//         }
-//     } else {
-//         if (currentSpeed > 0) {
-//             setCurrentSpeed((prevSpeed) =>
-//                 Math.max(0, prevSpeed - braking)
-//             );
-//         } else if (currentSpeed < 0) {
-//             setCurrentSpeed((prevSpeed) =>
-//                 Math.min(0, prevSpeed + braking)
-//             );
-//         }
-//     }
-
-//     if (lfwParentRef.current && rfwParentRef.current) {
-//         if (steerLeft) {
-//             lfwParentRef.current.rotation.y = Math.PI / 9;
-//             rfwParentRef.current.rotation.y = Math.PI / 9;
-//         } else if (steerRight) {
-//             lfwParentRef.current.rotation.y = -Math.PI / 9;
-//             rfwParentRef.current.rotation.y = -Math.PI / 9;
-//         } else {
-//             lfwParentRef.current.rotation.y = 0;
-//             rfwParentRef.current.rotation.y = 0;
-//         }
-//     }
-//     // Add spinning effect to the wheels
-//     const wheelRotationSpeed = currentSpeed / 5; // Adjust the divisor to control the spin speed
-//     if (
-//         lfwRef.current &&
-//         rfwRef.current &&
-//         lbwRef.current &&
-//         rbwRef.current
-//     ) {
-//         lfwRef.current.rotation.x -= wheelRotationSpeed;
-//         rfwRef.current.rotation.x -= wheelRotationSpeed;
-//         lbwRef.current.rotation.x -= wheelRotationSpeed;
-//         rbwRef.current.rotation.x -= wheelRotationSpeed;
-//     }
-//     // Turn the car only when moving forward and turning
-//     if (moveForward) {
-//         if (turnLeft) {
-//             setYawAngle((prevAngle) => prevAngle + turnSpeed);
-//         } else if (turnRight) {
-//             setYawAngle((prevAngle) => prevAngle - turnSpeed);
-//         }
-//     } else if (moveBackward) {
-//         if (turnLeft) {
-//             setYawAngle((prevAngle) => prevAngle - turnSpeed);
-//         } else if (turnRight) {
-//             setYawAngle((prevAngle) => prevAngle + turnSpeed);
-//         }
-//     }
-
-//     // Calculate the new position based on the current speed and yaw angle
-//     const angleInRadians = yawAngle * (Math.PI / 180);
-//     const newPosition = position.clone();
-//     newPosition.x += currentSpeed * Math.sin(angleInRadians);
-//     newPosition.z += currentSpeed * Math.cos(angleInRadians);
-
-//     // Update the position and rotation of the car
-//     if (carRef.current) {
-//         carRef.current.position.copy(newPosition);
-//         carRef.current.rotation.y = angleInRadians;
-//     }
-
-//     // Update the state position
-//     setPosition(newPosition);
-// });
+//     // Apply the impulse to the car's physics body
+//     car.applyImpulse(
+//         { x: impulse.x, y: impulse.y, z: impulse.z },
+//         true
+//     );
+// } else {
+//     console.error('carRef.current is undefined');
+// }
