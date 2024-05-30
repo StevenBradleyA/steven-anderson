@@ -46,13 +46,15 @@ const TofuCar = () => {
     const backHelperRef = useRef();
     const [isPovCamera, setIsPovCamera] = useState(false);
 
-    const [torqueFactor, setTorqueFactor] = useState(8);
+    const [torqueFactor, setTorqueFactor] = useState(9999);
 
     // user's pressed keys
     const [keysPressed, setKeysPressed] = useState({});
     const [currentSpeed, setCurrentSpeed] = useState(0);
-    const topSpeed = 99999999;
-    const forwardAcceleration = 999999;
+    const [totalFriction, setTotalFriction] = useState(0.5);
+    const [rearWheelFriction, setRearWheelFriction] = useState(0.3);
+    const topSpeed = 40099999;
+    const forwardAcceleration = 4500900;
     const reverseAcceleration = 999999;
     const braking = 9999999;
     const steerAngle = Math.PI / 9;
@@ -87,6 +89,7 @@ const TofuCar = () => {
             (moveForward && steerLeft) || (moveBackward && steerLeft);
         const turnRight =
             (moveForward && steerRight) || (moveBackward && steerRight);
+        const drift = keysPressed['Space'];
 
         if (moveForward) {
             if (currentSpeed < topSpeed) {
@@ -137,6 +140,16 @@ const TofuCar = () => {
             rbwRef.current.rotation.x -= wheelRotationSpeed;
         }
 
+        if (drift) {
+            if (rearWheelFriction !== 0.01) {
+                setRearWheelFriction(0.01);
+            }
+        } else {
+            if (rearWheelFriction !== 0.3) {
+                setRearWheelFriction(0.3);
+            }
+        }
+
         console.log(currentSpeed);
         if (carRef.current) {
             const car = carRef.current;
@@ -175,17 +188,21 @@ const TofuCar = () => {
             if (currentSpeed < 0) {
                 torque.set(0, -1, 0);
             }
-
-            if (currentSpeed < (topSpeed * 1) / 3) {
+            if (currentSpeed < topSpeed * 0.1) {
+                setTorqueFactor(25);
+            }
+            if (currentSpeed < topSpeed * 0.25) {
                 setTorqueFactor(20);
             }
-            if (currentSpeed < (topSpeed * 1) / 2) {
+            if (currentSpeed < topSpeed * 0.5) {
                 setTorqueFactor(15);
             }
-            if (currentSpeed < (topSpeed * 1) / 2) {
-                setTorqueFactor(10);
+            if (currentSpeed < topSpeed * 0.75) {
+                setTorqueFactor(7.5);
             }
-
+            if (currentSpeed === topSpeed) {
+                setTorqueFactor(2);
+            }
             // Apply torque for turning
             if (turnLeft) {
                 const leftTorque = torque.multiplyScalar(
@@ -246,15 +263,17 @@ const TofuCar = () => {
     });
 
     // todo fix friction
-    // todo space is a drift button that is a fun sliding mechanic
+    // todo space is a drift button that is a fun sliding mechanic reduces rear wheel friction
+    // todo perfect adjustments with a dbug api
     return (
         <>
             <RigidBody
-                mass={0.2}
+                mass={0.25}
                 colliders={false}
                 position={[0, 100, 0]}
                 ref={carRef}
                 scale={15}
+                friction={totalFriction}
             >
                 <CuboidCollider
                     args={[4, 2.3, 9.3]}
@@ -314,12 +333,10 @@ const TofuCar = () => {
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                         />
                         <mesh
-                            // licensePlate
-                            ref={engineRef}
                             castShadow
                             receiveShadow
                             geometry={carBodyNodes.Cube006_0_Baked.geometry}
-                            material={carBodyMaterialRed}
+                            material={carBodyMaterial}
                             position={[0.246, 1.384, 8.687]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={[0.755, 0.043, 0.26]}
@@ -469,16 +486,13 @@ const TofuCar = () => {
                     </group>
 
                     <group ref={lfwParentRef} position={[2.548, 1.244, 5.132]}>
-                        {/* <BallCollider
-                            args={[1.5, 0.75, 1.5]}
-                            position={[0.75, -0.3, 0]}
-                        /> */}
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
-                            // friction={0.5}
                             ref={lfwColliderRef}
+                            // friction={0.5}
+                            // mass={12}
                         />
                         <group ref={lfwRef}>
                             <mesh
@@ -516,6 +530,7 @@ const TofuCar = () => {
                             rotation={[0, 0, Math.PI / 2]}
                             // friction={0.5}
                             ref={rfwColliderRef}
+                            // mass={12}
                         />
 
                         <group dispose={null} ref={rfwRef}>
@@ -560,8 +575,9 @@ const TofuCar = () => {
                             args={[0.7, 1.2]}
                             position={[-0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
+                            // mass={12}
 
-                            // friction={0.5}
+                            friction={rearWheelFriction}
                         />
                         <mesh
                             castShadow
@@ -603,7 +619,8 @@ const TofuCar = () => {
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
-                            // friction={0.5}
+                            friction={rearWheelFriction}
+                            // mass={12}
                         />
                         <mesh
                             castShadow
