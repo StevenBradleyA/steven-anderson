@@ -17,7 +17,7 @@ const RaceTrack = () => {
             type="fixed"
             position={[0, 0, 0]}
             colliders="trimesh"
-            friction={1}
+            friction={2}
             restitution={0.2}
         >
             <group dispose={null} map={colorMap}>
