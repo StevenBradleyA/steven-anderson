@@ -40,21 +40,20 @@ const TofuCar = () => {
     const rfwRef = useRef();
     const rfwParentRef = useRef();
     const rfwColliderRef = useRef();
-    const engineRef = useRef();
 
-    const frontHelperRef = useRef();
-    const backHelperRef = useRef();
     const [isPovCamera, setIsPovCamera] = useState(false);
-
     const [torqueFactor, setTorqueFactor] = useState(9999);
 
-    // user's pressed keys
+    // input
     const [keysPressed, setKeysPressed] = useState({});
+    // car stats
     const [currentSpeed, setCurrentSpeed] = useState(0);
     const [totalFriction, setTotalFriction] = useState(0.5);
     const [rearWheelFriction, setRearWheelFriction] = useState(0.3);
-    const topSpeed = 40099999;
-    const forwardAcceleration = 4500900;
+    const [topSpeed, setTopSpeed] = useState(40099999);
+    const [canFlip, setCanFlip] = useState(true);
+
+    const forwardAcceleration = 8500900;
     const reverseAcceleration = 999999;
     const braking = 9999999;
     const steerAngle = Math.PI / 9;
@@ -89,7 +88,39 @@ const TofuCar = () => {
             (moveForward && steerLeft) || (moveBackward && steerLeft);
         const turnRight =
             (moveForward && steerRight) || (moveBackward && steerRight);
-        const drift = keysPressed['Space'];
+        const drift = keysPressed['big man'];
+        const reset = keysPressed['r'];
+        const flip = keysPressed['Shift'];
+
+        if (reset && carRef.current) {
+            carRef.current.setTranslation({ x: -2000, y: 100, z: -250 }, true);
+            carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+            carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+            const euler = new THREE.Euler(0, 0, 0);
+            const quaternion = new THREE.Quaternion().setFromEuler(euler);
+            carRef.current.setRotation(quaternion, true);
+        }
+        if (flip && carRef.current) {
+            // Move the car up in the air
+            const currentPosition = carRef.current.translation();
+            carRef.current.setTranslation(
+                {
+                    x: currentPosition.x,
+                    y: currentPosition.y + 5,
+                    z: currentPosition.z,
+                },
+                true
+            );
+
+            // Zero out velocities
+            carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+            carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+
+            // Correct the car's orientation
+            const euler = new THREE.Euler(0, 0, 0);
+            const quaternion = new THREE.Quaternion().setFromEuler(euler);
+            carRef.current.setRotation(quaternion, true);
+        }
 
         if (moveForward) {
             if (currentSpeed < topSpeed) {
@@ -150,7 +181,6 @@ const TofuCar = () => {
             }
         }
 
-        console.log(currentSpeed);
         if (carRef.current) {
             const car = carRef.current;
 
@@ -262,15 +292,20 @@ const TofuCar = () => {
         metalness: 0.5, // Optionally, you can also set metalness to give it a metallic look
     });
 
-    // todo fix friction
+    // reset everything
+    // flip car over
+    // only allow impulse and torque when wheels are on the ground
     // todo space is a drift button that is a fun sliding mechanic reduces rear wheel friction
     // todo perfect adjustments with a dbug api
+    // todo camera modes - follow camera - free moving orbit camera - 
+
+    
     return (
         <>
             <RigidBody
                 mass={0.25}
                 colliders={false}
-                position={[0, 100, 0]}
+                position={[-2000, 100, -250]}
                 ref={carRef}
                 scale={15}
                 friction={totalFriction}
