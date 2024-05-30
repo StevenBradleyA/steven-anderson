@@ -32,6 +32,7 @@ const TofuCar = () => {
     const lfwParentRef = useRef();
     const rfwRef = useRef();
     const rfwParentRef = useRef();
+    const engineRef = useRef();
 
     const frontHelperRef = useRef();
     const backHelperRef = useRef();
@@ -145,12 +146,46 @@ const TofuCar = () => {
             }
         }
 
-        const impulse = new THREE.Vector3(0, 0, currentSpeed); // Adjust the impulse value as needed
-        const point = new THREE.Vector3(1, 0, 0);
+        // const impulse = new THREE.Vector3(0, 0, currentSpeed); // Adjust the impulse value as needed
+        // // Apply the impulse to the car's physics body
+        // if (carRef.current ) {
+        //     carRef.current.applyImpulse(impulse);
+        //     // const point = engineRef;
+        //     // carRef.current.applyImpulseAtPoint(impulse, engineRef.current, true);
+        // }
+
+        const angleInRadians = yawAngle * (Math.PI / 180);
+        const impulse = new THREE.Vector3(
+            currentSpeed * Math.sin(angleInRadians),
+            0,
+            currentSpeed * Math.cos(angleInRadians)
+        );
+
         // Apply the impulse to the car's physics body
+        // if (carRef.current) {
+        //     carRef.current.applyImpulse(impulse);
+        // }
         if (carRef.current) {
-            // carRef.current.applyImpulse(impulse);
-            carRef.current.applyImpulseAtPoint(impulse, point, true);
+            const car = carRef.current;
+
+            // Get the car's current rotation in radians
+            const rotation = car.rotation(); // Assuming this returns a Quaternion
+            const angleInRadians = rotation.y; // Adjust this based on how Rapier returns rotation
+
+            // Define the forward direction in the car's local space
+            const forwardVector = new THREE.Vector3(
+                Math.sin(angleInRadians),
+                0,
+                Math.cos(angleInRadians)
+            );
+
+            // Scale the forward vector by the current speed to get the impulse
+            const impulse = forwardVector.multiplyScalar(currentSpeed);
+
+            // Apply the impulse to the car's physics body
+            car.applyImpulse(impulse, true); // Apply impulse at the center of mass
+        } else {
+            console.error('carRef.current is undefined');
         }
     });
 
@@ -236,6 +271,7 @@ const TofuCar = () => {
                         />
                         <mesh
                             // licensePlate
+                            ref={engineRef}
                             castShadow
                             receiveShadow
                             geometry={carBodyNodes.Cube006_0_Baked.geometry}
