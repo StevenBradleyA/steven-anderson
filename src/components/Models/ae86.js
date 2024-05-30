@@ -35,25 +35,39 @@ const TofuCar = () => {
     const rbwRef = useRef();
     const lfwRef = useRef();
     const lfwParentRef = useRef();
+    const lfwColliderRef = useRef();
+
     const rfwRef = useRef();
     const rfwParentRef = useRef();
+    const rfwColliderRef = useRef();
     const engineRef = useRef();
 
     const frontHelperRef = useRef();
     const backHelperRef = useRef();
     const [isPovCamera, setIsPovCamera] = useState(false);
-    // const carPosition = [-2000, 0, 0];
+    const [carPosition, setCarPosition] = useState([0, 100, 0]);
 
     // user's pressed keys
     const [keysPressed, setKeysPressed] = useState({});
-    // const [position, setPosition] = useState(new THREE.Vector3(0, 0, 0));
     const [currentSpeed, setCurrentSpeed] = useState(0);
     const [yawAngle, setYawAngle] = useState(0);
     const topSpeed = 99999999;
     const forwardAcceleration = 999999;
     const reverseAcceleration = 999999;
     const braking = 9999999;
-    const turnSpeed = 9999999999999;
+    const turnSpeed = Math.PI / 180;
+    const steerAngle = Math.PI / 9;
+
+    const [fwColliderRotate, setFwColliderRotate] = useState([
+        0,
+        0,
+        Math.PI / 2,
+    ]);
+    const [rwColliderRotate, setRwColliderRotate] = useState([
+        0,
+        0,
+        Math.PI / 2,
+    ]);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -112,21 +126,23 @@ const TofuCar = () => {
                 );
             }
         }
-
         if (lfwParentRef.current && rfwParentRef.current) {
             if (steerLeft) {
-                lfwParentRef.current.rotation.y = Math.PI / 9;
-                rfwParentRef.current.rotation.y = Math.PI / 9;
+                lfwParentRef.current.rotation.y = steerAngle;
+                rfwParentRef.current.rotation.y = steerAngle;
+                // setFwColliderRotate([0, steerAngle, Math.PI / 2]);
             } else if (steerRight) {
-                lfwParentRef.current.rotation.y = -Math.PI / 9;
-                rfwParentRef.current.rotation.y = -Math.PI / 9;
+                lfwParentRef.current.rotation.y = -steerAngle;
+                rfwParentRef.current.rotation.y = -steerAngle;
+                // setFwColliderRotate([0, -steerAngle, Math.PI / 2]);
             } else {
                 lfwParentRef.current.rotation.y = 0;
                 rfwParentRef.current.rotation.y = 0;
+                // setFwColliderRotate([0, 0, Math.PI / 2]);
             }
         }
         // Add spinning effect to the wheels
-        const wheelRotationSpeed = currentSpeed / 8; // Adjust the divisor to control the spin speed
+        const wheelRotationSpeed = currentSpeed / 12; // Adjust the divisor to control the spin speed
         if (
             lfwRef.current &&
             rfwRef.current &&
@@ -137,6 +153,8 @@ const TofuCar = () => {
             rfwRef.current.rotation.x -= wheelRotationSpeed;
             lbwRef.current.rotation.x -= wheelRotationSpeed;
             rbwRef.current.rotation.x -= wheelRotationSpeed;
+            // setFwColliderRotate([-wheelRotationSpeed, 0, Math.PI / 2]);
+            // setRwColliderRotate([-wheelRotationSpeed, 0, Math.PI / 2]);
         }
         // Turn the car only when moving forward and turning
         if (moveForward) {
@@ -151,6 +169,42 @@ const TofuCar = () => {
             } else if (turnRight) {
                 setYawAngle((prevAngle) => prevAngle + turnSpeed);
             }
+        }
+
+        if (carRef.current) {
+            const car = carRef.current;
+
+            // Get the current rotation quaternion
+            const rotation = car.rotation(); // This should return a quaternion or a rotation vector
+
+            // Create a Three.js quaternion from the rotation
+            const carQuaternion = new THREE.Quaternion(
+                rotation.x,
+                rotation.y,
+                rotation.z,
+                rotation.w
+            );
+
+            // Define the forward vector in the car's local space
+            const forwardVector = new THREE.Vector3(0, 0, 1); // Forward in local space
+
+            // Rotate the forward vector by the car's current orientation
+            forwardVector.applyQuaternion(carQuaternion);
+
+            // Scale the forward vector by the current speed to get the impulse
+            const impulse = forwardVector.multiplyScalar(currentSpeed);
+
+            // Apply the impulse to the car's physics body
+            car.applyImpulse(
+                { x: impulse.x, y: impulse.y, z: impulse.z },
+                true
+            );
+
+            // Calculate and apply torque for turning
+            const torque = new THREE.Vector3(0, steerAngle, 0); // Torque around the Y-axis for turning
+            car.applyTorqueImpulse(torque);
+        } else {
+            console.error('carRef.current is undefined');
         }
 
         // Working Forward Movement only
@@ -192,37 +246,47 @@ const TofuCar = () => {
         // } else {
         //     console.error('carRef.current is undefined');
         // }
-
-        if (carRef.current) {
-            const car = carRef.current;
-            const rotation = car.rotation(); // This should return a quaternion or a rotation vector
-
-            // Create a Three.js quaternion from the rotation
-            const carQuaternion = new THREE.Quaternion(
-                rotation.x,
-                rotation.y,
-                rotation.z,
-                rotation.w
-            );
-
-            // Define the forward vector in the car's local space
-            const forwardVector = new THREE.Vector3(0, 0, 1); // Forward in local space
-
-            // Rotate the forward vector by the car's current orientation
-            forwardVector.applyQuaternion(carQuaternion);
-
-            // Scale the forward vector by the current speed to get the impulse
-            const impulse = forwardVector.multiplyScalar(currentSpeed);
-
-            // Apply the impulse to the car's physics body
-            car.applyImpulse(
-                { x: impulse.x, y: impulse.y, z: impulse.z },
-                true
-            );
-        } else {
-            console.error('carRef.current is undefined');
-        }
     });
+
+    // Working Forward Movement only
+    // const angleInRadians = yawAngle * (Math.PI / 180);
+    // const impulse = new THREE.Vector3(
+    //     currentSpeed * Math.sin(angleInRadians),
+    //     0,
+    //     currentSpeed * Math.cos(angleInRadians)
+    // );
+
+    // if (carRef.current) {
+    //     const car = carRef.current;
+
+    //     // Get the current rotation quaternion
+    //     const rotation = car.rotation(); // This should return a quaternion or a rotation vector
+
+    //     // Create a Three.js quaternion from the rotation
+    //     const carQuaternion = new THREE.Quaternion(
+    //         rotation.x,
+    //         rotation.y,
+    //         rotation.z,
+    //         rotation.w
+    //     );
+
+    //     // Define the forward vector in the car's local space
+    //     const forwardVector = new THREE.Vector3(0, 0, 1); // Forward in local space
+
+    //     // Rotate the forward vector by the car's current orientation
+    //     forwardVector.applyQuaternion(carQuaternion);
+
+    //     // Scale the forward vector by the current speed to get the impulse
+    //     const impulse = forwardVector.multiplyScalar(currentSpeed);
+
+    //     // Apply the impulse to the car's physics body
+    //     car.applyImpulse(
+    //         { x: impulse.x, y: impulse.y, z: impulse.z },
+    //         true
+    //     );
+    // } else {
+    //     console.error('carRef.current is undefined');
+    // }
 
     const carBodyColor = new THREE.Color(0x1e90ff);
     const carBodyMaterial = new THREE.MeshStandardMaterial({
@@ -244,7 +308,7 @@ const TofuCar = () => {
             <RigidBody
                 mass={0.2}
                 colliders={false}
-                position={[0, 3, 0]}
+                position={[0, 100, 0]}
                 ref={carRef}
                 scale={15}
             >
@@ -468,8 +532,8 @@ const TofuCar = () => {
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
-                            rotation={[0, 0, Math.PI / 2]}
-                            // friction={1}
+                            rotation={fwColliderRotate} // friction={0.5}
+                            ref={lfwColliderRef}
                         />
                         <group ref={lfwRef}>
                             <mesh
@@ -504,8 +568,8 @@ const TofuCar = () => {
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[-0.85, 0, 0]}
-                            rotation={[0, 0, Math.PI / 2]}
-                            // friction={1}
+                            rotation={fwColliderRotate} // friction={0.5}
+                            ref={rfwColliderRef}
                         />
 
                         <group dispose={null} ref={rfwRef}>
@@ -546,17 +610,11 @@ const TofuCar = () => {
                         ref={rbwRef}
                         position={[-2.129, 1.143, -5.383]}
                     >
-                        {/* <CuboidCollider args={[4, 4, 4]} /> */}
-                        {/* <BallCollider
-                            args={[1.5, 0.75, 1.5]}
-                            position={[-0.75, -0.3, 0]}
-                            friction={1}
-                        /> */}
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[-0.85, 0, 0]}
-                            rotation={[0, 0, Math.PI / 2]}
-                            // friction={1}
+                            rotation={rwColliderRotate}
+                            // friction={0.5}
                         />
                         <mesh
                             castShadow
@@ -594,17 +652,11 @@ const TofuCar = () => {
                         ref={lbwRef}
                         position={[2.612, 1.143, -5.381]}
                     >
-                        {/* <CuboidCollider args={[4, 4, 4]} /> */}
-                        {/* <BallCollider
-                            args={[1.5, 0.75, 1.5]}
-                            position={[0.75, -0.3, 0]}
-                            friction={1}
-                        /> */}
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
-                            rotation={[0, 0, Math.PI / 2]}
-                            // friction={1}
+                            rotation={rwColliderRotate}
+                            // friction={0.5}
                         />
                         <mesh
                             castShadow
