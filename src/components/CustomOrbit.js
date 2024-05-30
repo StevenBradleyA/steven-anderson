@@ -10,6 +10,11 @@ const CustomOrbitControls = () => {
     const controlsRef = useRef();
 
     useEffect(() => {
+
+        camera.near = 0.1;
+        camera.far = 30000;
+        camera.updateProjectionMatrix();
+        
         controlsRef.current.mouseButtons = {
             LEFT: THREE.MOUSE.PAN,
             MIDDLE: THREE.MOUSE.DOLLY,

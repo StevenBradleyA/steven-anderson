@@ -1,11 +1,13 @@
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
-import { RigidBody } from '@react-three/rapier';
+import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import CustomCamera from '../Camera/customCamera';
 import * as THREE from 'three';
 
-const Ae86 = () => {
+const TofuCar = () => {
     const { nodes: carBodyNodes, materials: carBodyMaterials } =
         useGLTF('/models/ae86.glb');
     const { nodes: lfwNodes, materials: lfwMaterials } = useGLTF(
@@ -34,22 +36,19 @@ const Ae86 = () => {
     const frontHelperRef = useRef();
     const backHelperRef = useRef();
     const [isPovCamera, setIsPovCamera] = useState(false);
-    const carPosition = [-2000, 0, 0];
+    // const carPosition = [-2000, 0, 0];
 
     // user's pressed keys
     const [keysPressed, setKeysPressed] = useState({});
-    const [position, setPosition] = useState(new THREE.Vector3(0, 0, 0));
+    // const [position, setPosition] = useState(new THREE.Vector3(0, 0, 0));
     const [currentSpeed, setCurrentSpeed] = useState(0);
     const [yawAngle, setYawAngle] = useState(0);
-    const topSpeed = 20;
-    const forwardAcceleration = 0.4;
-    const reverseAcceleration = 0.2;
-    const braking = 0.1;
+    const topSpeed = 99999999;
+    const forwardAcceleration = 999999;
+    const reverseAcceleration = 999999;
+    const braking = 9999999;
     const turnSpeed = 2;
 
-    // console.log(speed)
-
-    // Handle keyboard input
     useEffect(() => {
         const handleKeyDown = (event) => {
             setKeysPressed((prevKeys) => ({ ...prevKeys, [event.key]: true }));
@@ -119,7 +118,7 @@ const Ae86 = () => {
             }
         }
         // Add spinning effect to the wheels
-        const wheelRotationSpeed = currentSpeed / 5; // Adjust the divisor to control the spin speed
+        const wheelRotationSpeed = currentSpeed / 8; // Adjust the divisor to control the spin speed
         if (
             lfwRef.current &&
             rfwRef.current &&
@@ -146,25 +145,24 @@ const Ae86 = () => {
             }
         }
 
-        // Calculate the new position based on the current speed and yaw angle
-        const angleInRadians = yawAngle * (Math.PI / 180);
-        const newPosition = position.clone();
-        newPosition.x += currentSpeed * Math.sin(angleInRadians);
-        newPosition.z += currentSpeed * Math.cos(angleInRadians);
-
-        // Update the position and rotation of the car
+        const impulse = new THREE.Vector3(0, 0, currentSpeed); // Adjust the impulse value as needed
+        const point = new THREE.Vector3(1, 0, 0);
+        // Apply the impulse to the car's physics body
         if (carRef.current) {
-            carRef.current.position.copy(newPosition);
-            carRef.current.rotation.y = angleInRadians;
+            // carRef.current.applyImpulse(impulse);
+            carRef.current.applyImpulseAtPoint(impulse, point, true);
         }
-
-        // Update the state position
-        setPosition(newPosition);
     });
 
     const carBodyColor = new THREE.Color(0x1e90ff);
     const carBodyMaterial = new THREE.MeshStandardMaterial({
         color: carBodyColor,
+        roughness: 0.5, // Adjust this value to increase or decrease roughness
+        metalness: 0.5, // Optionally, you can also set metalness to give it a metallic look
+    });
+    const carBodyColorRed = new THREE.Color(0xffc0cb);
+    const carBodyMaterialRed = new THREE.MeshStandardMaterial({
+        color: carBodyColorRed,
         roughness: 0.5, // Adjust this value to increase or decrease roughness
         metalness: 0.5, // Optionally, you can also set metalness to give it a metallic look
     });
@@ -174,13 +172,16 @@ const Ae86 = () => {
     return (
         <>
             <RigidBody
-                mass={20}
-                restitution={0}
-                friction={1}
-                linearDamping={3}
-                angularDamping={2}
+                mass={0.2}
+                colliders={false}
+                position={[0, 3, 0]}
+                // restitution={0}
+                // friction={1}
+                ref={carRef}
+                scale={15}
             >
-                <group scale={15} ref={carRef}>
+                <CuboidCollider args={[6, 3, 9]} position={[0, 3, 0]} />
+                <group>
                     <group dispose={null} ref={bodyRef}>
                         <mesh
                             castShadow
@@ -234,10 +235,11 @@ const Ae86 = () => {
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                         />
                         <mesh
+                            // licensePlate
                             castShadow
                             receiveShadow
                             geometry={carBodyNodes.Cube006_0_Baked.geometry}
-                            material={carBodyMaterial}
+                            material={carBodyMaterialRed}
                             position={[0.246, 1.384, 8.687]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={[0.755, 0.043, 0.26]}
@@ -386,36 +388,8 @@ const Ae86 = () => {
                         />
                     </group>
 
-                    {/* <group
-                        dispose={null}
-                        ref={lfwRef}
-                        position={[2.548, 1.244, 5.132]}
-                    >
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={lfwNodes.Cylinder001_0_Baked.geometry}
-                            material={lfwMaterials.LeftFrontWheelBake_Baked}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            scale={0.06}
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={lfwNodes.Cylinder_0_Baked.geometry}
-                            material={lfwMaterials.LeftFrontWheelBake_Baked}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            scale={1.315}
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={lfwNodes.Circle_0_Baked.geometry}
-                            material={lfwMaterials.LeftFrontWheelBake_Baked}
-                            rotation={[-Math.PI / 2, 0, 0]}
-                        />
-                    </group> */}
                     <group ref={lfwParentRef} position={[2.548, 1.244, 5.132]}>
+                        {/* <CuboidCollider args={[4, 4, 4]} /> */}
                         <group ref={lfwRef}>
                             <mesh
                                 castShadow
@@ -443,39 +417,8 @@ const Ae86 = () => {
                         </group>
                     </group>
 
-                    {/* <group
-                        dispose={null}
-                        ref={rfwRef}
-                        position={[-2.109, 1.244, 5.129]}
-                    >
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={rfwNodes.Cylinder014_0_Baked.geometry}
-                            material={rfwMaterials.RightFrontWheelBake_Baked}
-                            // position={[-2.109, 1.244, 5.129]}
-                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                            scale={0.06}
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={rfwNodes.Cylinder015_0_Baked.geometry}
-                            material={rfwMaterials.RightFrontWheelBake_Baked}
-                            // position={[-2.109, 1.244, 5.129]}
-                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                            scale={1.315}
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={rfwNodes.Circle003_0_Baked.geometry}
-                            material={rfwMaterials.RightFrontWheelBake_Baked}
-                            // position={[-2.109, 1.244, 5.129]}
-                            rotation={[-Math.PI / 2, 0, -Math.PI]}
-                        />
-                    </group> */}
                     <group ref={rfwParentRef} position={[-2.109, 1.244, 5.129]}>
+                        {/* <CuboidCollider args={[4, 4, 4]} /> */}
                         <group dispose={null} ref={rfwRef}>
                             <mesh
                                 castShadow
@@ -484,7 +427,6 @@ const Ae86 = () => {
                                 material={
                                     rfwMaterials.RightFrontWheelBake_Baked
                                 }
-                                // position={[-2.109, 1.244, 5.129]}
                                 rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                                 scale={0.06}
                             />
@@ -495,7 +437,6 @@ const Ae86 = () => {
                                 material={
                                     rfwMaterials.RightFrontWheelBake_Baked
                                 }
-                                // position={[-2.109, 1.244, 5.129]}
                                 rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                                 scale={1.315}
                             />
@@ -506,7 +447,6 @@ const Ae86 = () => {
                                 material={
                                     rfwMaterials.RightFrontWheelBake_Baked
                                 }
-                                // position={[-2.109, 1.244, 5.129]}
                                 rotation={[-Math.PI / 2, 0, -Math.PI]}
                             />
                         </group>
@@ -517,6 +457,7 @@ const Ae86 = () => {
                         ref={rbwRef}
                         position={[-2.129, 1.143, -5.383]}
                     >
+                        {/* <CuboidCollider args={[4, 4, 4]} /> */}
                         <mesh
                             castShadow
                             receiveShadow
@@ -534,7 +475,6 @@ const Ae86 = () => {
                             material={
                                 rbwMaterials['RightBackWheelBake_Baked.001']
                             }
-                            // position={[-2.129, 1.143, -5.383]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={1.315}
                         />
@@ -545,7 +485,6 @@ const Ae86 = () => {
                             material={
                                 rbwMaterials['RightBackWheelBake_Baked.002']
                             }
-                            // position={[-2.129, 1.143, -5.383]}
                             rotation={[-Math.PI / 2, 0, -Math.PI]}
                         />
                     </group>
@@ -555,6 +494,7 @@ const Ae86 = () => {
                         ref={lbwRef}
                         position={[2.612, 1.143, -5.381]}
                     >
+                        {/* <CuboidCollider args={[4, 4, 4]} /> */}
                         <mesh
                             castShadow
                             receiveShadow
@@ -567,7 +507,6 @@ const Ae86 = () => {
                             receiveShadow
                             geometry={lbwNodes.Cylinder006_0_Baked.geometry}
                             material={lbwMaterials.LeftBackWheelBake_Baked}
-                            // position={[2.612, 1.143, -5.381]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             scale={0.06}
                         />
@@ -576,28 +515,12 @@ const Ae86 = () => {
                             receiveShadow
                             geometry={lbwNodes.Cylinder007_0_Baked.geometry}
                             material={lbwMaterials.LeftBackWheelBake_Baked}
-                            // position={[2.612, 1.143, -5.381]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             scale={1.315}
                         />
                     </group>
-
-                    <mesh ref={frontHelperRef} position={[0, 4, 9]} scale={0.5}>
-                        <sphereGeometry args={[1, 1, 1]} />
-                        <meshBasicMaterial color="red" />
-                    </mesh>
-                    <mesh
-                        ref={backHelperRef}
-                        position={[0, 5, -9.5]}
-                        scale={0.5}
-                    >
-                        <sphereGeometry args={[1, 1, 1]} />
-                        <meshBasicMaterial color="blue" />
-                    </mesh>
                 </group>
             </RigidBody>
-
-            <CustomCamera isPovCamera={isPovCamera} carPosition={carPosition} />
         </>
     );
 };
@@ -607,7 +530,10 @@ useGLTF.preload('/models/rightFrontWheel.glb');
 useGLTF.preload('/models/leftBackWheel.glb');
 useGLTF.preload('/models/rightBackWheel.glb');
 
-export default Ae86;
+export default TofuCar;
+
+// <CustomCamera isPovCamera={isPovCamera} carPosition={carPosition} />
+// </>
 
 // useFrame(() => {
 //     // Speed management
@@ -673,6 +599,121 @@ export default Ae86;
 //             setYawAngle((prevAngle) => prevAngle - effectiveTurnSpeed);
 //         } else if (turnRight) {
 //             setYawAngle((prevAngle) => prevAngle + effectiveTurnSpeed);
+//         }
+//     }
+
+//     // Calculate the new position based on the current speed and yaw angle
+//     const angleInRadians = yawAngle * (Math.PI / 180);
+//     const newPosition = position.clone();
+//     newPosition.x += currentSpeed * Math.sin(angleInRadians);
+//     newPosition.z += currentSpeed * Math.cos(angleInRadians);
+
+//     // Update the position and rotation of the car
+//     if (carRef.current) {
+//         carRef.current.position.copy(newPosition);
+//         carRef.current.rotation.y = angleInRadians;
+//     }
+
+//     // Update the state position
+//     setPosition(newPosition);
+// });
+
+// console.log(speed)
+
+// Handle keyboard input
+// useEffect(() => {
+//     const handleKeyDown = (event) => {
+//         setKeysPressed((prevKeys) => ({ ...prevKeys, [event.key]: true }));
+//     };
+
+//     const handleKeyUp = (event) => {
+//         setKeysPressed((prevKeys) => ({ ...prevKeys, [event.key]: false }));
+//     };
+
+//     window.addEventListener('keydown', handleKeyDown);
+//     window.addEventListener('keyup', handleKeyUp);
+
+//     return () => {
+//         window.removeEventListener('keydown', handleKeyDown);
+//         window.removeEventListener('keyup', handleKeyUp);
+//     };
+// }, []);
+
+// useFrame(() => {
+//     // Speed management
+//     const moveForward = keysPressed['ArrowUp'];
+//     const moveBackward = keysPressed['ArrowDown'];
+//     const steerLeft = keysPressed['ArrowLeft'];
+//     const steerRight = keysPressed['ArrowRight'];
+//     const turnLeft =
+//         (moveForward && steerLeft) || (moveBackward && steerLeft);
+//     const turnRight =
+//         (moveForward && steerRight) || (moveBackward && steerRight);
+
+//     if (moveForward) {
+//         // if (currentSpeed < topSpeed) {
+//         //     setCurrentSpeed((prevSpeed) => prevSpeed + forwardAcceleration);
+//         // }
+//         if (currentSpeed < topSpeed) {
+//             setCurrentSpeed((prevSpeed) => {
+//                 const accelerationFactor =
+//                     (topSpeed - prevSpeed) / topSpeed;
+//                 return prevSpeed + forwardAcceleration * accelerationFactor;
+//             });
+//         }
+//     } else if (moveBackward) {
+//         if (currentSpeed > -topSpeed) {
+//             setCurrentSpeed((prevSpeed) => prevSpeed - reverseAcceleration);
+//         }
+//     } else {
+//         if (currentSpeed > 0) {
+//             setCurrentSpeed((prevSpeed) =>
+//                 Math.max(0, prevSpeed - braking)
+//             );
+//         } else if (currentSpeed < 0) {
+//             setCurrentSpeed((prevSpeed) =>
+//                 Math.min(0, prevSpeed + braking)
+//             );
+//         }
+//     }
+
+//     if (lfwParentRef.current && rfwParentRef.current) {
+//         if (steerLeft) {
+//             lfwParentRef.current.rotation.y = Math.PI / 9;
+//             rfwParentRef.current.rotation.y = Math.PI / 9;
+//         } else if (steerRight) {
+//             lfwParentRef.current.rotation.y = -Math.PI / 9;
+//             rfwParentRef.current.rotation.y = -Math.PI / 9;
+//         } else {
+//             lfwParentRef.current.rotation.y = 0;
+//             rfwParentRef.current.rotation.y = 0;
+//         }
+//     }
+//     // Add spinning effect to the wheels
+//     const wheelRotationSpeed = currentSpeed / 5; // Adjust the divisor to control the spin speed
+//     if (
+//         lfwRef.current &&
+//         rfwRef.current &&
+//         lbwRef.current &&
+//         rbwRef.current
+//     ) {
+//         lfwRef.current.rotation.x -= wheelRotationSpeed;
+//         rfwRef.current.rotation.x -= wheelRotationSpeed;
+//         lbwRef.current.rotation.x -= wheelRotationSpeed;
+//         rbwRef.current.rotation.x -= wheelRotationSpeed;
+//     }
+//     // Turn the car only when moving forward and turning
+//     if (moveForward) {
+//         if (turnLeft) {
+//             setYawAngle((prevAngle) => prevAngle + turnSpeed);
+//         } else if (turnRight) {
+//             setYawAngle((prevAngle) => prevAngle - turnSpeed);
+//         }
+//     } else if (moveBackward) {
+//         if (turnLeft) {
+//             setYawAngle((prevAngle) => prevAngle - turnSpeed);
+//         } else if (turnRight) {
+//             setYawAngle((prevAngle) => prevAngle + turnSpeed);
 //         }
 //     }
 
