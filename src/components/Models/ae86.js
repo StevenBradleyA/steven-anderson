@@ -4,13 +4,12 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
     CuboidCollider,
     RigidBody,
-    BallCollider,
     CylinderCollider,
 } from '@react-three/rapier';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
-import CustomCamera from '../Camera/customCamera';
 import * as THREE from 'three';
+import CameraManager from '../Camera/cameraManager';
 
 const TofuCar = () => {
     const { nodes: carBodyNodes, materials: carBodyMaterials } =
@@ -36,7 +35,6 @@ const TofuCar = () => {
     const lfwRef = useRef();
     const lfwParentRef = useRef();
     const lfwColliderRef = useRef();
-
     const rfwRef = useRef();
     const rfwParentRef = useRef();
     const rfwColliderRef = useRef();
@@ -52,6 +50,7 @@ const TofuCar = () => {
     const [rearWheelFriction, setRearWheelFriction] = useState(0.3);
     const [topSpeed, setTopSpeed] = useState(40099999);
     const [canFlip, setCanFlip] = useState(true);
+    // follow, free
 
     const forwardAcceleration = 8500900;
     const reverseAcceleration = 999999;
@@ -297,9 +296,10 @@ const TofuCar = () => {
     // only allow impulse and torque when wheels are on the ground
     // todo space is a drift button that is a fun sliding mechanic reduces rear wheel friction
     // todo perfect adjustments with a dbug api
-    // todo camera modes - follow camera - free moving orbit camera - 
+    // todo camera modes - follow camera - free moving orbit camera -
 
-    
+    // todo refresh camera only shows on refresh does a cool spiral down or something...
+
     return (
         <>
             <RigidBody
@@ -683,6 +683,7 @@ const TofuCar = () => {
                     </group>
                 </group>
             </RigidBody>
+            <CameraManager carRef={carRef} />
         </>
     );
 };
@@ -693,9 +694,6 @@ useGLTF.preload('/models/leftBackWheel.glb');
 useGLTF.preload('/models/rightBackWheel.glb');
 
 export default TofuCar;
-
-// <CustomCamera isPovCamera={isPovCamera} carPosition={carPosition} />
-// </>
 
 // Working Forward Movement only
 // const angleInRadians = yawAngle * (Math.PI / 180);

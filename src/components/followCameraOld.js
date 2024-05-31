@@ -3,10 +3,9 @@ import * as THREE from 'three';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
-export default function FollowCamera({
+export default function FollowCameraOld({
     carRef,
     backHelperRef,
-    frontHelperRef,
 }) {
     const { camera } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
