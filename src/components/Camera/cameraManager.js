@@ -7,11 +7,10 @@ const CameraManager = ({ carRef, backRef }) => {
     // todo fixed height for follow mode that can be adjusted with a scroll wheel
     // todo can I make the orbit mode not clip through object?
     // todo smooth the transitions
-    // gsap conversion? 
+    // gsap conversion?
 
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
-
     const [activeCamera, setActiveCamera] = useState('inital');
     const [targetPosition, setTargetPosition] = useState(
         new THREE.Vector3(0, 2000, 0)
@@ -28,10 +27,11 @@ const CameraManager = ({ carRef, backRef }) => {
     const startRotate = useRef(new THREE.Vector2());
     const [followHeight, setFollowHeight] = useState(200);
     const [followDistance, setFollowDistance] = useState(450);
+    const minFollowDistance = 225;
+    const minFollowHeight = 100;
+    const maxFollowHeight = 500;
+    const maxFollowDistance = 1125;
 
-    // FREE MODE
-
-    // Event handlers for custom controls
     const handleMouseDown = (event) => {
         if (event.button === 0) {
             isPanning.current = true;
@@ -81,29 +81,64 @@ const CameraManager = ({ carRef, backRef }) => {
     };
 
     const handleWheel = (event) => {
-        if (activeCamera !== 'follow') {
-            const zoomFactor = 1 + event.deltaY * 0.001;
+        if (activeCamera === 'follow') {
+            const zoomFactor = event.deltaY * 0.28125; 
+
+            setFollowDistance((prevDistance) => {
+                const newDistance = prevDistance + zoomFactor;
+                const clampedDistance = Math.max(minFollowDistance, Math.min(newDistance, maxFollowDistance));
+                return clampedDistance;
+            });
+
+            setFollowHeight((prevHeight) => {
+                const newHeight = (prevHeight / followDistance) * (followDistance + zoomFactor);
+                const clampedHeight = Math.max(minFollowHeight, Math.min(newHeight, maxFollowHeight));
+                return clampedHeight;
+            });
+
+        } else {
+            const zoomFactor = event.deltaY * 5;
             const direction = new THREE.Vector3()
                 .subVectors(camera.position, targetLookAt)
                 .normalize();
+
             const newPosition = camera.position
                 .clone()
-                .add(direction.multiplyScalar(event.deltaY * zoomFactor));
+                .add(direction.multiplyScalar(zoomFactor));
+
+            gsap.to(camera.position, {
+                x: newPosition.x,
+                y: newPosition.y,
+                z: newPosition.z,
+                duration: 0.5,
+                ease: 'power2.out',
+            });
+
             setTargetPosition(newPosition);
         }
     };
 
     useEffect(() => {
+        window.addEventListener('wheel', handleWheel);
+        console.log('Wheel event listener added.');
+
+        return () => {
+            window.removeEventListener('wheel', handleWheel);
+            console.log('Wheel event listener removed.');
+        };
+    }, [activeCamera]);
+
+    useEffect(() => {
         window.addEventListener('mousedown', handleMouseDown);
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseup', handleMouseUp);
-        window.addEventListener('wheel', handleWheel);
+        // window.addEventListener('wheel', handleWheel);
 
         return () => {
             window.removeEventListener('mousedown', handleMouseDown);
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseup', handleMouseUp);
-            window.removeEventListener('wheel', handleWheel);
+            // window.removeEventListener('wheel', handleWheel);
         };
     }, []);
 
@@ -149,11 +184,20 @@ const CameraManager = ({ carRef, backRef }) => {
     }, [activeCamera, carRef]);
 
     useFrame(() => {
-        if (activeCamera === 'follow' && carRef.current && backRef.current) {
-            // Get the current translation (position) of the car (RigidBody)
+        if (activeCamera === 'initial') {
+            camera.position.lerpVectors(camera.position, targetPosition, 0.1);
+            cameraTarget.current.lerpVectors(
+                cameraTarget.current,
+                targetLookAt,
+                0.1
+            );
+            camera.lookAt(cameraTarget.current);
+        } else if (
+            activeCamera === 'follow' &&
+            carRef.current &&
+            backRef.current
+        ) {
             const carTranslation = carRef.current.translation();
-
-            // Get the current rotation quaternion of the car
             const rotation = carRef.current.rotation();
             const carQuaternion = new THREE.Quaternion(
                 rotation.x,
@@ -161,21 +205,15 @@ const CameraManager = ({ carRef, backRef }) => {
                 rotation.z,
                 rotation.w
             );
-
-            // Define the backward vector in the car's local space (opposite of forward)
             const backwardVector = new THREE.Vector3(0, 0, -1); // Backward in local space
-
-            // Rotate the backward vector by the car's current orientation
             backwardVector.applyQuaternion(carQuaternion);
 
-            // Calculate the desired camera position behind the car
             const desiredPosition = new THREE.Vector3(
                 carTranslation.x + backwardVector.x * followDistance,
-                followHeight, // Maintain a fixed height
+                followHeight,
                 carTranslation.z + backwardVector.z * followDistance
             );
 
-            // Smoothly interpolate camera position using GSAP
             gsap.to(camera.position, {
                 x: desiredPosition.x,
                 y: desiredPosition.y,
@@ -184,10 +222,9 @@ const CameraManager = ({ carRef, backRef }) => {
                 ease: 'power2.out',
             });
 
-            // Update the camera target to look at the car's current position
             gsap.to(cameraTarget.current, {
                 x: carTranslation.x,
-                y: followHeight, // Use a fixed height for the lookAt target
+                y: followHeight,
                 z: carTranslation.z,
                 duration: 0.5,
                 ease: 'power2.out',
@@ -197,6 +234,8 @@ const CameraManager = ({ carRef, backRef }) => {
     });
 
     console.log(activeCamera);
+    console.log(followDistance);
+    console.log(followHeight);
 
     return null;
 };
