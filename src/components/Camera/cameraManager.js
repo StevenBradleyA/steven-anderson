@@ -1,17 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useThree, useFrame, extend } from '@react-three/fiber';
+import { useThree, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { PerspectiveCamera } from '@react-three/drei';
 import { gsap } from 'gsap';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-
-extend({ OrbitControls });
 
 const CameraManager = ({ carRef }) => {
     const { camera, gl } = useThree();
 
     const [activeCamera, setActiveCamera] = useState('inital');
-    const orbitControlsRef = useRef();
     const [targetPosition, setTargetPosition] = useState(
         new THREE.Vector3(0, 2000, 0)
     );
@@ -94,7 +89,6 @@ const CameraManager = ({ carRef }) => {
         setTargetPosition(newPosition);
     };
 
-    // Attach and detach event listeners for custom controls
     useEffect(() => {
         window.addEventListener('mousedown', handleMouseDown);
         window.addEventListener('mousemove', handleMouseMove);
@@ -111,13 +105,14 @@ const CameraManager = ({ carRef }) => {
 
     useEffect(() => {
         const handleMouseClick = () => {
-            if (activeCamera !== 'free') setActiveCamera('free');
+            setActiveCamera('free');
         };
         const handleKeyDown = (event) => {
             if (event.key === 'C' || event.key === 'c') {
                 setActiveCamera((prev) => {
                     if (prev === 'initial') return 'follow';
                     if (prev === 'follow') return 'free';
+                    if (prev === 'free') return 'initial';
                     return 'initial';
                 });
             } else {
@@ -149,35 +144,21 @@ const CameraManager = ({ carRef }) => {
         }
     }, [activeCamera, carRef]);
 
-    // FOLLOW
-    // FOLLOW camera frame updates
-    // useFrame(() => {
-    //     if (activeCamera === 'follow' && carRef.current) {
-    //         const camera = followCameraRef.current;
-    //         const currentPosition = carRef.current.translation();
-
-    //         if (currentPosition) {
-    //             camera.position.set(
-    //                 currentPosition.x,
-    //                 currentPosition.y + 200,
-    //                 currentPosition.z + 250
-    //             );
-    //             camera.lookAt(currentPosition);
-    //         }
-    //     }
-
-    //     if (orbitControlsRef.current) {
-    //         orbitControlsRef.current.update();
-    //     }
-    // });
-
     useFrame(() => {
+
+        if (activeCamera === 'follow' && carRef.current) {
+            const currentPosition = carRef.current.translation();
+            if (currentPosition) {
+                setTargetPosition(
+                    new THREE.Vector3().copy(currentPosition).add(offset)
+                );
+                setTargetLookAt(new THREE.Vector3().copy(currentPosition));
+            }
+        }
+
+
         camera.position.lerp(targetPosition, smoothFactor);
         camera.lookAt(targetLookAt);
-
-        if (orbitControlsRef.current && activeCamera === 'free') {
-            orbitControlsRef.current.update();
-        }
     });
 
     console.log(activeCamera);
