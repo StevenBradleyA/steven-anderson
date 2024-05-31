@@ -8,6 +8,7 @@ extend({ OrbitControls });
 const CustomOrbitControls = () => {
     const { camera, gl } = useThree();
     const controlsRef = useRef();
+    
 
     useEffect(() => {
         camera.near = 0.1;

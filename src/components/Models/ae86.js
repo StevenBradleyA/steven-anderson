@@ -38,8 +38,8 @@ const TofuCar = () => {
     const rfwRef = useRef();
     const rfwParentRef = useRef();
     const rfwColliderRef = useRef();
+    const backRef = useRef();
 
-    const [isPovCamera, setIsPovCamera] = useState(false);
     const [torqueFactor, setTorqueFactor] = useState(9999);
 
     // input
@@ -446,11 +446,13 @@ const TofuCar = () => {
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                         />
+                        {/* toyota emblem */}
                         <mesh
+                            ref={backRef}
                             castShadow
                             receiveShadow
                             geometry={carBodyNodes.Plane007_0_Baked.geometry}
-                            material={carBodyMaterial}
+                            material={carBodyMaterialRed}
                             position={[0.246, 3.357, -9.121]}
                             rotation={[-2.761, 0, -Math.PI]}
                             scale={0.015}
@@ -683,7 +685,7 @@ const TofuCar = () => {
                     </group>
                 </group>
             </RigidBody>
-            <CameraManager carRef={carRef} />
+            <CameraManager carRef={carRef} backRef={backRef} />
         </>
     );
 };

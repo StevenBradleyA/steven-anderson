@@ -3,8 +3,14 @@ import { useThree, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 
-const CameraManager = ({ carRef }) => {
+const CameraManager = ({ carRef, backRef }) => {
+    // todo fixed height for follow mode that can be adjusted with a scroll wheel
+    // todo can I make the orbit mode not clip through object?
+    // todo smooth the transitions
+    // gsap conversion? 
+
     const { camera, gl } = useThree();
+    const cameraTarget = useRef(new THREE.Vector3());
 
     const [activeCamera, setActiveCamera] = useState('inital');
     const [targetPosition, setTargetPosition] = useState(
@@ -15,17 +21,13 @@ const CameraManager = ({ carRef }) => {
     );
 
     const offset = new THREE.Vector3(0, 200, -500); // Adjust the offset as needed
-    const smoothFactor = 0.05;
+    const smoothFactor = 0.8;
     const isPanning = useRef(false);
     const isRotating = useRef(false);
-    const isZooming = useRef(false);
     const startPan = useRef(new THREE.Vector2());
     const startRotate = useRef(new THREE.Vector2());
-    const startZoom = useRef(new THREE.Vector2());
-
-    // todo C should switch cameras - free - follow - environment
-    // Switch cameras with key and mouse events
-    // Switch cameras with key and mouse events
+    const [followHeight, setFollowHeight] = useState(200);
+    const [followDistance, setFollowDistance] = useState(450);
 
     // FREE MODE
 
@@ -79,14 +81,16 @@ const CameraManager = ({ carRef }) => {
     };
 
     const handleWheel = (event) => {
-        const zoomFactor = 1 + event.deltaY * 0.001;
-        const direction = new THREE.Vector3()
-            .subVectors(camera.position, targetLookAt)
-            .normalize();
-        const newPosition = camera.position
-            .clone()
-            .add(direction.multiplyScalar(event.deltaY * zoomFactor));
-        setTargetPosition(newPosition);
+        if (activeCamera !== 'follow') {
+            const zoomFactor = 1 + event.deltaY * 0.001;
+            const direction = new THREE.Vector3()
+                .subVectors(camera.position, targetLookAt)
+                .normalize();
+            const newPosition = camera.position
+                .clone()
+                .add(direction.multiplyScalar(event.deltaY * zoomFactor));
+            setTargetPosition(newPosition);
+        }
     };
 
     useEffect(() => {
@@ -145,20 +149,51 @@ const CameraManager = ({ carRef }) => {
     }, [activeCamera, carRef]);
 
     useFrame(() => {
+        if (activeCamera === 'follow' && carRef.current && backRef.current) {
+            // Get the current translation (position) of the car (RigidBody)
+            const carTranslation = carRef.current.translation();
 
-        if (activeCamera === 'follow' && carRef.current) {
-            const currentPosition = carRef.current.translation();
-            if (currentPosition) {
-                setTargetPosition(
-                    new THREE.Vector3().copy(currentPosition).add(offset)
-                );
-                setTargetLookAt(new THREE.Vector3().copy(currentPosition));
-            }
+            // Get the current rotation quaternion of the car
+            const rotation = carRef.current.rotation();
+            const carQuaternion = new THREE.Quaternion(
+                rotation.x,
+                rotation.y,
+                rotation.z,
+                rotation.w
+            );
+
+            // Define the backward vector in the car's local space (opposite of forward)
+            const backwardVector = new THREE.Vector3(0, 0, -1); // Backward in local space
+
+            // Rotate the backward vector by the car's current orientation
+            backwardVector.applyQuaternion(carQuaternion);
+
+            // Calculate the desired camera position behind the car
+            const desiredPosition = new THREE.Vector3(
+                carTranslation.x + backwardVector.x * followDistance,
+                followHeight, // Maintain a fixed height
+                carTranslation.z + backwardVector.z * followDistance
+            );
+
+            // Smoothly interpolate camera position using GSAP
+            gsap.to(camera.position, {
+                x: desiredPosition.x,
+                y: desiredPosition.y,
+                z: desiredPosition.z,
+                duration: 0.5,
+                ease: 'power2.out',
+            });
+
+            // Update the camera target to look at the car's current position
+            gsap.to(cameraTarget.current, {
+                x: carTranslation.x,
+                y: followHeight, // Use a fixed height for the lookAt target
+                z: carTranslation.z,
+                duration: 0.5,
+                ease: 'power2.out',
+                onUpdate: () => camera.lookAt(cameraTarget.current),
+            });
         }
-
-
-        camera.position.lerp(targetPosition, smoothFactor);
-        camera.lookAt(targetLookAt);
     });
 
     console.log(activeCamera);
