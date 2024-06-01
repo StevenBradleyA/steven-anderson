@@ -6,8 +6,9 @@ import { gsap } from 'gsap';
 const CameraManager = ({ carRef, backRef }) => {
     // todo fixed height for follow mode that can be adjusted with a scroll wheel
     // todo can I make the orbit mode not clip through object?
-    // todo smooth the transitions
-    // gsap conversion?
+
+    // todo orbit mode rotate by holding mouse wheel button
+    // todo free mode needs to switch immediately on mouse down not up like clicking should instantly switch not clicking then dragging the first click.
 
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
@@ -19,31 +20,21 @@ const CameraManager = ({ carRef, backRef }) => {
         new THREE.Vector3(0, 0, 0)
     );
 
-    const offset = new THREE.Vector3(0, 200, -500); // Adjust the offset as needed
-    const smoothFactor = 0.8;
+    const offset = new THREE.Vector3(0, 200, -500);
     const isPanning = useRef(false);
     const isRotating = useRef(false);
     const startPan = useRef(new THREE.Vector2());
     const startRotate = useRef(new THREE.Vector2());
     const [followHeight, setFollowHeight] = useState(15);
     const [followDistance, setFollowDistance] = useState(30);
-    // const minFollowDistance = -200;
-    // const minFollowHeight = 800;
-    // const maxFollowHeight = 2000;
-    // const maxFollowDistance = 4000;
-
-    // -128 1167
-
-    // todo camera gltich better but somethings off with the intial values or perspective somehow but its weirdly not snappy
-
-    const dampingFactor = 0.1; // Adjust this value for smoother or faster transitions
-    const minimumDistance = 2;
 
     const handleMouseDown = (event) => {
+        setActiveCamera('free');
         if (event.button === 0) {
             isPanning.current = true;
             startPan.current.set(event.clientX, event.clientY);
-        } else if (event.button === 2) {
+        } else if (event.button === 1) {
+            console.log('mousewheel');
             isRotating.current = true;
             startRotate.current.set(event.clientX, event.clientY);
         }
@@ -71,14 +62,15 @@ const CameraManager = ({ carRef, backRef }) => {
 
             const spherical = new THREE.Spherical();
             spherical.setFromVector3(camera.position.clone().sub(targetLookAt));
-            spherical.theta -= deltaX * 0.001;
-            spherical.phi -= deltaY * 0.001;
+            spherical.theta -= deltaX * 0.005; // Adjust the rotation speed as needed
+            spherical.phi -= deltaY * 0.005;
             spherical.makeSafe();
 
             const newPosition = new THREE.Vector3()
                 .setFromSpherical(spherical)
                 .add(targetLookAt);
-            setTargetPosition(newPosition);
+            camera.position.copy(newPosition);
+            camera.lookAt(targetLookAt);
         }
     };
 
@@ -156,9 +148,6 @@ const CameraManager = ({ carRef, backRef }) => {
     }, []);
 
     useEffect(() => {
-        const handleMouseClick = () => {
-            setActiveCamera('free');
-        };
         const handleKeyDown = (event) => {
             if (event.key === 'C' || event.key === 'c') {
                 setActiveCamera((prev) => {
@@ -171,11 +160,9 @@ const CameraManager = ({ carRef, backRef }) => {
                 setActiveCamera('follow');
             }
         };
-        window.addEventListener('click', handleMouseClick);
         window.addEventListener('keydown', handleKeyDown);
 
         return () => {
-            window.removeEventListener('click', handleMouseClick);
             window.removeEventListener('keydown', handleKeyDown);
         };
     }, []);
@@ -211,39 +198,37 @@ const CameraManager = ({ carRef, backRef }) => {
             backRef.current
         ) {
             const car = carRef.current;
-        const carPosition = car.translation();
-        const carRotation = car.rotation();
+            const carPosition = car.translation();
+            const carRotation = car.rotation();
 
-        const carQuaternion = new THREE.Quaternion(
-            carRotation.x,
-            carRotation.y,
-            carRotation.z,
-            carRotation.w
-        );
+            const carQuaternion = new THREE.Quaternion(
+                carRotation.x,
+                carRotation.y,
+                carRotation.z,
+                carRotation.w
+            );
 
-        const backwardVector = new THREE.Vector3(0, -1, 0); // Correct backward direction
-        backwardVector.applyQuaternion(carQuaternion);
+            const backwardVector = new THREE.Vector3(0, -1, 0); // Correct backward direction
+            backwardVector.applyQuaternion(carQuaternion);
 
-        const desiredPosition = new THREE.Vector3(
-            carPosition.x - backwardVector.x * followDistance,
-            carPosition.y + followHeight,
-            carPosition.z - backwardVector.z * followDistance
-        );
+            const desiredPosition = new THREE.Vector3(
+                carPosition.x - backwardVector.x * followDistance,
+                carPosition.y + followHeight,
+                carPosition.z - backwardVector.z * followDistance
+            );
 
-        // Directly update camera position with a lerp for smooth movement
-        camera.position.lerp(desiredPosition, 0.1);
+            // Directly update camera position with a lerp for smooth movement
+            camera.position.lerp(desiredPosition, 0.1);
 
-        // Update the camera target to follow the car's position
-        cameraTarget.current.set(
-            carPosition.x,
-            carPosition.y,
-            carPosition.z
-        );
-        camera.lookAt(cameraTarget.current);
-    }
-
+            // Update the camera target to follow the car's position
+            cameraTarget.current.set(
+                carPosition.x,
+                carPosition.y,
+                carPosition.z
+            );
+            camera.lookAt(cameraTarget.current);
+        }
     });
-
 
     return null;
 };

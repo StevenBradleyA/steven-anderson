@@ -28,7 +28,7 @@ const NewCar = () => {
 
     const backRef = useRef();
 
-    const [torqueFactor, setTorqueFactor] = useState(1);
+    const [torqueFactor, setTorqueFactor] = useState(1.09);
 
     // input
     const [keysPressed, setKeysPressed] = useState({});
@@ -36,13 +36,13 @@ const NewCar = () => {
     const [currentSpeed, setCurrentSpeed] = useState(0);
     const [totalFriction, setTotalFriction] = useState(0.5);
     const [rearWheelFriction, setRearWheelFriction] = useState(0.3);
-    const [topSpeed, setTopSpeed] = useState(1000);
+    const [topSpeed, setTopSpeed] = useState(900);
     const [canFlip, setCanFlip] = useState(true);
     // follow, free
 
     const forwardAcceleration = 50;
-    const reverseAcceleration = 50;
-    const braking = 49;
+    const reverseAcceleration = 40;
+    const braking = 80;
     const steerAngle = Math.PI / 9;
 
     useEffect(() => {
@@ -133,18 +133,20 @@ const NewCar = () => {
                 );
             }
         }
+
         if (lfwParentRef.current && rfwParentRef.current) {
             if (steerLeft) {
-                lfwParentRef.current.rotation.y = steerAngle;
-                rfwParentRef.current.rotation.y = steerAngle;
+                lfwParentRef.current.rotation.set(0, 0, steerAngle);
+                rfwParentRef.current.rotation.set(0, 0, steerAngle);
             } else if (steerRight) {
-                lfwParentRef.current.rotation.y = -steerAngle;
-                rfwParentRef.current.rotation.y = -steerAngle;
+                lfwParentRef.current.rotation.set(0, 0, -steerAngle);
+                rfwParentRef.current.rotation.set(0, 0, -steerAngle);
             } else {
-                lfwParentRef.current.rotation.y = 0;
-                rfwParentRef.current.rotation.y = 0;
+                lfwParentRef.current.rotation.set(0, 0, 0);
+                rfwParentRef.current.rotation.set(0, 0, 0);
             }
         }
+
         // wheel visual spinning effect
         const wheelRotationSpeed = currentSpeed / 12; //  divisor controls visual spin speed
         if (
@@ -206,7 +208,7 @@ const NewCar = () => {
             if (currentSpeed < 0) {
                 torque.set(0, -1, 0);
             }
-     
+
             // Apply torque for turning
             if (turnLeft) {
                 const leftTorque = torque.multiplyScalar(
@@ -276,7 +278,7 @@ const NewCar = () => {
             <RigidBody
                 ref={carRef}
                 // mass={0.25}
-                mass={10}
+                mass={12}
                 colliders={false}
                 position={[300, 1150, 0]}
                 // friction={totalFriction}
