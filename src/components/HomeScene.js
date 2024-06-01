@@ -28,7 +28,7 @@ const ThreeScene = () => {
             <Suspense fallback={null}>
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[10, 10, 5]} intensity={1} />
-                <Physics gravity={[0, -98.1, 0]} debug>
+                <Physics gravity={[0, -98.1, 0]}>
                     {/* <TofuCar /> */}
                     {/* <RaceTrack /> */}
                     <NewCar />

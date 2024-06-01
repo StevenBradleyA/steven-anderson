@@ -25,12 +25,19 @@ const CameraManager = ({ carRef, backRef }) => {
     const isRotating = useRef(false);
     const startPan = useRef(new THREE.Vector2());
     const startRotate = useRef(new THREE.Vector2());
-    const [followHeight, setFollowHeight] = useState(1150);
-    const [followDistance, setFollowDistance] = useState(2200);
-    const minFollowDistance = 2000;
-    const minFollowHeight = 1150;
-    const maxFollowHeight = 2000;
-    const maxFollowDistance = 4000;
+    const [followHeight, setFollowHeight] = useState(15);
+    const [followDistance, setFollowDistance] = useState(30);
+    // const minFollowDistance = -200;
+    // const minFollowHeight = 800;
+    // const maxFollowHeight = 2000;
+    // const maxFollowDistance = 4000;
+
+    // -128 1167
+
+    // todo camera gltich better but somethings off with the intial values or perspective somehow but its weirdly not snappy
+
+    const dampingFactor = 0.1; // Adjust this value for smoother or faster transitions
+    const minimumDistance = 2;
 
     const handleMouseDown = (event) => {
         if (event.button === 0) {
@@ -64,8 +71,8 @@ const CameraManager = ({ carRef, backRef }) => {
 
             const spherical = new THREE.Spherical();
             spherical.setFromVector3(camera.position.clone().sub(targetLookAt));
-            spherical.theta -= deltaX * 0.005;
-            spherical.phi -= deltaY * 0.005;
+            spherical.theta -= deltaX * 0.001;
+            spherical.phi -= deltaY * 0.001;
             spherical.makeSafe();
 
             const newPosition = new THREE.Vector3()
@@ -81,29 +88,30 @@ const CameraManager = ({ carRef, backRef }) => {
     };
 
     const handleWheel = (event) => {
-        if (activeCamera === 'follow') {
-            const zoomFactor = event.deltaY * 0.1;
+        // if (activeCamera === 'follow') {
+        //     const zoomFactor = event.deltaY * 0.1;
 
-            setFollowDistance((prevDistance) => {
-                const newDistance = prevDistance + zoomFactor;
-                const clampedDistance = Math.max(
-                    minFollowDistance,
-                    Math.min(newDistance, maxFollowDistance)
-                );
-                return clampedDistance;
-            });
+        //     setFollowDistance((prevDistance) => {
+        //         const newDistance = prevDistance + zoomFactor;
+        //         const clampedDistance = Math.max(
+        //             minFollowDistance,
+        //             Math.min(newDistance, maxFollowDistance)
+        //         );
+        //         return clampedDistance;
+        //     });
 
-            setFollowHeight((prevHeight) => {
-                const newHeight =
-                    (prevHeight / followDistance) *
-                    (followDistance + zoomFactor);
-                const clampedHeight = Math.max(
-                    minFollowHeight,
-                    Math.min(newHeight, maxFollowHeight)
-                );
-                return clampedHeight;
-            });
-        } else {
+        //     setFollowHeight((prevHeight) => {
+        //         const newHeight =
+        //             (prevHeight / followDistance) *
+        //             (followDistance + zoomFactor);
+        //         const clampedHeight = Math.max(
+        //             minFollowHeight,
+        //             Math.min(newHeight, maxFollowHeight)
+        //         );
+        //         return clampedHeight;
+        //     });
+        // }
+        if (activeCamera !== 'follow') {
             const zoomFactor = event.deltaY * 1.1;
             const direction = new THREE.Vector3()
                 .subVectors(camera.position, targetLookAt)
@@ -175,7 +183,7 @@ const CameraManager = ({ carRef, backRef }) => {
     // Update target positions based on active camera
     useEffect(() => {
         if (activeCamera === 'initial') {
-            setTargetPosition(new THREE.Vector3(0, 2000, 0));
+            setTargetPosition(new THREE.Vector3(0, 1600, 0));
             setTargetLookAt(new THREE.Vector3(0, 0, 0));
         } else if (activeCamera === 'follow' && carRef.current) {
             const currentPosition = carRef.current.translation();
@@ -202,45 +210,40 @@ const CameraManager = ({ carRef, backRef }) => {
             carRef.current &&
             backRef.current
         ) {
-            const carTranslation = carRef.current.translation();
-            const rotation = carRef.current.rotation();
-            const carQuaternion = new THREE.Quaternion(
-                rotation.x,
-                rotation.y,
-                rotation.z,
-                rotation.w
-            );
-            const backwardVector = new THREE.Vector3(0, 0, -1); // Backward in local space
-            backwardVector.applyQuaternion(carQuaternion);
+            const car = carRef.current;
+        const carPosition = car.translation();
+        const carRotation = car.rotation();
 
-            const desiredPosition = new THREE.Vector3(
-                carTranslation.x + backwardVector.x * followDistance,
-                followHeight,
-                carTranslation.z + backwardVector.z * followDistance
-            );
+        const carQuaternion = new THREE.Quaternion(
+            carRotation.x,
+            carRotation.y,
+            carRotation.z,
+            carRotation.w
+        );
 
-            gsap.to(camera.position, {
-                x: desiredPosition.x,
-                y: desiredPosition.y,
-                z: desiredPosition.z,
-                duration: 0.5,
-                ease: 'power2.out',
-            });
+        const backwardVector = new THREE.Vector3(0, -1, 0); // Correct backward direction
+        backwardVector.applyQuaternion(carQuaternion);
 
-            gsap.to(cameraTarget.current, {
-                x: carTranslation.x,
-                y: followHeight,
-                z: carTranslation.z,
-                duration: 0.5,
-                ease: 'power2.out',
-                onUpdate: () => camera.lookAt(cameraTarget.current),
-            });
-        }
+        const desiredPosition = new THREE.Vector3(
+            carPosition.x - backwardVector.x * followDistance,
+            carPosition.y + followHeight,
+            carPosition.z - backwardVector.z * followDistance
+        );
+
+        // Directly update camera position with a lerp for smooth movement
+        camera.position.lerp(desiredPosition, 0.1);
+
+        // Update the camera target to follow the car's position
+        cameraTarget.current.set(
+            carPosition.x,
+            carPosition.y,
+            carPosition.z
+        );
+        camera.lookAt(cameraTarget.current);
+    }
+
     });
 
-    console.log(activeCamera);
-    console.log(followDistance);
-    console.log(followHeight);
 
     return null;
 };

@@ -36,12 +36,12 @@ const NewCar = () => {
     const [currentSpeed, setCurrentSpeed] = useState(0);
     const [totalFriction, setTotalFriction] = useState(0.5);
     const [rearWheelFriction, setRearWheelFriction] = useState(0.3);
-    const [topSpeed, setTopSpeed] = useState(2000);
+    const [topSpeed, setTopSpeed] = useState(1000);
     const [canFlip, setCanFlip] = useState(true);
     // follow, free
 
-    const forwardAcceleration = 100;
-    const reverseAcceleration = 100;
+    const forwardAcceleration = 50;
+    const reverseAcceleration = 50;
     const braking = 49;
     const steerAngle = Math.PI / 9;
 
@@ -80,10 +80,10 @@ const NewCar = () => {
         const flip = keysPressed['Shift'];
 
         if (reset && carRef.current) {
-            carRef.current.setTranslation({ x: -2000, y: 100, z: -250 }, true);
+            carRef.current.setTranslation({ x: 200, y: 1200, z: 0 }, true);
             carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
             carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-            const euler = new THREE.Euler(0, 0, 0);
+            const euler = new THREE.Euler(-Math.PI / 2, 0, 0);
             const quaternion = new THREE.Quaternion().setFromEuler(euler);
             carRef.current.setRotation(quaternion, true);
         }
@@ -206,21 +206,7 @@ const NewCar = () => {
             if (currentSpeed < 0) {
                 torque.set(0, -1, 0);
             }
-            // if (currentSpeed < topSpeed * 0.1) {
-            //     setTorqueFactor(25);
-            // }
-            // if (currentSpeed < topSpeed * 0.25) {
-            //     setTorqueFactor(20);
-            // }
-            // if (currentSpeed < topSpeed * 0.5) {
-            //     setTorqueFactor(15);
-            // }
-            // if (currentSpeed < topSpeed * 0.75) {
-            //     setTorqueFactor(7.5);
-            // }
-            // if (currentSpeed === topSpeed) {
-            //     setTorqueFactor(2);
-            // }
+     
             // Apply torque for turning
             if (turnLeft) {
                 const leftTorque = torque.multiplyScalar(
@@ -239,7 +225,6 @@ const NewCar = () => {
                     true
                 );
             }
-
         } else {
             console.error('carRef.current is undefined');
         }
@@ -297,14 +282,11 @@ const NewCar = () => {
                 // friction={totalFriction}
                 friction={0.3}
                 rotation={[-Math.PI / 2, 0, 0]}
-                >
-                <CuboidCollider
-                    args={[4, 9.5, 2]}
-                    position={[.2, 0.5, 3]}
-                />
+            >
+                <CuboidCollider args={[4, 9.5, 2]} position={[0.2, 0.5, 3]} />
                 <group
                     dispose={null}
-                    // 
+                    //
                     // position={[0, 1800, 0]}
                     // rotation={[0, 0, 1080]}
                 >
