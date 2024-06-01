@@ -13,7 +13,7 @@ const CameraManager = ({ carRef, backRef }) => {
     const cameraTarget = useRef(new THREE.Vector3());
     const [activeCamera, setActiveCamera] = useState('inital');
     const [targetPosition, setTargetPosition] = useState(
-        new THREE.Vector3(0, 2000, 0)
+        new THREE.Vector3(0, 1000, 0)
     );
     const [targetLookAt, setTargetLookAt] = useState(
         new THREE.Vector3(0, 0, 0)
@@ -25,12 +25,12 @@ const CameraManager = ({ carRef, backRef }) => {
     const isRotating = useRef(false);
     const startPan = useRef(new THREE.Vector2());
     const startRotate = useRef(new THREE.Vector2());
-    const [followHeight, setFollowHeight] = useState(200);
-    const [followDistance, setFollowDistance] = useState(450);
-    const minFollowDistance = 225;
-    const minFollowHeight = 100;
-    const maxFollowHeight = 500;
-    const maxFollowDistance = 1125;
+    const [followHeight, setFollowHeight] = useState(1150);
+    const [followDistance, setFollowDistance] = useState(2200);
+    const minFollowDistance = 2000;
+    const minFollowHeight = 1150;
+    const maxFollowHeight = 2000;
+    const maxFollowDistance = 4000;
 
     const handleMouseDown = (event) => {
         if (event.button === 0) {
@@ -82,22 +82,29 @@ const CameraManager = ({ carRef, backRef }) => {
 
     const handleWheel = (event) => {
         if (activeCamera === 'follow') {
-            const zoomFactor = event.deltaY * 0.28125; 
+            const zoomFactor = event.deltaY * 0.1;
 
             setFollowDistance((prevDistance) => {
                 const newDistance = prevDistance + zoomFactor;
-                const clampedDistance = Math.max(minFollowDistance, Math.min(newDistance, maxFollowDistance));
+                const clampedDistance = Math.max(
+                    minFollowDistance,
+                    Math.min(newDistance, maxFollowDistance)
+                );
                 return clampedDistance;
             });
 
             setFollowHeight((prevHeight) => {
-                const newHeight = (prevHeight / followDistance) * (followDistance + zoomFactor);
-                const clampedHeight = Math.max(minFollowHeight, Math.min(newHeight, maxFollowHeight));
+                const newHeight =
+                    (prevHeight / followDistance) *
+                    (followDistance + zoomFactor);
+                const clampedHeight = Math.max(
+                    minFollowHeight,
+                    Math.min(newHeight, maxFollowHeight)
+                );
                 return clampedHeight;
             });
-
         } else {
-            const zoomFactor = event.deltaY * 5;
+            const zoomFactor = event.deltaY * 1.1;
             const direction = new THREE.Vector3()
                 .subVectors(camera.position, targetLookAt)
                 .normalize();
@@ -132,13 +139,11 @@ const CameraManager = ({ carRef, backRef }) => {
         window.addEventListener('mousedown', handleMouseDown);
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseup', handleMouseUp);
-        // window.addEventListener('wheel', handleWheel);
 
         return () => {
             window.removeEventListener('mousedown', handleMouseDown);
             window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseup', handleMouseUp);
-            // window.removeEventListener('wheel', handleWheel);
         };
     }, []);
 
@@ -241,3 +246,43 @@ const CameraManager = ({ carRef, backRef }) => {
 };
 
 export default CameraManager;
+// else if (
+//     activeCamera === 'follow' &&
+//     carRef.current &&
+//     backRef.current
+// ) {
+//     const carTranslation = carRef.current.translation();
+//     const rotation = carRef.current.rotation();
+//     const carQuaternion = new THREE.Quaternion(
+//         rotation.x,
+//         rotation.y,
+//         rotation.z,
+//         rotation.w
+//     );
+//     const backwardVector = new THREE.Vector3(0, 1, 0); // Backward in local space
+//     backwardVector.applyQuaternion(carQuaternion);
+
+//     const desiredPosition = new THREE.Vector3(
+//         carTranslation.x + backwardVector.x * followDistance,
+//         followHeight,
+//         carTranslation.z + backwardVector.z * followDistance
+//     );
+
+//     gsap.to(camera.position, {
+//         x: desiredPosition.x,
+//         y: desiredPosition.y,
+//         z: desiredPosition.z,
+//         duration: 0.5,
+//         ease: 'power2.out',
+//     });
+
+//     gsap.to(cameraTarget.current, {
+//         x: carTranslation.x,
+//         y: followHeight,
+//         z: carTranslation.z,
+//         duration: 0.5,
+//         ease: 'power2.out',
+//         onUpdate: () => camera.lookAt(cameraTarget.current),
+//     });
+// }
+// });
