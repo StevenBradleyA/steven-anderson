@@ -6,9 +6,15 @@ import { gsap } from 'gsap';
 const CameraManager = ({ carRef, backRef }) => {
     // todo fixed height for follow mode that can be adjusted with a scroll wheel
     // todo can I make the orbit mode not clip through object?
-
     // todo orbit mode rotate by holding mouse wheel button
     // todo free mode needs to switch immediately on mouse down not up like clicking should instantly switch not clicking then dragging the first click.
+
+    // free camera mode 
+    // drop down menu to select camera 
+    // lets allow camera movement with esdf
+    //  car movement with esdf 
+    // change camera triggers 
+
 
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
@@ -40,6 +46,39 @@ const CameraManager = ({ carRef, backRef }) => {
         }
     };
 
+    // const handleMouseMove = (event) => {
+    //     if (isPanning.current) {
+    //         const deltaX = event.clientX - startPan.current.x;
+    //         const deltaY = event.clientY - startPan.current.y;
+    //         startPan.current.set(event.clientX, event.clientY);
+
+    //         const panOffset = new THREE.Vector3();
+    //         panOffset.setFromMatrixColumn(camera.matrix, 0); // get X column of the matrix
+    //         panOffset.multiplyScalar(-deltaX);
+    //         camera.position.add(panOffset);
+    //         panOffset.setFromMatrixColumn(camera.matrix, 1); // get Y column of the matrix
+    //         panOffset.multiplyScalar(deltaY);
+    //         camera.position.add(panOffset);
+
+    //         setTargetPosition(camera.position.clone());
+    //     } else if (isRotating.current) {
+    //         const deltaX = event.clientX - startRotate.current.x;
+    //         const deltaY = event.clientY - startRotate.current.y;
+    //         startRotate.current.set(event.clientX, event.clientY);
+
+    //         const spherical = new THREE.Spherical();
+    //         spherical.setFromVector3(camera.position.clone().sub(targetLookAt));
+    //         spherical.theta -= deltaX * 0.005; // Adjust the rotation speed as needed
+    //         spherical.phi -= deltaY * 0.005;
+    //         spherical.makeSafe();
+
+    //         const newPosition = new THREE.Vector3()
+    //             .setFromSpherical(spherical)
+    //             .add(targetLookAt);
+    //         camera.position.copy(newPosition);
+    //         camera.lookAt(targetLookAt);
+    //     }
+    // };
     const handleMouseMove = (event) => {
         if (isPanning.current) {
             const deltaX = event.clientX - startPan.current.x;
@@ -53,6 +92,9 @@ const CameraManager = ({ carRef, backRef }) => {
             panOffset.setFromMatrixColumn(camera.matrix, 1); // get Y column of the matrix
             panOffset.multiplyScalar(deltaY);
             camera.position.add(panOffset);
+
+            // Update the targetLookAt position to match the new camera position
+            setTargetLookAt(camera.position.clone());
 
             setTargetPosition(camera.position.clone());
         } else if (isRotating.current) {
@@ -167,7 +209,6 @@ const CameraManager = ({ carRef, backRef }) => {
         };
     }, []);
 
-    // Update target positions based on active camera
     useEffect(() => {
         if (activeCamera === 'initial') {
             setTargetPosition(new THREE.Vector3(0, 1600, 0));
@@ -208,7 +249,7 @@ const CameraManager = ({ carRef, backRef }) => {
                 carRotation.w
             );
 
-            const backwardVector = new THREE.Vector3(0, -1, 0); // Correct backward direction
+            const backwardVector = new THREE.Vector3(0, -1, 0);
             backwardVector.applyQuaternion(carQuaternion);
 
             const desiredPosition = new THREE.Vector3(
@@ -217,16 +258,16 @@ const CameraManager = ({ carRef, backRef }) => {
                 carPosition.z - backwardVector.z * followDistance
             );
 
-            // Directly update camera position with a lerp for smooth movement
             camera.position.lerp(desiredPosition, 0.1);
 
-            // Update the camera target to follow the car's position
             cameraTarget.current.set(
                 carPosition.x,
                 carPosition.y,
                 carPosition.z
             );
             camera.lookAt(cameraTarget.current);
+        } else if (activeCamera === 'free') {
+            camera.lookAt(targetLookAt);
         }
     });
 
@@ -234,6 +275,7 @@ const CameraManager = ({ carRef, backRef }) => {
 };
 
 export default CameraManager;
+
 // else if (
 //     activeCamera === 'follow' &&
 //     carRef.current &&

@@ -11,6 +11,12 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import CameraManager from '../Camera/cameraManager';
 
+// todo determine when car is upside down so movement stops when upside down -- prompt user with press shift to flip over or space bar or something
+// change camera switching maybe arrow keys auto scroll
+//  change free camera to navigate with esdf and height changing
+// inital camera should switch between preset positions
+//
+
 const NewCar = () => {
     const { nodes, materials } = useGLTF('/models/newnewCar.glb');
 
@@ -19,6 +25,7 @@ const NewCar = () => {
     const bodyRef = useRef();
     const rfwParentRef = useRef();
     const rfwRef = useRef();
+    const roofRef = useRef();
 
     const lfwParentRef = useRef();
     const lfwRef = useRef();
@@ -39,6 +46,9 @@ const NewCar = () => {
     const [topSpeed, setTopSpeed] = useState(900);
     const [canFlip, setCanFlip] = useState(true);
     // follow, free
+
+    const [isUpsideDown, setIsUpsideDown] = useState(false);
+    //
 
     const forwardAcceleration = 50;
     const reverseAcceleration = 40;
@@ -67,10 +77,10 @@ const NewCar = () => {
 
     useFrame(() => {
         // Speed management
-        const moveForward = keysPressed['ArrowUp'];
-        const moveBackward = keysPressed['ArrowDown'];
-        const steerLeft = keysPressed['ArrowLeft'];
-        const steerRight = keysPressed['ArrowRight'];
+        const moveForward = keysPressed['ArrowUp'] || keysPressed['e'];
+        const moveBackward = keysPressed['ArrowDown'] || keysPressed['d'];
+        const steerLeft = keysPressed['ArrowLeft'] || keysPressed['s'];
+        const steerRight = keysPressed['ArrowRight'] || keysPressed['f'];
         const turnLeft =
             (moveForward && steerLeft) || (moveBackward && steerLeft);
         const turnRight =
@@ -87,6 +97,7 @@ const NewCar = () => {
             const quaternion = new THREE.Quaternion().setFromEuler(euler);
             carRef.current.setRotation(quaternion, true);
         }
+
         if (flip && carRef.current) {
             // Move the car up in the air
             const currentPosition = carRef.current.translation();
@@ -173,6 +184,9 @@ const NewCar = () => {
 
         if (carRef.current) {
             const car = carRef.current;
+            // hey
+
+            //hey
 
             // Get the current rotation quaternion
             const rotation = car.rotation(); // This should return a quaternion or a rotation vector
@@ -230,6 +244,7 @@ const NewCar = () => {
         } else {
             console.error('carRef.current is undefined');
         }
+        console.log(isUpsideDown);
     });
 
     const carBodyColor = new THREE.Color(0x1e90ff);
@@ -273,6 +288,74 @@ const NewCar = () => {
         metalness: 0.5, // Optionally, adjust metalness for desired effect
     });
 
+    // collider constructors
+    // setContactSkin={20}
+
+    // setActiveCollisionTypes(activeCollisionTypes: ActiveCollisionTypes): void
+
+    // Use Case: Set the collision types active for the collider, allowing customization of how the collider interacts with other colliders.
+
+    // castRay(ray: Ray, maxToi: number, solid: boolean): number
+
+    // Use Case: Perform a ray-cast to find the closest intersection between a ray and the collider. Useful for implementing features like ray-based picking or visibility checks.
+    // Example:
+    // javascript
+    // Copy code
+    // const hitTime = myCollider.castRay(ray, maxToi, true);
+    // setContactSkin(thickness: number): void
+
+    // Use Case: Set the contact skin thickness for the collider to improve collision detection accuracy and stability.
+    // Example:
+    // javascript
+    // Copy code
+    // myCollider.setContactSkin(0.1);
+    // Friction(friction: number): void
+
+    // Use Case: Set the friction coefficient of the collider to control how it interacts with other surfaces.
+    // Example:
+    // javascript
+    // Copy code
+    // myCollider.setFriction(0.5);
+    // setRestitution(restitution: number): void
+
+    // Use Case: Set the restitution (bounciness) of the collider to determine how much it bounces upon impact.
+    // Example:
+    // javascript
+    // Copy code
+    // myCollider.setRestitution(0.8);
+    // setDensity(density: number): void
+
+    // Use Case: Set the uniform density of the collider to affect its mass and inertia.
+    // Example:
+    // javascript
+    // Copy code
+    // myCollider.setDensity(1.0);
+    // setTranslation(tra: Vector): void
+
+    // Use Case: Set the translation (position) of the collider in the world space.
+    // Example:
+    // javascript
+    // Copy code
+    // myCollider.setTranslation({ x: 1, y: 2, z: 3 });
+    // setRotation(rot: Rotation): void
+
+    // Use Case: Set the rotation of the collider in the world space.
+    // Example:
+    // javascript
+    // Copy code
+    // myCollider.setRotation({ x: 0, y: 0, z: 0, w: 1 });
+    // setSensor(isSensor: boolean): void
+
+    // Use Case: Set the collider as a sensor, which allows it to detect collisions without affecting the physics simulation.
+    // Example:
+    // javascript
+    // Copy code
+    // myCollider.setSensor(true);
+
+    // todo try to create a sensor on top of the car to determine when in contact with ground. Also might be able to determine when contact with ground using a constructor
+
+    // isccd on a rigid body or a collider
+
     return (
         <>
             <RigidBody
@@ -285,7 +368,22 @@ const NewCar = () => {
                 friction={0.3}
                 rotation={[-Math.PI / 2, 0, 0]}
             >
-                <CuboidCollider args={[4, 9.5, 2]} position={[0.2, 0.5, 3]} />
+                <CuboidCollider
+                    args={[4, 9.5, 2]}
+                    position={[0.2, 0.5, 3]}
+                    enableCcd={true}
+                    setContactSkin={0.1}
+                    on
+                />
+                <CuboidCollider
+                    args={[4, 9.5, 2]}
+                    position={[0.2, 0.5, 3]}
+                    mass={0}
+                    sensor={true}
+                    onIntersectionEnter={() => setIsUpsideDown(true)}
+                    onIntersectionExit={() => setIsUpsideDown(false)}
+                    ref={roofRef}
+                />
                 <group
                     dispose={null}
                     //
@@ -528,6 +626,8 @@ const NewCar = () => {
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
+                            enableCcd={true}
+                            setContactSkin={0.1}
                         />
                         <group ref={lfwRef}>
                             {/* lf Tire */}
@@ -567,6 +667,8 @@ const NewCar = () => {
                             args={[0.7, 1.2]}
                             position={[-0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
+                            enableCcd={true}
+                            setContactSkin={0.1}
                         />
 
                         <group ref={rfwRef}>
@@ -606,6 +708,8 @@ const NewCar = () => {
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
+                            enableCcd={true}
+                            setContactSkin={0.1}
                             // mass={12}
 
                             // friction={rearWheelFriction}
@@ -642,6 +746,8 @@ const NewCar = () => {
                             args={[0.7, 1.2]}
                             position={[-0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
+                            enableCcd={true}
+                            setContactSkin={0.1}
                             // friction={rearWheelFriction}
                         />
 
