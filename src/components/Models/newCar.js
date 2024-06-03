@@ -20,25 +20,28 @@ import CameraManager from '../Camera/cameraManager';
 const NewCar = () => {
     const { nodes, materials } = useGLTF('/models/newnewCar.glb');
 
-    // ref
+    // car refs
     const carRef = useRef();
     const bodyRef = useRef();
     const rfwParentRef = useRef();
     const rfwRef = useRef();
     const roofRef = useRef();
-
     const lfwParentRef = useRef();
     const lfwRef = useRef();
-
     const lrwRef = useRef();
     const rrwRef = useRef();
-
     const backRef = useRef();
+
+    // camera
+    const [activeCamera, setActiveCamera] = useState('initial');
+    // input
+    const [keysPressed, setKeysPressed] = useState({});
+
+    // okay sooooo with a free camera movement can just auto move the car
+    // lets make it so activeCamera === 'follow' to trigger can movement.
 
     const [torqueFactor, setTorqueFactor] = useState(1.09);
 
-    // input
-    const [keysPressed, setKeysPressed] = useState({});
     // car stats
     const [currentSpeed, setCurrentSpeed] = useState(0);
     const [totalFriction, setTotalFriction] = useState(0.5);
@@ -73,7 +76,27 @@ const NewCar = () => {
         };
     }, []);
 
-    // Function to apply impulse
+    useEffect(() => {
+        const switchCamera = keysPressed['c'] || keysPressed['C'];
+        const arrowKeyPressed =
+            keysPressed['ArrowUp'] ||
+            keysPressed['ArrowDown'] ||
+            keysPressed['ArrowLeft'] ||
+            keysPressed['ArrowRight'];
+
+        if (switchCamera) {
+            setActiveCamera((prev) => {
+                if (prev === 'initial') return 'follow';
+                if (prev === 'follow') return 'free';
+                if (prev === 'free') return 'initial';
+                return 'initial';
+            });
+        }
+
+        if (arrowKeyPressed) {
+            setActiveCamera('follow');
+        }
+    }, [keysPressed, setActiveCamera]);
 
     useFrame(() => {
         // Speed management
@@ -89,7 +112,7 @@ const NewCar = () => {
         const reset = keysPressed['r'];
         const flip = keysPressed['Shift'];
 
-        if (reset && carRef.current) {
+        if (reset && carRef.current && activeCamera === 'follow') {
             carRef.current.setTranslation({ x: 200, y: 1200, z: 0 }, true);
             carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
             carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
@@ -98,7 +121,7 @@ const NewCar = () => {
             carRef.current.setRotation(quaternion, true);
         }
 
-        if (flip && carRef.current) {
+        if (flip && carRef.current && activeCamera === 'follow') {
             // Move the car up in the air
             const currentPosition = carRef.current.translation();
             carRef.current.setTranslation(
@@ -121,7 +144,7 @@ const NewCar = () => {
             carRef.current.setRotation(quaternion, true);
         }
 
-        if (moveForward) {
+        if (moveForward && activeCamera === 'follow') {
             if (currentSpeed < topSpeed) {
                 setCurrentSpeed((prevSpeed) => {
                     const accelerationFactor =
@@ -129,7 +152,7 @@ const NewCar = () => {
                     return prevSpeed + forwardAcceleration * accelerationFactor;
                 });
             }
-        } else if (moveBackward) {
+        } else if (moveBackward && activeCamera === 'follow') {
             if (currentSpeed > -topSpeed) {
                 setCurrentSpeed((prevSpeed) => prevSpeed - reverseAcceleration);
             }
@@ -182,11 +205,8 @@ const NewCar = () => {
             }
         }
 
-        if (carRef.current) {
+        if (carRef.current && activeCamera === 'follow') {
             const car = carRef.current;
-            // hey
-
-            //hey
 
             // Get the current rotation quaternion
             const rotation = car.rotation(); // This should return a quaternion or a rotation vector
@@ -241,10 +261,7 @@ const NewCar = () => {
                     true
                 );
             }
-        } else {
-            console.error('carRef.current is undefined');
         }
-        console.log(isUpsideDown);
     });
 
     const carBodyColor = new THREE.Color(0x1e90ff);
@@ -287,6 +304,8 @@ const NewCar = () => {
         roughness: 0.2, // Lower roughness for a glossy finish
         metalness: 0.5, // Optionally, adjust metalness for desired effect
     });
+
+    // Rigid Body Constructors
 
     // collider constructors
     // setContactSkin={20}
@@ -355,6 +374,9 @@ const NewCar = () => {
     // todo try to create a sensor on top of the car to determine when in contact with ground. Also might be able to determine when contact with ground using a constructor
 
     // isccd on a rigid body or a collider
+    // lets just actually create a real roof collider than can detect collisions
+
+    console.log('yo', activeCamera);
 
     return (
         <>
@@ -367,15 +389,16 @@ const NewCar = () => {
                 // friction={totalFriction}
                 friction={0.3}
                 rotation={[-Math.PI / 2, 0, 0]}
+                name="car"
             >
                 <CuboidCollider
                     args={[4, 9.5, 2]}
                     position={[0.2, 0.5, 3]}
                     enableCcd={true}
                     setContactSkin={0.1}
-                    on
+                    // on
                 />
-                <CuboidCollider
+                {/* <CuboidCollider
                     args={[4, 9.5, 2]}
                     position={[0.2, 0.5, 3]}
                     mass={0}
@@ -383,7 +406,7 @@ const NewCar = () => {
                     onIntersectionEnter={() => setIsUpsideDown(true)}
                     onIntersectionExit={() => setIsUpsideDown(false)}
                     ref={roofRef}
-                />
+                /> */}
                 <group
                     dispose={null}
                     //
@@ -782,7 +805,13 @@ const NewCar = () => {
                 </group>
             </RigidBody>
 
-            <CameraManager carRef={carRef} backRef={backRef} />
+            <CameraManager
+                carRef={carRef}
+                backRef={backRef}
+                activeCamera={activeCamera}
+                setActiveCamera={setActiveCamera}
+                keysPressed={keysPressed}
+            />
         </>
     );
 };

@@ -3,22 +3,16 @@ import { useThree, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 
-const CameraManager = ({ carRef, backRef }) => {
+const CameraManager = ({ carRef, backRef, activeCamera, keysPressed }) => {
     // todo fixed height for follow mode that can be adjusted with a scroll wheel
     // todo can I make the orbit mode not clip through object?
     // todo orbit mode rotate by holding mouse wheel button
     // todo free mode needs to switch immediately on mouse down not up like clicking should instantly switch not clicking then dragging the first click.
-
-    // free camera mode 
-    // drop down menu to select camera 
-    // lets allow camera movement with esdf
-    //  car movement with esdf 
-    // change camera triggers 
-
+    // free camera mode
+    // drop down menu to select camera
 
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
-    const [activeCamera, setActiveCamera] = useState('inital');
     const [targetPosition, setTargetPosition] = useState(
         new THREE.Vector3(0, 1000, 0)
     );
@@ -26,6 +20,7 @@ const CameraManager = ({ carRef, backRef }) => {
         new THREE.Vector3(0, 0, 0)
     );
 
+    // follow
     const offset = new THREE.Vector3(0, 200, -500);
     const isPanning = useRef(false);
     const isRotating = useRef(false);
@@ -33,181 +28,8 @@ const CameraManager = ({ carRef, backRef }) => {
     const startRotate = useRef(new THREE.Vector2());
     const [followHeight, setFollowHeight] = useState(15);
     const [followDistance, setFollowDistance] = useState(30);
-
-    const handleMouseDown = (event) => {
-        setActiveCamera('free');
-        if (event.button === 0) {
-            isPanning.current = true;
-            startPan.current.set(event.clientX, event.clientY);
-        } else if (event.button === 1) {
-            console.log('mousewheel');
-            isRotating.current = true;
-            startRotate.current.set(event.clientX, event.clientY);
-        }
-    };
-
-    // const handleMouseMove = (event) => {
-    //     if (isPanning.current) {
-    //         const deltaX = event.clientX - startPan.current.x;
-    //         const deltaY = event.clientY - startPan.current.y;
-    //         startPan.current.set(event.clientX, event.clientY);
-
-    //         const panOffset = new THREE.Vector3();
-    //         panOffset.setFromMatrixColumn(camera.matrix, 0); // get X column of the matrix
-    //         panOffset.multiplyScalar(-deltaX);
-    //         camera.position.add(panOffset);
-    //         panOffset.setFromMatrixColumn(camera.matrix, 1); // get Y column of the matrix
-    //         panOffset.multiplyScalar(deltaY);
-    //         camera.position.add(panOffset);
-
-    //         setTargetPosition(camera.position.clone());
-    //     } else if (isRotating.current) {
-    //         const deltaX = event.clientX - startRotate.current.x;
-    //         const deltaY = event.clientY - startRotate.current.y;
-    //         startRotate.current.set(event.clientX, event.clientY);
-
-    //         const spherical = new THREE.Spherical();
-    //         spherical.setFromVector3(camera.position.clone().sub(targetLookAt));
-    //         spherical.theta -= deltaX * 0.005; // Adjust the rotation speed as needed
-    //         spherical.phi -= deltaY * 0.005;
-    //         spherical.makeSafe();
-
-    //         const newPosition = new THREE.Vector3()
-    //             .setFromSpherical(spherical)
-    //             .add(targetLookAt);
-    //         camera.position.copy(newPosition);
-    //         camera.lookAt(targetLookAt);
-    //     }
-    // };
-    const handleMouseMove = (event) => {
-        if (isPanning.current) {
-            const deltaX = event.clientX - startPan.current.x;
-            const deltaY = event.clientY - startPan.current.y;
-            startPan.current.set(event.clientX, event.clientY);
-
-            const panOffset = new THREE.Vector3();
-            panOffset.setFromMatrixColumn(camera.matrix, 0); // get X column of the matrix
-            panOffset.multiplyScalar(-deltaX);
-            camera.position.add(panOffset);
-            panOffset.setFromMatrixColumn(camera.matrix, 1); // get Y column of the matrix
-            panOffset.multiplyScalar(deltaY);
-            camera.position.add(panOffset);
-
-            // Update the targetLookAt position to match the new camera position
-            setTargetLookAt(camera.position.clone());
-
-            setTargetPosition(camera.position.clone());
-        } else if (isRotating.current) {
-            const deltaX = event.clientX - startRotate.current.x;
-            const deltaY = event.clientY - startRotate.current.y;
-            startRotate.current.set(event.clientX, event.clientY);
-
-            const spherical = new THREE.Spherical();
-            spherical.setFromVector3(camera.position.clone().sub(targetLookAt));
-            spherical.theta -= deltaX * 0.005; // Adjust the rotation speed as needed
-            spherical.phi -= deltaY * 0.005;
-            spherical.makeSafe();
-
-            const newPosition = new THREE.Vector3()
-                .setFromSpherical(spherical)
-                .add(targetLookAt);
-            camera.position.copy(newPosition);
-            camera.lookAt(targetLookAt);
-        }
-    };
-
-    const handleMouseUp = () => {
-        isPanning.current = false;
-        isRotating.current = false;
-    };
-
-    const handleWheel = (event) => {
-        // if (activeCamera === 'follow') {
-        //     const zoomFactor = event.deltaY * 0.1;
-
-        //     setFollowDistance((prevDistance) => {
-        //         const newDistance = prevDistance + zoomFactor;
-        //         const clampedDistance = Math.max(
-        //             minFollowDistance,
-        //             Math.min(newDistance, maxFollowDistance)
-        //         );
-        //         return clampedDistance;
-        //     });
-
-        //     setFollowHeight((prevHeight) => {
-        //         const newHeight =
-        //             (prevHeight / followDistance) *
-        //             (followDistance + zoomFactor);
-        //         const clampedHeight = Math.max(
-        //             minFollowHeight,
-        //             Math.min(newHeight, maxFollowHeight)
-        //         );
-        //         return clampedHeight;
-        //     });
-        // }
-        if (activeCamera !== 'follow') {
-            const zoomFactor = event.deltaY * 1.1;
-            const direction = new THREE.Vector3()
-                .subVectors(camera.position, targetLookAt)
-                .normalize();
-
-            const newPosition = camera.position
-                .clone()
-                .add(direction.multiplyScalar(zoomFactor));
-
-            gsap.to(camera.position, {
-                x: newPosition.x,
-                y: newPosition.y,
-                z: newPosition.z,
-                duration: 0.5,
-                ease: 'power2.out',
-            });
-
-            setTargetPosition(newPosition);
-        }
-    };
-
-    useEffect(() => {
-        window.addEventListener('wheel', handleWheel);
-        console.log('Wheel event listener added.');
-
-        return () => {
-            window.removeEventListener('wheel', handleWheel);
-            console.log('Wheel event listener removed.');
-        };
-    }, [activeCamera]);
-
-    useEffect(() => {
-        window.addEventListener('mousedown', handleMouseDown);
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseup', handleMouseUp);
-
-        return () => {
-            window.removeEventListener('mousedown', handleMouseDown);
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('mouseup', handleMouseUp);
-        };
-    }, []);
-
-    useEffect(() => {
-        const handleKeyDown = (event) => {
-            if (event.key === 'C' || event.key === 'c') {
-                setActiveCamera((prev) => {
-                    if (prev === 'initial') return 'follow';
-                    if (prev === 'follow') return 'free';
-                    if (prev === 'free') return 'initial';
-                    return 'initial';
-                });
-            } else {
-                setActiveCamera('follow');
-            }
-        };
-        window.addEventListener('keydown', handleKeyDown);
-
-        return () => {
-            window.removeEventListener('keydown', handleKeyDown);
-        };
-    }, []);
+    // free
+    const [cameraSpeed, setCameraSpeed] = useState(3);
 
     useEffect(() => {
         if (activeCamera === 'initial') {
@@ -224,6 +46,54 @@ const CameraManager = ({ carRef, backRef }) => {
         }
     }, [activeCamera, carRef]);
 
+    useEffect(() => {
+        const onMouseDown = (event) => {
+            if (activeCamera === 'free' && event.button === 0) {
+                isRotating.current = true;
+                startRotate.current.set(event.clientX, event.clientY);
+            }
+        };
+
+        const onMouseMove = (event) => {
+            if (isRotating.current) {
+                const deltaX = event.clientX - startRotate.current.x;
+                const deltaY = event.clientY - startRotate.current.y;
+                startRotate.current.set(event.clientX, event.clientY);
+
+                const quaternion = new THREE.Quaternion();
+                const axis = new THREE.Vector3();
+
+                axis.set(0, 1, 0); // Y-axis for horizontal rotation
+                quaternion.setFromAxisAngle(axis, -deltaX * 0.002);
+                camera.quaternion.multiplyQuaternions(
+                    quaternion,
+                    camera.quaternion
+                );
+
+                axis.set(1, 0, 0); // X-axis for vertical rotation
+                quaternion.setFromAxisAngle(axis, -deltaY * 0.002);
+                camera.quaternion.multiplyQuaternions(
+                    camera.quaternion,
+                    quaternion
+                );
+            }
+        };
+
+        const onMouseUp = () => {
+            isRotating.current = false;
+        };
+
+        gl.domElement.addEventListener('mousedown', onMouseDown);
+        gl.domElement.addEventListener('mousemove', onMouseMove);
+        gl.domElement.addEventListener('mouseup', onMouseUp);
+
+        return () => {
+            gl.domElement.removeEventListener('mousedown', onMouseDown);
+            gl.domElement.removeEventListener('mousemove', onMouseMove);
+            gl.domElement.removeEventListener('mouseup', onMouseUp);
+        };
+    }, [camera, gl.domElement, activeCamera]);
+
     useFrame(() => {
         if (activeCamera === 'initial') {
             camera.position.lerpVectors(camera.position, targetPosition, 0.1);
@@ -233,6 +103,38 @@ const CameraManager = ({ carRef, backRef }) => {
                 0.1
             );
             camera.lookAt(cameraTarget.current);
+        } else if (activeCamera === 'free') {
+            const moveForward = keysPressed['e'];
+            const moveBackward = keysPressed['d'];
+            const moveLeft = keysPressed['s'];
+            const moveRight = keysPressed['f'];
+            const moveUp = keysPressed['r'];
+            const moveDown = keysPressed['w'];
+            const increaseSpeed = keysPressed['g'];
+            const decreaseSpeed = keysPressed['a'];
+            
+            if (increaseSpeed) setCameraSpeed((prevSpeed) => prevSpeed + 0.2);
+            if (decreaseSpeed)
+                setCameraSpeed((prevSpeed) => Math.max(prevSpeed - 0.2, 0.2));
+
+            const direction = new THREE.Vector3();
+            camera.getWorldDirection(direction);
+
+            if (moveForward)
+                camera.position.addScaledVector(direction, cameraSpeed);
+            if (moveBackward)
+                camera.position.addScaledVector(direction, -cameraSpeed);
+
+            const right = new THREE.Vector3();
+            right.crossVectors(camera.up, direction).normalize();
+
+            if (moveLeft) camera.position.addScaledVector(right, cameraSpeed);
+            if (moveRight) camera.position.addScaledVector(right, -cameraSpeed);
+            if (moveUp) camera.position.addScaledVector(camera.up, cameraSpeed);
+            if (moveDown)
+                camera.position.addScaledVector(camera.up, -cameraSpeed);
+
+            console.log(cameraSpeed);
         } else if (
             activeCamera === 'follow' &&
             carRef.current &&

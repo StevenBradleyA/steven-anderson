@@ -18,6 +18,7 @@ const NewRaceTrack = () => {
             colliders="trimesh"
             friction={1}
             restitution={0.2}
+            name='track'
         >
             <group dispose={null}>
                 <mesh
