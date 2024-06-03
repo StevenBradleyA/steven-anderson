@@ -11,12 +11,12 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import CameraManager from '../Camera/cameraManager';
 
-// todo determine when car is upside down so movement stops when upside down -- prompt user with press shift to flip over or space bar or something
-// change camera switching maybe arrow keys auto scroll
-//  change free camera to navigate with esdf and height changing
-// inital camera should switch between preset positions
+// todo decide on camera buttons -- should mouse clicking trigger free mode?
 
-// prompt user with press shift to flip car...
+// inital camera should switch between preset positions
+// prompt user with press shift to flip car... or r for respawn
+// todo when the car falls off the map aka hits a certain height on the map we can probably just auto respawn...
+// probably want to disable movement when all wheels off ground
 
 const NewCar = () => {
     const { nodes, materials } = useGLTF('/models/newnewCar.glb');
@@ -37,17 +37,13 @@ const NewCar = () => {
     const [activeCamera, setActiveCamera] = useState('initial');
     // input
     const [keysPressed, setKeysPressed] = useState({});
-
-    // okay sooooo with a free camera movement can just auto move the car
-    // lets make it so activeCamera === 'follow' to trigger can movement.
-
     const [torqueFactor, setTorqueFactor] = useState(1.09);
 
     // car stats
     const [currentSpeed, setCurrentSpeed] = useState(0);
     const [totalFriction, setTotalFriction] = useState(0.5);
     const [rearWheelFriction, setRearWheelFriction] = useState(0.3);
-    const [topSpeed, setTopSpeed] = useState(900);
+    const [topSpeed, setTopSpeed] = useState(950);
     const [canFlip, setCanFlip] = useState(true);
     // follow, free
 
@@ -58,6 +54,7 @@ const NewCar = () => {
     const reverseAcceleration = 40;
     const braking = 80;
     const steerAngle = Math.PI / 9;
+    const respawnHeight = 900;
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -110,10 +107,11 @@ const NewCar = () => {
         const turnRight =
             (moveForward && steerRight) || (moveBackward && steerRight);
         const drift = keysPressed['big man'];
-        const reset = keysPressed['r'];
+        const respawn = keysPressed['r'];
         const flip = keysPressed['Shift'];
 
-        if (reset && carRef.current && activeCamera === 'follow') {
+        // respawn
+        if (respawn && carRef.current && activeCamera === 'follow') {
             carRef.current.setTranslation({ x: 200, y: 1200, z: 0 }, true);
             carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
             carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
@@ -121,6 +119,20 @@ const NewCar = () => {
             const quaternion = new THREE.Quaternion().setFromEuler(euler);
             carRef.current.setRotation(quaternion, true);
             setIsUpsideDown(false);
+        }
+        // auto respawn
+        if (carRef.current) {
+            const currentPosition = carRef.current.translation();
+            if (currentPosition.y < respawnHeight) {
+                carRef.current.setTranslation({ x: 200, y: 1200, z: 0 }, true);
+                carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+                carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+                const euler = new THREE.Euler(-Math.PI / 2, 0, 0);
+                const quaternion = new THREE.Quaternion().setFromEuler(euler);
+                carRef.current.setRotation(quaternion, true);
+                setIsUpsideDown(false);
+                setCurrentSpeed(0); // Reset the speed
+            }
         }
 
         if (flip && carRef.current && activeCamera === 'follow') {
