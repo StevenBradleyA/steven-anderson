@@ -15,7 +15,8 @@ import CameraManager from '../Camera/cameraManager';
 // change camera switching maybe arrow keys auto scroll
 //  change free camera to navigate with esdf and height changing
 // inital camera should switch between preset positions
-//
+
+// prompt user with press shift to flip car...
 
 const NewCar = () => {
     const { nodes, materials } = useGLTF('/models/newnewCar.glb');
@@ -119,6 +120,7 @@ const NewCar = () => {
             const euler = new THREE.Euler(-Math.PI / 2, 0, 0);
             const quaternion = new THREE.Quaternion().setFromEuler(euler);
             carRef.current.setRotation(quaternion, true);
+            setIsUpsideDown(false);
         }
 
         if (flip && carRef.current && activeCamera === 'follow') {
@@ -142,6 +144,7 @@ const NewCar = () => {
             const euler = new THREE.Euler(-Math.PI / 2, 0, 0);
             const quaternion = new THREE.Quaternion().setFromEuler(euler);
             carRef.current.setRotation(quaternion, true);
+            setIsUpsideDown(false);
         }
 
         if (moveForward && activeCamera === 'follow') {
@@ -168,7 +171,11 @@ const NewCar = () => {
             }
         }
 
-        if (lfwParentRef.current && rfwParentRef.current) {
+        if (
+            lfwParentRef.current &&
+            rfwParentRef.current &&
+            activeCamera === 'follow'
+        ) {
             if (steerLeft) {
                 lfwParentRef.current.rotation.set(0, 0, steerAngle);
                 rfwParentRef.current.rotation.set(0, 0, steerAngle);
@@ -182,7 +189,7 @@ const NewCar = () => {
         }
 
         // wheel visual spinning effect
-        const wheelRotationSpeed = currentSpeed / 12; //  divisor controls visual spin speed
+        const wheelRotationSpeed = currentSpeed / 30;
         if (
             lfwRef.current &&
             rfwRef.current &&
@@ -205,7 +212,11 @@ const NewCar = () => {
             }
         }
 
-        if (carRef.current && activeCamera === 'follow') {
+        if (
+            carRef.current &&
+            activeCamera === 'follow' &&
+            isUpsideDown === false
+        ) {
             const car = carRef.current;
 
             // Get the current rotation quaternion
@@ -376,37 +387,40 @@ const NewCar = () => {
     // isccd on a rigid body or a collider
     // lets just actually create a real roof collider than can detect collisions
 
-    console.log('yo', activeCamera);
+    console.log('yo', isUpsideDown);
 
     return (
         <>
             <RigidBody
                 ref={carRef}
                 // mass={0.25}
-                mass={12}
+                mass={11}
                 colliders={false}
                 position={[300, 1150, 0]}
                 // friction={totalFriction}
                 friction={0.3}
                 rotation={[-Math.PI / 2, 0, 0]}
                 name="car"
+                enableCcd={true}
             >
                 <CuboidCollider
-                    args={[4, 9.5, 2]}
-                    position={[0.2, 0.5, 3]}
-                    enableCcd={true}
-                    setContactSkin={0.1}
-                    // on
+                    args={[4, 9.3, 1.5]}
+                    position={[0.3, 0.4, 2.5]}
+                    name="body"
                 />
-                {/* <CuboidCollider
-                    args={[4, 9.5, 2]}
-                    position={[0.2, 0.5, 3]}
-                    mass={0}
-                    sensor={true}
-                    onIntersectionEnter={() => setIsUpsideDown(true)}
-                    onIntersectionExit={() => setIsUpsideDown(false)}
-                    ref={roofRef}
-                /> */}
+                <CuboidCollider
+                    args={[3.5, 5.5, 0.8]}
+                    position={[0.3, 2.5, 4.8]}
+                    name="roof"
+                    mass={0.002}
+                    onCollisionEnter={({ other }) => {
+                        if (other.rigidBodyObject.name === 'track') {
+                            setIsUpsideDown(true);
+                        }
+                    }}
+                    onCollisionExit={() => setIsUpsideDown(false)}
+                />
+
                 <group
                     dispose={null}
                     //
