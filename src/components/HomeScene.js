@@ -6,11 +6,11 @@ import RaceTrack from './RaceTrack';
 import TofuCar from './Models/ae86';
 import NewRaceTrack from './Models/newTrack';
 import NewCar from './Models/newCar';
-
+import VerticalTrack from './Models/verticalTrack';
 
 const ThreeScene = () => {
     // <Physics gravity={[0, -981, 0]} debug>
-// The X axis is red. The Y axis is green. The Z axis is blue.
+    // The X axis is red. The Y axis is green. The Z axis is blue.
 
     return (
         <Canvas
@@ -28,11 +28,12 @@ const ThreeScene = () => {
             <Suspense fallback={null}>
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[10, 10, 5]} intensity={1} />
-                <Physics gravity={[0, -98.1, 0]} debug>
+                <Physics gravity={[0, -98.1, 0]} >
                     {/* <TofuCar /> */}
                     {/* <RaceTrack /> */}
                     <NewCar />
-                    <NewRaceTrack />
+                    {/* <NewRaceTrack /> */}
+                    <VerticalTrack />
                 </Physics>
                 <axesHelper args={[150]} position={[0, 1200, 0]} />
             </Suspense>

@@ -18,6 +18,9 @@ import CameraManager from '../Camera/cameraManager';
 // todo when the car falls off the map aka hits a certain height on the map we can probably just auto respawn...
 // probably want to disable movement when all wheels off ground
 
+// last major car change is going to be flying. Car can just fly when off the ground.
+// have to determine when all 4 wheels are off or back 2 wheels not in contact
+
 const NewCar = () => {
     const { nodes, materials } = useGLTF('/models/newnewCar.glb');
 
@@ -44,17 +47,36 @@ const NewCar = () => {
     const [totalFriction, setTotalFriction] = useState(0.5);
     const [rearWheelFriction, setRearWheelFriction] = useState(0.3);
     const [topSpeed, setTopSpeed] = useState(950);
-    const [canFlip, setCanFlip] = useState(true);
     // follow, free
 
+    // sensors
     const [isUpsideDown, setIsUpsideDown] = useState(false);
-    //
+    const [wheelsOffGroundCount, setWheelsOffGroundCount] = useState(0);
 
     const forwardAcceleration = 50;
     const reverseAcceleration = 40;
     const braking = 80;
     const steerAngle = Math.PI / 9;
     const respawnHeight = 900;
+
+    const handleCollisionExit = ({ target, manifold }) => {
+        // Log the name or id of the target collider
+        console.log(
+            'Collision exited with:',
+            target.collider.name || target.collider.id
+        );
+
+        // Log the position of the wheel collider
+        console.log('Wheel position:', manifold.localP1());
+
+        // Log if the target collider is the ground (assuming you have a way to identify it)
+        if (
+            target.collider.name === 'ground' ||
+            target.collider.userData.isGround
+        ) {
+            console.log('Wheel is off the ground.');
+        }
+    };
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -112,7 +134,7 @@ const NewCar = () => {
 
         // respawn
         if (respawn && carRef.current && activeCamera === 'follow') {
-            carRef.current.setTranslation({ x: 200, y: 1200, z: 0 }, true);
+            carRef.current.setTranslation({ x: 200, y: 1150, z: 0 }, true);
             carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
             carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
             const euler = new THREE.Euler(-Math.PI / 2, 0, 0);
@@ -124,7 +146,7 @@ const NewCar = () => {
         if (carRef.current) {
             const currentPosition = carRef.current.translation();
             if (currentPosition.y < respawnHeight) {
-                carRef.current.setTranslation({ x: 200, y: 1200, z: 0 }, true);
+                carRef.current.setTranslation({ x: 200, y: 1150, z: 0 }, true);
                 carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
                 carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
                 const euler = new THREE.Euler(-Math.PI / 2, 0, 0);
@@ -399,7 +421,7 @@ const NewCar = () => {
     // isccd on a rigid body or a collider
     // lets just actually create a real roof collider than can detect collisions
 
-    console.log('yo', isUpsideDown);
+    // console.log('yo', wheelsOffGroundCount);
 
     return (
         <>
@@ -675,8 +697,6 @@ const NewCar = () => {
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
-                            enableCcd={true}
-                            setContactSkin={0.1}
                         />
                         <group ref={lfwRef}>
                             {/* lf Tire */}
@@ -716,10 +736,8 @@ const NewCar = () => {
                             args={[0.7, 1.2]}
                             position={[-0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
-                            enableCcd={true}
                             setContactSkin={0.1}
                         />
-
                         <group ref={rfwRef}>
                             {/*  RF Lug*/}
                             <mesh
@@ -757,11 +775,9 @@ const NewCar = () => {
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
-                            enableCcd={true}
                             setContactSkin={0.1}
-                            // mass={12}
-
-                            // friction={rearWheelFriction}
+                            name="rightRearWheel"
+                            ref={rrwRef}
                         />
                         <mesh
                             castShadow
@@ -793,11 +809,11 @@ const NewCar = () => {
                     <group ref={lrwRef} position={[-2.129, 5.383, 1.143]}>
                         <CylinderCollider
                             args={[0.7, 1.2]}
+                            name="leftRearWheel"
                             position={[-0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
-                            enableCcd={true}
-                            setContactSkin={0.1}
-                            // friction={rearWheelFriction}
+                            // setContactSkin={0.1}
+                            ref={lrwRef}
                         />
 
                         {/* LR Tire */}
