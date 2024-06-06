@@ -1,11 +1,7 @@
-// components/Model.js
 'use client';
-import React, { useEffect, useMemo } from 'react';
-import { useGLTF, useTexture } from '@react-three/drei';
+import React from 'react';
+import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
-import { useLoader } from '@react-three/fiber';
-import { TextureLoader } from 'three/src/loaders/TextureLoader';
-import * as THREE from 'three';
 
 const LowPolyIsland = () => {
     const { nodes, materials } = useGLTF('/models/lowPolyIsland.glb');

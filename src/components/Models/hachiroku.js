@@ -11,18 +11,17 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import CameraManager from '../Camera/cameraManager';
 
-// todo decide on camera buttons -- should mouse clicking trigger free mode?
+// todo decide on camera buttons -- should mouse clicking trigger free mode? also fix free cam locking
 
-// inital camera should switch between preset positions
-// prompt user with press shift to flip car... or r for respawn
-// todo when the car falls off the map aka hits a certain height on the map we can probably just auto respawn...
+// prompt user with press shift to flip car... or r for respawn -- when is upside true
+
+// todo ground movement only
+// aka all four wheels off track no move
 // probably want to disable movement when all wheels off ground
-
 // last major car change is going to be flying. Car can just fly when off the ground.
 // have to determine when all 4 wheels are off or back 2 wheels not in contact
-
 // todo for car ... movement on ground only -- -- smoothness of follow? drift button maybe
-// todo turning while moving but not moving forward... basically turning should move you even without just forward of backward movement.
+// so drift and ground only movement
 
 const HachiRoku = () => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
@@ -41,45 +40,31 @@ const HachiRoku = () => {
 
     // camera
     const [activeCamera, setActiveCamera] = useState('initial');
+
     // input
     const [keysPressed, setKeysPressed] = useState({});
     const [torqueFactor, setTorqueFactor] = useState(1.09);
 
-    // car stats
+    // movement
     const [currentSpeed, setCurrentSpeed] = useState(0);
     const [totalFriction, setTotalFriction] = useState(0.5);
     const [rearWheelFriction, setRearWheelFriction] = useState(0.3);
     const [topSpeed, setTopSpeed] = useState(950);
-    // follow, free
-
-    // sensors
-    const [isUpsideDown, setIsUpsideDown] = useState(false);
-    const [wheelsOffGroundCount, setWheelsOffGroundCount] = useState(0);
-
     const forwardAcceleration = 50;
     const reverseAcceleration = 40;
     const braking = 80;
     const steerAngle = Math.PI / 9;
     const respawnHeight = 900;
 
-    const handleCollisionExit = ({ target, manifold }) => {
-        // Log the name or id of the target collider
-        console.log(
-            'Collision exited with:',
-            target.collider.name || target.collider.id
-        );
-
-        // Log the position of the wheel collider
-        console.log('Wheel position:', manifold.localP1());
-
-        // Log if the target collider is the ground (assuming you have a way to identify it)
-        if (
-            target.collider.name === 'ground' ||
-            target.collider.userData.isGround
-        ) {
-            console.log('Wheel is off the ground.');
-        }
-    };
+    // car detection
+    const [isUpsideDown, setIsUpsideDown] = useState(false);
+    const [allWheelsOffGround, setAllWheelsOffGround] = useState(false);
+    const [wheelsOnGround, setWheelsOnGround] = useState({
+        lfw: false,
+        rfw: false,
+        lrw: false,
+        rrw: false,
+    });
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -120,6 +105,16 @@ const HachiRoku = () => {
             setActiveCamera('follow');
         }
     }, [keysPressed, setActiveCamera]);
+
+    useEffect(() => {
+        const allOffGround =
+            !wheelsOnGround.lfw &&
+            !wheelsOnGround.rfw &&
+            !wheelsOnGround.lrw &&
+            !wheelsOnGround.rrw;
+
+        setAllWheelsOffGround(allOffGround);
+    }, [wheelsOnGround]);
 
     useFrame(() => {
         const moveForward = keysPressed['ArrowUp'] || keysPressed['e'];
@@ -242,7 +237,8 @@ const HachiRoku = () => {
         if (
             carRef.current &&
             activeCamera === 'follow' &&
-            isUpsideDown === false
+            isUpsideDown === false &&
+            allWheelsOffGround === false
         ) {
             const car = carRef.current;
 
@@ -286,50 +282,18 @@ const HachiRoku = () => {
                 );
             }
         }
+        console.log(allWheelsOffGround);
     });
 
-    const carBodyColor = new THREE.Color(0x1e90ff);
-    const carBodyMaterial = new THREE.MeshStandardMaterial({
-        color: carBodyColor,
-        roughness: 0.5, // Adjust this value to increase or decrease roughness
-        metalness: 0.5, // Optionally, you can also set metalness to give it a metallic look
-    });
-    const carBodyColorRed = new THREE.Color(0xffc0cb);
-    const carBodyMaterialRed = new THREE.MeshStandardMaterial({
-        color: carBodyColorRed,
-        roughness: 0.5, // Adjust this value to increase or decrease roughness
-        metalness: 0.5, // Optionally, you can also set metalness to give it a metallic look
-    });
-    const tireColor = new THREE.Color(0x000000);
-    const tireMaterial = new THREE.MeshStandardMaterial({
-        color: tireColor,
-        roughness: 0.9, // Higher roughness for a more rubber-like appearance
-        metalness: 0.0, // No metallic look for tires
-    });
-
-    // Wheel Color - Glossy Black
-    const wheelColor = new THREE.Color(0x000000);
-    const wheelMaterial = new THREE.MeshStandardMaterial({
-        color: wheelColor,
-        roughness: 0.2, // Lower roughness for a glossy finish
-        metalness: 1.0, // Higher metalness for a metallic look
-    });
-
-    // Glossy Blue Color for Car Body
-    const metallicBlue = new THREE.Color(0x1e90ff);
-    const carBlue = new THREE.MeshStandardMaterial({
-        color: metallicBlue,
-        roughness: 0.2, // Lower roughness for a glossy finish
-        metalness: 0.5, // Optionally, adjust metalness for desired effect
-    });
+    //   purple for testing
     const metallicPurple = new THREE.Color(0x800080);
     const carPurple = new THREE.MeshStandardMaterial({
         color: metallicPurple,
-        roughness: 0.2, // Lower roughness for a glossy finish
-        metalness: 0.5, // Optionally, adjust metalness for desired effect
+        roughness: 0.2,
+        metalness: 0.5,
     });
 
-    console.log(activeCamera);
+    // console.log(activeCamera);
 
     return (
         <>
@@ -639,6 +603,22 @@ const HachiRoku = () => {
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
                             name="lfwCollider"
+                            onCollisionEnter={({ other }) => {
+                                if (other.rigidBodyObject.name === 'track') {
+                                    setWheelsOnGround((prev) => ({
+                                        ...prev,
+                                        lfw: true,
+                                    }));
+                                }
+                            }}
+                            onCollisionExit={({ other }) => {
+                                if (other.rigidBodyObject.name === 'track') {
+                                    setWheelsOnGround((prev) => ({
+                                        ...prev,
+                                        lfw: false,
+                                    }));
+                                }
+                            }}
                         />
                         <group ref={lfwRef}>
                             <mesh
@@ -676,6 +656,22 @@ const HachiRoku = () => {
                             rotation={[0, 0, Math.PI / 2]}
                             setContactSkin={0.1}
                             name="rfwCollider"
+                            onCollisionEnter={({ other }) => {
+                                if (other.rigidBodyObject.name === 'track') {
+                                    setWheelsOnGround((prev) => ({
+                                        ...prev,
+                                        rfw: true,
+                                    }));
+                                }
+                            }}
+                            onCollisionExit={({ other }) => {
+                                if (other.rigidBodyObject.name === 'track') {
+                                    setWheelsOnGround((prev) => ({
+                                        ...prev,
+                                        rfw: false,
+                                    }));
+                                }
+                            }}
                         />
                         <group ref={rfwRef}>
                             <mesh
@@ -712,6 +708,22 @@ const HachiRoku = () => {
                             name="lrwCollider"
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
+                            onCollisionEnter={({ other }) => {
+                                if (other.rigidBodyObject.name === 'track') {
+                                    setWheelsOnGround((prev) => ({
+                                        ...prev,
+                                        lrw: true,
+                                    }));
+                                }
+                            }}
+                            onCollisionExit={({ other }) => {
+                                if (other.rigidBodyObject.name === 'track') {
+                                    setWheelsOnGround((prev) => ({
+                                        ...prev,
+                                        lrw: false,
+                                    }));
+                                }
+                            }}
                         />
                         <group ref={lrwRef}>
                             <mesh
@@ -749,6 +761,22 @@ const HachiRoku = () => {
                             rotation={[0, 0, Math.PI / 2]}
                             setContactSkin={0.1}
                             name="rrwCollider"
+                            onCollisionEnter={({ other }) => {
+                                if (other.rigidBodyObject.name === 'track') {
+                                    setWheelsOnGround((prev) => ({
+                                        ...prev,
+                                        rrw: true,
+                                    }));
+                                }
+                            }}
+                            onCollisionExit={({ other }) => {
+                                if (other.rigidBodyObject.name === 'track') {
+                                    setWheelsOnGround((prev) => ({
+                                        ...prev,
+                                        rrw: false,
+                                    }));
+                                }
+                            }}
                         />
                         <group ref={rrwRef}>
                             <mesh
