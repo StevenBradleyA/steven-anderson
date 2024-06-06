@@ -112,7 +112,7 @@ const CameraManager = ({ carRef, backRef, activeCamera, keysPressed }) => {
             const moveDown = keysPressed['w'];
             const increaseSpeed = keysPressed['g'];
             const decreaseSpeed = keysPressed['a'];
-            
+
             if (increaseSpeed) setCameraSpeed((prevSpeed) => prevSpeed + 0.2);
             if (decreaseSpeed)
                 setCameraSpeed((prevSpeed) => Math.max(prevSpeed - 0.2, 0.2));
@@ -135,11 +135,7 @@ const CameraManager = ({ carRef, backRef, activeCamera, keysPressed }) => {
                 camera.position.addScaledVector(camera.up, -cameraSpeed);
 
             console.log(cameraSpeed);
-        } else if (
-            activeCamera === 'follow' &&
-            carRef.current &&
-            backRef.current
-        ) {
+        } else if (activeCamera === 'follow' && carRef.current) {
             const car = carRef.current;
             const carPosition = car.translation();
             const carRotation = car.rotation();
@@ -151,7 +147,7 @@ const CameraManager = ({ carRef, backRef, activeCamera, keysPressed }) => {
                 carRotation.w
             );
 
-            const backwardVector = new THREE.Vector3(0, -1, 0);
+            const backwardVector = new THREE.Vector3(0, 0, 1);
             backwardVector.applyQuaternion(carQuaternion);
 
             const desiredPosition = new THREE.Vector3(

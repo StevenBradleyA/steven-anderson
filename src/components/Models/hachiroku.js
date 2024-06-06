@@ -22,6 +22,7 @@ import CameraManager from '../Camera/cameraManager';
 // have to determine when all 4 wheels are off or back 2 wheels not in contact
 
 // todo for car ... movement on ground only -- -- smoothness of follow? drift button maybe
+// todo turning while moving but not moving forward... basically turning should move you even without just forward of backward movement.
 
 const HachiRoku = () => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
@@ -121,15 +122,10 @@ const HachiRoku = () => {
     }, [keysPressed, setActiveCamera]);
 
     useFrame(() => {
-        // Speed management
         const moveForward = keysPressed['ArrowUp'] || keysPressed['e'];
         const moveBackward = keysPressed['ArrowDown'] || keysPressed['d'];
         const steerLeft = keysPressed['ArrowLeft'] || keysPressed['s'];
         const steerRight = keysPressed['ArrowRight'] || keysPressed['f'];
-        const turnLeft =
-            (moveForward && steerLeft) || (moveBackward && steerLeft);
-        const turnRight =
-            (moveForward && steerRight) || (moveBackward && steerRight);
         const drift = keysPressed['big man'];
         const respawn = keysPressed['r'];
         const flip = keysPressed['Shift'];
@@ -139,7 +135,7 @@ const HachiRoku = () => {
             carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
             carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
             carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-            const euler = new THREE.Euler(-Math.PI / 2, 0, 0);
+            const euler = new THREE.Euler(0, 0, 0);
             const quaternion = new THREE.Quaternion().setFromEuler(euler);
             carRef.current.setRotation(quaternion, true);
             setIsUpsideDown(false);
@@ -151,16 +147,15 @@ const HachiRoku = () => {
                 carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
                 carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
                 carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-                const euler = new THREE.Euler(-Math.PI / 2, 0, 0);
+                const euler = new THREE.Euler(0, 0, 0);
                 const quaternion = new THREE.Quaternion().setFromEuler(euler);
                 carRef.current.setRotation(quaternion, true);
                 setIsUpsideDown(false);
-                setCurrentSpeed(0); // Reset the speed
+                setCurrentSpeed(0);
             }
         }
-
+        // flip in place
         if (flip && carRef.current && activeCamera === 'follow') {
-            // Move the car up in the air
             const currentPosition = carRef.current.translation();
             carRef.current.setTranslation(
                 {
@@ -171,18 +166,14 @@ const HachiRoku = () => {
                 true
             );
 
-            // Zero out velocities
             carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
             carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-            // rotation={[-Math.PI / 2, 0, 0]}
-
-            // Correct the car's orientation
-            const euler = new THREE.Euler(-Math.PI / 2, 0, 0);
+            const euler = new THREE.Euler(0, 0, 0);
             const quaternion = new THREE.Quaternion().setFromEuler(euler);
             carRef.current.setRotation(quaternion, true);
             setIsUpsideDown(false);
         }
-
+        // speed
         if (moveForward && activeCamera === 'follow') {
             if (currentSpeed < topSpeed) {
                 setCurrentSpeed((prevSpeed) => {
@@ -206,25 +197,25 @@ const HachiRoku = () => {
                 );
             }
         }
-
+        // wheel rotation
         if (
             lfwParentRef.current &&
             rfwParentRef.current &&
             activeCamera === 'follow'
         ) {
             if (steerLeft) {
-                lfwParentRef.current.rotation.set(0, 0, steerAngle);
-                rfwParentRef.current.rotation.set(0, 0, steerAngle);
+                lfwParentRef.current.rotation.set(0, steerAngle, 0);
+                rfwParentRef.current.rotation.set(0, steerAngle, 0);
             } else if (steerRight) {
-                lfwParentRef.current.rotation.set(0, 0, -steerAngle);
-                rfwParentRef.current.rotation.set(0, 0, -steerAngle);
+                lfwParentRef.current.rotation.set(0, -steerAngle, 0);
+                rfwParentRef.current.rotation.set(0, -steerAngle, 0);
             } else {
                 lfwParentRef.current.rotation.set(0, 0, 0);
                 rfwParentRef.current.rotation.set(0, 0, 0);
             }
         }
 
-        // wheel visual spinning effect
+        // wheel spin
         const wheelRotationSpeed = currentSpeed / 30;
         if (
             lfwRef.current &&
@@ -232,12 +223,12 @@ const HachiRoku = () => {
             lrwRef.current &&
             rrwRef.current
         ) {
-            lfwRef.current.rotation.x -= wheelRotationSpeed;
-            rfwRef.current.rotation.x -= wheelRotationSpeed;
-            lrwRef.current.rotation.x -= wheelRotationSpeed;
-            rrwRef.current.rotation.x -= wheelRotationSpeed;
+            lfwRef.current.rotation.x += wheelRotationSpeed;
+            rfwRef.current.rotation.x += wheelRotationSpeed;
+            lrwRef.current.rotation.x += wheelRotationSpeed;
+            rrwRef.current.rotation.x += wheelRotationSpeed;
         }
-
+        // drift
         if (drift) {
             if (rearWheelFriction !== 0.01) {
                 setRearWheelFriction(0.01);
@@ -255,10 +246,7 @@ const HachiRoku = () => {
         ) {
             const car = carRef.current;
 
-            // Get the current rotation quaternion
-            const rotation = car.rotation(); // This should return a quaternion or a rotation vector
-
-            // Create a Three.js quaternion from the rotation
+            const rotation = car.rotation();
             const carQuaternion = new THREE.Quaternion(
                 rotation.x,
                 rotation.y,
@@ -266,43 +254,32 @@ const HachiRoku = () => {
                 rotation.w
             );
 
-            // Define the forward vector in the car's local space
-            const forwardVector = new THREE.Vector3(0, -1, 0); // Forward in local space
-
-            // Rotate the forward vector by the car's current orientation
+            const forwardVector = new THREE.Vector3(0, 0, 1);
             forwardVector.applyQuaternion(carQuaternion);
-
-            // Scale the forward vector by the current speed to get the impulse
             const impulse = forwardVector.multiplyScalar(currentSpeed);
-
-            // Apply the impulse to the car's physics body
             car.applyImpulse(
                 { x: impulse.x, y: impulse.y, z: impulse.z },
                 true
             );
 
-            // TORQUE TURNING
+            const torque = new THREE.Vector3(0, 1, 0);
 
-            const torque = new THREE.Vector3(0, 1, 0); // Torque around the Y-axis
-
-            // Adjust torque direction based on current speed
             if (currentSpeed < 0) {
                 torque.set(0, -1, 0);
             }
 
-            // Apply torque for turning
-            if (turnLeft) {
+            if (steerLeft) {
                 const leftTorque = torque.multiplyScalar(
                     Math.abs(currentSpeed) * torqueFactor
-                ); //  Torque Sideways multiplier
+                );
                 car.applyTorqueImpulse(
                     { x: leftTorque.x, y: leftTorque.y, z: leftTorque.z },
                     true
                 );
-            } else if (turnRight) {
+            } else if (steerRight) {
                 const rightTorque = torque.multiplyScalar(
                     -Math.abs(currentSpeed) * torqueFactor
-                ); //  Torque Sideways multiplier
+                );
                 car.applyTorqueImpulse(
                     { x: rightTorque.x, y: rightTorque.y, z: rightTorque.z },
                     true
@@ -352,71 +329,6 @@ const HachiRoku = () => {
         metalness: 0.5, // Optionally, adjust metalness for desired effect
     });
 
-    // Rigid Body Constructors
-
-    // collider constructors
-    // setContactSkin={20}
-
-    // setActiveCollisionTypes(activeCollisionTypes: ActiveCollisionTypes): void
-
-    // Use Case: Set the collision types active for the collider, allowing customization of how the collider interacts with other colliders.
-
-    // castRay(ray: Ray, maxToi: number, solid: boolean): number
-
-    // Use Case: Perform a ray-cast to find the closest intersection between a ray and the collider. Useful for implementing features like ray-based picking or visibility checks.
-    // Example:
-    // javascript
-    // Copy code
-    // const hitTime = myCollider.castRay(ray, maxToi, true);
-    // setContactSkin(thickness: number): void
-
-    // Use Case: Set the contact skin thickness for the collider to improve collision detection accuracy and stability.
-    // Example:
-    // javascript
-    // Copy code
-    // myCollider.setContactSkin(0.1);
-    // Friction(friction: number): void
-
-    // Use Case: Set the friction coefficient of the collider to control how it interacts with other surfaces.
-    // Example:
-    // javascript
-    // Copy code
-    // myCollider.setFriction(0.5);
-    // setRestitution(restitution: number): void
-
-    // Use Case: Set the restitution (bounciness) of the collider to determine how much it bounces upon impact.
-    // Example:
-    // javascript
-    // Copy code
-    // myCollider.setRestitution(0.8);
-    // setDensity(density: number): void
-
-    // Use Case: Set the uniform density of the collider to affect its mass and inertia.
-    // Example:
-    // javascript
-    // Copy code
-    // myCollider.setDensity(1.0);
-    // setTranslation(tra: Vector): void
-
-    // Use Case: Set the translation (position) of the collider in the world space.
-    // Example:
-    // javascript
-    // Copy code
-    // myCollider.setTranslation({ x: 1, y: 2, z: 3 });
-    // setRotation(rot: Rotation): void
-
-    // Use Case: Set the rotation of the collider in the world space.
-    // Example:
-    // javascript
-    // Copy code
-    // myCollider.setRotation({ x: 0, y: 0, z: 0, w: 1 });
-    // setSensor(isSensor: boolean): void
-
-    // Use Case: Set the collider as a sensor, which allows it to detect collisions without affecting the physics simulation.
-    // Example:
-    // javascript
-    // Copy code
-    // myCollider.setSensor(true);
     console.log(activeCamera);
 
     return (
@@ -427,7 +339,6 @@ const HachiRoku = () => {
                 colliders={false}
                 position={[0, 1300, 0]}
                 friction={0.3}
-                // rotation={[0, 0, 0]}
                 name="car"
                 enableCcd={true}
             >
@@ -795,77 +706,78 @@ const HachiRoku = () => {
                             />
                         </group>
                     </group>
-                    <group ref={lrwRef} position={[2.612, 1.143, -5.381]}>
+                    <group position={[2.612, 1.143, -5.381]}>
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             name="lrwCollider"
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
-                            ref={lrwRef}
                         />
-
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LeftRearLugNuts.geometry}
-                            material={materials.Wheel}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            scale={0.06}
-                            name="leftRearLugs"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LeftRearWheel.geometry}
-                            material={materials.Wheel}
-                            rotation={[-Math.PI / 2, 0, 0]}
-                            name="leftRearWheel"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LeftRearTire.geometry}
-                            material={materials.Tire}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            scale={1.315}
-                            name="leftRearTire"
-                        />
+                        <group ref={lrwRef}>
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.LeftRearLugNuts.geometry}
+                                material={materials.Wheel}
+                                rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                                scale={0.06}
+                                name="leftRearLugs"
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.LeftRearWheel.geometry}
+                                material={materials.Wheel}
+                                rotation={[-Math.PI / 2, 0, 0]}
+                                name="leftRearWheel"
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.LeftRearTire.geometry}
+                                material={materials.Tire}
+                                rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                                scale={1.315}
+                                name="leftRearTire"
+                            />
+                        </group>
                     </group>
-                    <group ref={rrwRef} position={[-2.129, 1.143, -5.383]}>
+                    <group position={[-2.129, 1.143, -5.383]}>
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[-0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
                             setContactSkin={0.1}
                             name="rrwCollider"
-                            ref={rrwRef}
                         />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.RightRearTire.geometry}
-                            material={materials.Tire}
-                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                            scale={1.315}
-                            name="rightRearTire"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.RightRearWheel.geometry}
-                            material={materials.Wheel}
-                            rotation={[-Math.PI / 2, 0, -Math.PI]}
-                            name="rightRearWheel"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.RightRearLugNuts.geometry}
-                            material={materials.Wheel}
-                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                            scale={0.06}
-                            name="rightRearLugs"
-                        />
+                        <group ref={rrwRef}>
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.RightRearTire.geometry}
+                                material={materials.Tire}
+                                rotation={[Math.PI / 2, -Math.PI / 2, 0]}
+                                scale={1.315}
+                                name="rightRearTire"
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.RightRearWheel.geometry}
+                                material={materials.Wheel}
+                                rotation={[-Math.PI / 2, 0, -Math.PI]}
+                                name="rightRearWheel"
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.RightRearLugNuts.geometry}
+                                material={materials.Wheel}
+                                rotation={[Math.PI / 2, -Math.PI / 2, 0]}
+                                scale={0.06}
+                                name="rightRearLugs"
+                            />
+                        </group>
                     </group>
                 </group>
             </RigidBody>
@@ -883,3 +795,69 @@ const HachiRoku = () => {
 useGLTF.preload('/models/hachiroku.glb');
 
 export default HachiRoku;
+
+// Rigid Body Constructors
+
+// collider constructors
+// setContactSkin={20}
+
+// setActiveCollisionTypes(activeCollisionTypes: ActiveCollisionTypes): void
+
+// Use Case: Set the collision types active for the collider, allowing customization of how the collider interacts with other colliders.
+
+// castRay(ray: Ray, maxToi: number, solid: boolean): number
+
+// Use Case: Perform a ray-cast to find the closest intersection between a ray and the collider. Useful for implementing features like ray-based picking or visibility checks.
+// Example:
+// javascript
+// Copy code
+// const hitTime = myCollider.castRay(ray, maxToi, true);
+// setContactSkin(thickness: number): void
+
+// Use Case: Set the contact skin thickness for the collider to improve collision detection accuracy and stability.
+// Example:
+// javascript
+// Copy code
+// myCollider.setContactSkin(0.1);
+// Friction(friction: number): void
+
+// Use Case: Set the friction coefficient of the collider to control how it interacts with other surfaces.
+// Example:
+// javascript
+// Copy code
+// myCollider.setFriction(0.5);
+// setRestitution(restitution: number): void
+
+// Use Case: Set the restitution (bounciness) of the collider to determine how much it bounces upon impact.
+// Example:
+// javascript
+// Copy code
+// myCollider.setRestitution(0.8);
+// setDensity(density: number): void
+
+// Use Case: Set the uniform density of the collider to affect its mass and inertia.
+// Example:
+// javascript
+// Copy code
+// myCollider.setDensity(1.0);
+// setTranslation(tra: Vector): void
+
+// Use Case: Set the translation (position) of the collider in the world space.
+// Example:
+// javascript
+// Copy code
+// myCollider.setTranslation({ x: 1, y: 2, z: 3 });
+// setRotation(rot: Rotation): void
+
+// Use Case: Set the rotation of the collider in the world space.
+// Example:
+// javascript
+// Copy code
+// myCollider.setRotation({ x: 0, y: 0, z: 0, w: 1 });
+// setSensor(isSensor: boolean): void
+
+// Use Case: Set the collider as a sensor, which allows it to detect collisions without affecting the physics simulation.
+// Example:
+// javascript
+// Copy code
+// myCollider.setSensor(true);
