@@ -2,11 +2,8 @@
 import React, { Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/rapier';
-import RaceTrack from './RaceTrack';
-import TofuCar from './Models/ae86';
-import NewRaceTrack from './Models/newTrack';
-import NewCar from './Models/newCar';
-import VerticalTrack from './Models/verticalTrack';
+import HachiRoku from './Models/hachiroku';
+import LowPolyIsland from './Models/lowPolyIsland';
 
 const ThreeScene = () => {
     // <Physics gravity={[0, -981, 0]} debug>
@@ -28,12 +25,9 @@ const ThreeScene = () => {
             <Suspense fallback={null}>
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[10, 10, 5]} intensity={1} />
-                <Physics gravity={[0, -98.1, 0]} >
-                    {/* <TofuCar /> */}
-                    {/* <RaceTrack /> */}
-                    <NewCar />
-                    {/* <NewRaceTrack /> */}
-                    <VerticalTrack />
+                <Physics gravity={[0, -98.1, 0]}>
+                    <LowPolyIsland />
+                    <HachiRoku />
                 </Physics>
                 <axesHelper args={[150]} position={[0, 1200, 0]} />
             </Suspense>

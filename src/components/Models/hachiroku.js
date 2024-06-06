@@ -21,8 +21,15 @@ import CameraManager from '../Camera/cameraManager';
 // last major car change is going to be flying. Car can just fly when off the ground.
 // have to determine when all 4 wheels are off or back 2 wheels not in contact
 
-const NewCar = () => {
-    const { nodes, materials } = useGLTF('/models/newnewCar.glb');
+// todo for car ... movement on ground only -- -- smoothness of follow? drift button maybe 
+
+
+
+
+
+
+const HachiRoku = () => {
+    const { nodes, materials } = useGLTF('/models/hachiroku.glb');
 
     // car refs
     const carRef = useRef();
@@ -415,25 +422,17 @@ const NewCar = () => {
     // javascript
     // Copy code
     // myCollider.setSensor(true);
-
-    // todo try to create a sensor on top of the car to determine when in contact with ground. Also might be able to determine when contact with ground using a constructor
-
-    // isccd on a rigid body or a collider
-    // lets just actually create a real roof collider than can detect collisions
-
-    // console.log('yo', wheelsOffGroundCount);
+    console.log(activeCamera);
 
     return (
         <>
             <RigidBody
                 ref={carRef}
-                // mass={0.25}
                 mass={11}
                 colliders={false}
                 position={[0, 1300, 0]}
-                // friction={totalFriction}
                 friction={0.3}
-                rotation={[-Math.PI / 2, 0, 0]}
+                rotation={[0, 0, 0]}
                 name="car"
                 enableCcd={true}
             >
@@ -454,394 +453,388 @@ const NewCar = () => {
                     }}
                     onCollisionExit={() => setIsUpsideDown(false)}
                 />
-
-                <group
-                    dispose={null}
-                    //
-                    // position={[0, 1800, 0]}
-                    // rotation={[0, 0, 1080]}
-                >
+                <group dispose={null}>
                     <group ref={bodyRef}>
-                        {/* body */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Plane_0.geometry}
-                            material={carBlue}
-                            position={[0.246, -1.676, 2.641]}
-                            rotation={[0, Math.PI / 2, 0]}
+                            geometry={nodes.Body.geometry}
+                            material={materials.Body}
+                            position={[0.246, 2.641, 1.676]}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            name="bodyPanels"
                         />
-                        {/* rearwindow */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Plane001_0.geometry}
-                            material={wheelMaterial}
-                            position={[0.246, -1.676, 2.641]}
-                            rotation={[0, Math.PI / 2, 0]}
+                            geometry={nodes.Glass.geometry}
+                            material={materials.Glass}
+                            position={[0.246, 2.641, 1.676]}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                         />
-                        {/* frontwindow */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Plane002_0.geometry}
-                            material={wheelMaterial}
-                            position={[0.246, -1.676, 2.641]}
-                            rotation={[0, Math.PI / 2, 0]}
-                        />
-
-                        {/* lf BrakeDisc */}
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Cylinder002_0.geometry}
-                            material={carBlue}
-                            position={[3.33, -5.132, 1.244]}
-                            rotation={[0, Math.PI / 2, 0]}
+                            geometry={nodes.LeftFrontBrakeDiscs.geometry}
+                            material={materials.Silver}
+                            position={[3.33, 1.244, 5.132]}
+                            rotation={[-Math.PI / 2, 1.571, 0]}
                             scale={[0.658, 0.658, 0.098]}
                         />
-                        {/* lf brake */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Plane003_0.geometry}
-                            material={carPurple}
-                            position={[3.474, -4.617, 1.414]}
-                            rotation={[0, Math.PI / 2, 0]}
+                            geometry={nodes.LeftFrontCaliper.geometry}
+                            material={materials.Body}
+                            position={[3.474, 1.414, 4.617]}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             scale={0.111}
                         />
-                        {/*idk  */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Plane004_0.geometry}
-                            material={carPurple}
-                            position={[3.538, 5.895, 1.314]}
-                            rotation={[0, Math.PI / 2, 0]}
+                            geometry={nodes.LeftRearBrakeCaliper.geometry}
+                            material={materials.Body}
+                            position={[3.538, 1.314, -5.895]}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             scale={0.111}
                         />
-                        {/* RR Disc */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cylinder005_0.geometry}
-                            material={carPurple}
-                            position={[3.394, 5.381, 1.143]}
-                            rotation={[0, Math.PI / 2, 0]}
+                            geometry={nodes.LeftRearBrakeDisc.geometry}
+                            material={materials.Silver}
+                            position={[3.394, 1.143, -5.381]}
+                            rotation={[-Math.PI / 2, 1.571, 0]}
                             scale={[0.658, 0.658, 0.098]}
                         />
-
-                        {/*idk  */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cylinder010_0.geometry}
-                            material={carPurple}
-                            position={[-2.91, 5.383, 1.143]}
-                            rotation={[Math.PI, -Math.PI / 2, 0]}
+                            geometry={nodes.RightRearBrakeDisc.geometry}
+                            material={materials.Silver}
+                            position={[-2.91, 1.143, -5.383]}
+                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={[0.658, 0.658, 0.098]}
                         />
-
-                        {/* idk */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Plane005_0.geometry}
-                            material={carPurple}
-                            position={[-3.054, 4.869, 1.314]}
-                            rotation={[Math.PI, -Math.PI / 2, 0]}
+                            geometry={nodes.RightRearBrakeCaliper.geometry}
+                            material={materials.Body}
+                            position={[-3.054, 1.314, -4.869]}
+                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={0.111}
                         />
-                        {/*idk  */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cylinder011_0.geometry}
-                            material={carPurple}
-                            position={[-2.272, 5.383, 1.143]}
-                            rotation={[Math.PI, -Math.PI / 2, 0]}
+                            geometry={nodes.AxelRear.geometry}
+                            material={materials.Body}
+                            position={[-2.272, 1.143, -5.383]}
+                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={1.315}
                         />
-                        {/* idk */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cylinder012_0.geometry}
-                            material={carPurple}
-                            position={[-2.252, -5.129, 1.244]}
-                            rotation={[Math.PI, -Math.PI / 2, 0]}
+                            geometry={nodes.AxelFront.geometry}
+                            material={materials.Body}
+                            position={[-2.252, 1.244, 5.129]}
+                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={1.315}
                         />
-                        {/* RF Brake */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Plane006_0.geometry}
-                            material={carBlue}
-                            position={[-3.034, -5.643, 1.414]}
-                            rotation={[Math.PI, -Math.PI / 2, 0]}
+                            geometry={nodes.RightFrontBrakeCaliper.geometry}
+                            material={materials.Body}
+                            position={[-3.034, 1.414, 5.643]}
+                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={0.111}
                         />
-                        {/* RF Disc */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cylinder013_0.geometry}
-                            material={carBlue}
-                            position={[-2.89, -5.129, 1.244]}
-                            rotation={[Math.PI, -Math.PI / 2, 0]}
+                            geometry={nodes.RightFrontBrakeDisc.geometry}
+                            material={materials.Silver}
+                            position={[-2.89, 1.244, 5.129]}
+                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={[0.658, 0.658, 0.098]}
                         />
-                        {/* Toyota emblem back */}
                         <mesh
-                            ref={backRef}
                             castShadow
                             receiveShadow
-                            geometry={nodes.Plane007_0.geometry}
-                            material={carPurple}
-                            position={[0.246, 9.121, 3.357]}
-                            rotation={[-1.19, 0, -Math.PI]}
+                            geometry={nodes.ToyotaBadgeBack.geometry}
+                            material={materials.Trim}
+                            position={[0.246, 3.357, -9.121]}
+                            rotation={[-2.761, 0, -Math.PI]}
                             scale={0.015}
                         />
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cylinder016_0.geometry}
-                            material={carBlue}
-                            position={[0.246, 8.884, 3.838]}
-                            rotation={[1.936, 0, 0]}
+                            geometry={nodes.TrunkLock.geometry}
+                            material={materials.Body}
+                            position={[0.246, 3.838, -8.884]}
+                            rotation={[0.365, 0, 0]}
                             scale={0.046}
                         />
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cube001_0.geometry}
-                            material={carBlue}
-                            position={[1.235, 9.125, 2.862]}
-                            scale={0.085}
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Cube002_0.geometry}
-                            material={carPurple}
-                            position={[-0.733, 9.125, 2.862]}
-                            scale={0.085}
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Cylinder017_0.geometry}
+                            geometry={nodes.LicenseLightRearLeft.geometry}
                             material={materials.Body}
-                            position={[2.525, 8, 1.244]}
-                            rotation={[Math.PI / 2, 0, 0]}
+                            position={[1.235, 2.862, -9.125]}
+                            rotation={[-Math.PI / 2, 0, 0]}
+                            scale={0.085}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.LicenseLightRearRight.geometry}
+                            material={materials.Body}
+                            position={[-0.733, 2.862, -9.125]}
+                            rotation={[-Math.PI / 2, 0, 0]}
+                            scale={0.085}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Exhaust.geometry}
+                            material={materials.Tire}
+                            position={[2.525, 1.244, -8]}
                             scale={[0.393, 0.28, 0.488]}
                         />
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cube003_0.geometry}
+                            geometry={nodes.UnderCarriageDetails.geometry}
                             material={materials.Body}
-                            position={[2.165, 0.044, 0.858]}
+                            position={[2.165, 0.858, -0.044]}
+                            rotation={[-Math.PI / 2, 0, 0]}
                             scale={[0.639, 3.091, 0.185]}
                         />
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cube004_0.geometry}
-                            material={materials.Body}
-                            position={[0.246, -3.075, 3.996]}
-                            rotation={[-0.131, -0.181, 0.17]}
+                            geometry={nodes.Trim.geometry}
+                            material={materials.Trim}
+                            position={[0.246, 3.996, 3.075]}
+                            rotation={[-1.702, -0.181, 0.17]}
                             scale={[0.061, 0.076, 0.161]}
                         />
-
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Plane009_0.geometry}
-                            material={materials.Body}
-                            position={[0.246, -8.563, 2.62]}
-                            rotation={[1.473, 0, 0]}
-                            scale={0.015}
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Plane010_0.geometry}
-                            material={materials.Body}
-                            position={[0.246, -8.949, 2.099]}
-                            rotation={[Math.PI / 2, 0, 0]}
+                            geometry={nodes.TruenoBadgeFront.geometry}
+                            material={materials.White}
+                            position={[0.246, 2.099, 8.949]}
                             scale={0.02}
                         />
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cube005_0.geometry}
-                            material={materials.Body}
-                            position={[0.246, -8.864, 2.099]}
+                            geometry={nodes.TruenoBadgeFrontBase.geometry}
+                            material={materials.Trim}
+                            position={[0.246, 2.099, 8.864]}
+                            rotation={[-Math.PI / 2, 0, 0]}
                             scale={0.047}
                         />
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cube006_0.geometry}
-                            material={materials.Body}
-                            position={[0.246, -8.687, 1.384]}
+                            geometry={nodes.LicensePlateFront.geometry}
+                            material={materials.Trim}
+                            position={[0.246, 1.384, 8.687]}
+                            rotation={[-Math.PI / 2, 0, 0]}
                             scale={[0.755, 0.043, 0.26]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.LicensePlateRear.geometry}
+                            material={materials.Trim}
+                            position={[0.246, 2.641, 1.676]}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.GrilleFrontSectioned.geometry}
+                            material={materials.Trim}
+                            position={[0.246, 2.641, 1.676]}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.WhiteFrontBlinkers.geometry}
+                            material={materials.White}
+                            position={[0.246, 2.641, 1.676]}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.PopUpHeadLightTips.geometry}
+                            material={materials.Trim}
+                            position={[0.246, 2.641, 1.676]}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.BrakeLights.geometry}
+                            material={materials.BrakeLights}
+                            position={[0.246, 2.641, 1.676]}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Fogs.geometry}
+                            material={materials.Fog}
+                            position={[0.246, 2.641, 1.676]}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                         />
                     </group>
 
-                    {/* LF LF LF */}
-                    <group ref={lfwParentRef} position={[2.548, -5.132, 1.244]}>
+                    <group ref={lfwParentRef} position={[2.548, 1.244, 5.132]}>
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
+                            name="lfwCollider"
                         />
                         <group ref={lfwRef}>
-                            {/* lf Tire */}
                             <mesh
                                 castShadow
                                 receiveShadow
-                                geometry={nodes.Cylinder_0.geometry}
-                                material={tireMaterial}
-                                rotation={[0, Math.PI / 2, 0]}
+                                geometry={nodes.LeftFrontTire.geometry}
+                                material={materials.Tire}
+                                rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                                 scale={1.315}
+                                name="leftFrontTire"
                             />
-                            {/* lf Wheel */}
                             <mesh
                                 castShadow
                                 receiveShadow
-                                geometry={nodes.Circle_0.geometry}
-                                material={carPurple}
+                                geometry={nodes.LeftFrontWheel.geometry}
+                                material={materials.Wheel}
+                                rotation={[-Math.PI / 2, 0, 0]}
+                                name="leftFrontWheel"
                             />
-                            {/* lf Lugs */}
                             <mesh
                                 castShadow
                                 receiveShadow
-                                geometry={nodes.Cylinder001_0.geometry}
-                                material={carPurple}
-                                // position={[2.548, -5.132, 1.244]}
-                                rotation={[0, Math.PI / 2, 0]}
+                                geometry={nodes.LeftFrontLugNuts.geometry}
+                                material={materials.Wheel}
+                                rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                                 scale={0.06}
+                                name="leftFrontLugs"
                             />
                         </group>
                     </group>
-                    {/* RF RF RF */}
-                    <group
-                        ref={rfwParentRef}
-                        position={[-2.109, -5.129, 1.244]}
-                    >
+                    <group ref={rfwParentRef} position={[-2.109, 1.244, 5.129]}>
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[-0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
                             setContactSkin={0.1}
+                            name="rfwCollider"
                         />
                         <group ref={rfwRef}>
-                            {/*  RF Lug*/}
                             <mesh
                                 castShadow
                                 receiveShadow
-                                geometry={nodes.Cylinder014_0.geometry}
-                                material={carPurple}
-                                rotation={[Math.PI, -Math.PI / 2, 0]}
+                                geometry={nodes.RightFrontLugNuts.geometry}
+                                material={materials.Wheel}
+                                rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                                 scale={0.06}
+                                name="rightFrontLugs"
                             />
-                            {/* RF Wheel */}
                             <mesh
                                 castShadow
                                 receiveShadow
-                                geometry={nodes.Circle003_0.geometry}
-                                material={carPurple}
-                                rotation={[0, 0, -Math.PI]}
+                                geometry={nodes.RightFrontWheel.geometry}
+                                material={materials.Wheel}
+                                rotation={[-Math.PI / 2, 0, -Math.PI]}
+                                name="rightFrontWheel"
                             />
-                            {/* RF Tire */}
                             <mesh
                                 castShadow
                                 receiveShadow
-                                geometry={nodes.Cylinder015_0.geometry}
-                                material={tireMaterial}
-                                rotation={[Math.PI, -Math.PI / 2, 0]}
+                                geometry={nodes.RightFrontTire.geometry}
+                                material={materials.Tire}
+                                rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                                 scale={1.315}
+                                name="rightFrontTire"
                             />
                         </group>
                     </group>
-
-                    {/* RR RR RR */}
-                    <group ref={rrwRef} position={[2.612, 5.381, 1.143]}>
-                        {/* RR Lugs */}
+                    <group ref={lrwRef} position={[2.612, 1.143, -5.381]}>
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.LeftRearLugNuts.geometry}
+                            material={materials.Wheel}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            scale={0.06}
+                            name="leftRearLugs"
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.LeftRearWheel.geometry}
+                            material={materials.Wheel}
+                            rotation={[-Math.PI / 2, 0, 0]}
+                            name="leftRearWheel"
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.LeftRearTire.geometry}
+                            material={materials.Tire}
+                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            scale={1.315}
+                            name="leftRearTire"
+                        />
+                    </group>
+                    <group ref={rrwRef} position={[-2.129, 1.143, -5.383]}>
                         <CylinderCollider
                             args={[0.7, 1.2]}
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
                             setContactSkin={0.1}
-                            name="rightRearWheel"
+                            name="rrwCollider"
                             ref={rrwRef}
                         />
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cylinder006_0.geometry}
-                            material={carPurple}
-                            rotation={[0, Math.PI / 2, 0]}
-                            scale={0.06}
-                        />
-                        {/* RR  Wheel*/}
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Circle001_0.geometry}
-                            material={carBlue}
-                        />
-                        {/* RR Tire */}
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Cylinder007_0.geometry}
-                            material={tireMaterial}
-                            // position={[2.612, 5.381, 1.143]}
-                            rotation={[0, Math.PI / 2, 0]}
+                            geometry={nodes.RightRearTire.geometry}
+                            material={materials.Tire}
+                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={1.315}
+                            name="rightRearTire"
                         />
-                    </group>
-                    {/* LR LR LR */}
-                    <group ref={lrwRef} position={[-2.129, 5.383, 1.143]}>
-                        <CylinderCollider
-                            args={[0.7, 1.2]}
-                            name="leftRearWheel"
-                            position={[-0.85, 0, 0]}
-                            rotation={[0, 0, Math.PI / 2]}
-                            // setContactSkin={0.1}
-                            ref={lrwRef}
-                        />
-
-                        {/* LR Tire */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Cylinder008_0.geometry}
-                            material={tireMaterial}
-                            rotation={[Math.PI, -Math.PI / 2, 0]}
-                            scale={1.315}
+                            geometry={nodes.RightRearWheel.geometry}
+                            material={materials.Wheel}
+                            rotation={[-Math.PI / 2, 0, -Math.PI]}
+                            name="rightRearWheel"
                         />
-                        {/* LR Wheel */}
                         <mesh
                             castShadow
                             receiveShadow
-                            geometry={nodes.Circle002_0.geometry}
-                            material={carPurple}
-                            rotation={[0, 0, -Math.PI]}
-                        />
-
-                        {/*LR Lugs  */}
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Cylinder009_0.geometry}
-                            material={carPurple}
-                            rotation={[Math.PI, -Math.PI / 2, 0]}
+                            geometry={nodes.RightRearLugNuts.geometry}
+                            material={materials.Wheel}
+                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={0.06}
+                            name="rightRearLugs"
                         />
                     </group>
                 </group>
@@ -857,46 +850,6 @@ const NewCar = () => {
         </>
     );
 };
-useGLTF.preload('/models/newnewCar.glb');
+useGLTF.preload('/models/hachiroku.glb');
 
-export default NewCar;
-
-// Working Forward Movement only
-// const angleInRadians = yawAngle * (Math.PI / 180);
-// const impulse = new THREE.Vector3(
-//     currentSpeed * Math.sin(angleInRadians),
-//     0,
-//     currentSpeed * Math.cos(angleInRadians)
-// );
-
-// if (carRef.current) {
-//     const car = carRef.current;
-
-//     // Get the current rotation quaternion
-//     const rotation = car.rotation(); // This should return a quaternion or a rotation vector
-
-//     // Create a Three.js quaternion from the rotation
-//     const carQuaternion = new THREE.Quaternion(
-//         rotation.x,
-//         rotation.y,
-//         rotation.z,
-//         rotation.w
-//     );
-
-//     // Define the forward vector in the car's local space
-//     const forwardVector = new THREE.Vector3(0, 0, 1); // Forward in local space
-
-//     // Rotate the forward vector by the car's current orientation
-//     forwardVector.applyQuaternion(carQuaternion);
-
-//     // Scale the forward vector by the current speed to get the impulse
-//     const impulse = forwardVector.multiplyScalar(currentSpeed);
-
-//     // Apply the impulse to the car's physics body
-//     car.applyImpulse(
-//         { x: impulse.x, y: impulse.y, z: impulse.z },
-//         true
-//     );
-// } else {
-//     console.error('carRef.current is undefined');
-// }
+export default HachiRoku;
