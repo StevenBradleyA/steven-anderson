@@ -21,12 +21,7 @@ import CameraManager from '../Camera/cameraManager';
 // last major car change is going to be flying. Car can just fly when off the ground.
 // have to determine when all 4 wheels are off or back 2 wheels not in contact
 
-// todo for car ... movement on ground only -- -- smoothness of follow? drift button maybe 
-
-
-
-
-
+// todo for car ... movement on ground only -- -- smoothness of follow? drift button maybe
 
 const HachiRoku = () => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
@@ -432,19 +427,19 @@ const HachiRoku = () => {
                 colliders={false}
                 position={[0, 1300, 0]}
                 friction={0.3}
-                rotation={[0, 0, 0]}
+                // rotation={[0, 0, 0]}
                 name="car"
                 enableCcd={true}
             >
                 <CuboidCollider
-                    args={[4, 9.3, 1.5]}
-                    position={[0.3, 0.4, 2.5]}
-                    name="body"
+                    args={[4, 1.5, 9.3]}
+                    position={[0.3, 2.5, -0.3]}
+                    name="bodyCollider"
                 />
                 <CuboidCollider
-                    args={[3.5, 5.5, 0.8]}
-                    position={[0.3, 2.5, 4.8]}
-                    name="roof"
+                    args={[3.5, 0.8, 5.5]}
+                    position={[0.3, 4.8, -2.5]}
+                    name="roofCollider"
                     mass={0.002}
                     onCollisionEnter={({ other }) => {
                         if (other.rigidBodyObject.name === 'track') {
@@ -471,6 +466,7 @@ const HachiRoku = () => {
                             material={materials.Glass}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            name="glass"
                         />
                         <mesh
                             castShadow
@@ -480,6 +476,7 @@ const HachiRoku = () => {
                             position={[3.33, 1.244, 5.132]}
                             rotation={[-Math.PI / 2, 1.571, 0]}
                             scale={[0.658, 0.658, 0.098]}
+                            name="leftFrontBrakeDiscs"
                         />
                         <mesh
                             castShadow
@@ -489,6 +486,7 @@ const HachiRoku = () => {
                             position={[3.474, 1.414, 4.617]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             scale={0.111}
+                            name="leftFrontCaliper"
                         />
                         <mesh
                             castShadow
@@ -498,6 +496,7 @@ const HachiRoku = () => {
                             position={[3.538, 1.314, -5.895]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             scale={0.111}
+                            name="leftRearCaliper"
                         />
                         <mesh
                             castShadow
@@ -507,6 +506,7 @@ const HachiRoku = () => {
                             position={[3.394, 1.143, -5.381]}
                             rotation={[-Math.PI / 2, 1.571, 0]}
                             scale={[0.658, 0.658, 0.098]}
+                            name="leftRearBrakeDisc"
                         />
                         <mesh
                             castShadow
@@ -516,6 +516,7 @@ const HachiRoku = () => {
                             position={[-2.91, 1.143, -5.383]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={[0.658, 0.658, 0.098]}
+                            name="rightRearBrakeDisc"
                         />
                         <mesh
                             castShadow
@@ -525,6 +526,7 @@ const HachiRoku = () => {
                             position={[-3.054, 1.314, -4.869]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={0.111}
+                            name="rightRearBrakeCaliper"
                         />
                         <mesh
                             castShadow
@@ -534,6 +536,7 @@ const HachiRoku = () => {
                             position={[-2.272, 1.143, -5.383]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={1.315}
+                            name="rearAxel"
                         />
                         <mesh
                             castShadow
@@ -543,6 +546,7 @@ const HachiRoku = () => {
                             position={[-2.252, 1.244, 5.129]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={1.315}
+                            name="frontAxel"
                         />
                         <mesh
                             castShadow
@@ -552,6 +556,7 @@ const HachiRoku = () => {
                             position={[-3.034, 1.414, 5.643]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={0.111}
+                            name="rightFrontCaliper"
                         />
                         <mesh
                             castShadow
@@ -561,6 +566,7 @@ const HachiRoku = () => {
                             position={[-2.89, 1.244, 5.129]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={[0.658, 0.658, 0.098]}
+                            name="rightFrontBrakeDisc"
                         />
                         <mesh
                             castShadow
@@ -570,6 +576,7 @@ const HachiRoku = () => {
                             position={[0.246, 3.357, -9.121]}
                             rotation={[-2.761, 0, -Math.PI]}
                             scale={0.015}
+                            name="ToyotaBadgeRear"
                         />
                         <mesh
                             castShadow
@@ -579,6 +586,7 @@ const HachiRoku = () => {
                             position={[0.246, 3.838, -8.884]}
                             rotation={[0.365, 0, 0]}
                             scale={0.046}
+                            name="trunkLock"
                         />
                         <mesh
                             castShadow
@@ -588,6 +596,7 @@ const HachiRoku = () => {
                             position={[1.235, 2.862, -9.125]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={0.085}
+                            name="leftRearLicenseLight"
                         />
                         <mesh
                             castShadow
@@ -597,6 +606,7 @@ const HachiRoku = () => {
                             position={[-0.733, 2.862, -9.125]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={0.085}
+                            name="rightRearLicenseLight"
                         />
                         <mesh
                             castShadow
@@ -605,6 +615,7 @@ const HachiRoku = () => {
                             material={materials.Tire}
                             position={[2.525, 1.244, -8]}
                             scale={[0.393, 0.28, 0.488]}
+                            name="exhaust"
                         />
                         <mesh
                             castShadow
@@ -614,6 +625,7 @@ const HachiRoku = () => {
                             position={[2.165, 0.858, -0.044]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={[0.639, 3.091, 0.185]}
+                            name="underCarriage"
                         />
                         <mesh
                             castShadow
@@ -623,6 +635,7 @@ const HachiRoku = () => {
                             position={[0.246, 3.996, 3.075]}
                             rotation={[-1.702, -0.181, 0.17]}
                             scale={[0.061, 0.076, 0.161]}
+                            name="trim"
                         />
                         <mesh
                             castShadow
@@ -631,6 +644,7 @@ const HachiRoku = () => {
                             material={materials.White}
                             position={[0.246, 2.099, 8.949]}
                             scale={0.02}
+                            name="truenoBadgeLettering"
                         />
                         <mesh
                             castShadow
@@ -640,6 +654,7 @@ const HachiRoku = () => {
                             position={[0.246, 2.099, 8.864]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={0.047}
+                            name="truenoBadgeBase"
                         />
                         <mesh
                             castShadow
@@ -649,6 +664,7 @@ const HachiRoku = () => {
                             position={[0.246, 1.384, 8.687]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={[0.755, 0.043, 0.26]}
+                            name="frontLicensePlate"
                         />
                         <mesh
                             castShadow
@@ -657,6 +673,7 @@ const HachiRoku = () => {
                             material={materials.Trim}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            name="rearLicensePlate"
                         />
                         <mesh
                             castShadow
@@ -665,6 +682,7 @@ const HachiRoku = () => {
                             material={materials.Trim}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            name="grille"
                         />
                         <mesh
                             castShadow
@@ -673,6 +691,7 @@ const HachiRoku = () => {
                             material={materials.White}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            name="frontBlinkers"
                         />
                         <mesh
                             castShadow
@@ -681,6 +700,7 @@ const HachiRoku = () => {
                             material={materials.Trim}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            name="headlightTips"
                         />
                         <mesh
                             castShadow
@@ -689,6 +709,7 @@ const HachiRoku = () => {
                             material={materials.BrakeLights}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            name="brakeLights"
                         />
                         <mesh
                             castShadow
@@ -697,6 +718,7 @@ const HachiRoku = () => {
                             material={materials.Fog}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            name="fogLights"
                         />
                     </group>
 
@@ -774,6 +796,14 @@ const HachiRoku = () => {
                         </group>
                     </group>
                     <group ref={lrwRef} position={[2.612, 1.143, -5.381]}>
+                        <CylinderCollider
+                            args={[0.7, 1.2]}
+                            name="lrwCollider"
+                            position={[0.85, 0, 0]}
+                            rotation={[0, 0, Math.PI / 2]}
+                            ref={lrwRef}
+                        />
+
                         <mesh
                             castShadow
                             receiveShadow
@@ -804,7 +834,7 @@ const HachiRoku = () => {
                     <group ref={rrwRef} position={[-2.129, 1.143, -5.383]}>
                         <CylinderCollider
                             args={[0.7, 1.2]}
-                            position={[0.85, 0, 0]}
+                            position={[-0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
                             setContactSkin={0.1}
                             name="rrwCollider"
