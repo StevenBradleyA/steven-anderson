@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
     CuboidCollider,
     RigidBody,
@@ -10,6 +10,7 @@ import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import CameraManager from '../Camera/cameraManager';
+import { debounce } from 'lodash';
 
 // todo decide on camera buttons -- should mouse clicking trigger free mode? also fix free cam locking
 
@@ -22,6 +23,7 @@ import CameraManager from '../Camera/cameraManager';
 // have to determine when all 4 wheels are off or back 2 wheels not in contact
 // todo for car ... movement on ground only -- -- smoothness of follow? drift button maybe
 // so drift and ground only movement
+// Brake light integration? 
 
 const HachiRoku = () => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
@@ -66,6 +68,10 @@ const HachiRoku = () => {
         rrw: false,
     });
 
+    // instead of colliders lets try intersects ray 
+
+
+
     useEffect(() => {
         const handleKeyDown = (event) => {
             setKeysPressed((prevKeys) => ({ ...prevKeys, [event.key]: true }));
@@ -106,15 +112,15 @@ const HachiRoku = () => {
         }
     }, [keysPressed, setActiveCamera]);
 
-    useEffect(() => {
-        const allOffGround =
-            !wheelsOnGround.lfw &&
-            !wheelsOnGround.rfw &&
-            !wheelsOnGround.lrw &&
-            !wheelsOnGround.rrw;
+    // useEffect(() => {
+    //     const allOffGround =
+    //         !wheelsOnGround.lfw &&
+    //         !wheelsOnGround.rfw &&
+    //         !wheelsOnGround.lrw &&
+    //         !wheelsOnGround.rrw;
 
-        setAllWheelsOffGround(allOffGround);
-    }, [wheelsOnGround]);
+    //     setAllWheelsOffGround(allOffGround);
+    // }, [wheelsOnGround]);
 
     useFrame(() => {
         const moveForward = keysPressed['ArrowUp'] || keysPressed['e'];
@@ -603,22 +609,22 @@ const HachiRoku = () => {
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
                             name="lfwCollider"
-                            onCollisionEnter={({ other }) => {
-                                if (other.rigidBodyObject.name === 'track') {
-                                    setWheelsOnGround((prev) => ({
-                                        ...prev,
-                                        lfw: true,
-                                    }));
-                                }
-                            }}
-                            onCollisionExit={({ other }) => {
-                                if (other.rigidBodyObject.name === 'track') {
-                                    setWheelsOnGround((prev) => ({
-                                        ...prev,
-                                        lfw: false,
-                                    }));
-                                }
-                            }}
+                            // onCollisionEnter={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             lfw: true,
+                            //         }));
+                            //     }
+                            // }}
+                            // onCollisionExit={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             lfw: false,
+                            //         }));
+                            //     }
+                            // }}
                         />
                         <group ref={lfwRef}>
                             <mesh
@@ -656,22 +662,22 @@ const HachiRoku = () => {
                             rotation={[0, 0, Math.PI / 2]}
                             setContactSkin={0.1}
                             name="rfwCollider"
-                            onCollisionEnter={({ other }) => {
-                                if (other.rigidBodyObject.name === 'track') {
-                                    setWheelsOnGround((prev) => ({
-                                        ...prev,
-                                        rfw: true,
-                                    }));
-                                }
-                            }}
-                            onCollisionExit={({ other }) => {
-                                if (other.rigidBodyObject.name === 'track') {
-                                    setWheelsOnGround((prev) => ({
-                                        ...prev,
-                                        rfw: false,
-                                    }));
-                                }
-                            }}
+                            // onCollisionEnter={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             rfw: true,
+                            //         }));
+                            //     }
+                            // }}
+                            // onCollisionExit={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             rfw: false,
+                            //         }));
+                            //     }
+                            // }}
                         />
                         <group ref={rfwRef}>
                             <mesh
@@ -708,22 +714,22 @@ const HachiRoku = () => {
                             name="lrwCollider"
                             position={[0.85, 0, 0]}
                             rotation={[0, 0, Math.PI / 2]}
-                            onCollisionEnter={({ other }) => {
-                                if (other.rigidBodyObject.name === 'track') {
-                                    setWheelsOnGround((prev) => ({
-                                        ...prev,
-                                        lrw: true,
-                                    }));
-                                }
-                            }}
-                            onCollisionExit={({ other }) => {
-                                if (other.rigidBodyObject.name === 'track') {
-                                    setWheelsOnGround((prev) => ({
-                                        ...prev,
-                                        lrw: false,
-                                    }));
-                                }
-                            }}
+                            // onCollisionEnter={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             lrw: true,
+                            //         }));
+                            //     }
+                            // }}
+                            // onCollisionExit={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             lrw: false,
+                            //         }));
+                            //     }
+                            // }}
                         />
                         <group ref={lrwRef}>
                             <mesh
@@ -761,22 +767,22 @@ const HachiRoku = () => {
                             rotation={[0, 0, Math.PI / 2]}
                             setContactSkin={0.1}
                             name="rrwCollider"
-                            onCollisionEnter={({ other }) => {
-                                if (other.rigidBodyObject.name === 'track') {
-                                    setWheelsOnGround((prev) => ({
-                                        ...prev,
-                                        rrw: true,
-                                    }));
-                                }
-                            }}
-                            onCollisionExit={({ other }) => {
-                                if (other.rigidBodyObject.name === 'track') {
-                                    setWheelsOnGround((prev) => ({
-                                        ...prev,
-                                        rrw: false,
-                                    }));
-                                }
-                            }}
+                            // onCollisionEnter={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             rrw: true,
+                            //         }));
+                            //     }
+                            // }}
+                            // onCollisionExit={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             rrw: false,
+                            //         }));
+                            //     }
+                            // }}
                         />
                         <group ref={rrwRef}>
                             <mesh
