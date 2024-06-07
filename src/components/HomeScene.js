@@ -1,32 +1,133 @@
 'use client';
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense, useMemo, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/rapier';
 import HachiRoku from './Models/hachiroku';
 import LowPolyIsland from './Models/lowPolyIsland';
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { Sphere } from '@react-three/drei';
+import { Sphere, Plane } from '@react-three/drei';
 
 const ThreeScene = () => {
-    // <Physics gravity={[0, -981, 0]} debug>
     // The X axis is red. The Y axis is green. The Z axis is blue.
 
     const CustomBackground = () => {
-        const { gl } = useThree();
-        gl.setClearColor('#87ceeb'); // Sky blue background
-        return null;
+        const createGradientTexture = (startColor, endColor) => {
+            const size = 512;
+            const canvas = document.createElement('canvas');
+            canvas.width = size;
+            canvas.height = size;
+            const context = canvas.getContext('2d');
+
+            const gradient = context.createLinearGradient(0, 0, 0, size);
+            gradient.addColorStop(0, startColor);
+            gradient.addColorStop(1, endColor);
+
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, size, size);
+
+            return new THREE.CanvasTexture(canvas);
+        };
+
+        const topGradientTexture = useMemo(
+            () => createGradientTexture('#2e0249', '#000000'),
+            []
+        );
+        const bottomGradientTexture = useMemo(
+            () => createGradientTexture('#000000', '#000000'),
+            []
+        );
+        const test = useMemo(
+            () => createGradientTexture('#2e0249', '#2e0249'),
+            []
+        );
+
+        const planes = [
+            {
+                position: [0, 0, -5000],
+                rotation: [0, 0, 0],
+                texture: topGradientTexture,
+            }, // Back
+            {
+                position: [0, 0, 5000],
+                rotation: [0, Math.PI, 0],
+                texture: topGradientTexture,
+            }, // Front
+            {
+                position: [-5000, 0, 0],
+                rotation: [0, Math.PI / 2, 0],
+                texture: topGradientTexture,
+            }, // Left
+            {
+                position: [5000, 0, 0],
+                rotation: [0, -Math.PI / 2, 0],
+                texture: topGradientTexture,
+            }, // Right
+            {
+                position: [0, 5000, 0],
+                rotation: [Math.PI / 2, 0, 0],
+                texture: test,
+            }, // Top
+            {
+                position: [0, -5000, 0],
+                rotation: [-Math.PI / 2, 0, 0],
+                texture: bottomGradientTexture,
+            }, // Bottom
+        ];
+
+        return (
+            <>
+                {planes.map((plane, index) => (
+                    <Plane
+                        key={index}
+                        args={[10000, 10000]}
+                        position={plane.position}
+                        rotation={plane.rotation}
+                    >
+                        <meshBasicMaterial
+                            map={plane.texture}
+                            side={THREE.DoubleSide}
+                        />
+                    </Plane>
+                ))}
+            </>
+        );
     };
 
-    const Sun = () => (
-        <Sphere args={[600, 600, 600]} position={[2000, 1800, -1000]}>
-            <meshStandardMaterial
-                emissive="yellow"
-                emissiveIntensity={1}
-                color="yellow"
-            />
-        </Sphere>
+    const RetroSun = () => (
+        <group position={[0, 2000, -5000]}>
+            {/* Main sun circle */}
+            <Plane args={[3000, 3000]}>
+                <meshBasicMaterial color="#ff005d" />
+            </Plane>
+            {/* Horizontal lines */}
+            {Array.from({ length: 10 }).map((_, i) => (
+                <Plane
+                    key={i}
+                    args={[1000, 20]}
+                    position={[0, i * 40 - 200, 10]}
+                >
+                    <meshBasicMaterial color="#000000" />
+                </Plane>
+            ))}
+        </group>
     );
+
+    // const CustomBackground = () => {
+    //     const { gl } = useThree();
+    //     gl.setClearColor('#87ceeb'); // Sky blue background
+    //     return null;
+    // };
+
+    // const Sun = () => (
+    //     <Sphere args={[600, 600, 600]} position={[2000, 1800, -3000]}>
+    //         <meshStandardMaterial
+    //             emissive="yellow"
+    //             emissiveIntensity={1}
+    //             color="yellow"
+    //         />
+    //     </Sphere>
+    // );
 
     const Stars = () => {
         const { scene } = useThree();
@@ -45,6 +146,30 @@ const ThreeScene = () => {
         }
         return null;
     };
+    const Clouds = () => {
+        const cloudCount = 20;
+        const cloudColor = new THREE.Color('#FFFFFF'); // Whiter gray color
+        const clouds = [];
+
+        for (let i = 0; i < cloudCount; i++) {
+            const cloud = (
+                <mesh
+                    key={i}
+                    position={[
+                        Math.random() * 8000 - 4000,
+                        Math.random() * 1000 + 2000,
+                        Math.random() * 8000 - 4000,
+                    ]}
+                >
+                    <boxGeometry args={[500, 100, 500]} />
+                    <meshStandardMaterial color={cloudColor} />
+                </mesh>
+            );
+            clouds.push(cloud);
+        }
+
+        return <group>{clouds}</group>;
+    };
 
     return (
         <Canvas
@@ -60,7 +185,8 @@ const ThreeScene = () => {
             }}
         >
             <CustomBackground />
-            <fog attach="fog" args={['#87ceeb', 1500, 5000]} />
+            {/* <fog attach="fog" args={['#87ceeb', 1500, 5000]} /> */}
+            {/* <fog attach="fog" args={['#87ceeb', 3000, 10000]} /> */}
             <Suspense fallback={null}>
                 <ambientLight intensity={0.5} />
                 <directionalLight position={[50, 1500, 50]} intensity={1} />
@@ -79,8 +205,10 @@ const ThreeScene = () => {
                     <HachiRoku />
                 </Physics>
                 <axesHelper args={[150]} position={[0, 1200, 0]} />
-                <Sun />
+                {/* <Sun /> */}
+                <RetroSun />
                 <Stars />
+                <Clouds />
             </Suspense>
         </Canvas>
     );
