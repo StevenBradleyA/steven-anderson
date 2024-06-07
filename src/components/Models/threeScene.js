@@ -1,15 +1,30 @@
 'use client';
-import React, { Suspense, useMemo, useRef } from 'react';
+import React, { Suspense, useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/rapier';
-import HachiRoku from './Models/hachiroku';
-import LowPolyIsland from './Models/lowPolyIsland';
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Sphere, Plane } from '@react-three/drei';
+import LowPolyIsland from './lowPolyIsland';
+import HachiRoku from './hachiroku';
+import LoadingScreen from '../Loading/loadingScreen';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
+
+    // IDEAS
+    // DAY TIME NIGHT TIME SLIDER Changes every 5 or you can select a time
+    // SYNTHWAVE MODE
+    // later I want to have a cool minigame
+
+    // track needs graphics or more coloration -- slopes needs fixing
+
+    
+    const [isLoaded, setIsLoaded] = useState(false);
+
+    // const Loader = ({ onLoaded }) => {
+    //     return <LoadingScreen onLoaded={onLoaded} />;
+    // };
 
     const CustomBackground = () => {
         const createGradientTexture = (startColor, endColor) => {
@@ -29,7 +44,7 @@ const ThreeScene = () => {
             return new THREE.CanvasTexture(canvas);
         };
 
-        const topGradientTexture = useMemo(
+        const gradientTexture = useMemo(
             () => createGradientTexture('#2e0249', '#000000'),
             []
         );
@@ -37,7 +52,7 @@ const ThreeScene = () => {
             () => createGradientTexture('#000000', '#000000'),
             []
         );
-        const test = useMemo(
+        const topGradientTexture = useMemo(
             () => createGradientTexture('#2e0249', '#2e0249'),
             []
         );
@@ -46,27 +61,27 @@ const ThreeScene = () => {
             {
                 position: [0, 0, -5000],
                 rotation: [0, 0, 0],
-                texture: topGradientTexture,
+                texture: gradientTexture,
             }, // Back
             {
                 position: [0, 0, 5000],
                 rotation: [0, Math.PI, 0],
-                texture: topGradientTexture,
+                texture: gradientTexture,
             }, // Front
             {
                 position: [-5000, 0, 0],
                 rotation: [0, Math.PI / 2, 0],
-                texture: topGradientTexture,
+                texture: gradientTexture,
             }, // Left
             {
                 position: [5000, 0, 0],
                 rotation: [0, -Math.PI / 2, 0],
-                texture: topGradientTexture,
+                texture: gradientTexture,
             }, // Right
             {
                 position: [0, 5000, 0],
                 rotation: [Math.PI / 2, 0, 0],
-                texture: test,
+                texture: topGradientTexture,
             }, // Top
             {
                 position: [0, -5000, 0],
@@ -94,40 +109,11 @@ const ThreeScene = () => {
         );
     };
 
-    const RetroSun = () => (
-        <group position={[0, 2000, -5000]}>
-            {/* Main sun circle */}
-            <Plane args={[3000, 3000]}>
-                <meshBasicMaterial color="#ff005d" />
-            </Plane>
-            {/* Horizontal lines */}
-            {Array.from({ length: 10 }).map((_, i) => (
-                <Plane
-                    key={i}
-                    args={[1000, 20]}
-                    position={[0, i * 40 - 200, 10]}
-                >
-                    <meshBasicMaterial color="#000000" />
-                </Plane>
-            ))}
-        </group>
+    const Sun = () => (
+        <Sphere args={[600, 600, 600]} position={[2000, 1800, -3000]}>
+            <meshStandardMaterial color="blue" />
+        </Sphere>
     );
-
-    // const CustomBackground = () => {
-    //     const { gl } = useThree();
-    //     gl.setClearColor('#87ceeb'); // Sky blue background
-    //     return null;
-    // };
-
-    // const Sun = () => (
-    //     <Sphere args={[600, 600, 600]} position={[2000, 1800, -3000]}>
-    //         <meshStandardMaterial
-    //             emissive="yellow"
-    //             emissiveIntensity={1}
-    //             color="yellow"
-    //         />
-    //     </Sphere>
-    // );
 
     const Stars = () => {
         const { scene } = useThree();
@@ -172,45 +158,45 @@ const ThreeScene = () => {
     };
 
     return (
-        <Canvas
-            gl={{ antialias: true, precision: 'highp' }}
-            camera={{
-                position: [0, 2000, 0],
-                near: 0.1,
-                far: 10000,
-                fov: 75,
-            }}
-            onCreated={({ camera }) => {
-                camera.lookAt(0, 0, 0);
-            }}
-        >
-            <CustomBackground />
-            {/* <fog attach="fog" args={['#87ceeb', 1500, 5000]} /> */}
-            {/* <fog attach="fog" args={['#87ceeb', 3000, 10000]} /> */}
-            <Suspense fallback={null}>
-                <ambientLight intensity={0.5} />
-                <directionalLight position={[50, 1500, 50]} intensity={1} />
-                <directionalLight
-                    position={[-50, 1500, -50]}
-                    intensity={0.5}
-                    color="blue"
-                />
-                <pointLight
-                    position={[0, 2000, 1000]}
-                    intensity={0.5}
-                    color="orange"
-                />
-                <Physics gravity={[0, -98.1, 0]}>
-                    <LowPolyIsland />
-                    <HachiRoku />
-                </Physics>
-                <axesHelper args={[150]} position={[0, 1200, 0]} />
-                {/* <Sun /> */}
-                <RetroSun />
-                <Stars />
-                <Clouds />
-            </Suspense>
-        </Canvas>
+        <>
+            <Canvas
+                gl={{ antialias: true, precision: 'highp' }}
+                camera={{
+                    position: [0, 2000, 0],
+                    near: 0.1,
+                    far: 12000,
+                    fov: 75,
+                }}
+                onCreated={({ camera }) => {
+                    camera.lookAt(0, 0, 0);
+                }}
+            >
+                <CustomBackground />
+                <Suspense fallback={null}>
+                    {isLoaded === false && <LoadingScreen setIsLoaded={setIsLoaded} />}
+                    <ambientLight intensity={0.5} />
+                    <directionalLight position={[50, 1500, 50]} intensity={1} />
+                    <directionalLight
+                        position={[-50, 1500, -50]}
+                        intensity={0.5}
+                        color="blue"
+                    />
+                    <pointLight
+                        position={[0, 2000, 1000]}
+                        intensity={0.5}
+                        color="orange"
+                    />
+                    <Physics gravity={[0, -98.1, 0]}>
+                        <LowPolyIsland />
+                        <HachiRoku />
+                    </Physics>
+                    <axesHelper args={[150]} position={[0, 1200, 0]} />
+                    <Sun />
+                    <Stars />
+                    <Clouds />
+                </Suspense>
+            </Canvas>
+        </>
     );
 };
 
