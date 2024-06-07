@@ -7,7 +7,13 @@ import * as THREE from 'three';
 import { Sphere, Plane } from '@react-three/drei';
 import LowPolyIsland from './lowPolyIsland';
 import HachiRoku from './hachiroku';
-import LoadingScreen from '../Loading/loadingScreen';
+import TitleScreen from '../Loading/titleScreen';
+import Loader from '../Loading/loader';
+import { AnimatePresence } from 'framer-motion';
+
+function CustomLoader() {
+    return <Loader />;
+}
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -19,12 +25,8 @@ const ThreeScene = () => {
 
     // track needs graphics or more coloration -- slopes needs fixing
 
-    
-    const [isLoaded, setIsLoaded] = useState(false);
-
-    // const Loader = ({ onLoaded }) => {
-    //     return <LoadingScreen onLoaded={onLoaded} />;
-    // };
+    const [showGame, setShowGame] = useState(false);
+    // todo Setting a defualt canvas color behind this or nah? so its black ???
 
     const CustomBackground = () => {
         const createGradientTexture = (startColor, endColor) => {
@@ -171,9 +173,11 @@ const ThreeScene = () => {
                     camera.lookAt(0, 0, 0);
                 }}
             >
-                <CustomBackground />
-                <Suspense fallback={null}>
-                    {isLoaded === false && <LoadingScreen setIsLoaded={setIsLoaded} />}
+                <Suspense fallback={<CustomLoader />}>
+                    <TitleScreen
+                        setShowGame={setShowGame}
+                        showGame={showGame}
+                    />
                     <ambientLight intensity={0.5} />
                     <directionalLight position={[50, 1500, 50]} intensity={1} />
                     <directionalLight
@@ -191,6 +195,7 @@ const ThreeScene = () => {
                         <HachiRoku />
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
+                    <CustomBackground />
                     <Sun />
                     <Stars />
                     <Clouds />
