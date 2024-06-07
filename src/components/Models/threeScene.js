@@ -25,7 +25,6 @@ const ThreeScene = () => {
 
     // track needs graphics or more coloration -- slopes needs fixing
 
-    const [showGame, setShowGame] = useState(false);
     // todo Setting a defualt canvas color behind this or nah? so its black ???
 
     const CustomBackground = () => {
@@ -173,11 +172,8 @@ const ThreeScene = () => {
                     camera.lookAt(0, 0, 0);
                 }}
             >
-                <Suspense fallback={<CustomLoader />}>
-                    <TitleScreen
-                        setShowGame={setShowGame}
-                        showGame={showGame}
-                    />
+                <Suspense fallback={null}>
+                  
                     <ambientLight intensity={0.5} />
                     <directionalLight position={[50, 1500, 50]} intensity={1} />
                     <directionalLight

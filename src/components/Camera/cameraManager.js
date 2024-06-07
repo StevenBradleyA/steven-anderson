@@ -2,14 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
+import { useGlobalState } from '../Context/stateContext';
 
-const CameraManager = ({ carRef, backRef, activeCamera, keysPressed }) => {
+const CameraManager = ({ carRef, backRef, keysPressed }) => {
     // todo fixed height for follow mode that can be adjusted with a scroll wheel
     // todo can I make the orbit mode not clip through object?
     // todo orbit mode rotate by holding mouse wheel button
     // todo free mode needs to switch immediately on mouse down not up like clicking should instantly switch not clicking then dragging the first click.
     // free camera mode
     // drop down menu to select camera
+    const { activeCamera } = useGlobalState();
 
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());

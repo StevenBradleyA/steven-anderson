@@ -11,6 +11,7 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import CameraManager from '../Camera/cameraManager';
 import { debounce } from 'lodash';
+import { useGlobalState } from '../Context/stateContext';
 
 // todo decide on camera buttons -- should mouse clicking trigger free mode? also fix free cam locking
 
@@ -23,7 +24,7 @@ import { debounce } from 'lodash';
 // have to determine when all 4 wheels are off or back 2 wheels not in contact
 // todo for car ... movement on ground only -- -- smoothness of follow? drift button maybe
 // so drift and ground only movement
-// Brake light integration? 
+// Brake light integration?
 
 const HachiRoku = () => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
@@ -41,7 +42,7 @@ const HachiRoku = () => {
     const backRef = useRef();
 
     // camera
-    const [activeCamera, setActiveCamera] = useState('initial');
+    const { activeCamera, setActiveCamera, showGame } = useGlobalState();
 
     // input
     const [keysPressed, setKeysPressed] = useState({});
@@ -68,9 +69,7 @@ const HachiRoku = () => {
         rrw: false,
     });
 
-    // instead of colliders lets try intersects ray 
-
-
+    // instead of colliders lets try intersects ray
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -98,7 +97,7 @@ const HachiRoku = () => {
             keysPressed['ArrowLeft'] ||
             keysPressed['ArrowRight'];
 
-        if (switchCamera) {
+        if (switchCamera && showGame === true) {
             setActiveCamera((prev) => {
                 if (prev === 'initial') return 'follow';
                 if (prev === 'follow') return 'free';
@@ -107,10 +106,10 @@ const HachiRoku = () => {
             });
         }
 
-        if (arrowKeyPressed) {
+        if (arrowKeyPressed && showGame === true) {
             setActiveCamera('follow');
         }
-    }, [keysPressed, setActiveCamera]);
+    }, [keysPressed, setActiveCamera, showGame]);
 
     // useEffect(() => {
     //     const allOffGround =
