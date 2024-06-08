@@ -8,12 +8,7 @@ import { Sphere, Plane } from '@react-three/drei';
 import LowPolyIsland from './lowPolyIsland';
 import HachiRoku from './hachiroku';
 import TitleScreen from '../Loading/titleScreen';
-import Loader from '../Loading/loader';
 import { AnimatePresence } from 'framer-motion';
-
-function CustomLoader() {
-    return <Loader />;
-}
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -118,7 +113,9 @@ const ThreeScene = () => {
 
     const Stars = () => {
         const { scene } = useThree();
-        const starCount = 1000;
+        const starCount = 500;
+        // const starCount = 1000;
+
         for (let i = 0; i < starCount; i++) {
             const star = new THREE.Mesh(
                 new THREE.SphereGeometry(1, 24, 24),
@@ -173,7 +170,6 @@ const ThreeScene = () => {
                 }}
             >
                 <Suspense fallback={null}>
-                  
                     <ambientLight intensity={0.5} />
                     <directionalLight position={[50, 1500, 50]} intensity={1} />
                     <directionalLight

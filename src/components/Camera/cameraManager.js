@@ -4,7 +4,7 @@ import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { useGlobalState } from '../Context/stateContext';
 
-const CameraManager = ({ carRef, backRef, keysPressed }) => {
+const CameraManager = ({ carRef, keysPressed }) => {
     // todo fixed height for follow mode that can be adjusted with a scroll wheel
     // todo can I make the orbit mode not clip through object?
     // todo orbit mode rotate by holding mouse wheel button

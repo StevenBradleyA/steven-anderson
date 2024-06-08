@@ -7,16 +7,18 @@ const TitleScreen = () => {
     const { progress } = useProgress();
 
     useEffect(() => {
-        const handleKeyDown = (event) => {
+        const anyInput = (event) => {
             if (progress === 100) {
                 setShowGame(true);
             }
         };
 
-        window.addEventListener('keydown', handleKeyDown);
+        window.addEventListener('keydown', anyInput);
+        window.addEventListener('click', anyInput);
 
         return () => {
-            window.removeEventListener('keydown', handleKeyDown);
+            window.removeEventListener('keydown', anyInput);
+            window.removeEventListener('click', anyInput);
         };
     }, [progress, setShowGame]);
 
@@ -29,8 +31,13 @@ const TitleScreen = () => {
         >
             <div className="bg-white w-[100vw] h-[100vh] overflow-hidden text-black flex flex-col justify-center items-center">
                 <h1 className="text-blue-600 text-9xl">STEVEN ANDERSON</h1>
-                {/* <p>Loading... {progress.toFixed(2)}%</p> */}
-                {progress === 100 && <p>Press any key to continue</p>}
+                <p
+                    className={`fade-transition ${
+                        progress === 100 ? 'text-blue-500' : 'text-gray-400'
+                    }`}
+                >
+                    Press Start
+                </p>
             </div>
         </motion.div>
     );

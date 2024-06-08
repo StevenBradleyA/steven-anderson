@@ -4,7 +4,6 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import ThreeScene from '@/components/Models/threeScene';
 import TitleScreen from '@/components/Loading/titleScreen';
-import { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useGlobalState } from '@/components/Context/stateContext';
 

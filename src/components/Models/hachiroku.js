@@ -1,17 +1,24 @@
 'use client';
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, {
+    useState,
+    useEffect,
+    useRef,
+    useCallback,
+    useMemo,
+} from 'react';
 import {
     CuboidCollider,
     RigidBody,
     CylinderCollider,
 } from '@react-three/rapier';
-import { useFrame } from '@react-three/fiber';
-import { useGLTF } from '@react-three/drei';
+import { useFrame, extend, meshStandardMaterial } from '@react-three/fiber';
+import { useGLTF, shaderMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import CameraManager from '../Camera/cameraManager';
 import { debounce } from 'lodash';
 import { useGlobalState } from '../Context/stateContext';
+import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing';
 
 // todo decide on camera buttons -- should mouse clicking trigger free mode? also fix free cam locking
 
@@ -25,6 +32,12 @@ import { useGlobalState } from '../Context/stateContext';
 // todo for car ... movement on ground only -- -- smoothness of follow? drift button maybe
 // so drift and ground only movement
 // Brake light integration?
+// import glsl from 'babel-plugin-glsl/macro';
+
+// Create a custom shader material
+// Define the shader material
+
+// Extend the material in React Three Fiber
 
 const HachiRoku = () => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
@@ -39,7 +52,8 @@ const HachiRoku = () => {
     const lfwRef = useRef();
     const lrwRef = useRef();
     const rrwRef = useRef();
-    const backRef = useRef();
+    const brakeLightsRef = useRef();
+    const exhaustRef = useRef();
 
     // camera
     const { activeCamera, setActiveCamera, showGame } = useGlobalState();
@@ -121,7 +135,7 @@ const HachiRoku = () => {
     //     setAllWheelsOffGround(allOffGround);
     // }, [wheelsOnGround]);
 
-    useFrame(() => {
+    useFrame(({ clock }) => {
         const moveForward = keysPressed['ArrowUp'] || keysPressed['e'];
         const moveBackward = keysPressed['ArrowDown'] || keysPressed['d'];
         const steerLeft = keysPressed['ArrowLeft'] || keysPressed['s'];
@@ -129,6 +143,18 @@ const HachiRoku = () => {
         const drift = keysPressed['big man'];
         const respawn = keysPressed['r'];
         const flip = keysPressed['Shift'];
+
+        // const time = clock.getElapsedTime();
+        // const intensity = Math.sin(time * 10) * 0.5 + 0.5; // Pulsating effect
+        // brakeLightsMaterial.emissiveIntensity = intensity;
+
+        // Apply material to the brake lights mesh
+
+        if (brakeLightsRef.current) {
+            brakeLightsRef.current.material.emissiveIntensity = moveBackward
+                ? 1
+                : 0.4;
+        }
 
         // respawn
         if (respawn && carRef.current && activeCamera === 'follow') {
@@ -290,12 +316,28 @@ const HachiRoku = () => {
         console.log(allWheelsOffGround);
     });
 
-    //   purple for testing
+    //  materials
     const metallicPurple = new THREE.Color(0x800080);
     const carPurple = new THREE.MeshStandardMaterial({
         color: metallicPurple,
         roughness: 0.2,
         metalness: 0.5,
+    });
+
+    const brakeLightsMaterial = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xff0000), // Base color (optional, if you want it to be different from emissive)
+        emissive: new THREE.Color(0xff0000), // Emissive color (red)
+        emissiveIntensity: 0.4, // Adjust the intensity of the emissive effect
+    });
+    const fogLightsMaterial = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xffa500),
+        emissive: new THREE.Color(0xffa500),
+        emissiveIntensity: 0.4,
+    });
+    const whiteLightsMaterial = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xffffff),
+        emissive: new THREE.Color(0xffffff),
+        emissiveIntensity: 1,
     });
 
     // console.log(activeCamera);
@@ -496,6 +538,7 @@ const HachiRoku = () => {
                             position={[2.525, 1.244, -8]}
                             scale={[0.393, 0.28, 0.488]}
                             name="exhaust"
+                            ref={exhaustRef}
                         />
                         <mesh
                             castShadow
@@ -568,7 +611,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.WhiteFrontBlinkers.geometry}
-                            material={materials.White}
+                            material={whiteLightsMaterial}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             name="frontBlinkers"
@@ -586,16 +629,18 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.BrakeLights.geometry}
-                            material={materials.BrakeLights}
+                            material={brakeLightsMaterial}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
+                            ref={brakeLightsRef}
                             name="brakeLights"
                         />
+
                         <mesh
                             castShadow
                             receiveShadow
                             geometry={nodes.Fogs.geometry}
-                            material={materials.Fog}
+                            material={fogLightsMaterial}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             name="fogLights"
@@ -817,7 +862,6 @@ const HachiRoku = () => {
 
             <CameraManager
                 carRef={carRef}
-                backRef={backRef}
                 activeCamera={activeCamera}
                 setActiveCamera={setActiveCamera}
                 keysPressed={keysPressed}
