@@ -17,7 +17,7 @@ function Navigation() {
             },
         }),
         closed: {
-            clipPath: 'circle(0px at 480px 30px)',
+            clipPath: 'circle(0px at 530px 30px)',
             background: 'transparent',
             transition: {
                 delay: 0.5,
@@ -27,7 +27,7 @@ function Navigation() {
             },
         },
         exit: {
-            clipPath: 'circle(0px at 480px 30px)',
+            clipPath: 'circle(0px at 530px 30px)',
             background: 'rgba(255, 255, 255, 0.8)',
             transition: {
                 type: 'spring',
@@ -72,19 +72,48 @@ function Navigation() {
                     <button
                         onClick={toggleMenu}
                         ref={menuButtonRef}
-                        className="z-50 relative"
+                        className="z-50 relative burger-button h-10 w-10"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            className="w-10 h-10"
+                            className="w-10 h-10 burger-button-burger absolute top-0 left-0"
                             viewBox="0 0 24 24"
                             fill="none"
                         >
                             <path
-                                fillRule="evenodd"
-                                clipRule="evenodd"
-                                d="M4 5C3.44772 5 3 5.44772 3 6C3 6.55228 3.44772 7 4 7H20C20.5523 7 21 6.55228 21 6C21 5.44772 20.5523 5 20 5H4ZM7 12C7 11.4477 7.44772 11 8 11H20C20.5523 11 21 11.4477 21 12C21 12.5523 20.5523 13 20 13H8C7.44772 13 7 12.5523 7 12ZM13 18C13 17.4477 13.4477 17 14 17H20C20.5523 17 21 17.4477 21 18C21 18.5523 20.5523 19 20 19H14C13.4477 19 13 18.5523 13 18Z"
-                                fill="white"
+                                opacity="0.4"
+                                d="M17.5401 8.81014C19.1748 8.81014 20.5001 7.4849 20.5001 5.85014C20.5001 4.21537 19.1748 2.89014 17.5401 2.89014C15.9053 2.89014 14.5801 4.21537 14.5801 5.85014C14.5801 7.4849 15.9053 8.81014 17.5401 8.81014Z"
+                                fill="currentColor"
+                                className="burger-button-top-right"
+                            />
+                            <path
+                                d="M6.46 8.81014C8.09476 8.81014 9.42 7.4849 9.42 5.85014C9.42 4.21537 8.09476 2.89014 6.46 2.89014C4.82524 2.89014 3.5 4.21537 3.5 5.85014C3.5 7.4849 4.82524 8.81014 6.46 8.81014Z"
+                                fill="currentColor"
+                                className="burger-button-top-left"
+                            />
+                            <path
+                                d="M17.5401 21.1099C19.1748 21.1099 20.5001 19.7847 20.5001 18.1499C20.5001 16.5152 19.1748 15.1899 17.5401 15.1899C15.9053 15.1899 14.5801 16.5152 14.5801 18.1499C14.5801 19.7847 15.9053 21.1099 17.5401 21.1099Z"
+                                fill="currentColor"
+                                className="burger-button-bottom-right"
+                            />
+                            <path
+                                opacity="0.4"
+                                d="M6.46 21.1099C8.09476 21.1099 9.42 19.7847 9.42 18.1499C9.42 16.5152 8.09476 15.1899 6.46 15.1899C4.82524 15.1899 3.5 16.5152 3.5 18.1499C3.5 19.7847 4.82524 21.1099 6.46 21.1099Z"
+                                fill="currentColor"
+                                className="burger-button-bottom-left"
+                            />
+                        </svg>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="w-10 h-10 burger-button-circle absolute top-0 left-0 text-white"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12Z"
+                                fill="currentColor"
                             />
                         </svg>
                     </button>
@@ -94,7 +123,7 @@ function Navigation() {
                 {isMenuOpen && (
                     <motion.div
                         ref={menuRef}
-                        className="  p-2 absolute right-0 top-0 bottom-0 w-[500px] h-[100px] rounded-lg text-black flex  z-10 justify-between text-xl items-center"
+                        className="  px-6 absolute right-0 top-0 bottom-0 w-[550px] h-[100px] rounded-lg text-black flex  z-10 justify-between text-xl items-center"
                         variants={sidebar}
                         initial="closed"
                         animate={isMenuOpen ? 'open' : 'closed'}
@@ -229,6 +258,26 @@ function Navigation() {
                                 <path fill="none" d="M0 0h24v24H0z" />
                             </svg>
                             <h2>Contact</h2>
+                        </motion.button>
+                        <motion.button
+                            className="flex gap-1 items-center flex-col text-sm"
+                            initial={{ opacity: 0, x: 200 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, x: 200 }}
+                            transition={{
+                                ease: 'easeInOut',
+                                duration: 0.6,
+                            }}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-8 w-8"
+                                viewBox="0 0 24 24"
+                            >
+                                <path d="M13.9 2.999A1.9 1.9 0 1 1 12 1.1a1.9 1.9 0 0 1 1.9 1.899zM13.544 6h-3.088a1.855 1.855 0 0 0-1.8 1.405l-1.662 6.652a.667.667 0 0 0 .14.573.873.873 0 0 0 .665.33.718.718 0 0 0 .653-.445L10 9.1V13l-.922 9.219a.71.71 0 0 0 .707.781h.074a.69.69 0 0 0 .678-.563L12 14.583l1.463 7.854a.69.69 0 0 0 .678.563h.074a.71.71 0 0 0 .707-.781L14 13V9.1l1.548 5.415a.718.718 0 0 0 .653.444.873.873 0 0 0 .665-.329.667.667 0 0 0 .14-.573l-1.662-6.652A1.855 1.855 0 0 0 13.544 6z" />
+                                <path fill="none" d="M0 0h24v24H0z" />
+                            </svg>
+                            <h2>Close</h2>
                         </motion.button>
                     </motion.div>
                 )}

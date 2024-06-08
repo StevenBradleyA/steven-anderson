@@ -45,3 +45,81 @@ body {
 /* ------ END LOADING SCREEN ------ */
 /* ------ END LOADING SCREEN ------ */
 /* ------ END LOADING SCREEN ------ */
+
+/* ------ NAV BAR ------ */
+/* ------ NAV BAR ------ */
+/* ------ NAV BAR ------ */
+/* ------ NAV BAR ------ */
+
+.burger-button {
+}
+
+.burger-button-burger {
+    transition: transform 0.3s ease;
+}
+
+.burger-button-top-left {
+    transition: transform 0.3s ease;
+}
+.burger-button-top-right {
+    transition: transform 0.3s ease;
+    transition-delay: 0.2s;
+}
+.burger-button-bottom-left {
+    transition: transform 0.3s ease;
+    transition-delay: 0.4s;
+}
+.burger-button-bottom-right {
+    transition: transform 0.3s ease;
+    transition-delay: 0.6s;
+}
+
+.burger-button:hover .burger-button-top-left {
+    transform: translate(5.5px, 5.5px);
+}
+.burger-button:hover .burger-button-top-right {
+    transform: translate(-5.5px, 5.5px);
+}
+.burger-button:hover .burger-button-bottom-left {
+    transform: translate(5.5px, -5.5px);
+}
+.burger-button:hover .burger-button-bottom-right {
+    transform: translate(-5.5px, -5.5px);
+}
+
+.burger-button-circle {
+    transition: transform 0.3s ease;
+    transform: scale(0);
+}
+
+.burger-button:hover .burger-button-circle {
+    animation: spring 0.3s ease-out forwards;
+    animation-delay: 0.9s;
+}
+
+.burger-button .burger-button-circle {
+    animation: spring-reverse 0.3s ease-out forwards;
+}
+
+@keyframes spring {
+    0% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes spring-reverse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(0);
+    }
+}
