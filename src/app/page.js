@@ -6,6 +6,7 @@ import ThreeScene from '@/components/Models/threeScene';
 import TitleScreen from '@/components/Loading/titleScreen';
 import { AnimatePresence } from 'framer-motion';
 import { useGlobalState } from '@/components/Context/stateContext';
+import Navigation from '@/components/Navigation/navigation';
 
 export default function Home() {
     const { showGame } = useGlobalState();
@@ -16,7 +17,7 @@ export default function Home() {
                 <AnimatePresence>
                     {showGame === false && <TitleScreen />}
                 </AnimatePresence>
-
+                <Navigation/>
                 <ThreeScene />
             </div>
         </main>

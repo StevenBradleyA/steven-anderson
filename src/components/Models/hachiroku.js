@@ -324,22 +324,6 @@ const HachiRoku = () => {
         metalness: 0.5,
     });
 
-    const brakeLightsMaterial = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0xff0000), // Base color (optional, if you want it to be different from emissive)
-        emissive: new THREE.Color(0xff0000), // Emissive color (red)
-        emissiveIntensity: 0.4, // Adjust the intensity of the emissive effect
-    });
-    const fogLightsMaterial = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0xffa500),
-        emissive: new THREE.Color(0xffa500),
-        emissiveIntensity: 0.4,
-    });
-    const whiteLightsMaterial = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0xffffff),
-        emissive: new THREE.Color(0xffffff),
-        emissiveIntensity: 1,
-    });
-
     // console.log(activeCamera);
 
     return (
@@ -386,6 +370,16 @@ const HachiRoku = () => {
                             receiveShadow
                             geometry={nodes.Glass.geometry}
                             material={materials.Glass}
+                            // material={
+                            //     new THREE.MeshPhysicalMaterial({
+                            //         color: new THREE.Color(0x888888), // Grayish base color
+                            //         metalness: 0.5, // Some metalness for reflectivity
+                            //         roughness: 0.1, // Low roughness for a smooth surface
+                            //         clearcoat: 1.0, // Sets the clear coat to the maximum value for extra shine
+                            //         clearcoatRoughness: 0.0, // Clear coat should be smooth
+                            //         reflectivity: 0.9, // High reflectivity for glass
+                            //     })
+                            // }
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             name="glass"
@@ -534,7 +528,12 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.Exhaust.geometry}
-                            material={materials.Tire}
+                            material={
+                                new THREE.MeshStandardMaterial({
+                                    color: new THREE.Color(0x555555),
+                                    roughness: 0.8,
+                                })
+                            }
                             position={[2.525, 1.244, -8]}
                             scale={[0.393, 0.28, 0.488]}
                             name="exhaust"
@@ -611,7 +610,13 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.WhiteFrontBlinkers.geometry}
-                            material={whiteLightsMaterial}
+                            material={
+                                new THREE.MeshStandardMaterial({
+                                    color: new THREE.Color(0xffffff),
+                                    emissive: new THREE.Color(0xffffff),
+                                    emissiveIntensity: 0.8,
+                                })
+                            }
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             name="frontBlinkers"
@@ -629,7 +634,13 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.BrakeLights.geometry}
-                            material={brakeLightsMaterial}
+                            material={
+                                new THREE.MeshStandardMaterial({
+                                    color: new THREE.Color(0xff0000),
+                                    emissive: new THREE.Color(0xff0000),
+                                    emissiveIntensity: 0.4,
+                                })
+                            }
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             ref={brakeLightsRef}
@@ -640,7 +651,13 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.Fogs.geometry}
-                            material={fogLightsMaterial}
+                            material={
+                                new THREE.MeshStandardMaterial({
+                                    color: new THREE.Color(0xff6700),
+                                    emissive: new THREE.Color(0xff6700),
+                                    emissiveIntensity: 0.6,
+                                })
+                            }
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             name="fogLights"
@@ -675,7 +692,12 @@ const HachiRoku = () => {
                                 castShadow
                                 receiveShadow
                                 geometry={nodes.LeftFrontTire.geometry}
-                                material={materials.Tire}
+                                material={
+                                    new THREE.MeshStandardMaterial({
+                                        color: new THREE.Color(0x555555),
+                                        roughness: 0.8,
+                                    })
+                                }
                                 rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                                 scale={1.315}
                                 name="leftFrontTire"
@@ -745,7 +767,12 @@ const HachiRoku = () => {
                                 castShadow
                                 receiveShadow
                                 geometry={nodes.RightFrontTire.geometry}
-                                material={materials.Tire}
+                                material={
+                                    new THREE.MeshStandardMaterial({
+                                        color: new THREE.Color(0x555555),
+                                        roughness: 0.8,
+                                    })
+                                }
                                 rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                                 scale={1.315}
                                 name="rightFrontTire"
@@ -797,7 +824,12 @@ const HachiRoku = () => {
                                 castShadow
                                 receiveShadow
                                 geometry={nodes.LeftRearTire.geometry}
-                                material={materials.Tire}
+                                material={
+                                    new THREE.MeshStandardMaterial({
+                                        color: new THREE.Color(0x555555),
+                                        roughness: 0.8,
+                                    })
+                                }
                                 rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                                 scale={1.315}
                                 name="leftRearTire"
@@ -833,7 +865,12 @@ const HachiRoku = () => {
                                 castShadow
                                 receiveShadow
                                 geometry={nodes.RightRearTire.geometry}
-                                material={materials.Tire}
+                                material={
+                                    new THREE.MeshStandardMaterial({
+                                        color: new THREE.Color(0x555555),
+                                        roughness: 0.8,
+                                    })
+                                }
                                 rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                                 scale={1.315}
                                 name="rightRearTire"

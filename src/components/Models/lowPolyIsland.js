@@ -2,6 +2,7 @@
 import React from 'react';
 import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
+import * as THREE from 'three';
 
 const LowPolyIsland = () => {
     const { nodes, materials } = useGLTF('/models/lowPolyIsland.glb');
@@ -29,6 +30,8 @@ const LowPolyIsland = () => {
                     geometry={nodes.Grass.geometry}
                     material={materials['Grass.003']}
                     position={[0, 1042, 0]}
+                    name='grass'
+
                 />
                 <group
                     position={[-448, 1210, 353]}
