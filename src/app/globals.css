@@ -140,7 +140,6 @@ body {
     transform: translate(0px, 25px);
 }
 
-
 .audio-button:hover .audio-button-text {
     background-color: rgba(0, 123, 255, 0.25);
 }
@@ -148,10 +147,82 @@ body {
 /* end audio button */
 
 /* about button */
-/* end about button */
+
+.about-button:hover {
+    color: #007bff;
+}
+.about-button-text {
+    color: black;
+    background-color: none;
+    transition: background-color ease;
+}
+.about-button:hover .about-button-text {
+    background-color: rgba(0, 123, 255, 0.25);
+}
+/* .figure{}
+.arm1{}
+.wrist1{}
+.arm2{}
+.wrist2{}
+.leg1{}
+.calf1{}
+.leg2{}
+.calf2{}
+ */
+
 
 /* contact button */
+
+.contact-button-text {
+    color: black;
+    background-color: none;
+    transition: background-color ease;
+}
+.contact-button-smiley {
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform: scale(0);
+    /* transition-delay: 0.6s; */
+}
+
+.contact-button:hover .contact-button-smiley {
+    transform: scale(1);
+}
+
+.contact-button:hover {
+    color: #007bff;
+}
+.contact-button:hover .contact-button-text {
+    background-color: rgba(0, 123, 255, 0.25);
+}
+
 /* end contact button */
 
 /* close button */
+
+.close-button-text {
+    color: black;
+    background-color: none;
+    transition: background-color ease;
+}
+.close-button-svg {
+    background-color: black;
+    transition: background-color ease;
+}
+.close-button-x {
+    transform-origin: center;
+    scale: 1;
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+.close-button:hover .close-button-svg {
+    background-color: #007bff;
+}
+.close-button:hover .close-button-x {
+    transform: rotate(90deg) scale(1.2);
+}
+
+.close-button:hover .close-button-text {
+    background-color: rgba(0, 123, 255, 0.25);
+}
+
 /* end close button */
