@@ -97,7 +97,7 @@ body {
 .control-button-top-circle,
 .control-button-bottom-circle {
     /* transition: transform 0.8s ease; */
-    transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .control-button:hover .control-button-top-circle {
@@ -122,7 +122,28 @@ body {
 /* end control button */
 
 /* audio button */
+.audio-button:hover {
+    color: #007bff;
+}
+.audio-button-left-pod,
+.audio-button-right-pod {
+    transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
 
+.audio-button-text {
+    color: black;
+    background-color: none;
+    transition: background-color ease;
+}
+
+.audio-button:hover .audio-button-left-pod {
+    transform: translate(0px, 25px);
+}
+
+
+.audio-button:hover .audio-button-text {
+    background-color: rgba(0, 123, 255, 0.25);
+}
 
 /* end audio button */
 

@@ -204,7 +204,6 @@ function Navigation() {
                                 damping: 20,
                             }}
                         >
-                            {/* #007BFF */}
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-8 h-8"
@@ -226,7 +225,6 @@ function Navigation() {
                                     strokeLinecap="round"
                                 />
                                 {/* Top Circle */}
-                                {/* <circle cx="90" cy="80" r="28" fill="black" /> */}
                                 <circle
                                     cx="90"
                                     cy="80"
@@ -235,7 +233,6 @@ function Navigation() {
                                     className="control-button-top-circle"
                                 />
                                 {/* Bottom Circle */}
-                                {/* <circle cx="170" cy="176" r="28" fill="black" /> */}
                                 <circle
                                     cx="170"
                                     cy="176"
@@ -250,7 +247,7 @@ function Navigation() {
                         </motion.button>
 
                         <motion.button
-                            className="flex items-center flex-col text-sm"
+                            className="flex items-center flex-col text-sm audio-button"
                             initial={{ opacity: 0, x: 200 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{
@@ -267,56 +264,66 @@ function Navigation() {
                                 viewBox="0 0 24 24"
                                 fill="none"
                             >
-                                <path
-                                    d="M6.72 9.56H5.78C3.7 9.56 2 7.86003 2 5.78003C2 3.70003 3.7 2 5.78 2H7.67001C9.23001 2 10.5 3.28002 10.5 4.83002V7.39001V17.1C10.5 18.14 9.64999 18.99 8.60999 18.99C7.56999 18.99 6.72 18.14 6.72 17.1V9.56Z"
-                                    stroke="currentColor"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M5.78009 6.72003C5.26009 6.72003 4.84009 6.30009 4.84009 5.78009C4.84009 5.26009 5.26009 4.84009 5.78009 4.84009"
-                                    stroke="currentColor"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M17.28 9.56H18.22C20.3 9.56 22 7.86003 22 5.78003C22 3.70003 20.3 2 18.22 2H16.33C14.77 2 13.5 3.28002 13.5 4.83002V7.39001V17.1C13.5 18.14 14.35 18.99 15.39 18.99C16.43 18.99 17.28 18.14 17.28 17.1V9.56Z"
-                                    stroke="currentColor"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M18.22 6.72003C18.74 6.72003 19.16 6.30009 19.16 5.78009C19.16 5.26009 18.74 4.84009 18.22 4.84009"
-                                    stroke="currentColor"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M8.5 22V19"
-                                    stroke="currentColor"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
-                                <path
-                                    d="M15.5 22V19"
-                                    stroke="currentColor"
-                                    stroke-width="1.5"
-                                    stroke-miterlimit="10"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
+                                <g className="audio-button-left-pod">
+                                    <path
+                                        d="M6.72 9.56H5.78C3.7 9.56 2 7.86003 2 5.78003C2 3.70003 3.7 2 5.78 2H7.67001C9.23001 2 10.5 3.28002 10.5 4.83002V7.39001V17.1C10.5 18.14 9.64999 18.99 8.60999 18.99C7.56999 18.99 6.72 18.14 6.72 17.1V9.56Z"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeMiterlimit="10"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M5.78009 6.72003C5.26009 6.72003 4.84009 6.30009 4.84009 5.78009C4.84009 5.26009 5.26009 4.84009 5.78009 4.84009"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeMiterlimit="10"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                    <path
+                                        d="M8.5 22V19"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeMiterlimit="10"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </g>
+                                <g className="audio-button-right-pod">
+                                    <path
+                                        d="M17.28 9.56H18.22C20.3 9.56 22 7.86003 22 5.78003C22 3.70003 20.3 2 18.22 2H16.33C14.77 2 13.5 3.28002 13.5 4.83002V7.39001V17.1C13.5 18.14 14.35 18.99 15.39 18.99C16.43 18.99 17.28 18.14 17.28 17.1V9.56Z"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeMiterlimit="10"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="audio-button-right-outline"
+                                    />
+
+                                    <path
+                                        d="M18.22 6.72003C18.74 6.72003 19.16 6.30009 19.16 5.78009C19.16 5.26009 18.74 4.84009 18.22 4.84009"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeMiterlimit="10"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="audio-button-depth"
+                                    />
+                                    <path
+                                        d="M15.5 22V19"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        strokeMiterlimit="10"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    />
+                                </g>
                             </svg>
-                            <h2 className="px-2 py-1 rounded-lg ">Audio</h2>
+
+                            <h2 className="px-2 py-1 rounded-lg audio-button-text">
+                                Audio
+                            </h2>
                         </motion.button>
 
                         <motion.button
