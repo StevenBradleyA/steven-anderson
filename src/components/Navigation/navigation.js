@@ -78,15 +78,67 @@ function Navigation() {
 
     const [isHovered, setIsHovered] = useState(false);
 
+    // const figureVariants = {
+    //     initial: { x: 0 },
+    //     hover: {
+    //         x: 15,
+    //         transition: { duration: 0.6, ease: 'easeInOut', delay: 0 },
+    //     },
+    //     exit: {
+    //         x: 0,
+    //         transition: { duration: 0.6, ease: 'easeInOut', delay: 0 },
+    //     },
+    // };
+
+    // const partVariants = (direction) => ({
+    //     initial: { rotate: 0 },
+    //     hover: {
+    //         rotate:
+    //             direction === 'opposite'
+    //                 ? [0, -15, 0, -15, 0]
+    //                 : [0, 15, 0, 15, 0],
+    //         transition: {
+    //             duration: 0.6,
+    //             ease: 'easeIn',
+    //             delay: 0,
+    //         },
+    //     },
+    //     exit: {
+    //         rotate:
+    //             direction === 'opposite'
+    //                 ? [0, 15, 0, 15, 0]
+    //                 : [0, -15, 0, -15, 0],
+    //         transition: {
+    //             duration: 0.6,
+    //             ease: 'easeIn',
+    //             delay: 0,
+    //         },
+    //     },
+    // });
+
+    // const figureVariants = {
+    //     initial: { x: 0, y: 0 },
+    //     hover: {
+    //         x: [0, 10, 20, 30, 30],
+    //         y: [0, 0, 0, 0, 60],
+    //         transition: { duration: 1.8, ease: 'easeInOut', delay: 0 },
+    //     },
+    // };
     const figureVariants = {
-        initial: { x: 0 },
+        initial: { x: 0, y: 0, rotate: 0 },
         hover: {
-            x: 10,
-            transition: { duration: 0.6, ease: 'easeInOut', delay: 0 },
+            x: [0, 14, 28, 42, 42],
+            y: [0, 0, 0, 0, 120],
+            opacity: [100, 100, 100, 100, 0],
+            rotate: [0, 0, 0, 0, -180],
+            transition: { duration: 1.8, ease: 'easeInOut', delay: 0 },
         },
         exit: {
-            x: 0,
-            transition: { duration: 0.6, ease: 'easeInOut', delay: 0 },
+            x: [42, 42, 28, 14, 0],
+            y: [120, 0, 0, 0, 0],
+            opacity: [0, 100, 100, 100, 100],
+            rotate: [-180, 0, 0, 0, 0],
+            transition: { duration: 1.8, ease: 'easeInOut', delay: 0 },
         },
     };
 
@@ -98,23 +150,61 @@ function Navigation() {
                     ? [0, -15, 0, -15, 0]
                     : [0, 15, 0, 15, 0],
             transition: {
-                duration: 0.6,
-                ease: 'easeIn',
+                duration: 1.8,
+                ease: 'easeInOut',
                 delay: 0,
             },
         },
         exit: {
             rotate:
                 direction === 'opposite'
-                    ? [0, 15, 0, 15, 0]
-                    : [0, -15, 0, -15, 0],
+                    ? [0, 25, 0, 25, 0]
+                    : [0, -25, 0, -25, 0],
             transition: {
-                duration: 0.6,
-                ease: 'easeIn',
+                duration: 1.8,
+                ease: 'easeInOut',
                 delay: 0,
             },
         },
     });
+
+    // const figureVariants = {
+    //     initial: { x: 0, y: 0, rotate: 0 },
+    //     hover: {
+    //         x: [0, 14, 28, 42, 42],
+    //         y: [0, 0, 0, 0, 120],
+    //         opacity: [100, 100, 100, 100, 0],
+    //         rotate: [0, 0, 0, 0, -180],
+    //         transition: { duration: 1.8, ease: 'easeInOut', delay: 0 },
+    //     },
+    //     exit: {
+    //         x: [42, 42, 28, 14, 0],
+    //         y: [120, 0, 0, 0, 0],
+    //         opacity: [0, 100, 100, 100, 100],
+    //         rotate: [-180, 0, 0, 0, 0],
+    //         transition: { duration: 1.8, ease: 'easeInOut', delay: 0 },
+    //     }
+    // };
+
+    // const partVariants = (direction) => ({
+    //     initial: { rotate: 0 },
+    //     hover: {
+    //         rotate: direction === 'opposite' ? [0, -15, 0, -15, 0] : [0, 15, 0, 15, 0],
+    //         transition: {
+    //             duration: 1.8,
+    //             ease: 'easeInOut',
+    //             delay: 0,
+    //         },
+    //     },
+    //     exit: {
+    //         rotate: direction === 'opposite' ? [0, -15, 0, -15, 0].reverse() : [0, 15, 0, 15, 0].reverse(),
+    //         transition: {
+    //             duration: 1.8,
+    //             ease: 'easeInOut',
+    //             delay: 0,
+    //         },
+    //     }
+    // });
 
     // end animation
 

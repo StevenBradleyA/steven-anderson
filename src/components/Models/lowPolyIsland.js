@@ -6,6 +6,9 @@ import * as THREE from 'three';
 
 const LowPolyIsland = () => {
     const { nodes, materials } = useGLTF('/models/lowPolyIsland.glb');
+    const { nodes: grassNodes, materials: grassMaterials } = useGLTF(
+        '/models/grassBake.glb'
+    );
 
     return (
         <RigidBody
@@ -24,7 +27,7 @@ const LowPolyIsland = () => {
                     material={materials.IslandBrown}
                     position={[0, 771, 0]}
                 />
-                <mesh
+                {/* <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.Grass.geometry}
@@ -32,7 +35,15 @@ const LowPolyIsland = () => {
                     position={[0, 1042, 0]}
                     name='grass'
 
-                />
+                /> */}
+   <mesh
+        castShadow
+        receiveShadow
+        geometry={grassNodes.Grass_Baked.geometry}
+        material={grassMaterials['Grass_Baked.001']}
+        position={[0, 1042, 0]}
+      />
+
                 <group
                     position={[-448, 1210, 353]}
                     rotation={[0, 0.199, 0]}
@@ -272,4 +283,6 @@ const LowPolyIsland = () => {
     );
 };
 useGLTF.preload('/models/lowPolyIsland.glb');
+useGLTF.preload('/models/grassBake.glb');
+
 export default LowPolyIsland;
