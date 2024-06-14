@@ -10,6 +10,7 @@ import HachiRoku from './hachiroku';
 import TitleScreen from '../Loading/titleScreen';
 import { AnimatePresence } from 'framer-motion';
 import GrassBlades from './grassBlades';
+import TreesAndRocks from './treesAndRocks';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -183,8 +184,9 @@ const ThreeScene = () => {
                         intensity={0.5}
                         color="orange"
                     />
-                    <Physics gravity={[0, -98.1, 0]}>
+                    <Physics gravity={[0, -98.1, 0]} debug>
                         <LowPolyIsland />
+                        <TreesAndRocks />
                         <HachiRoku />
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
