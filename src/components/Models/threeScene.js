@@ -13,6 +13,7 @@ import GrassBlades from './grassBlades';
 import TreesAndRocks from './treesAndRocks';
 import Tires from './tires';
 import RetroSun from './retroSun';
+import HireMeSigns from './signs';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -191,6 +192,7 @@ const ThreeScene = () => {
                         <TreesAndRocks />
                         <HachiRoku />
                         <Tires />
+                        <HireMeSigns/>
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
