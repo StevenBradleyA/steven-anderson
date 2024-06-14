@@ -9,6 +9,7 @@ import LowPolyIsland from './lowPolyIsland';
 import HachiRoku from './hachiroku';
 import TitleScreen from '../Loading/titleScreen';
 import { AnimatePresence } from 'framer-motion';
+import GrassBlades from './grassBlades';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -188,9 +189,10 @@ const ThreeScene = () => {
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
-                    <Sun />
-                    <Stars />
-                    <Clouds />
+                    <GrassBlades />
+                    {/* <Sun /> */}
+                    {/* <Stars /> */}
+                    {/* <Clouds /> */}
                 </Suspense>
             </Canvas>
         </>

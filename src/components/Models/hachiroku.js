@@ -360,7 +360,11 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.Body.geometry}
-                            material={materials.Body}
+                            material={
+                                new THREE.MeshStandardMaterial({
+                                    color: new THREE.Color(0x007bff),
+                                })
+                            }
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             name="bodyPanels"
