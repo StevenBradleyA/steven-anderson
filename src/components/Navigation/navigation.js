@@ -82,13 +82,19 @@ function Navigation() {
     };
 
     const stickMan = {
-        initial: { x: 0, y: 0, rotate: 0, opacity: 100, color: 'black' },
+        initial: {
+            x: 0,
+            y: 0,
+            rotate: 0,
+            opacity: 100,
+            style: { color: 'black' },
+        },
         hover: {
             x: [0, 14, 28, 42, 42],
             y: [0, 0, 0, 0, 120],
             opacity: [100, 100, 100, 100, 0],
             rotate: [0, 0, 0, 0, -180],
-            color: '#007bff',
+            style: { color: '#007bff' },
             transition: { duration: 1.8, ease: 'easeInOut', delay: 0 },
         },
     };
@@ -460,8 +466,8 @@ function Navigation() {
                                             strokeLinejoin="round"
                                         />
                                         <path
-                                            fill-rule="evenodd"
-                                            clip-rule="evenodd"
+                                            fillRule="evenodd"
+                                            clipRule="evenodd"
                                             d="M19 12C19 15.866 15.866 19 12 19C8.13401 19 5 15.866 5 12C5 8.13401 8.13401 5 12 5C13.8565 5 15.637 5.7375 16.9497 7.05025C18.2625 8.36301 19 10.1435 19 12Z"
                                             stroke="currentColor"
                                             strokeWidth="1.5"

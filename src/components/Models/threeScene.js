@@ -12,6 +12,7 @@ import { AnimatePresence } from 'framer-motion';
 import GrassBlades from './grassBlades';
 import TreesAndRocks from './treesAndRocks';
 import Tires from './tires';
+import RetroSun from './retroSun';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -194,6 +195,7 @@ const ThreeScene = () => {
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
                     <GrassBlades />
+                    <RetroSun />
                     {/* <Sun />
                   <Stars />
                   <Clouds /> */}
