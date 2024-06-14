@@ -11,6 +11,7 @@ import TitleScreen from '../Loading/titleScreen';
 import { AnimatePresence } from 'framer-motion';
 import GrassBlades from './grassBlades';
 import TreesAndRocks from './treesAndRocks';
+import Tires from './tires';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -188,13 +189,14 @@ const ThreeScene = () => {
                         <LowPolyIsland />
                         <TreesAndRocks />
                         <HachiRoku />
+                        <Tires />
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
                     <GrassBlades />
-                    {/* <Sun /> */}
-                    {/* <Stars /> */}
-                    {/* <Clouds /> */}
+                    {/* <Sun />
+                  <Stars />
+                  <Clouds /> */}
                 </Suspense>
             </Canvas>
         </>
@@ -202,3 +204,373 @@ const ThreeScene = () => {
 };
 
 export default ThreeScene;
+
+/*
+
+export interface RigidBodyOptions extends ColliderProps {
+
+     Specify the type of this rigid body
+     
+    type?: RigidBodyTypeString;
+    export interface RigidBodyOptions extends ColliderProps {
+    
+      Specify the type of this rigid body
+    
+    type?: RigidBodyTypeString;
+    
+      Whether or not this body can sleep.
+      @defaultValue true
+    
+    canSleep?: boolean;
+     The linear damping coefficient of this rigid-body./
+    linearDamping?: number;
+     The angular damping coefficient of this rigid-body./
+    angularDamping?: number;
+    
+      The initial linear velocity of this body.
+      @defaultValue [0,0,0]
+    
+    linearVelocity?: Vector3Tuple;
+    
+      The initial angular velocity of this body.
+      @defaultValue [0,0,0]
+    
+    angularVelocity?: Vector3Tuple;
+    
+      The scaling factor applied to the gravity affecting the rigid-body.
+      @defaultValue 1.0
+    
+    gravityScale?: number;
+    
+      The dominance group of this RigidBody. If a rigid body has a higher domiance group,
+      on collision it will be immune to forces originating from the other bodies.
+      https://rapier.rs/docs/user_guides/javascript/rigid_bodies#dominance
+      Default: 0
+    
+    dominanceGroup?: number;
+    
+      Whether or not Continous Collision Detection is enabled for this rigid-body.
+      https://rapier.rs/docs/user_guides/javascript/rigid_bodies#continuous-collision-detection
+      @defaultValue false
+    
+    ccd?: boolean;
+    
+      Initial position of the RigidBody
+    
+    position?: Object3DProps["position"];
+    
+      Initial rotation of the RigidBody
+    
+    rotation?: Object3DProps["rotation"];
+    
+      Automatically generate colliders based on meshes inside this
+      rigid body.
+     
+      You can change the default setting globally by setting the colliders
+      prop on the <Physics /> component.
+     
+      Setting this to false will disable automatic colliders.
+    
+    colliders?: RigidBodyAutoCollider | false;
+    
+      Set the friction of auto-generated colliders.
+      This does not affect any non-automatic child collider-components.
+    
+    friction?: number;
+    
+      Set the restitution (bounciness) of auto-generated colliders.
+      This does not affect any non-automatic child collider-components.
+    
+    restitution?: number;
+    
+      Sets the number of additional solver iterations that will be run for this
+      rigid-body and everything that interacts with it directly or indirectly
+      through contacts or joints.
+     
+      Compared to increasing the global `World.numSolverIteration`, setting this
+      value lets you increase accuracy on only a subset of the scene, resulting in reduced
+      performance loss.
+    
+    additionalSolverIterations?: number;
+    
+      The default collision groups bitmask for all colliders in this rigid body.
+      Can be customized per-collider.
+    
+    collisionGroups?: InteractionGroups;
+    
+      The default solver groups bitmask for all colliders in this rigid body.
+      Can be customized per-collider.
+    
+    solverGroups?: InteractionGroups;
+    onSleep?(): void;
+    onWake?(): void;
+    
+      Locks all rotations that would have resulted from forces on the created rigid-body.
+    
+    lockRotations?: boolean;
+    
+      Locks all translations that would have resulted from forces on the created rigid-body.
+    
+    lockTranslations?: boolean;
+    
+      Allow rotation of this rigid-body only along specific axes.
+    
+    enabledRotations?: Boolean3Tuple;
+    
+      Allow translation of this rigid-body only along specific axes.
+    
+    enabledTranslations?: Boolean3Tuple;
+    
+      Passed down to the object3d representing this collider.
+    
+    userData?: Object3DProps["userData"];
+    
+      Include invisible objects on the collider creation estimation.
+    
+    includeInvisible?: boolean;
+    
+      Transform the RigidBodyState
+      @internal Do not use. Used internally by the InstancedRigidBodies to alter the RigidBody State
+    
+    transformState?: (state: RigidBodyState) => RigidBodyState;
+}export interface RigidBodyOptions extends ColliderProps {
+    
+      Specify the type of this rigid body
+    
+    type?: RigidBodyTypeString;
+    
+      Whether or not this body can sleep.
+      @defaultValue true
+    
+    canSleep?: boolean;
+     The linear damping coefficient of this rigid-body./
+    linearDamping?: number;
+     The angular damping coefficient of this rigid-body./
+    angularDamping?: number;
+    
+      The initial linear velocity of this body.
+      @defaultValue [0,0,0]
+    
+    linearVelocity?: Vector3Tuple;
+    
+      The initial angular velocity of this body.
+      @defaultValue [0,0,0]
+    
+    angularVelocity?: Vector3Tuple;
+    
+      The scaling factor applied to the gravity affecting the rigid-body.
+      @defaultValue 1.0
+    
+    gravityScale?: number;
+    
+      The dominance group of this RigidBody. If a rigid body has a higher domiance group,
+      on collision it will be immune to forces originating from the other bodies.
+      https://rapier.rs/docs/user_guides/javascript/rigid_bodies#dominance
+      Default: 0
+    
+    dominanceGroup?: number;
+    
+      Whether or not Continous Collision Detection is enabled for this rigid-body.
+      https://rapier.rs/docs/user_guides/javascript/rigid_bodies#continuous-collision-detection
+      @defaultValue false
+    
+    ccd?: boolean;
+    
+      Initial position of the RigidBody
+    
+    position?: Object3DProps["position"];
+    
+      Initial rotation of the RigidBody
+    
+    rotation?: Object3DProps["rotation"];
+    
+      Automatically generate colliders based on meshes inside this
+      rigid body.
+     
+      You can change the default setting globally by setting the colliders
+      prop on the <Physics /> component.
+     
+      Setting this to false will disable automatic colliders.
+    
+    colliders?: RigidBodyAutoCollider | false;
+    
+      Set the friction of auto-generated colliders.
+      This does not affect any non-automatic child collider-components.
+    
+    friction?: number;
+    
+      Set the restitution (bounciness) of auto-generated colliders.
+      This does not affect any non-automatic child collider-components.
+    
+    restitution?: number;
+    
+      Sets the number of additional solver iterations that will be run for this
+      rigid-body and everything that interacts with it directly or indirectly
+      through contacts or joints.
+     
+      Compared to increasing the global `World.numSolverIteration`, setting this
+      value lets you increase accuracy on only a subset of the scene, resulting in reduced
+      performance loss.
+    
+    additionalSolverIterations?: number;
+    
+      The default collision groups bitmask for all colliders in this rigid body.
+      Can be customized per-collider.
+    
+    collisionGroups?: InteractionGroups;
+    
+      The default solver groups bitmask for all colliders in this rigid body.
+      Can be customized per-collider.
+    
+    solverGroups?: InteractionGroups;
+    onSleep?(): void;
+    onWake?(): void;
+    
+      Locks all rotations that would have resulted from forces on the created rigid-body.
+    
+    lockRotations?: boolean;
+    
+      Locks all translations that would have resulted from forces on the created rigid-body.
+    
+    lockTranslations?: boolean;
+    
+      Allow rotation of this rigid-body only along specific axes.
+    
+    enabledRotations?: Boolean3Tuple;
+    
+      Allow translation of this rigid-body only along specific axes.
+    
+    enabledTranslations?: Boolean3Tuple;
+    
+      Passed down to the object3d representing this collider.
+    
+    userData?: Object3DProps["userData"];
+    
+      Include invisible objects on the collider creation estimation.
+    
+    includeInvisible?: boolean;
+    
+      Transform the RigidBodyState
+      @internal Do not use. Used internally by the InstancedRigidBodies to alter the RigidBody State
+    
+    transformState?: (state: RigidBodyState) => RigidBodyState;
+}
+      Whether or not this body can sleep.
+      @defaultValue true
+    
+    canSleep?: boolean;
+     The linear damping coefficient of this rigid-body./
+    linearDamping?: number;
+     The angular damping coefficient of this rigid-body./
+    angularDamping?: number;
+    
+      The initial linear velocity of this body.
+      @defaultValue [0,0,0]
+    
+    linearVelocity?: Vector3Tuple;
+    
+      The initial angular velocity of this body.
+      @defaultValue [0,0,0]
+    
+    angularVelocity?: Vector3Tuple;
+    
+      The scaling factor applied to the gravity affecting the rigid-body.
+      @defaultValue 1.0
+    
+    gravityScale?: number;
+    
+      The dominance group of this RigidBody. If a rigid body has a higher domiance group,
+      on collision it will be immune to forces originating from the other bodies.
+      https://rapier.rs/docs/user_guides/javascript/rigid_bodies#dominance
+      Default: 0
+    
+    dominanceGroup?: number;
+    
+      Whether or not Continous Collision Detection is enabled for this rigid-body.
+      https://rapier.rs/docs/user_guides/javascript/rigid_bodies#continuous-collision-detection
+      @defaultValue false
+    
+    ccd?: boolean;
+    
+      Initial position of the RigidBody
+    
+    position?: Object3DProps["position"];
+    
+      Initial rotation of the RigidBody
+    
+    rotation?: Object3DProps["rotation"];
+    
+      Automatically generate colliders based on meshes inside this
+      rigid body.
+     
+      You can change the default setting globally by setting the colliders
+      prop on the <Physics /> component.
+     
+      Setting this to false will disable automatic colliders.
+    
+    colliders?: RigidBodyAutoCollider | false;
+    
+      Set the friction of auto-generated colliders.
+      This does not affect any non-automatic child collider-components.
+    
+    friction?: number;
+    
+      Set the restitution (bounciness) of auto-generated colliders.
+      This does not affect any non-automatic child collider-components.
+    
+    restitution?: number;
+    
+      Sets the number of additional solver iterations that will be run for this
+      rigid-body and everything that interacts with it directly or indirectly
+      through contacts or joints.
+     
+      Compared to increasing the global `World.numSolverIteration`, setting this
+      value lets you increase accuracy on only a subset of the scene, resulting in reduced
+      performance loss.
+    
+    additionalSolverIterations?: number;
+    
+      The default collision groups bitmask for all colliders in this rigid body.
+      Can be customized per-collider.
+    
+    collisionGroups?: InteractionGroups;
+    
+      The default solver groups bitmask for all colliders in this rigid body.
+      Can be customized per-collider.
+    
+    solverGroups?: InteractionGroups;
+    onSleep?(): void;
+    onWake?(): void;
+    
+      Locks all rotations that would have resulted from forces on the created rigid-body.
+    
+    lockRotations?: boolean;
+    
+      Locks all translations that would have resulted from forces on the created rigid-body.
+    
+    lockTranslations?: boolean;
+    
+      Allow rotation of this rigid-body only along specific axes.
+    
+    enabledRotations?: Boolean3Tuple;
+    
+      Allow translation of this rigid-body only along specific axes.
+    
+    enabledTranslations?: Boolean3Tuple;
+    
+      Passed down to the object3d representing this collider.
+    
+    userData?: Object3DProps["userData"];
+    
+      Include invisible objects on the collider creation estimation.
+    
+    includeInvisible?: boolean;
+    
+      Transform the RigidBodyState
+      @internal Do not use. Used internally by the InstancedRigidBodies to alter the RigidBody State
+    
+    transformState?: (state: RigidBodyState) => RigidBodyState;
+}
+
+
+*/

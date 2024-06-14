@@ -335,7 +335,7 @@ const HachiRoku = () => {
                 position={[0, 1300, 0]}
                 friction={0.3}
                 name="car"
-                enableCcd={true}
+                ccd={true}
             >
                 <CuboidCollider
                     args={[4, 1.5, 9.3]}
