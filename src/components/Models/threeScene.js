@@ -11,9 +11,10 @@ import TitleScreen from '../Loading/titleScreen';
 import { AnimatePresence } from 'framer-motion';
 import GrassBlades from './grassBlades';
 import TreesAndRocks from './treesAndRocks';
-import Tires from './tires';
 import RetroSun from './retroSun';
-import HireMeSigns from './signs';
+import HireMeSigns from './hireMeSigns';
+import StreetLights from './streetLights';
+import TireStacks from './tireStacks';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -189,10 +190,12 @@ const ThreeScene = () => {
                     />
                     <Physics gravity={[0, -98.1, 0]} debug>
                         <LowPolyIsland />
+
                         <TreesAndRocks />
                         <HachiRoku />
-                        <Tires />
-                        <HireMeSigns/>
+                        <TireStacks />
+                        <HireMeSigns />
+                        <StreetLights />
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
