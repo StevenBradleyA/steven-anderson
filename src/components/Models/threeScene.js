@@ -29,6 +29,7 @@ import Mustang from './mustang';
 import MechanicalKeyboard from './mechanicalKeyboard';
 import Siegmeyer from './siegmeyer';
 import Hackerman from './hackerman';
+import Tunnel from './tunnel';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -237,6 +238,7 @@ const ThreeScene = () => {
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
                     <Skills />
+                    <Tunnel />
                     <GrassBlades />
                     <RetroSun />
                     <Mustang />

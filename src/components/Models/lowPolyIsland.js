@@ -35,13 +35,19 @@ const LowPolyIsland = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Cube002.geometry}
-                    material={materials.IslandBrown}
+                    material={materials['Grass match texture']}
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.Cube002_1.geometry}
-                    material={materials['Grass match texture']}
+                    material={materials.IslandBrown}
+                />
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Cube002_2.geometry}
+                    material={materials.Black}
                 />
                 <mesh
                     castShadow
