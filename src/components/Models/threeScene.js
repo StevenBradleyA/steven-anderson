@@ -31,6 +31,7 @@ import Siegmeyer from './siegmeyer';
 import Hackerman from './hackerman';
 import Tunnel from './tunnel';
 import Controls from './controls';
+import StreetLightCones from './streetLightCones';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -247,6 +248,7 @@ const ThreeScene = () => {
                     <Siegmeyer />
                     <Hackerman />
                     <Controls />
+                    <StreetLightCones />
                     {/* 
                   <Stars />
                   <Clouds /> */}

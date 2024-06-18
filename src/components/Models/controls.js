@@ -24,7 +24,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.arrowDown.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-83.368, 1286.797, 91.854]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -33,7 +33,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.arrowLeft.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-76.05, 1286.772, 95.37]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -42,7 +42,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.arrowRight.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-90.453, 1286.772, 88.451]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -51,7 +51,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.arrowUp.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-82.972, 1294.696, 92.045]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -69,7 +69,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsRect.geometry}
-                    material={nodes.controlsRect.material}
+                    material={whiteGlow}
                     position={[-38.462, 1327.715, 113.3]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -78,7 +78,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsRect001.geometry}
-                    material={nodes.controlsRect001.material}
+                    material={whiteGlow}
                     position={[-69.919, 1306.988, 98.064]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -87,7 +87,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsText.geometry}
-                    material={materials.White}
+                    material={whiteGlow}
                     position={[-27.523, 1319.772, 118.19]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -101,14 +101,14 @@ const Controls = () => {
                         castShadow
                         receiveShadow
                         geometry={nodes.Text007_1.geometry}
-                        material={materials.White}
+                        material={whiteGlow}
                     />
                     <mesh
                         name="Text007_2"
                         castShadow
                         receiveShadow
                         geometry={nodes.Text007_2.geometry}
-                        material={materials.Blue}
+                        material={blueGlow}
                     />
                 </group>
                 <group
@@ -121,14 +121,14 @@ const Controls = () => {
                         castShadow
                         receiveShadow
                         geometry={nodes.Text006_1.geometry}
-                        material={materials.White}
+                        material={whiteGlow}
                     />
                     <mesh
                         name="Text006_2"
                         castShadow
                         receiveShadow
                         geometry={nodes.Text006_2.geometry}
-                        material={materials.Blue}
+                        material={blueGlow}
                     />
                 </group>
                 <group
@@ -141,14 +141,14 @@ const Controls = () => {
                         castShadow
                         receiveShadow
                         geometry={nodes.Curve004.geometry}
-                        material={materials.White}
+                        material={whiteGlow}
                     />
                     <mesh
                         name="Curve004_1"
                         castShadow
                         receiveShadow
                         geometry={nodes.Curve004_1.geometry}
-                        material={materials.Blue}
+                        material={blueGlow}
                     />
                 </group>
                 <mesh
@@ -156,7 +156,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.movementText.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-72.276, 1302.72, 96.704]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -170,14 +170,14 @@ const Controls = () => {
                         castShadow
                         receiveShadow
                         geometry={nodes.Text008_1.geometry}
-                        material={materials.White}
+                        material={whiteGlow}
                     />
                     <mesh
                         name="Text008_2"
                         castShadow
                         receiveShadow
                         geometry={nodes.Text008_2.geometry}
-                        material={materials.Blue}
+                        material={blueGlow}
                     />
                 </group>
                 <mesh
@@ -195,7 +195,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text001.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-195.058, 1298.9, 38.061]}
                     rotation={[Math.PI / 2, 0, -2.691]}
                     scale={11.575}
@@ -210,14 +210,14 @@ const Controls = () => {
                         castShadow
                         receiveShadow
                         geometry={nodes.Text013.geometry}
-                        material={materials.White}
+                        material={whiteGlow}
                     />
                     <mesh
                         name="Text013_1"
                         castShadow
                         receiveShadow
                         geometry={nodes.Text013_1.geometry}
-                        material={materials.Blue}
+                        material={blueGlow}
                     />
                 </group>
                 <mesh
@@ -225,7 +225,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text003.geometry}
-                    material={materials.White}
+                    material={whiteGlow}
                     position={[-221.374, 1293.639, 25.691]}
                     rotation={[Math.PI / 2, 0, -2.689]}
                     scale={4.325}
@@ -235,7 +235,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text004.geometry}
-                    material={materials.White}
+                    material={whiteGlow}
                     position={[-221.374, 1290.22, 25.691]}
                     rotation={[Math.PI / 2, 0, -2.689]}
                     scale={4.325}
@@ -245,7 +245,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text006.geometry}
-                    material={materials.White}
+                    material={whiteGlow}
                     position={[-221.374, 1286.639, 25.691]}
                     rotation={[Math.PI / 2, 0, -2.689]}
                     scale={4.325}
@@ -255,7 +255,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text002.geometry}
-                    material={materials.White}
+                    material={whiteGlow}
                     position={[-224.187, 1315, 24.321]}
                     rotation={[Math.PI / 2, 0, -2.689]}
                     scale={4.325}
@@ -265,7 +265,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text007.geometry}
-                    material={materials.White}
+                    material={whiteGlow}
                     position={[-221.027, 1324.957, 26.19]}
                     rotation={[Math.PI / 2, 0, -2.689]}
                     scale={4.325}
@@ -275,7 +275,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsGrid001.geometry}
-                    material={nodes.controlsGrid001.material}
+                    material={whiteGlow}
                     position={[-217.314, 1331.357, 27.959]}
                     rotation={[0, 0.291, 0]}
                 />
@@ -284,7 +284,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.movementText001.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-219.442, 1330.928, 27.116]}
                     rotation={[0, 0.288, 0]}
                 />
@@ -298,14 +298,14 @@ const Controls = () => {
                         castShadow
                         receiveShadow
                         geometry={nodes.Curve005.geometry}
-                        material={materials.White}
+                        material={whiteGlow}
                     />
                     <mesh
                         name="Curve005_1"
                         castShadow
                         receiveShadow
                         geometry={nodes.Curve005_1.geometry}
-                        material={materials.Blue}
+                        material={blueGlow}
                     />
                 </group>
                 <group
@@ -318,14 +318,14 @@ const Controls = () => {
                         castShadow
                         receiveShadow
                         geometry={nodes.Text017.geometry}
-                        material={materials.White}
+                        material={whiteGlow}
                     />
                     <mesh
                         name="Text017_1"
                         castShadow
                         receiveShadow
                         geometry={nodes.Text017_1.geometry}
-                        material={materials.Blue}
+                        material={blueGlow}
                     />
                 </group>
                 <group
@@ -338,14 +338,14 @@ const Controls = () => {
                         castShadow
                         receiveShadow
                         geometry={nodes.Text016.geometry}
-                        material={materials.White}
+                        material={whiteGlow}
                     />
                     <mesh
                         name="Text016_1"
                         castShadow
                         receiveShadow
                         geometry={nodes.Text016_1.geometry}
-                        material={materials.Blue}
+                        material={blueGlow}
                     />
                 </group>
                 <group
@@ -358,14 +358,14 @@ const Controls = () => {
                         castShadow
                         receiveShadow
                         geometry={nodes.Text018.geometry}
-                        material={materials.White}
+                        material={whiteGlow}
                     />
                     <mesh
                         name="Text018_1"
                         castShadow
                         receiveShadow
                         geometry={nodes.Text018_1.geometry}
-                        material={materials.Blue}
+                        material={blueGlow}
                     />
                 </group>
                 <mesh
@@ -373,7 +373,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsRect002.geometry}
-                    material={nodes.controlsRect002.material}
+                    material={whiteGlow}
                     position={[-186.896, 1324, 42.55]}
                     rotation={[0, 0.296, 0]}
                     scale={[1, 0.879, 1]}
@@ -383,7 +383,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsRect003.geometry}
-                    material={nodes.controlsRect003.material}
+                    material={whiteGlow}
                     position={[-217.155, 1306.988, 28]}
                     rotation={[0, 0.286, 0]}
                 />
@@ -392,7 +392,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text008.geometry}
-                    material={nodes.Text008.material}
+                    material={whiteGlow}
                     position={[-300.759, 1365, -11.818]}
                     rotation={[0, 1.111, -Math.PI / 2]}
                     scale={22.869}
@@ -402,7 +402,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text009.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-322, 1298.9, -21.42]}
                     rotation={[Math.PI / 2, 0, -2.691]}
                     scale={11.575}
@@ -412,7 +412,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsGrid002.geometry}
-                    material={nodes.controlsGrid002.material}
+                    material={whiteGlow}
                     position={[-347.386, 1331.357, -33.041]}
                     rotation={[0, 0.291, 0]}
                 />
@@ -421,7 +421,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsRect004.geometry}
-                    material={nodes.controlsRect004.material}
+                    material={whiteGlow}
                     position={[-316.968, 1324, -18.45]}
                     rotation={[0, 0.296, 0]}
                     scale={[1, 0.879, 1]}
@@ -431,7 +431,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsRect005.geometry}
-                    material={nodes.controlsRect005.material}
+                    material={whiteGlow}
                     position={[-347.227, 1306.988, -33]}
                     rotation={[0, 0.286, 0]}
                 />
@@ -440,7 +440,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text015.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-322, 1327, -21.578]}
                     rotation={[Math.PI / 2, 0, -2.691]}
                     scale={11.575}
@@ -456,14 +456,14 @@ const Controls = () => {
                         castShadow
                         receiveShadow
                         geometry={nodes.Curve007.geometry}
-                        material={materials['White.002']}
+                        material={whiteGlow}
                     />
                     <mesh
                         name="Curve007_1"
                         castShadow
                         receiveShadow
                         geometry={nodes.Curve007_1.geometry}
-                        material={materials['Blue.001']}
+                        material={blueGlow}
                     />
                 </group>
                 <mesh
@@ -471,7 +471,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text010.geometry}
-                    material={materials.White}
+                    material={whiteGlow}
                     position={[-338.176, 1315.5, -29.518]}
                     rotation={[Math.PI / 2, 0, -2.685]}
                     scale={7.665}
@@ -481,7 +481,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Text012.geometry}
-                    material={materials['White.006']}
+                    material={blueGlow}
                     position={[-343.582, 1287.7, -31.65]}
                     rotation={[Math.PI / 2, 0, -2.685]}
                     scale={7.665}
@@ -491,7 +491,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Cube001.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-345.879, 1318, -32.249]}
                     rotation={[0, -0.451, -Math.PI]}
                     scale={[-12.588, -4.977, -0.417]}
