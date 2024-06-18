@@ -105,6 +105,6 @@ const HireMeSigns = () => {
         </RigidBody>
     );
 };
-useGLTF.preload('/models/signs.glb');
+useGLTF.preload('/models/hireMeSigns.glb');
 
 export default HireMeSigns;

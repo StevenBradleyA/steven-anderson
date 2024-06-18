@@ -4,17 +4,31 @@ import { Canvas } from '@react-three/fiber';
 import { Physics } from '@react-three/rapier';
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { Sphere, Plane } from '@react-three/drei';
+import { Plane } from '@react-three/drei';
 import LowPolyIsland from './lowPolyIsland';
 import HachiRoku from './hachiroku';
-import TitleScreen from '../Loading/titleScreen';
-import { AnimatePresence } from 'framer-motion';
 import GrassBlades from './grassBlades';
 import TreesAndRocks from './treesAndRocks';
 import RetroSun from './retroSun';
 import HireMeSigns from './hireMeSigns';
 import StreetLights from './streetLights';
 import TireStacks from './tireStacks';
+import RetroStands from './retroStands';
+import Skills from './skills';
+import Ferrari from './ferrari';
+import Lamborghini from './lamborghini';
+import Projects from './projects';
+import CenterPiece from './centerPiece';
+import {
+    DirectionalLightHelper,
+    PointLightHelper,
+    SpotLightHelper,
+} from 'three';
+import { useHelper } from '@react-three/drei';
+import Mustang from './mustang';
+import MechanicalKeyboard from './mechanicalKeyboard';
+import Siegmeyer from './siegmeyer';
+import Hackerman from './hackerman';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -111,12 +125,6 @@ const ThreeScene = () => {
         );
     };
 
-    const Sun = () => (
-        <Sphere args={[600, 600, 600]} position={[2000, 1800, -3000]}>
-            <meshStandardMaterial color="blue" />
-        </Sphere>
-    );
-
     const Stars = () => {
         const { scene } = useThree();
         const starCount = 500;
@@ -161,6 +169,34 @@ const ThreeScene = () => {
         return <group>{clouds}</group>;
     };
 
+    const DirectionalLightWithHelper = ({ position, intensity, color }) => {
+        const lightRef = useRef();
+        useHelper(lightRef, DirectionalLightHelper, 5, color); // size and color of the helper
+
+        return (
+            <directionalLight
+                ref={lightRef}
+                position={position}
+                intensity={intensity}
+                color={color}
+            />
+        );
+    };
+
+    const PointLightWithHelper = ({ position, intensity, color }) => {
+        const lightRef = useRef();
+        useHelper(lightRef, PointLightHelper, 4, color); // size and color of the helper
+
+        return (
+            <pointLight
+                ref={lightRef}
+                position={position}
+                intensity={intensity}
+                color={color}
+            />
+        );
+    };
+
     return (
         <>
             <Canvas
@@ -176,32 +212,38 @@ const ThreeScene = () => {
                 }}
             >
                 <Suspense fallback={null}>
-                    <ambientLight intensity={0.5} />
-                    <directionalLight position={[50, 1500, 50]} intensity={1} />
-                    <directionalLight
-                        position={[-50, 1500, -50]}
-                        intensity={0.5}
-                        color="blue"
-                    />
-                    <pointLight
-                        position={[0, 2000, 1000]}
-                        intensity={0.5}
-                        color="orange"
-                    />
-                    <Physics gravity={[0, -98.1, 0]} debug>
-                        <LowPolyIsland />
+                    <ambientLight intensity={1} />
+                    {/* <directionalLight position={[1500, 2500, -2500]} intensity={1} /> */}
 
+                    <DirectionalLightWithHelper
+                        position={[1500, 2500, -2500]}
+                        intensity={1.2}
+                        color="white"
+                    />
+
+                    <Physics gravity={[0, -98.1, 0]}>
+                        <LowPolyIsland />
                         <TreesAndRocks />
+                        <RetroStands />
                         <HachiRoku />
                         <TireStacks />
                         <HireMeSigns />
                         <StreetLights />
+                        <Ferrari />
+                        <Lamborghini />
+                        <Projects />
+                        <CenterPiece />
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
+                    <Skills />
                     <GrassBlades />
                     <RetroSun />
-                    {/* <Sun />
+                    <Mustang />
+                    <MechanicalKeyboard />
+                    <Siegmeyer />
+                    <Hackerman />
+                    {/* 
                   <Stars />
                   <Clouds /> */}
                 </Suspense>

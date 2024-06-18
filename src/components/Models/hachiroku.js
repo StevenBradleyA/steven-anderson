@@ -152,8 +152,8 @@ const HachiRoku = () => {
 
         if (brakeLightsRef.current) {
             brakeLightsRef.current.material.emissiveIntensity = moveBackward
-                ? 1
-                : 0.4;
+                ? 1.8
+                : 1.2;
         }
 
         // respawn
@@ -317,13 +317,21 @@ const HachiRoku = () => {
     });
 
     //  materials
-    const metallicPurple = new THREE.Color(0x800080);
-    const carPurple = new THREE.MeshStandardMaterial({
-        color: metallicPurple,
-        roughness: 0.2,
-        metalness: 0.5,
-    });
+  
 
+    const carBlue = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x007bff),
+        roughness: 1,
+    });
+    const slateGray = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x353839),
+        roughness: 1,
+    });
+    const glass = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x353839),
+        roughness: 0.5,
+        metalness: 0.7,
+    });
     // console.log(activeCamera);
 
     return (
@@ -360,11 +368,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.Body.geometry}
-                            material={
-                                new THREE.MeshStandardMaterial({
-                                    color: new THREE.Color(0x007bff),
-                                })
-                            }
+                            material={carBlue}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             name="bodyPanels"
@@ -373,7 +377,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.Glass.geometry}
-                            material={materials.Glass}
+                            material={glass}
                             // material={
                             //     new THREE.MeshPhysicalMaterial({
                             //         color: new THREE.Color(0x888888), // Grayish base color
@@ -402,7 +406,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.LeftFrontCaliper.geometry}
-                            material={materials.Body}
+                            material={carBlue}
                             position={[3.474, 1.414, 4.617]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             scale={0.111}
@@ -412,7 +416,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.LeftRearBrakeCaliper.geometry}
-                            material={materials.Body}
+                            material={carBlue}
                             position={[3.538, 1.314, -5.895]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             scale={0.111}
@@ -442,7 +446,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.RightRearBrakeCaliper.geometry}
-                            material={materials.Body}
+                            material={carBlue}
                             position={[-3.054, 1.314, -4.869]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={0.111}
@@ -452,7 +456,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.AxelRear.geometry}
-                            material={materials.Body}
+                            material={carBlue}
                             position={[-2.272, 1.143, -5.383]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={1.315}
@@ -462,7 +466,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.AxelFront.geometry}
-                            material={materials.Body}
+                            material={carBlue}
                             position={[-2.252, 1.244, 5.129]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={1.315}
@@ -472,7 +476,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.RightFrontBrakeCaliper.geometry}
-                            material={materials.Body}
+                            material={carBlue}
                             position={[-3.034, 1.414, 5.643]}
                             rotation={[Math.PI / 2, -Math.PI / 2, 0]}
                             scale={0.111}
@@ -492,7 +496,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.ToyotaBadgeBack.geometry}
-                            material={materials.Trim}
+                            material={slateGray}
                             position={[0.246, 3.357, -9.121]}
                             rotation={[-2.761, 0, -Math.PI]}
                             scale={0.015}
@@ -502,7 +506,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.TrunkLock.geometry}
-                            material={materials.Body}
+                            material={carBlue}
                             position={[0.246, 3.838, -8.884]}
                             rotation={[0.365, 0, 0]}
                             scale={0.046}
@@ -512,7 +516,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.LicenseLightRearLeft.geometry}
-                            material={materials.Body}
+                            material={carBlue}
                             position={[1.235, 2.862, -9.125]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={0.085}
@@ -522,7 +526,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.LicenseLightRearRight.geometry}
-                            material={materials.Body}
+                            material={carBlue}
                             position={[-0.733, 2.862, -9.125]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={0.085}
@@ -547,7 +551,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.UnderCarriageDetails.geometry}
-                            material={materials.Body}
+                            material={carBlue}
                             position={[2.165, 0.858, -0.044]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={[0.639, 3.091, 0.185]}
@@ -557,7 +561,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.Trim.geometry}
-                            material={materials.Trim}
+                            material={slateGray}
                             position={[0.246, 3.996, 3.075]}
                             rotation={[-1.702, -0.181, 0.17]}
                             scale={[0.061, 0.076, 0.161]}
@@ -576,7 +580,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.TruenoBadgeFrontBase.geometry}
-                            material={materials.Trim}
+                            material={slateGray}
                             position={[0.246, 2.099, 8.864]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={0.047}
@@ -586,7 +590,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.LicensePlateFront.geometry}
-                            material={materials.Trim}
+                            material={slateGray}
                             position={[0.246, 1.384, 8.687]}
                             rotation={[-Math.PI / 2, 0, 0]}
                             scale={[0.755, 0.043, 0.26]}
@@ -596,7 +600,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.LicensePlateRear.geometry}
-                            material={materials.Trim}
+                            material={slateGray}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             name="rearLicensePlate"
@@ -605,7 +609,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.GrilleFrontSectioned.geometry}
-                            material={materials.Trim}
+                            material={slateGray}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             name="grille"
@@ -629,7 +633,7 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.PopUpHeadLightTips.geometry}
-                            material={materials.Trim}
+                            material={slateGray}
                             position={[0.246, 2.641, 1.676]}
                             rotation={[-Math.PI / 2, Math.PI / 2, 0]}
                             name="headlightTips"
@@ -642,7 +646,7 @@ const HachiRoku = () => {
                                 new THREE.MeshStandardMaterial({
                                     color: new THREE.Color(0xff0000),
                                     emissive: new THREE.Color(0xff0000),
-                                    emissiveIntensity: 0.4,
+                                    emissiveIntensity: 1.2,
                                 })
                             }
                             position={[0.246, 2.641, 1.676]}
@@ -659,7 +663,7 @@ const HachiRoku = () => {
                                 new THREE.MeshStandardMaterial({
                                     color: new THREE.Color(0xff6700),
                                     emissive: new THREE.Color(0xff6700),
-                                    emissiveIntensity: 0.6,
+                                    emissiveIntensity: 1
                                 })
                             }
                             position={[0.246, 2.641, 1.676]}
