@@ -35,24 +35,18 @@ const Hackerman = () => {
                 receiveShadow
                 geometry={nodes.PowerGloveText.geometry}
                 material={blueGlow}
-                position={[261.5, 1371.4, 274.5]}
-                rotation={[1.452, -1.079, 2.459]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.Title.geometry}
                 material={blueGlow}
-                position={[422, 1399, 203]}
-                rotation={[Math.PI / 2, 0, 2.576]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.Text005.geometry}
                 material={whiteGlow}
-                position={[420, 1388, 207]}
-                rotation={[Math.PI / 2, 0, 2.576]}
             />
             <mesh
                 castShadow

@@ -9,7 +9,7 @@ const GrassBlades = () => {
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
         emissive: new THREE.Color(0x007bff),
-        emissiveIntensity: 1.0,
+        emissiveIntensity: 1.8,
     });
 
     // todo make grass blue up top
@@ -1974,38 +1974,13 @@ const GrassBlades = () => {
             <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.GrassBlade1116.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1115.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3063.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4126.geometry}
-                material={materials.Black}
+                material={blueGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1075.geometry}
-                material={materials.Black}
-                position={[-228, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1076.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
@@ -2013,20 +1988,6 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1085.geometry}
-                material={materials.Black}
-                position={[-228, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1086.geometry}
-                material={blueGlow}
-                position={[-228, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2076.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
@@ -2034,20 +1995,13 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2077.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2086.geometry}
-                material={materials.Black}
-                position={[-228, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2087.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
@@ -2055,13 +2009,6 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3038.geometry}
-                material={materials.Black}
-                position={[-228, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3043.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
@@ -2069,160 +2016,96 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4113.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4114.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4115.geometry}
-                material={materials.Black}
-                position={[-228, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4128.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4129.geometry}
-                material={blueGlow}
-                position={[-228, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4130.geometry}
-                material={blueGlow}
-                position={[-228, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2088.geometry}
-                material={blueGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2089.geometry}
-                material={materials.Black}
+                material={blueGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1089.geometry}
-                material={materials.Black}
+                material={blueGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2090.geometry}
-                material={materials.Black}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2091.geometry}
                 material={blueGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4131.geometry}
-                material={materials.Black}
+                material={blueGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4132.geometry}
-                material={materials.Black}
+                material={blueGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4133.geometry}
-                material={materials.Black}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4134.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4135.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4136.geometry}
                 material={blueGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1084.geometry}
-                material={materials.Black}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2085.geometry}
                 material={blueGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3042.geometry}
-                material={materials.Black}
+                material={blueGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4125.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1083.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1087.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2084.geometry}
-                material={materials.Black}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2092.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
@@ -2230,48 +2113,20 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3044.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4127.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4137.geometry}
-                material={materials.Black}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4138.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1088.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1090.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2093.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
@@ -2279,34 +2134,6 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2094.geometry}
-                material={materials.Black}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3045.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4139.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4140.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4153.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
@@ -2314,34 +2141,27 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4141.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1091.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1092.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2095.geometry}
-                material={materials.Black}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2096.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
@@ -2349,48 +2169,20 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3046.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4142.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4143.geometry}
-                material={materials.Black}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4144.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1093.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1094.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2097.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
@@ -2398,48 +2190,13 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2098.geometry}
-                material={materials.Black}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3047.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4145.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4146.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4154.geometry}
-                material={materials.Black}
-                position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1099.geometry}
-                material={materials.Black}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2104.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
@@ -2447,34 +2204,13 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3050.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4155.geometry}
-                material={materials.Black}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4157.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1101.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1102.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
@@ -2488,1022 +2224,98 @@ const GrassBlades = () => {
             <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.GrassBlade3051.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4158.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4159.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2107.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2108.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2109.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1103.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1104.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1105.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1106.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1107.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1108.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1109.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1110.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1111.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1112.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1113.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1114.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1117.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2110.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2111.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2112.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2113.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2114.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2115.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2116.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2117.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2118.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2119.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4160.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4161.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4162.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4163.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4164.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4165.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4166.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4167.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4168.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4169.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4170.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4171.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4172.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4173.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4174.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4175.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4176.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4177.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4178.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1118.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1119.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1120.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1121.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1122.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1123.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1124.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1125.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1126.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1127.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1128.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1129.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1130.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1131.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4179.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4180.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4181.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4182.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4183.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4184.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4185.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4186.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4187.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4188.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4189.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4190.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4191.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4192.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1132.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1133.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1134.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1135.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1136.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1137.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1138.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1139.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1140.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1141.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1142.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1143.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1144.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1145.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3052.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3053.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3054.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3055.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3056.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3057.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3058.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3059.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3060.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3061.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3062.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3064.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3065.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3066.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4193.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4194.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4195.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4196.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4197.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4198.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4199.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4200.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4201.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4202.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4203.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4204.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4205.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4206.geometry}
-                material={materials.Black}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2120.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2121.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2122.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2123.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2124.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2125.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2126.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2127.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2128.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2129.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2130.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2131.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2132.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2133.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1146.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1147.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1148.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1149.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1150.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1151.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1152.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1153.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1154.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1155.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1156.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1157.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1158.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1159.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
@@ -3511,664 +2323,587 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3067.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3068.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3069.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3070.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3071.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3072.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3073.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3074.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3075.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3076.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3077.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3078.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3079.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3080.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1160.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1161.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1162.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1163.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1164.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1165.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1166.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1167.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1168.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1169.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1170.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1171.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1172.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1173.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2134.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2135.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2136.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2137.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2138.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2139.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2140.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2141.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2142.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2143.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2144.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2145.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2146.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2147.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4207.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4208.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4209.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4210.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4211.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4212.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4213.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4214.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4215.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4216.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4217.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4218.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4219.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4220.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1174.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1175.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1176.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1177.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1178.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1179.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1180.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1181.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1182.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1183.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1184.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1185.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1186.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1187.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2148.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2149.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2150.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2151.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2152.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2153.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2154.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2155.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2156.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2157.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2158.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2159.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2160.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2161.geometry}
-                material={materials.Black}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2162.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2163.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2164.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2165.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2166.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2167.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2168.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2169.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2170.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2171.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2172.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
@@ -4182,35 +2917,7 @@ const GrassBlades = () => {
             <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.GrassBlade2174.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2175.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2176.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2177.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2178.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
@@ -4224,42 +2931,28 @@ const GrassBlades = () => {
             <mesh
                 castShadow
                 receiveShadow
-                geometry={nodes.GrassBlade2180.geometry}
-                material={blueGlow}
-                position={[293, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4147.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1095.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade1096.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2099.geometry}
-                material={materials.Black}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2100.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
@@ -4267,48 +2960,20 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade3048.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4148.geometry}
-                material={materials.Black}
+                material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade4149.geometry}
-                material={materials.Black}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4150.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1097.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade1098.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade2101.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
@@ -4316,27 +2981,6 @@ const GrassBlades = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.GrassBlade2102.geometry}
-                material={materials.Black}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade3049.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4151.geometry}
-                material={blueGlow}
-                position={[124, 0, 0]}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.GrassBlade4152.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />

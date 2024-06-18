@@ -59,7 +59,7 @@ const MechanicalKeyboard = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.Case005.geometry}
-                material={materials.NovelKeys}
+                material={materials.Trim}
             />
         </group>
     );
