@@ -2,9 +2,13 @@
 import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 import * as THREE from 'three';
+import AnimatedFerrariRightLight from './animatedRightLight';
+import AnimatedFerrariRightCase from './animatedRightCase';
+import AnimatedFerrariLeftLight from './animatedLeftLight';
+import AnimatedFerrariLeftCase from './animatedLeftCase';
 
 const Ferrari = () => {
-    const { nodes, materials } = useGLTF('/models/f40.glb');
+    const { nodes, materials } = useGLTF('/models/f40/f40.glb');
 
     const corsaRed = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xd40000),
@@ -34,21 +38,23 @@ const Ferrari = () => {
     });
 
     return (
-        <RigidBody
-            type="fixed"
-            position={[0, 0, 0]}
-            colliders="trimesh"
-            friction={1}
-            restitution={0.2}
-            name="f40"
-        >
+        <>
             <group dispose={null}>
-                <mesh geometry={nodes.Body003.geometry} material={corsaRed} />
                 <mesh
-                    geometry={nodes.BrakeLights003.geometry}
-                    material={brakeLights}
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Body003.geometry}
+                    material={materials.CorsaRed}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.BrakeLights003.geometry}
+                    material={materials.BrakeLights}
+                />
+                <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Exhaust001.geometry}
                     material={materials.Silver}
                 />
@@ -56,31 +62,19 @@ const Ferrari = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Fogs002.geometry}
-                    material={fogLights}
+                    material={materials.Fog}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Glass003.geometry}
                     material={materials.Glass}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Headlights.geometry}
-                    material={whiteGlow}
-                />
-                <mesh
-                    geometry={nodes.PopupLeftCase.geometry}
-                    material={corsaRed}
-                />
-                <mesh
-                    geometry={nodes.PopupRightCase.geometry}
-                    material={corsaRed}
-                />
-                <mesh
-                    geometry={nodes.PopupLeftLight.geometry}
-                    material={popupHeadlights}
-                />
-                <mesh
-                    geometry={nodes.PopupRightLight.geometry}
-                    material={popupHeadlights}
+                    material={materials.White}
                 />
                 <mesh
                     castShadow
@@ -95,15 +89,24 @@ const Ferrari = () => {
                     material={materials.Trim}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Wheels001.geometry}
                     material={materials.Silver}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.WhiteLights001.geometry}
-                    material={whiteGlow}
+                    material={materials.White}
                 />
             </group>
-        </RigidBody>
+            <AnimatedFerrariLeftLight />
+
+            <AnimatedFerrariLeftCase />
+            <AnimatedFerrariRightLight />
+            <AnimatedFerrariRightCase />
+        </>
     );
 };
 useGLTF.preload('/models/f40.glb');

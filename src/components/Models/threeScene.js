@@ -15,8 +15,7 @@ import StreetLights from './streetLights';
 import TireStacks from './tireStacks';
 import RetroStands from './retroStands';
 import Skills from './skills/skills';
-import Ferrari from './ferrari';
-import Lamborghini from './lamborghini';
+import Ferrari from './f40/ferrari';
 import Projects from './projects';
 import CenterPiece from './centerPiece';
 import {
@@ -32,6 +31,7 @@ import Hackerman from './hackerman';
 import Tunnel from './tunnel';
 import Controls from './controls';
 import ProjectLinks from './projectLinks';
+import Countach from './countach/countach';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -249,6 +249,8 @@ const ThreeScene = () => {
                     <Hackerman />
                     <Controls />
                     <ProjectLinks />
+                    <Countach />
+                    <Ferrari />
                     {/* 
                   <Stars />
                   <Clouds /> */}
