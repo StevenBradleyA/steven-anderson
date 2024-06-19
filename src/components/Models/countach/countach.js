@@ -1,10 +1,15 @@
 'use client';
 import { useGLTF } from '@react-three/drei';
-import { RigidBody } from '@react-three/rapier';
 import * as THREE from 'three';
+import LeftAnimatedCountachLight from './leftAnimatedLights';
+import LeftAnimatedCountachTrim from './leftAnimatedTrim';
+import LeftAnimatedCountachCase from './leftAnimatedCase';
+import RightAnimatedCountachCase from './rightAnimatedCase';
+import RightAnimatedCountachLight from './rightAnimatedLights';
+import RightAnimatedCountachTrim from './rightAnimatedTrim';
 
-const Lamborghini = () => {
-    const { nodes, materials } = useGLTF('/models/countach.glb');
+const Countach = () => {
+    const { nodes, materials } = useGLTF('/models/countach/countach.glb');
 
     const corsaRed = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xd40000),
@@ -34,79 +39,73 @@ const Lamborghini = () => {
     });
 
     return (
-        <RigidBody
-            type="fixed"
-            position={[0, 0, 0]}
-            colliders="trimesh"
-            friction={1}
-            restitution={0.2}
-            name="countach"
-        >
+        <>
             <group dispose={null}>
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.BrakeLights002.geometry}
-                    material={brakeLights}
+                    material={materials.BrakeLights}
                 />
                 <mesh
-                    geometry={nodes.CountachLeftPopupCase.geometry}
-                    material={corsaRed}
-                />
-                <mesh
-                    geometry={nodes.CountachLeftPopupLights.geometry}
-                    material={popupHeadlights}
-                />
-                <mesh
-                    geometry={nodes.CountachLeftPopupTrim.geometry}
-                    material={materials.Trim}
-                />
-                <mesh
-                    geometry={nodes.CountachRightPopupCase.geometry}
-                    material={corsaRed}
-                />
-                <mesh
-                    geometry={nodes.CountachRightPopupLights.geometry}
-                    material={popupHeadlights}
-                />
-                <mesh
-                    geometry={nodes.CountachRightPopupTrim.geometry}
-                    material={materials.Trim}
-                />
-                <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Exhaust002.geometry}
                     material={materials.Silver}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Fogs001.geometry}
-                    material={fogLights}
+                    material={materials.Fog}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Glass001.geometry}
                     material={materials.Glass}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.tires.geometry}
                     material={materials.Tire}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Wheels.geometry}
                     material={materials.Silver}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.WhiteLights.geometry}
-                    material={whiteGlow}
+                    material={materials.White}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Body001.geometry}
-                    material={corsaRed}
+                    material={materials.CorsaRed}
                 />
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Exhaust003.geometry}
                     material={materials.Trim}
                 />
             </group>
-        </RigidBody>
+
+            <LeftAnimatedCountachLight />
+            <LeftAnimatedCountachTrim />
+            <LeftAnimatedCountachCase />
+            <RightAnimatedCountachLight />
+            <RightAnimatedCountachTrim />
+            <RightAnimatedCountachCase />
+        </>
     );
 };
-useGLTF.preload('/models/countach.glb');
+useGLTF.preload('/models/countach/countach.glb');
 
-export default Lamborghini;
+export default Countach;
