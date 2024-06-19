@@ -1,13 +1,19 @@
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
 
 const AnimatedFerrariLeftLight = () => {
     const group = useRef();
     const { nodes, materials, animations } = useGLTF(
         '/models/f40/leftLight.glb'
     );
-
     const { actions } = useAnimations(animations, group);
+
+    const popupHeadlights = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xe7e7e7),
+        emissive: new THREE.Color(0xe7e7e7),
+        emissiveIntensity: 1.2,
+    });
 
     useEffect(() => {
         if (actions) {
@@ -23,7 +29,7 @@ const AnimatedFerrariLeftLight = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.PopupLeftLight.geometry}
-                    material={materials.White}
+                    material={popupHeadlights}
                     position={[396.172, 1158.268, 735.183]}
                 />
             </group>

@@ -1,5 +1,6 @@
 import { useGLTF, useAnimations } from '@react-three/drei';
 import { useEffect, useRef } from 'react';
+import * as THREE from 'three';
 
 const RightAnimatedCountachLight = () => {
     const group = useRef();
@@ -8,6 +9,12 @@ const RightAnimatedCountachLight = () => {
     );
 
     const { actions } = useAnimations(animations, group);
+
+    const popupHeadlights = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xe7e7e7),
+        emissive: new THREE.Color(0xe7e7e7),
+        emissiveIntensity: 1.2,
+    });
 
     useEffect(() => {
         if (actions) {

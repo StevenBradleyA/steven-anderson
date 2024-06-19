@@ -20,11 +20,7 @@ const Ferrari = () => {
         emissive: new THREE.Color(0xe7e7e7),
         emissiveIntensity: 0.3,
     });
-    const popupHeadlights = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0xe7e7e7),
-        emissive: new THREE.Color(0xe7e7e7),
-        emissiveIntensity: 1.2,
-    });
+ 
 
     const brakeLights = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xff0000),
@@ -44,13 +40,13 @@ const Ferrari = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Body003.geometry}
-                    material={materials.CorsaRed}
+                    material={corsaRed}
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.BrakeLights003.geometry}
-                    material={materials.BrakeLights}
+                    material={brakeLights}
                 />
                 <mesh
                     castShadow
@@ -62,7 +58,7 @@ const Ferrari = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Fogs002.geometry}
-                    material={materials.Fog}
+                    material={fogLights}
                 />
                 <mesh
                     castShadow
@@ -74,7 +70,7 @@ const Ferrari = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Headlights.geometry}
-                    material={materials.White}
+                    material={whiteGlow}
                 />
                 <mesh
                     castShadow
@@ -98,17 +94,16 @@ const Ferrari = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.WhiteLights001.geometry}
-                    material={materials.White}
+                    material={whiteGlow}
                 />
             </group>
             <AnimatedFerrariLeftLight />
-
             <AnimatedFerrariLeftCase />
             <AnimatedFerrariRightLight />
             <AnimatedFerrariRightCase />
         </>
     );
 };
-useGLTF.preload('/models/f40.glb');
+useGLTF.preload('/models/f40/f40.glb');
 
 export default Ferrari;

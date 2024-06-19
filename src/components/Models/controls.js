@@ -10,6 +10,12 @@ const Controls = () => {
         emissive: new THREE.Color(0x007bff),
         emissiveIntensity: 1.5,
     });
+    const whiteTransparent = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xe7e7e7),
+        opacity: 0.2,
+        transparent: true,
+    });
+
     const whiteGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xe7e7e7),
         emissive: new THREE.Color(0xe7e7e7),
@@ -24,7 +30,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.arrowDown.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-83.368, 1286.797, 91.854]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -33,7 +39,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.arrowLeft.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-76.05, 1286.772, 95.37]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -42,7 +48,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.arrowRight.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-90.453, 1286.772, 88.451]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -51,7 +57,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.arrowUp.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-82.972, 1294.696, 92.045]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -60,7 +66,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsGrid.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-70, 1340.688, 98]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -69,7 +75,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsDivider.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-38.462, 1327.715, 113.3]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -78,7 +84,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsDivider001.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-69.919, 1306.988, 98.064]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -87,7 +93,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsText.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-27.523, 1319.772, 118.19]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -96,7 +102,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.dBack001.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-53.476, 1286.585, 105.92]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -105,7 +111,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.eBack001.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-52.71, 1294.104, 106.364]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -114,7 +120,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.fBack001.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-60.354, 1286.324, 102.772]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -123,7 +129,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.movementText.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-72.276, 1302.72, 96.704]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -132,7 +138,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.sBack001.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-46.516, 1286.762, 109.134]}
                     rotation={[0, 0.285, 0]}
                 />
@@ -177,7 +183,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Camera001.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-144.767, 1365, 46.595]}
                     rotation={[0, 0.837, -Math.PI / 2]}
                     scale={22.869}
@@ -187,7 +193,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Mode.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-165.216, 1298.9, 29.289]}
                     rotation={[Math.PI / 2, 0, -2.417]}
                     scale={11.575}
@@ -197,7 +203,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.cBack.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-169.197, 1291.2, 26.347]}
                     rotation={[0.102, -1.508, 0.11]}
                 />
@@ -256,7 +262,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.controlsGrid001.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-183.906, 1331.357, 13.539]}
                     rotation={[0, 0.017, 0]}
                 />
@@ -265,7 +271,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.movementText001.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-185.726, 1330.928, 12.15]}
                     rotation={[0, 0.013, 0]}
                 />
@@ -274,7 +280,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.fBack.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-179.319, 1313, 17.272]}
                     rotation={[0, -0.006, 0]}
                 />
@@ -283,7 +289,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.eBack.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-173.03, 1320.78, 22.909]}
                     rotation={[0, -0.006, 0]}
                 />
@@ -292,7 +298,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.dBack.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-173.635, 1313.261, 22.264]}
                     rotation={[0, -0.006, 0]}
                 />
@@ -301,7 +307,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.sBack.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-167.893, 1313.438, 27.341]}
                     rotation={[0, -0.006, 0]}
                 />
@@ -310,7 +316,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.cameraDivider001.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-158.575, 1324, 35.821]}
                     rotation={[0, 0.022, 0]}
                     scale={[1, 0.879, 1]}
@@ -320,7 +326,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.cameraDivider.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-183.763, 1306.988, 13.621]}
                     rotation={[0, 0.011, 0]}
                 />
@@ -374,7 +380,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Respawn001.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-245.518, 1365, -46.546]}
                     rotation={[0, 0.557, -Math.PI / 2]}
                     scale={22.869}
@@ -384,7 +390,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Respawn.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-258.541, 1298.9, -65.879]}
                     rotation={[Math.PI / 2, 0, -2.138]}
                     scale={11.575}
@@ -394,7 +400,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.respawnGrid.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-274.03, 1331.357, -89.109]}
                     rotation={[0, -0.262, 0]}
                 />
@@ -403,7 +409,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.respawnDivider.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-255.822, 1324, -60.708]}
                     rotation={[0, -0.257, 0]}
                     scale={[1, 0.879, 1]}
@@ -413,7 +419,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.divider.geometry}
-                    material={materials.White}
+                    material={whiteTransparent}
                     position={[-273.916, 1306.988, -88.991]}
                     rotation={[0, -0.268, 0]}
                 />
@@ -422,7 +428,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.Recover.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-258.458, 1327, -66.014]}
                     rotation={[Math.PI / 2, 0, -2.138]}
                     scale={11.575}
@@ -432,7 +438,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.rBack.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-272.222, 1289, -85.593]}
                     rotation={[0.053, -0.129, 0.05]}
                     scale={0.591}
@@ -452,7 +458,7 @@ const Controls = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.shiftBack.geometry}
-                    material={materials.Blue}
+                    material={blueGlow}
                     position={[-273.164, 1318, -87.643]}
                     rotation={[0, -1.004, -Math.PI]}
                     scale={[-12.588, -4.977, -0.417]}
