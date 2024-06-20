@@ -4,7 +4,7 @@ import { RigidBody } from '@react-three/rapier';
 import * as THREE from 'three';
 
 const Projects = () => {
-    const { nodes, materials } = useGLTF('/models/projects.glb');
+    const { nodes, materials } = useGLTF('/models/projects/computers.glb');
 
     // const blueGlow= new THREE.MeshStandardMaterial({
     //     color:  new THREE.Color(0x007bff),
@@ -312,5 +312,5 @@ const Projects = () => {
         </RigidBody>
     );
 };
-useGLTF.preload('/models/projects.glb');
+useGLTF.preload('/models/projects/computers.glb');
 export default Projects;

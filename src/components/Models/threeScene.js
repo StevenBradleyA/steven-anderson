@@ -16,7 +16,7 @@ import TireStacks from './tireStacks';
 import RetroStands from './retroStands';
 import Skills from './skills/skills';
 import Ferrari from './f40/ferrari';
-import Projects from './projects';
+import Projects from './projects/projects';
 import CenterPiece from './centerPiece';
 import {
     DirectionalLightHelper,
@@ -30,7 +30,7 @@ import Siegmeyer from './siegmeyer';
 import Hackerman from './hackerman';
 import Tunnel from './tunnel';
 import Controls from './controls';
-import ProjectLinks from './projectLinks';
+import ProjectLinks from './projects/projectLinks';
 import Countach from './countach/countach';
 
 const ThreeScene = () => {
@@ -200,6 +200,8 @@ const ThreeScene = () => {
         );
     };
 
+    const trackRef = useRef();
+
     return (
         <>
             <Canvas
@@ -225,14 +227,15 @@ const ThreeScene = () => {
                     />
 
                     <Physics gravity={[0, -98.1, 0]} debug>
-                        <LowPolyIsland />
+                        <LowPolyIsland trackRef={trackRef} />
                         <TreesAndRocks />
                         <RetroStands />
-                        <HachiRoku />
+                        <HachiRoku trackRef={trackRef} />
                         <TireStacks />
                         <HireMeSigns />
                         <StreetLights />
                         <Projects />
+                        <ProjectLinks />
                         <CenterPiece />
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
@@ -246,7 +249,6 @@ const ThreeScene = () => {
                     <Siegmeyer />
                     <Hackerman />
                     <Controls />
-                    <ProjectLinks />
                     <Countach />
                     <Ferrari />
                     {/* 

@@ -11,6 +11,7 @@ import {
     CuboidCollider,
     RigidBody,
     CylinderCollider,
+    useRapier,
 } from '@react-three/rapier';
 import { useFrame, extend, meshStandardMaterial } from '@react-three/fiber';
 import { useGLTF, shaderMaterial } from '@react-three/drei';
@@ -39,7 +40,7 @@ import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing';
 
 // Extend the material in React Three Fiber
 
-const HachiRoku = () => {
+const HachiRoku = ({ trackRef }) => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
 
     // car refs
@@ -142,65 +143,72 @@ const HachiRoku = () => {
         const moveBackward = keysPressed['ArrowDown'] || keysPressed['d'];
         const steerLeft = keysPressed['ArrowLeft'] || keysPressed['s'];
         const steerRight = keysPressed['ArrowRight'] || keysPressed['f'];
-        const drift = keysPressed['big man'];
+        // const drift = keysPressed['big man'];
         const respawn = keysPressed['r'];
         const flip = keysPressed['Shift'];
-
-        // const time = clock.getElapsedTime();
-        // const intensity = Math.sin(time * 10) * 0.5 + 0.5; // Pulsating effect
-        // brakeLightsMaterial.emissiveIntensity = intensity;
-
-        // Apply material to the brake lights mesh
 
         if (brakeLightsRef.current) {
             brakeLightsRef.current.material.emissiveIntensity = moveBackward
                 ? 1.8
-                : 1.2;
+                : 1.1;
         }
 
         // respawn
-        // if (respawn && carRef.current && activeCamera === 'follow') {
-        //     carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
-        //     carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
-        //     carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-        //     const euler = new THREE.Euler(0, 0, 0);
-        //     const quaternion = new THREE.Quaternion().setFromEuler(euler);
-        //     carRef.current.setRotation(quaternion, true);
-        //     setIsUpsideDown(false);
-        // }
+        if (respawn && carRef.current && activeCamera === 'follow') {
+            carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
+            carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+            carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+            const euler = new THREE.Euler(0, 0, 0);
+            const quaternion = new THREE.Quaternion().setFromEuler(euler);
+            carRef.current.setRotation(quaternion, true);
+            setIsUpsideDown(false);
+        }
         // auto respawn
-        // if (carRef.current) {
-        //     const currentPosition = carRef.current.translation();
-        //     if (currentPosition.y < respawnHeight) {
-        //         carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
-        //         carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
-        //         carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-        //         const euler = new THREE.Euler(0, 0, 0);
-        //         const quaternion = new THREE.Quaternion().setFromEuler(euler);
-        //         carRef.current.setRotation(quaternion, true);
-        //         setIsUpsideDown(false);
-        //         setCurrentSpeed(0);
-        //     }
-        // }
+        if (carRef.current) {
+            const currentPosition = carRef.current.translation();
+            if (currentPosition.y < respawnHeight) {
+                carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
+                carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+                carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+                const euler = new THREE.Euler(0, 0, 0);
+                const quaternion = new THREE.Quaternion().setFromEuler(euler);
+                carRef.current.setRotation(quaternion, true);
+                setIsUpsideDown(false);
+                setCurrentSpeed(0);
+            }
+        }
         // flip in place
-        // if (flip && carRef.current && activeCamera === 'follow') {
-        //     const currentPosition = carRef.current.translation();
-        //     carRef.current.setTranslation(
-        //         {
-        //             x: currentPosition.x,
-        //             y: currentPosition.y + 2,
-        //             z: currentPosition.z,
-        //         },
-        //         true
-        //     );
+        if (flip && carRef.current && activeCamera === 'follow') {
+            const currentPosition = carRef.current.translation();
+            carRef.current.setTranslation(
+                {
+                    x: currentPosition.x,
+                    y: currentPosition.y + 2,
+                    z: currentPosition.z,
+                },
+                true
+            );
+            carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+            carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+            const currentRotation = carRef.current.rotation();
+            const currentQuaternion = new THREE.Quaternion(
+                currentRotation.x,
+                currentRotation.y,
+                currentRotation.z,
+                currentRotation.w
+            );
+            const currentEuler = new THREE.Euler().setFromQuaternion(
+                currentQuaternion
+            );
+            const preservedYaw = currentEuler.y;
+            const correctedEuler = new THREE.Euler(0, preservedYaw, 0);
+            const correctedQuaternion = new THREE.Quaternion().setFromEuler(
+                correctedEuler
+            );
 
-        //     carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
-        //     carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-        //     const euler = new THREE.Euler(0, 0, 0);
-        //     const quaternion = new THREE.Quaternion().setFromEuler(euler);
-        //     carRef.current.setRotation(quaternion, true);
-        //     setIsUpsideDown(false);
-        // }
+            carRef.current.setRotation(correctedQuaternion, true);
+            setIsUpsideDown(false);
+        }
         // speed
         if (moveForward && activeCamera === 'follow') {
             if (currentSpeed < topSpeed) {
@@ -257,15 +265,15 @@ const HachiRoku = () => {
             rrwRef.current.rotation.x += wheelRotationSpeed;
         }
         // drift
-        if (drift) {
-            if (rearWheelFriction !== 0.01) {
-                setRearWheelFriction(0.01);
-            }
-        } else {
-            if (rearWheelFriction !== 0.3) {
-                setRearWheelFriction(0.3);
-            }
-        }
+        // if (drift) {
+        //     if (rearWheelFriction !== 0.01) {
+        //         setRearWheelFriction(0.01);
+        //     }
+        // } else {
+        //     if (rearWheelFriction !== 0.3) {
+        //         setRearWheelFriction(0.3);
+        //     }
+        // }
 
         if (
             carRef.current &&
@@ -315,14 +323,14 @@ const HachiRoku = () => {
                 );
             }
         }
-        console.log(allWheelsOffGround);
     });
 
     //  materials
 
-    const carBlue = new THREE.MeshStandardMaterial({
+    const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
-        roughness: 1,
+        emissive: new THREE.Color(0x007bff),
+        emissiveIntensity: 1.8,
     });
     const slateGray = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x353839),
@@ -333,26 +341,36 @@ const HachiRoku = () => {
         roughness: 0.5,
         metalness: 0.7,
     });
+    const whiteGlow = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xe7e7e7),
+        emissive: new THREE.Color(0xe7e7e7),
+        emissiveIntensity: 0.4,
+    });
 
     // When determining pivot point for each wheel. Set origin to geometry for each lrw (lugs, wheel, tire) in blender. Then set a parent pivot position and adjust positions relatively
+    const brakeLights = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xff0000),
+        emissive: new THREE.Color(0xff0000),
+        emissiveIntensity: 1.1,
+    });
+    const fogLights = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xffa500),
+        emissive: new THREE.Color(0xffa500),
+        emissiveIntensity: 0.5,
+    });
 
     return (
         <>
             <RigidBody
                 ref={carRef}
                 mass={9}
-                // 11
                 colliders={false}
                 position={[0, 1300, 0]}
-                // type="fixed"
                 friction={0.3}
                 name="car"
-                // ccd={true}
             >
                 <CuboidCollider
-                    // args={[4, 2, 9.3]}
                     args={[4, 1.5, 9.3]}
-                    // position={[0, 2.1, 0]}
                     position={[0, 2.5, 0]}
                     name="bodyCollider"
                 />
@@ -368,79 +386,63 @@ const HachiRoku = () => {
                     }}
                     onCollisionExit={() => setIsUpsideDown(false)}
                 />
+
                 <group dispose={null}>
                     <group>
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.AxelRear.geometry}
                             material={materials.Blue}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.BrakeLights.geometry}
-                            material={materials.BrakeLights}
+                            material={
+                                new THREE.MeshStandardMaterial({
+                                    color: new THREE.Color(0xff0000),
+                                    emissive: new THREE.Color(0xff0000),
+                                    emissiveIntensity: 1.1,
+                                })
+                            }
+                            ref={brakeLightsRef}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.Exhaust.geometry}
                             material={materials.Tire}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.Fogs.geometry}
-                            material={materials.Fog}
+                            material={fogLights}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.Glass.geometry}
                             material={materials.Glass}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.LeftFrontBrakeDiscs.geometry}
                             material={materials.Silver}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.ToyotaBadgeBack.geometry}
                             material={materials.Trim}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.TruenoBadgeFront.geometry}
-                            material={materials['White.001']}
+                            material={whiteGlow}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.Trim.geometry}
                             material={materials.Trim}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.Body.geometry}
                             material={materials.Blue}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.WhiteFrontBlinkers.geometry}
-                            material={materials['White.001']}
+                            material={whiteGlow}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.LicensePlateLights.geometry}
-                            material={materials.White}
+                            material={whiteGlow}
                         />
                         <mesh
                             castShadow
@@ -452,14 +454,14 @@ const HachiRoku = () => {
                             castShadow
                             receiveShadow
                             geometry={nodes.LicensePlateText.geometry}
-                            material={materials.Blue}
+                            material={blueGlow}
                         />
 
                         <mesh
                             castShadow
                             receiveShadow
                             geometry={nodes.Calipers.geometry}
-                            material={materials.Blue}
+                            material={blueGlow}
                         />
                     </group>
 
@@ -499,7 +501,6 @@ const HachiRoku = () => {
                         args={[1.2, 1.2]}
                         position={[-2.6, 1.3, 5.5]}
                         rotation={[0, 0, Math.PI / 2]}
-                        // setContactSkin={0.1}
                         name="rfwCollider"
                         ref={rfwCollider}
                     />

@@ -3,7 +3,7 @@ import React from 'react';
 import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
 
-const LowPolyIsland = () => {
+const LowPolyIsland = ({ trackRef }) => {
     const { nodes, materials } = useGLTF('/models/lowPolyIsland.glb');
     const { nodes: trackNodes, materials: trackMaterials } = useGLTF(
         '/models/driftTrack.glb'
@@ -81,6 +81,7 @@ const LowPolyIsland = () => {
                     receiveShadow
                     geometry={trackNodes.Plane004.geometry}
                     material={trackMaterials.Track}
+                    ref={trackRef}
                 />
                 <mesh
                     castShadow
