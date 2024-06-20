@@ -52,6 +52,8 @@ const HachiRoku = () => {
     const lfwRef = useRef();
     const lrwRef = useRef();
     const rrwRef = useRef();
+    const lfwCollider = useRef();
+    const rfwCollider = useRef();
     const brakeLightsRef = useRef();
     const exhaustRef = useRef();
 
@@ -120,9 +122,9 @@ const HachiRoku = () => {
             });
         }
 
-        if (arrowKeyPressed && showGame === true) {
-            setActiveCamera('follow');
-        }
+        // if (arrowKeyPressed && showGame === true) {
+        //     setActiveCamera('follow');
+        // }
     }, [keysPressed, setActiveCamera, showGame]);
 
     // useEffect(() => {
@@ -226,8 +228,8 @@ const HachiRoku = () => {
         // wheel rotation
         if (
             lfwParentRef.current &&
-            rfwParentRef.current &&
-            activeCamera === 'follow'
+            rfwParentRef.current
+            // activeCamera === 'follow'
         ) {
             if (steerLeft) {
                 lfwParentRef.current.rotation.set(0, steerAngle, 0);
@@ -331,7 +333,8 @@ const HachiRoku = () => {
         roughness: 0.5,
         metalness: 0.7,
     });
-    // console.log(activeCamera);
+
+    // When determining pivot point for each wheel. Set origin to geometry for each lrw (lugs, wheel, tire) in blender. Then set a parent pivot position and adjust positions relatively
 
     return (
         <>
@@ -460,41 +463,28 @@ const HachiRoku = () => {
                         />
                     </group>
 
-                    <group ref={lfwParentRef}>
-                        <CylinderCollider
-                            args={[0.7, 1.2]}
-                            position={[3.2, 1.3, 5.5]}
-                            rotation={[0, 0, Math.PI / 2]}
-                            name="lfwCollider"
-                            // onCollisionEnter={({ other }) => {
-                            //     if (other.rigidBodyObject.name === 'track') {
-                            //         setWheelsOnGround((prev) => ({
-                            //             ...prev,
-                            //             lfw: true,
-                            //         }));
-                            //     }
-                            // }}
-                            // onCollisionExit={({ other }) => {
-                            //     if (other.rigidBodyObject.name === 'track') {
-                            //         setWheelsOnGround((prev) => ({
-                            //             ...prev,
-                            //             lfw: false,
-                            //         }));
-                            //     }
-                            // }}
-                        />
+                    <CylinderCollider
+                        args={[1.2, 1.2]}
+                        position={[2.6, 1.3, 5.5]}
+                        rotation={[0, 0, Math.PI / 2]}
+                        name="lfwCollider"
+                        ref={lfwCollider}
+                    />
+                    <group ref={lfwParentRef} position={[3.375, 1.377, 5.559]}>
                         <group ref={lfwRef}>
                             <mesh
                                 castShadow
                                 receiveShadow
                                 geometry={nodes.LeftFrontLugNuts.geometry}
                                 material={materials['86wheel']}
+                                position={[0.074, 0.008, -0.007]}
                             />
                             <mesh
                                 castShadow
                                 receiveShadow
                                 geometry={nodes.LeftFrontTire.geometry}
                                 material={materials.Tire}
+                                position={[-0.191, -0.004, -0.009]}
                             />
                             <mesh
                                 castShadow
@@ -505,35 +495,20 @@ const HachiRoku = () => {
                         </group>
                     </group>
 
-                    <group ref={rfwParentRef}>
-                        <CylinderCollider
-                            args={[0.7, 1.2]}
-                            position={[-3.2, 1.3, 5.5]}
-                            rotation={[0, 0, Math.PI / 2]}
-                            setContactSkin={0.1}
-                            name="rfwCollider"
-                            // onCollisionEnter={({ other }) => {
-                            //     if (other.rigidBodyObject.name === 'track') {
-                            //         setWheelsOnGround((prev) => ({
-                            //             ...prev,
-                            //             rfw: true,
-                            //         }));
-                            //     }
-                            // }}
-                            // onCollisionExit={({ other }) => {
-                            //     if (other.rigidBodyObject.name === 'track') {
-                            //         setWheelsOnGround((prev) => ({
-                            //             ...prev,
-                            //             rfw: false,
-                            //         }));
-                            //     }
-                            // }}
-                        />
+                    <CylinderCollider
+                        args={[1.2, 1.2]}
+                        position={[-2.6, 1.3, 5.5]}
+                        rotation={[0, 0, Math.PI / 2]}
+                        // setContactSkin={0.1}
+                        name="rfwCollider"
+                        ref={rfwCollider}
+                    />
+                    <group ref={rfwParentRef} position={[-3.447, 1.377, 5.533]}>
                         <group ref={rfwRef}>
                             <mesh
                                 castShadow
                                 receiveShadow
-                                geometry={nodes.RightFrontLugNuts.geometry}
+                                geometry={nodes.RightFrontWheel.geometry}
                                 material={materials['86wheel']}
                             />
                             <mesh
@@ -541,51 +516,39 @@ const HachiRoku = () => {
                                 receiveShadow
                                 geometry={nodes.RightFrontTire.geometry}
                                 material={materials.Tire}
+                                position={[0.19, -0.003, 0.008]}
                             />
                             <mesh
                                 castShadow
                                 receiveShadow
-                                geometry={nodes.RightFrontWheel.geometry}
+                                geometry={nodes.RightFrontLugNuts.geometry}
                                 material={materials['86wheel']}
+                                position={[-0.074, 0.008, 0.006]}
                             />
                         </group>
                     </group>
 
                     <group>
                         <CylinderCollider
-                            args={[0.7, 1.2]}
+                            args={[1.2, 1.2]}
                             name="lrwCollider"
-                            position={[3.2, 1.3, -5]}
+                            position={[2.6, 1.3, -5]}
                             rotation={[0, 0, Math.PI / 2]}
-                            // onCollisionEnter={({ other }) => {
-                            //     if (other.rigidBodyObject.name === 'track') {
-                            //         setWheelsOnGround((prev) => ({
-                            //             ...prev,
-                            //             lrw: true,
-                            //         }));
-                            //     }
-                            // }}
-                            // onCollisionExit={({ other }) => {
-                            //     if (other.rigidBodyObject.name === 'track') {
-                            //         setWheelsOnGround((prev) => ({
-                            //             ...prev,
-                            //             lrw: false,
-                            //         }));
-                            //     }
-                            // }}
                         />
-                        <group ref={lrwRef}>
+                        <group ref={lrwRef} position={[3.46, 1.34, -4.954]}>
                             <mesh
                                 castShadow
                                 receiveShadow
                                 geometry={nodes.LeftRearLugNuts.geometry}
                                 material={materials['86wheel']}
+                                position={[0.074, 0.008, -0.006]}
                             />
                             <mesh
                                 castShadow
                                 receiveShadow
                                 geometry={nodes.LeftRearTire.geometry}
                                 material={materials.Tire}
+                                position={[-0.191, -0.004, -0.008]}
                             />
                             <mesh
                                 castShadow
@@ -598,40 +561,26 @@ const HachiRoku = () => {
 
                     <group>
                         <CylinderCollider
-                            args={[0.7, 1.2]}
-                            position={[-3.2, 1.3, -5]}
+                            args={[1.2, 1.2]}
+                            position={[-2.6, 1.3, -5]}
                             rotation={[0, 0, Math.PI / 2]}
-                            setContactSkin={0.1}
+                            // setContactSkin={0.1}
                             name="rrwCollider"
-                            // onCollisionEnter={({ other }) => {
-                            //     if (other.rigidBodyObject.name === 'track') {
-                            //         setWheelsOnGround((prev) => ({
-                            //             ...prev,
-                            //             rrw: true,
-                            //         }));
-                            //     }
-                            // }}
-                            // onCollisionExit={({ other }) => {
-                            //     if (other.rigidBodyObject.name === 'track') {
-                            //         setWheelsOnGround((prev) => ({
-                            //             ...prev,
-                            //             rrw: false,
-                            //         }));
-                            //     }
-                            // }}
                         />
-                        <group ref={rrwRef}>
+                        <group ref={rrwRef} position={[-3.447, 1.34, -4.98]}>
                             <mesh
                                 castShadow
                                 receiveShadow
                                 geometry={nodes.RightRearLugNuts.geometry}
                                 material={materials['86wheel']}
+                                position={[-0.073, 0.008, 0.007]}
                             />
                             <mesh
                                 castShadow
                                 receiveShadow
                                 geometry={nodes.RightRearTire.geometry}
                                 material={materials.Tire}
+                                position={[0.191, -0.004, 0.008]}
                             />
                             <mesh
                                 castShadow
