@@ -4,16 +4,17 @@ import { useEffect, useRef } from 'react';
 const RightAnimatedCountachTrim = () => {
     const group = useRef();
     const { nodes, materials, animations } = useGLTF(
-        '/models/countach/rightTrim.glb'
+        '/models/countach/countachRightTrim.glb'
     );
 
     const { actions } = useAnimations(animations, group);
 
-    useEffect(() => {
-        if (actions) {
-            actions['CountachRightPopupTrimAction'].play();
-        }
-    }, [actions]);
+    // useEffect(() => {
+
+    //     if (actions) {
+    //         actions['CountachRightPopupTrimAction'].play();
+    //     }
+    // }, [actions]);
 
     return (
         <group ref={group} dispose={null}>
@@ -31,6 +32,6 @@ const RightAnimatedCountachTrim = () => {
     );
 };
 
-useGLTF.preload('/models/countach/rightTrim.glb');
+useGLTF.preload('/models/countach/countachRightTrim.glb');
 
 export default RightAnimatedCountachTrim;

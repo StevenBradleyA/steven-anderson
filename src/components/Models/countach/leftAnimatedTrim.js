@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 const LeftAnimatedCountachTrim = () => {
     const group = useRef();
     const { nodes, materials, animations } = useGLTF(
-        '/models/countach/leftTrim.glb'
+        '/models/countach/countachLeftTrim.glb'
     );
 
     const { actions } = useAnimations(animations, group);
@@ -31,6 +31,6 @@ const LeftAnimatedCountachTrim = () => {
     );
 };
 
-useGLTF.preload('/models/countach/leftTrim.glb');
+useGLTF.preload('/models/countach/countachLeftTrim.glb');
 
 export default LeftAnimatedCountachTrim;

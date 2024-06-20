@@ -5,7 +5,7 @@ import * as THREE from 'three';
 const RightAnimatedCountachLight = () => {
     const group = useRef();
     const { nodes, materials, animations } = useGLTF(
-        '/models/countach/rightLight.glb'
+        '/models/countach/countachRightLight.glb'
     );
 
     const { actions } = useAnimations(animations, group);
@@ -16,11 +16,11 @@ const RightAnimatedCountachLight = () => {
         emissiveIntensity: 1.2,
     });
 
-    useEffect(() => {
-        if (actions) {
-            actions['CountachRightPopupLightsAction'].play();
-        }
-    }, [actions]);
+    // useEffect(() => {
+    //     if (actions) {
+    //         actions['CountachRightPopupLightsAction'].play();
+    //     }
+    // }, [actions]);
 
     return (
         <group ref={group} dispose={null}>
@@ -30,14 +30,15 @@ const RightAnimatedCountachLight = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.CountachRightPopupLights.geometry}
-                    material={materials.White}
+                    material={popupHeadlights}
                     position={[452.183, 1159.119, 609.342]}
+                    scale={1}
                 />
             </group>
         </group>
     );
 };
 
-useGLTF.preload('/models/countach/rightLight.glb');
+useGLTF.preload('/models/countach/countachRightLight.glb');
 
 export default RightAnimatedCountachLight;

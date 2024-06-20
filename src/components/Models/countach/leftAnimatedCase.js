@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 const LeftAnimatedCountachCase = () => {
     const group = useRef();
     const { nodes, materials, animations } = useGLTF(
-        '/models/countach/leftCase.glb'
+        '/models/countach/countachLeftCase.glb'
     );
 
     const { actions } = useAnimations(animations, group);
@@ -31,6 +31,6 @@ const LeftAnimatedCountachCase = () => {
     );
 };
 
-useGLTF.preload('/models/countach/leftCase.glb');
+useGLTF.preload('/models/countach/countachLeftCase.glb');
 
 export default LeftAnimatedCountachCase;

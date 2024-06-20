@@ -4,16 +4,17 @@ import { useEffect, useRef } from 'react';
 const RightAnimatedCountachCase = () => {
     const group = useRef();
     const { nodes, materials, animations } = useGLTF(
-        '/models/countach/rightCase.glb'
+        '/models/countach/countachRightCase.glb'
     );
 
     const { actions } = useAnimations(animations, group);
 
-    useEffect(() => {
-        if (actions) {
-            actions['CountachRightPopupCaseAction'].play();
-        }
-    }, [actions]);
+    // useEffect(() => {
+    //     if (actions) {
+    //         actions['CountachRightPopupCaseAction'].play();
+    //     }
+    // }, [actions]);
+
 
     return (
         <group ref={group} dispose={null}>
@@ -31,6 +32,6 @@ const RightAnimatedCountachCase = () => {
     );
 };
 
-useGLTF.preload('/models/countach/rightCase.glb');
+useGLTF.preload('/models/countach/countachRightCase.glb');
 
 export default RightAnimatedCountachCase;

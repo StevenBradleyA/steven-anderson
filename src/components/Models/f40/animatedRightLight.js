@@ -5,7 +5,7 @@ import * as THREE from 'three';
 const AnimatedFerrariRightLight = () => {
     const group = useRef();
     const { nodes, materials, animations } = useGLTF(
-        '/models/f40/rightLight.glb'
+        '/models/f40/ferrariRightLight.glb'
     );
 
     const { actions } = useAnimations(animations, group);
@@ -38,6 +38,6 @@ const AnimatedFerrariRightLight = () => {
     );
 };
 
-useGLTF.preload('/models/f40/rightLight.glb');
+useGLTF.preload('/models/f40/ferrariRightLight.glb');
 
 export default AnimatedFerrariRightLight;

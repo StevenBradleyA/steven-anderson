@@ -157,48 +157,48 @@ const HachiRoku = () => {
         }
 
         // respawn
-        if (respawn && carRef.current && activeCamera === 'follow') {
-            carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
-            carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
-            carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-            const euler = new THREE.Euler(0, 0, 0);
-            const quaternion = new THREE.Quaternion().setFromEuler(euler);
-            carRef.current.setRotation(quaternion, true);
-            setIsUpsideDown(false);
-        }
+        // if (respawn && carRef.current && activeCamera === 'follow') {
+        //     carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
+        //     carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+        //     carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+        //     const euler = new THREE.Euler(0, 0, 0);
+        //     const quaternion = new THREE.Quaternion().setFromEuler(euler);
+        //     carRef.current.setRotation(quaternion, true);
+        //     setIsUpsideDown(false);
+        // }
         // auto respawn
-        if (carRef.current) {
-            const currentPosition = carRef.current.translation();
-            if (currentPosition.y < respawnHeight) {
-                carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
-                carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
-                carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-                const euler = new THREE.Euler(0, 0, 0);
-                const quaternion = new THREE.Quaternion().setFromEuler(euler);
-                carRef.current.setRotation(quaternion, true);
-                setIsUpsideDown(false);
-                setCurrentSpeed(0);
-            }
-        }
+        // if (carRef.current) {
+        //     const currentPosition = carRef.current.translation();
+        //     if (currentPosition.y < respawnHeight) {
+        //         carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
+        //         carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+        //         carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+        //         const euler = new THREE.Euler(0, 0, 0);
+        //         const quaternion = new THREE.Quaternion().setFromEuler(euler);
+        //         carRef.current.setRotation(quaternion, true);
+        //         setIsUpsideDown(false);
+        //         setCurrentSpeed(0);
+        //     }
+        // }
         // flip in place
-        if (flip && carRef.current && activeCamera === 'follow') {
-            const currentPosition = carRef.current.translation();
-            carRef.current.setTranslation(
-                {
-                    x: currentPosition.x,
-                    y: currentPosition.y + 2,
-                    z: currentPosition.z,
-                },
-                true
-            );
+        // if (flip && carRef.current && activeCamera === 'follow') {
+        //     const currentPosition = carRef.current.translation();
+        //     carRef.current.setTranslation(
+        //         {
+        //             x: currentPosition.x,
+        //             y: currentPosition.y + 2,
+        //             z: currentPosition.z,
+        //         },
+        //         true
+        //     );
 
-            carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
-            carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-            const euler = new THREE.Euler(0, 0, 0);
-            const quaternion = new THREE.Quaternion().setFromEuler(euler);
-            carRef.current.setRotation(quaternion, true);
-            setIsUpsideDown(false);
-        }
+        //     carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+        //     carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+        //     const euler = new THREE.Euler(0, 0, 0);
+        //     const quaternion = new THREE.Quaternion().setFromEuler(euler);
+        //     carRef.current.setRotation(quaternion, true);
+        //     setIsUpsideDown(false);
+        // }
         // speed
         if (moveForward && activeCamera === 'follow') {
             if (currentSpeed < topSpeed) {
@@ -317,7 +317,6 @@ const HachiRoku = () => {
     });
 
     //  materials
-  
 
     const carBlue = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -337,6 +336,331 @@ const HachiRoku = () => {
     return (
         <>
             <RigidBody
+                ref={carRef}
+                mass={9}
+                // 11
+                colliders={false}
+                position={[0, 1300, 0]}
+                // type="fixed"
+                friction={0.3}
+                name="car"
+                // ccd={true}
+            >
+                <CuboidCollider
+                    // args={[4, 2, 9.3]}
+                    args={[4, 1.5, 9.3]}
+                    // position={[0, 2.1, 0]}
+                    position={[0, 2.5, 0]}
+                    name="bodyCollider"
+                />
+                <CuboidCollider
+                    args={[3.5, 0.8, 5.5]}
+                    position={[0, 4.8, -2.5]}
+                    name="roofCollider"
+                    mass={0.002}
+                    onCollisionEnter={({ other }) => {
+                        if (other.rigidBodyObject.name === 'track') {
+                            setIsUpsideDown(true);
+                        }
+                    }}
+                    onCollisionExit={() => setIsUpsideDown(false)}
+                />
+                <group dispose={null}>
+                    <group>
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.AxelRear.geometry}
+                            material={materials.Blue}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.BrakeLights.geometry}
+                            material={materials.BrakeLights}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Exhaust.geometry}
+                            material={materials.Tire}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Fogs.geometry}
+                            material={materials.Fog}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Glass.geometry}
+                            material={materials.Glass}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.LeftFrontBrakeDiscs.geometry}
+                            material={materials.Silver}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.ToyotaBadgeBack.geometry}
+                            material={materials.Trim}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.TruenoBadgeFront.geometry}
+                            material={materials['White.001']}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Trim.geometry}
+                            material={materials.Trim}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Body.geometry}
+                            material={materials.Blue}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.WhiteFrontBlinkers.geometry}
+                            material={materials['White.001']}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.LicensePlateLights.geometry}
+                            material={materials.White}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.LicensePlate.geometry}
+                            material={materials.Trim}
+                        />
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.LicensePlateText.geometry}
+                            material={materials.Blue}
+                        />
+
+                        <mesh
+                            castShadow
+                            receiveShadow
+                            geometry={nodes.Calipers.geometry}
+                            material={materials.Blue}
+                        />
+                    </group>
+
+                    <group ref={lfwParentRef}>
+                        <CylinderCollider
+                            args={[0.7, 1.2]}
+                            position={[3.2, 1.3, 5.5]}
+                            rotation={[0, 0, Math.PI / 2]}
+                            name="lfwCollider"
+                            // onCollisionEnter={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             lfw: true,
+                            //         }));
+                            //     }
+                            // }}
+                            // onCollisionExit={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             lfw: false,
+                            //         }));
+                            //     }
+                            // }}
+                        />
+                        <group ref={lfwRef}>
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.LeftFrontLugNuts.geometry}
+                                material={materials['86wheel']}
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.LeftFrontTire.geometry}
+                                material={materials.Tire}
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.LeftFrontWheel.geometry}
+                                material={materials['86wheel']}
+                            />
+                        </group>
+                    </group>
+
+                    <group ref={rfwParentRef}>
+                        <CylinderCollider
+                            args={[0.7, 1.2]}
+                            position={[-3.2, 1.3, 5.5]}
+                            rotation={[0, 0, Math.PI / 2]}
+                            setContactSkin={0.1}
+                            name="rfwCollider"
+                            // onCollisionEnter={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             rfw: true,
+                            //         }));
+                            //     }
+                            // }}
+                            // onCollisionExit={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             rfw: false,
+                            //         }));
+                            //     }
+                            // }}
+                        />
+                        <group ref={rfwRef}>
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.RightFrontLugNuts.geometry}
+                                material={materials['86wheel']}
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.RightFrontTire.geometry}
+                                material={materials.Tire}
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.RightFrontWheel.geometry}
+                                material={materials['86wheel']}
+                            />
+                        </group>
+                    </group>
+
+                    <group>
+                        <CylinderCollider
+                            args={[0.7, 1.2]}
+                            name="lrwCollider"
+                            position={[3.2, 1.3, -5]}
+                            rotation={[0, 0, Math.PI / 2]}
+                            // onCollisionEnter={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             lrw: true,
+                            //         }));
+                            //     }
+                            // }}
+                            // onCollisionExit={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             lrw: false,
+                            //         }));
+                            //     }
+                            // }}
+                        />
+                        <group ref={lrwRef}>
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.LeftRearLugNuts.geometry}
+                                material={materials['86wheel']}
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.LeftRearTire.geometry}
+                                material={materials.Tire}
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.LeftRearWheel.geometry}
+                                material={materials['86wheel']}
+                            />
+                        </group>
+                    </group>
+
+                    <group>
+                        <CylinderCollider
+                            args={[0.7, 1.2]}
+                            position={[-3.2, 1.3, -5]}
+                            rotation={[0, 0, Math.PI / 2]}
+                            setContactSkin={0.1}
+                            name="rrwCollider"
+                            // onCollisionEnter={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             rrw: true,
+                            //         }));
+                            //     }
+                            // }}
+                            // onCollisionExit={({ other }) => {
+                            //     if (other.rigidBodyObject.name === 'track') {
+                            //         setWheelsOnGround((prev) => ({
+                            //             ...prev,
+                            //             rrw: false,
+                            //         }));
+                            //     }
+                            // }}
+                        />
+                        <group ref={rrwRef}>
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.RightRearLugNuts.geometry}
+                                material={materials['86wheel']}
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.RightRearTire.geometry}
+                                material={materials.Tire}
+                            />
+                            <mesh
+                                castShadow
+                                receiveShadow
+                                geometry={nodes.RightRearWheel.geometry}
+                                material={materials['86wheel']}
+                            />
+                        </group>
+                    </group>
+                </group>
+            </RigidBody>
+
+            {/* end car */}
+
+            <CameraManager
+                carRef={carRef}
+                activeCamera={activeCamera}
+                setActiveCamera={setActiveCamera}
+                keysPressed={keysPressed}
+            />
+        </>
+    );
+};
+useGLTF.preload('/models/hachiroku.glb');
+
+export default HachiRoku;
+
+{
+    /* <RigidBody
                 ref={carRef}
                 mass={11}
                 colliders={false}
@@ -364,313 +688,7 @@ const HachiRoku = () => {
                 />
                 <group dispose={null}>
                     <group ref={bodyRef}>
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Body.geometry}
-                            material={carBlue}
-                            position={[0.246, 2.641, 1.676]}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            name="bodyPanels"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Glass.geometry}
-                            material={glass}
-                            // material={
-                            //     new THREE.MeshPhysicalMaterial({
-                            //         color: new THREE.Color(0x888888), // Grayish base color
-                            //         metalness: 0.5, // Some metalness for reflectivity
-                            //         roughness: 0.1, // Low roughness for a smooth surface
-                            //         clearcoat: 1.0, // Sets the clear coat to the maximum value for extra shine
-                            //         clearcoatRoughness: 0.0, // Clear coat should be smooth
-                            //         reflectivity: 0.9, // High reflectivity for glass
-                            //     })
-                            // }
-                            position={[0.246, 2.641, 1.676]}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            name="glass"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LeftFrontBrakeDiscs.geometry}
-                            material={materials.Silver}
-                            position={[3.33, 1.244, 5.132]}
-                            rotation={[-Math.PI / 2, 1.571, 0]}
-                            scale={[0.658, 0.658, 0.098]}
-                            name="leftFrontBrakeDiscs"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LeftFrontCaliper.geometry}
-                            material={carBlue}
-                            position={[3.474, 1.414, 4.617]}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            scale={0.111}
-                            name="leftFrontCaliper"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LeftRearBrakeCaliper.geometry}
-                            material={carBlue}
-                            position={[3.538, 1.314, -5.895]}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            scale={0.111}
-                            name="leftRearCaliper"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LeftRearBrakeDisc.geometry}
-                            material={materials.Silver}
-                            position={[3.394, 1.143, -5.381]}
-                            rotation={[-Math.PI / 2, 1.571, 0]}
-                            scale={[0.658, 0.658, 0.098]}
-                            name="leftRearBrakeDisc"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.RightRearBrakeDisc.geometry}
-                            material={materials.Silver}
-                            position={[-2.91, 1.143, -5.383]}
-                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                            scale={[0.658, 0.658, 0.098]}
-                            name="rightRearBrakeDisc"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.RightRearBrakeCaliper.geometry}
-                            material={carBlue}
-                            position={[-3.054, 1.314, -4.869]}
-                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                            scale={0.111}
-                            name="rightRearBrakeCaliper"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.AxelRear.geometry}
-                            material={carBlue}
-                            position={[-2.272, 1.143, -5.383]}
-                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                            scale={1.315}
-                            name="rearAxel"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.AxelFront.geometry}
-                            material={carBlue}
-                            position={[-2.252, 1.244, 5.129]}
-                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                            scale={1.315}
-                            name="frontAxel"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.RightFrontBrakeCaliper.geometry}
-                            material={carBlue}
-                            position={[-3.034, 1.414, 5.643]}
-                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                            scale={0.111}
-                            name="rightFrontCaliper"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.RightFrontBrakeDisc.geometry}
-                            material={materials.Silver}
-                            position={[-2.89, 1.244, 5.129]}
-                            rotation={[Math.PI / 2, -Math.PI / 2, 0]}
-                            scale={[0.658, 0.658, 0.098]}
-                            name="rightFrontBrakeDisc"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.ToyotaBadgeBack.geometry}
-                            material={slateGray}
-                            position={[0.246, 3.357, -9.121]}
-                            rotation={[-2.761, 0, -Math.PI]}
-                            scale={0.015}
-                            name="ToyotaBadgeRear"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.TrunkLock.geometry}
-                            material={carBlue}
-                            position={[0.246, 3.838, -8.884]}
-                            rotation={[0.365, 0, 0]}
-                            scale={0.046}
-                            name="trunkLock"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LicenseLightRearLeft.geometry}
-                            material={carBlue}
-                            position={[1.235, 2.862, -9.125]}
-                            rotation={[-Math.PI / 2, 0, 0]}
-                            scale={0.085}
-                            name="leftRearLicenseLight"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LicenseLightRearRight.geometry}
-                            material={carBlue}
-                            position={[-0.733, 2.862, -9.125]}
-                            rotation={[-Math.PI / 2, 0, 0]}
-                            scale={0.085}
-                            name="rightRearLicenseLight"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Exhaust.geometry}
-                            material={
-                                new THREE.MeshStandardMaterial({
-                                    color: new THREE.Color(0x555555),
-                                    roughness: 0.8,
-                                })
-                            }
-                            position={[2.525, 1.244, -8]}
-                            scale={[0.393, 0.28, 0.488]}
-                            name="exhaust"
-                            ref={exhaustRef}
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.UnderCarriageDetails.geometry}
-                            material={carBlue}
-                            position={[2.165, 0.858, -0.044]}
-                            rotation={[-Math.PI / 2, 0, 0]}
-                            scale={[0.639, 3.091, 0.185]}
-                            name="underCarriage"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Trim.geometry}
-                            material={slateGray}
-                            position={[0.246, 3.996, 3.075]}
-                            rotation={[-1.702, -0.181, 0.17]}
-                            scale={[0.061, 0.076, 0.161]}
-                            name="trim"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.TruenoBadgeFront.geometry}
-                            material={materials.White}
-                            position={[0.246, 2.099, 8.949]}
-                            scale={0.02}
-                            name="truenoBadgeLettering"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.TruenoBadgeFrontBase.geometry}
-                            material={slateGray}
-                            position={[0.246, 2.099, 8.864]}
-                            rotation={[-Math.PI / 2, 0, 0]}
-                            scale={0.047}
-                            name="truenoBadgeBase"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LicensePlateFront.geometry}
-                            material={slateGray}
-                            position={[0.246, 1.384, 8.687]}
-                            rotation={[-Math.PI / 2, 0, 0]}
-                            scale={[0.755, 0.043, 0.26]}
-                            name="frontLicensePlate"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.LicensePlateRear.geometry}
-                            material={slateGray}
-                            position={[0.246, 2.641, 1.676]}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            name="rearLicensePlate"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.GrilleFrontSectioned.geometry}
-                            material={slateGray}
-                            position={[0.246, 2.641, 1.676]}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            name="grille"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.WhiteFrontBlinkers.geometry}
-                            material={
-                                new THREE.MeshStandardMaterial({
-                                    color: new THREE.Color(0xffffff),
-                                    emissive: new THREE.Color(0xffffff),
-                                    emissiveIntensity: 0.8,
-                                })
-                            }
-                            position={[0.246, 2.641, 1.676]}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            name="frontBlinkers"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.PopUpHeadLightTips.geometry}
-                            material={slateGray}
-                            position={[0.246, 2.641, 1.676]}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            name="headlightTips"
-                        />
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.BrakeLights.geometry}
-                            material={
-                                new THREE.MeshStandardMaterial({
-                                    color: new THREE.Color(0xff0000),
-                                    emissive: new THREE.Color(0xff0000),
-                                    emissiveIntensity: 1.2,
-                                })
-                            }
-                            position={[0.246, 2.641, 1.676]}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            ref={brakeLightsRef}
-                            name="brakeLights"
-                        />
-
-                        <mesh
-                            castShadow
-                            receiveShadow
-                            geometry={nodes.Fogs.geometry}
-                            material={
-                                new THREE.MeshStandardMaterial({
-                                    color: new THREE.Color(0xff6700),
-                                    emissive: new THREE.Color(0xff6700),
-                                    emissiveIntensity: 1
-                                })
-                            }
-                            position={[0.246, 2.641, 1.676]}
-                            rotation={[-Math.PI / 2, Math.PI / 2, 0]}
-                            name="fogLights"
-                        />
-                    </group>
+                     </group
 
                     <group ref={lfwParentRef} position={[2.548, 1.244, 5.132]}>
                         <CylinderCollider
@@ -903,21 +921,10 @@ const HachiRoku = () => {
                         </group>
                     </group>
                 </group>
-            </RigidBody>
+            // </RigidBody> */
+}
 
-            <CameraManager
-                carRef={carRef}
-                activeCamera={activeCamera}
-                setActiveCamera={setActiveCamera}
-                keysPressed={keysPressed}
-            />
-        </>
-    );
-};
-useGLTF.preload('/models/hachiroku.glb');
-
-export default HachiRoku;
-
+// enddddddddddddddddddddddd
 // Rigid Body Constructors
 
 // collider constructors

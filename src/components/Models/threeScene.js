@@ -1,10 +1,10 @@
 'use client';
 import React, { Suspense, useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Physics } from '@react-three/rapier';
+import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier';
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { Plane } from '@react-three/drei';
+import { Plane, useGLTF } from '@react-three/drei';
 import LowPolyIsland from './lowPolyIsland';
 import HachiRoku from './hachiroku';
 import GrassBlades from './grassBlades';
@@ -35,7 +35,7 @@ import Countach from './countach/countach';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
-
+    const { nodes, materials } = useGLTF('/models/hachiroku.glb');
     // IDEAS
     // DAY TIME NIGHT TIME SLIDER Changes every 5 or you can select a time
     // SYNTHWAVE MODE
@@ -224,7 +224,7 @@ const ThreeScene = () => {
                         color="white"
                     />
 
-                    <Physics gravity={[0, -98.1, 0]}>
+                    <Physics gravity={[0, -98.1, 0]} debug>
                         <LowPolyIsland />
                         <TreesAndRocks />
                         <RetroStands />
@@ -232,8 +232,6 @@ const ThreeScene = () => {
                         <TireStacks />
                         <HireMeSigns />
                         <StreetLights />
-                        {/* <Ferrari /> */}
-                        {/* <Lamborghini /> */}
                         <Projects />
                         <CenterPiece />
                     </Physics>

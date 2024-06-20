@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 const AnimatedFerrariRightCase = () => {
     const group = useRef();
     const { nodes, materials, animations } = useGLTF(
-        '/models/f40/rightCase.glb'
+        '/models/f40/ferrariRightCase.glb'
     );
 
     const { actions } = useAnimations(animations, group);
@@ -31,6 +31,6 @@ const AnimatedFerrariRightCase = () => {
     );
 };
 
-useGLTF.preload('/models/f40/rightCase.glb');
+useGLTF.preload('/models/f40/ferrariRightCase.glb');
 
 export default AnimatedFerrariRightCase;
