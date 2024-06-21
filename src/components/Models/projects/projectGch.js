@@ -3,10 +3,9 @@ import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { useRef, useState } from 'react';
 import * as THREE from 'three';
-
-const ProjectKeeby = () => {
+const ProjectGch = () => {
     const group = useRef();
-    const { nodes } = useGLTF('/models/projects/projectKeeby.glb');
+    const { nodes } = useGLTF('/models/projects/projectGch.glb');
 
     const retroGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xff00ff),
@@ -67,28 +66,31 @@ const ProjectKeeby = () => {
             <group ref={group} dispose={null}>
                 <group name="Scene">
                     <mesh
-                        name="Project1Enter"
-                        geometry={nodes.Project1Enter.geometry}
+                        name="Project3Enter"
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.Project3Enter.geometry}
                         material={retroGlow}
-                        position={[463.88, currentY, -16.457]}
+                        position={[438.778, currentY, -368.45]}
                     />
                     <mesh
-                        name="Project2Grid001"
-                        geometry={nodes.Project2Grid001.geometry}
+                        name="Project3Grid"
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.Project3Grid.geometry}
                         material={color}
-                        position={[-58, 0, 0]}
                     />
                 </group>
             </group>
             <RigidBody
-                position={[463.88, 1277, -16.457]}
+                position={[438.778, 1277, -368.45]}
                 colliders={false}
                 type="fixed"
             >
                 <CuboidCollider
                     position={[0, 0, 0]}
                     args={[40, 10, 30]}
-                    rotation={[0, 1.1, 0]}
+                    rotation={[0,  1.98, 0]}
                     onIntersectionEnter={handleIntersectionEnter}
                     onIntersectionExit={handleIntersectionExit}
                     sensor
@@ -98,6 +100,6 @@ const ProjectKeeby = () => {
     );
 };
 
-useGLTF.preload('/models/projects/projectKeeby.glb');
+useGLTF.preload('/models/projects/projectGch.glb');
 
-export default ProjectKeeby;
+export default ProjectGch;

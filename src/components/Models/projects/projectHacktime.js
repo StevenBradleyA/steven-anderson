@@ -4,9 +4,9 @@ import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { useRef, useState } from 'react';
 import * as THREE from 'three';
 
-const ProjectKeeby = () => {
+const ProjectHacktime = () => {
     const group = useRef();
-    const { nodes } = useGLTF('/models/projects/projectKeeby.glb');
+    const { nodes } = useGLTF('/models/projects/projectHacktime.glb');
 
     const retroGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xff00ff),
@@ -67,28 +67,27 @@ const ProjectKeeby = () => {
             <group ref={group} dispose={null}>
                 <group name="Scene">
                     <mesh
-                        name="Project1Enter"
-                        geometry={nodes.Project1Enter.geometry}
-                        material={retroGlow}
-                        position={[463.88, currentY, -16.457]}
+                        name="Project2Grid"
+                        geometry={nodes.Project2Grid.geometry}
+                        material={color}
                     />
                     <mesh
-                        name="Project2Grid001"
-                        geometry={nodes.Project2Grid001.geometry}
-                        material={color}
-                        position={[-58, 0, 0]}
+                        name="Project2Enter"
+                        geometry={nodes.Project2Enter.geometry}
+                        material={retroGlow}
+                        position={[486.981, currentY, -190.642]}
                     />
                 </group>
             </group>
             <RigidBody
-                position={[463.88, 1277, -16.457]}
+                position={[486.981, 1277, -190.642]}
                 colliders={false}
                 type="fixed"
             >
                 <CuboidCollider
                     position={[0, 0, 0]}
                     args={[40, 10, 30]}
-                    rotation={[0, 1.1, 0]}
+                    rotation={[0,  1.5708, 0]}
                     onIntersectionEnter={handleIntersectionEnter}
                     onIntersectionExit={handleIntersectionExit}
                     sensor
@@ -98,6 +97,6 @@ const ProjectKeeby = () => {
     );
 };
 
-useGLTF.preload('/models/projects/projectKeeby.glb');
+useGLTF.preload('/models/projects/projectHacktime.glb');
 
-export default ProjectKeeby;
+export default ProjectHacktime;
