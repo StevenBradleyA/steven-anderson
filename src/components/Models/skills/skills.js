@@ -21,7 +21,7 @@ import AnimatedVercel from './animatedVercel';
 
 const Skills = () => {
     const group = useRef();
-    const { nodes, materials } = useGLTF('/models/skills.glb');
+    const { nodes, materials } = useGLTF('/models/skills/skillsGrid.glb');
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -29,10 +29,15 @@ const Skills = () => {
         emissiveIntensity: 1.2,
     });
 
-
-    
     return (
         <>
+            <group dispose={null}>
+                <mesh
+                    geometry={nodes.skillsGrid.geometry}
+                    material={blueGlow}
+                />
+            </group>
+
             <AnimatedAws />
             <AnimatedBlender />
             <AnimatedCss />
@@ -52,6 +57,6 @@ const Skills = () => {
         </>
     );
 };
-useGLTF.preload('/models/skills.glb');
+useGLTF.preload('/models/skills/skillsGrid.glb');
 
 export default Skills;

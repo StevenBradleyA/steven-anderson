@@ -4,7 +4,7 @@ const GlobalStateContext = createContext();
 
 export const GlobalStateProvider = ({ children }) => {
     const [showGame, setShowGame] = useState(false);
-    const [activeCamera, setActiveCamera] = useState('initial');
+    const [activeCamera, setActiveCamera] = useState('follow');
 
     return (
         <GlobalStateContext.Provider
