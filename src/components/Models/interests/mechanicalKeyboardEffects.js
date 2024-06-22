@@ -6,7 +6,9 @@ import * as THREE from 'three';
 
 const MechanicalKeyboardEffects = () => {
     const group = useRef();
-    const { nodes } = useGLTF('/models/interests/mechanicalKeyboardEffects.glb');
+    const { nodes } = useGLTF(
+        '/models/interests/mechanicalKeyboardEffects.glb'
+    );
 
     const retroGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xff00ff),
@@ -65,41 +67,41 @@ const MechanicalKeyboardEffects = () => {
         <>
             <group name="Scene" dispose={null}>
                 <mesh
-                    name="cubeCorners002"
+                    name="cubeCorners001"
                     castShadow
                     receiveShadow
-                    geometry={nodes.cubeCorners002.geometry}
+                    geometry={nodes.cubeCorners001.geometry}
                     material={blueGlow}
-                    position={[-333, currentY, 421.246]}
+                    position={[-465.931, currentY, 371]}
                     scale={[42.161, 22.639, 42.618]}
                 />
                 {/* <mesh
-                    name="enter"
+                    name="enter001"
                     castShadow
                     receiveShadow
-                    geometry={nodes.enter.geometry}
-                    material={blueGlow}
+                    geometry={nodes.enter001.geometry}
+                    material={materials.White}
                     position={[486.981, 1278, -190.642]}
                 /> */}
                 <mesh
-                    name="cubeFaces002"
+                    name="cubeFaces001"
                     castShadow
                     receiveShadow
-                    geometry={nodes.cubeFaces002.geometry}
+                    geometry={nodes.cubeFaces001.geometry}
                     material={blueTransparent}
-                    position={[-333, currentY, 421.246]}
+                    position={[-465.931, currentY, 371]}
                     scale={[42.161, 22.639, 42.618]}
                 />
             </group>
 
             <RigidBody
-                position={[-333, 1277, 390]}
+                position={[-465.931, 1277, 340]}
                 colliders={false}
                 type="fixed"
             >
                 <CuboidCollider
                     position={[0, 0, 0]}
-                    args={[60, 10, 90]}
+                    args={[60, 10, 110]}
                     rotation={[0, 0, 0]}
                     onIntersectionEnter={handleIntersectionEnter}
                     onIntersectionExit={handleIntersectionExit}

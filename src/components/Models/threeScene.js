@@ -33,6 +33,7 @@ import Controls from './controls';
 import ProjectLinks from './projects/projectLinks';
 import Countach from './countach/countach';
 import MustangEffects from './interests/mustangEffects';
+import MechanicalKeyboardEffects from './interests/mechanicalKeyboardEffects';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
@@ -239,6 +240,7 @@ const ThreeScene = () => {
                         <ProjectLinks />
                         <CenterPiece />
                         <MustangEffects />
+                        <MechanicalKeyboardEffects />
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
