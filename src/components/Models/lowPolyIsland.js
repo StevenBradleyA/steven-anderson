@@ -17,12 +17,12 @@ const LowPolyIsland = ({ trackRef }) => {
             friction={1}
             restitution={0.2}
             name="track"
-            onCollisionEnter={({ other }) => {
-                if (other.rigidBodyObject.name === 'car') {
-                    console.log('collision');
-                }
-            }}
-            onCollisionExit={() => console.log('no collision')}
+            // onCollisionEnter={({ other }) => {
+            //     if (other.rigidBodyObject.name === 'car') {
+            //         console.log('collision');
+            //     }
+            // }}
+            // onCollisionExit={() => console.log('no collision')}
         >
             <group dispose={null}>
                 <mesh

@@ -381,20 +381,6 @@ const HachiRoku = ({ trackRef }) => {
                     }}
                     onCollisionExit={() => setIsUpsideDown(false)}
                 />
-                <CuboidCollider
-                    args={[2, 2, 2]}
-                    position={[0, 1, 0]}
-                    name="groundCollider"
-                    sensor
-                    // onIntersectionEnter={({ other }) => {
-                    //     if (other.rigidBodyObject.name === 'track') {
-                    //         setGroundCar(true);
-                    //     }
-                    // }}
-                    // onIntersectionExit={() => setGroundCar(false)}
-                    mass={0}
-                    friction={0}
-                />
 
                 <group dispose={null}>
                     <group>
