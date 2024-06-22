@@ -1,7 +1,7 @@
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
 
 const MechanicalKeyboardEffects = () => {
@@ -33,6 +33,7 @@ const MechanicalKeyboardEffects = () => {
     // const [color, setColor] = useState(blueGlow);
     const [targetY, setTargetY] = useState(1256);
     const [currentY, setCurrentY] = useState(1256);
+    const [isIntersecting, setIsIntersecting] = useState(false);
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
@@ -41,16 +42,26 @@ const MechanicalKeyboardEffects = () => {
     };
 
     const handleIntersectionEnter = () => {
-        // setColor(blueGlow);
         setTargetY(1293);
-        window.addEventListener('keydown', handleKeyPress);
+        setIsIntersecting(true);
     };
 
     const handleIntersectionExit = () => {
-        // setColor(whiteTransparent);
         setTargetY(1256);
-        window.removeEventListener('keydown', handleKeyPress);
+        setIsIntersecting(false);
     };
+
+    useEffect(() => {
+        if (isIntersecting) {
+            window.addEventListener('keydown', handleKeyPress);
+        } else {
+            window.removeEventListener('keydown', handleKeyPress);
+        }
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [isIntersecting]);
 
     useFrame(() => {
         setCurrentY((prevY) => {
