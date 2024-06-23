@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 const Controls = () => {
-    const { nodes, materials } = useGLTF('/models/controls.glb');
+    const { nodes } = useGLTF('/models/controls.glb');
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -16,12 +16,6 @@ const Controls = () => {
         transparent: true,
     });
 
-    const whiteGlow = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0xe7e7e7),
-        emissive: new THREE.Color(0xe7e7e7),
-        emissiveIntensity: 0.2,
-    });
-
     return (
         <group dispose={null}>
             <group name="Scene">
@@ -31,8 +25,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.arrowDown.geometry}
                     material={blueGlow}
-                    position={[-83.368, 1286.797, 91.854]}
+                    position={[-69.699, 1285.762, 98.3]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="arrowLeft"
@@ -40,8 +35,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.arrowLeft.geometry}
                     material={blueGlow}
-                    position={[-76.05, 1286.772, 95.37]}
+                    position={[-64.173, 1285.743, 100.955]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="arrowRight"
@@ -49,8 +45,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.arrowRight.geometry}
                     material={blueGlow}
-                    position={[-90.453, 1286.772, 88.451]}
+                    position={[-75.05, 1285.743, 95.73]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="arrowUp"
@@ -58,8 +55,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.arrowUp.geometry}
                     material={blueGlow}
-                    position={[-82.972, 1294.696, 92.045]}
+                    position={[-69.401, 1291.727, 98.444]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="controlsGrid"
@@ -67,8 +65,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.controlsGrid.geometry}
                     material={whiteTransparent}
-                    position={[-70, 1340.688, 98]}
+                    position={[-59.603, 1326.462, 102.942]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="controlsDivider"
@@ -76,8 +75,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.controlsDivider.geometry}
                     material={whiteTransparent}
-                    position={[-38.462, 1327.715, 113.3]}
+                    position={[-35.784, 1316.665, 114.497]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="controlsDivider001"
@@ -85,8 +85,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.controlsDivider001.geometry}
                     material={whiteTransparent}
-                    position={[-69.919, 1306.988, 98.064]}
+                    position={[-59.542, 1301.011, 102.99]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="controlsText"
@@ -94,8 +95,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.controlsText.geometry}
                     material={whiteTransparent}
-                    position={[-27.523, 1319.772, 118.19]}
+                    position={[-27.523, 1310.666, 118.19]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="dBack001"
@@ -103,8 +105,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.dBack001.geometry}
                     material={blueGlow}
-                    position={[-53.476, 1286.585, 105.92]}
+                    position={[-47.123, 1285.602, 108.923]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="eBack001"
@@ -112,8 +115,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.eBack001.geometry}
                     material={blueGlow}
-                    position={[-52.71, 1294.104, 106.364]}
+                    position={[-46.545, 1291.28, 109.259]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="fBack001"
@@ -121,8 +125,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.fBack001.geometry}
                     material={blueGlow}
-                    position={[-60.354, 1286.324, 102.772]}
+                    position={[-52.318, 1285.405, 106.545]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="movementText"
@@ -130,8 +135,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.movementText.geometry}
                     material={blueGlow}
-                    position={[-72.276, 1302.72, 96.704]}
+                    position={[-61.323, 1297.788, 101.963]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="sBack001"
@@ -139,44 +145,49 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.sBack001.geometry}
                     material={blueGlow}
-                    position={[-46.516, 1286.762, 109.134]}
+                    position={[-41.868, 1285.735, 111.35]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="D002"
                     castShadow
                     receiveShadow
                     geometry={nodes.D002.geometry}
-                    material={materials.White}
-                    position={[-53.476, 1286.585, 105.92]}
+                    material={whiteTransparent}
+                    position={[-47.123, 1285.602, 108.923]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="F002"
                     castShadow
                     receiveShadow
                     geometry={nodes.F002.geometry}
-                    material={materials.White}
-                    position={[-60.354, 1286.324, 102.772]}
+                    material={whiteTransparent}
+                    position={[-52.318, 1285.405, 106.545]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="S002"
                     castShadow
                     receiveShadow
                     geometry={nodes.S002.geometry}
-                    material={materials.White}
-                    position={[-46.516, 1286.762, 109.134]}
+                    material={whiteTransparent}
+                    position={[-41.868, 1285.735, 111.35]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="E002"
                     castShadow
                     receiveShadow
                     geometry={nodes.E002.geometry}
-                    material={materials.White}
-                    position={[-52.71, 1294.104, 106.364]}
+                    material={whiteTransparent}
+                    position={[-46.545, 1291.28, 109.259]}
                     rotation={[0, 0.285, 0]}
+                    scale={0.755}
                 />
                 <mesh
                     name="Camera001"
@@ -184,9 +195,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.Camera001.geometry}
                     material={whiteTransparent}
-                    position={[-144.767, 1365, 46.595]}
+                    position={[-150.532, 1351.435, 41.719]}
                     rotation={[0, 0.837, -Math.PI / 2]}
-                    scale={22.869}
+                    scale={19.488}
                 />
                 <mesh
                     name="Mode"
@@ -194,9 +205,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.Mode.geometry}
                     material={blueGlow}
-                    position={[-165.216, 1298.9, 29.289]}
+                    position={[-167.958, 1295.108, 26.973]}
                     rotation={[Math.PI / 2, 0, -2.417]}
-                    scale={11.575}
+                    scale={9.864}
                 />
                 <mesh
                     name="cBack"
@@ -204,58 +215,59 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.cBack.geometry}
                     material={blueGlow}
-                    position={[-169.197, 1291.2, 26.347]}
+                    position={[-171.351, 1288.547, 24.465]}
                     rotation={[0.102, -1.508, 0.11]}
+                    scale={0.852}
                 />
                 <mesh
                     name="Tour"
                     castShadow
                     receiveShadow
                     geometry={nodes.Tour.geometry}
-                    material={materials.White}
-                    position={[-187.199, 1293.639, 10.256]}
+                    material={whiteTransparent}
+                    position={[-186.691, 1290.625, 10.753]}
                     rotation={[Math.PI / 2, 0, -2.414]}
-                    scale={4.325}
+                    scale={3.686}
                 />
                 <mesh
                     name="Follow"
                     castShadow
                     receiveShadow
                     geometry={nodes.Follow.geometry}
-                    material={materials.White}
-                    position={[-187.199, 1290.22, 10.256]}
+                    material={whiteTransparent}
+                    position={[-186.691, 1287.711, 10.753]}
                     rotation={[Math.PI / 2, 0, -2.414]}
-                    scale={4.325}
+                    scale={3.686}
                 />
                 <mesh
                     name="Free"
                     castShadow
                     receiveShadow
                     geometry={nodes.Free.geometry}
-                    material={materials.White}
-                    position={[-187.199, 1286.639, 10.256]}
+                    material={whiteTransparent}
+                    position={[-186.691, 1284.66, 10.753]}
                     rotation={[Math.PI / 2, 0, -2.414]}
-                    scale={4.325}
+                    scale={3.686}
                 />
                 <mesh
                     name="mouse"
                     castShadow
                     receiveShadow
                     geometry={nodes.mouse.geometry}
-                    material={materials.White}
-                    position={[-189.537, 1315, 8.176]}
+                    material={whiteTransparent}
+                    position={[-188.683, 1308.828, 8.981]}
                     rotation={[Math.PI / 2, 0, -2.414]}
-                    scale={4.325}
+                    scale={3.686}
                 />
                 <mesh
                     name="freeMode"
                     castShadow
                     receiveShadow
                     geometry={nodes.freeMode.geometry}
-                    material={materials.White}
-                    position={[-187, 1324.957, 10.83]}
+                    material={whiteTransparent}
+                    position={[-186.522, 1317.312, 11.242]}
                     rotation={[Math.PI / 2, 0, -2.414]}
-                    scale={4.325}
+                    scale={3.686}
                 />
                 <mesh
                     name="controlsGrid001"
@@ -263,8 +275,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.controlsGrid001.geometry}
                     material={whiteTransparent}
-                    position={[-183.906, 1331.357, 13.539]}
+                    position={[-183.885, 1322.767, 13.551]}
                     rotation={[0, 0.017, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="movementText001"
@@ -272,8 +285,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.movementText001.geometry}
                     material={blueGlow}
-                    position={[-185.726, 1330.928, 12.15]}
+                    position={[-185.436, 1322.401, 12.368]}
                     rotation={[0, 0.013, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="fBack"
@@ -281,8 +295,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.fBack.geometry}
                     material={blueGlow}
-                    position={[-179.319, 1313, 17.272]}
+                    position={[-179.976, 1307.123, 16.732]}
                     rotation={[0, -0.006, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="eBack"
@@ -290,8 +305,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.eBack.geometry}
                     material={blueGlow}
-                    position={[-173.03, 1320.78, 22.909]}
+                    position={[-174.617, 1313.753, 21.536]}
                     rotation={[0, -0.006, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="dBack"
@@ -299,8 +315,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.dBack.geometry}
                     material={blueGlow}
-                    position={[-173.635, 1313.261, 22.264]}
+                    position={[-175.133, 1307.346, 20.986]}
                     rotation={[0, -0.006, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="sBack"
@@ -308,8 +325,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.sBack.geometry}
                     material={blueGlow}
-                    position={[-167.893, 1313.438, 27.341]}
+                    position={[-170.24, 1307.496, 25.313]}
                     rotation={[0, -0.006, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="cameraDivider001"
@@ -317,9 +335,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.cameraDivider001.geometry}
                     material={whiteTransparent}
-                    position={[-158.575, 1324, 35.821]}
+                    position={[-162.299, 1316.497, 32.539]}
                     rotation={[0, 0.022, 0]}
-                    scale={[1, 0.879, 1]}
+                    scale={[0.852, 0.749, 0.852]}
                 />
                 <mesh
                     name="cameraDivider"
@@ -327,53 +345,59 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.cameraDivider.geometry}
                     material={whiteTransparent}
-                    position={[-183.763, 1306.988, 13.621]}
+                    position={[-183.763, 1302, 13.621]}
                     rotation={[0, 0.011, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="D003"
                     castShadow
                     receiveShadow
                     geometry={nodes.D003.geometry}
-                    material={materials.White}
-                    position={[-173.635, 1313.261, 22.264]}
+                    material={whiteTransparent}
+                    position={[-175.133, 1307.346, 20.986]}
                     rotation={[0, -0.006, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="F003"
                     castShadow
                     receiveShadow
                     geometry={nodes.F003.geometry}
-                    material={materials.White}
-                    position={[-179.319, 1313, 17.272]}
+                    material={whiteTransparent}
+                    position={[-179.976, 1307.123, 16.732]}
                     rotation={[0, -0.006, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="E003"
                     castShadow
                     receiveShadow
                     geometry={nodes.E003.geometry}
-                    material={materials.White}
-                    position={[-173.03, 1320.78, 22.909]}
+                    material={whiteTransparent}
+                    position={[-174.617, 1313.753, 21.536]}
                     rotation={[0, -0.006, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="S003"
                     castShadow
                     receiveShadow
                     geometry={nodes.S003.geometry}
-                    material={materials.White}
-                    position={[-167.893, 1313.438, 27.341]}
+                    material={whiteTransparent}
+                    position={[-170.24, 1307.496, 25.313]}
                     rotation={[0, -0.006, 0]}
+                    scale={0.852}
                 />
                 <mesh
                     name="c"
                     castShadow
                     receiveShadow
                     geometry={nodes.c.geometry}
-                    material={materials.White}
-                    position={[-169.197, 1291.2, 26.347]}
+                    material={whiteTransparent}
+                    position={[-171.351, 1288.547, 24.465]}
                     rotation={[0.102, -1.508, 0.11]}
+                    scale={0.852}
                 />
                 <mesh
                     name="Respawn001"
@@ -381,9 +405,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.Respawn001.geometry}
                     material={whiteTransparent}
-                    position={[-245.518, 1365, -46.546]}
-                    rotation={[0, 0.557, -Math.PI / 2]}
-                    scale={22.869}
+                    position={[-246.711, 1348.883, -72.591]}
+                    rotation={[0, 0.429, -Math.PI / 2]}
+                    scale={18.012}
                 />
                 <mesh
                     name="Respawn"
@@ -391,9 +415,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.Respawn.geometry}
                     material={blueGlow}
-                    position={[-258.541, 1298.9, -65.879]}
-                    rotation={[Math.PI / 2, 0, -2.138]}
-                    scale={11.575}
+                    position={[-254.933, 1296.821, -89.007]}
+                    rotation={[Math.PI / 2, 0, -2.009]}
+                    scale={9.117}
                 />
                 <mesh
                     name="respawnGrid"
@@ -401,8 +425,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.respawnGrid.geometry}
                     material={whiteTransparent}
-                    position={[-274.03, 1331.357, -89.109]}
-                    rotation={[0, -0.262, 0]}
+                    position={[-264.688, 1322.385, -108.715]}
+                    rotation={[0, -0.39, 0]}
+                    scale={0.788}
                 />
                 <mesh
                     name="respawnDivider"
@@ -410,9 +435,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.respawnDivider.geometry}
                     material={whiteTransparent}
-                    position={[-255.822, 1324, -60.708]}
-                    rotation={[0, -0.257, 0]}
-                    scale={[1, 0.879, 1]}
+                    position={[-253.331, 1315.717, -84.693]}
+                    rotation={[0, -0.386, 0]}
+                    scale={[0.788, 0.727, 0.788]}
                 />
                 <mesh
                     name="divider"
@@ -420,8 +445,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.divider.geometry}
                     material={whiteTransparent}
-                    position={[-273.916, 1306.988, -88.991]}
-                    rotation={[0, -0.268, 0]}
+                    position={[-264.611, 1303.191, -108.611]}
+                    rotation={[0, -0.396, 0]}
+                    scale={0.788}
                 />
                 <mesh
                     name="Recover"
@@ -429,9 +455,9 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.Recover.geometry}
                     material={blueGlow}
-                    position={[-258.458, 1327, -66.014]}
-                    rotation={[Math.PI / 2, 0, -2.138]}
-                    scale={11.575}
+                    position={[-254.855, 1318.953, -89.104]}
+                    rotation={[Math.PI / 2, 0, -2.009]}
+                    scale={9.117}
                 />
                 <mesh
                     name="rBack"
@@ -439,19 +465,19 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.rBack.geometry}
                     material={blueGlow}
-                    position={[-272.222, 1289, -85.593]}
-                    rotation={[0.053, -0.129, 0.05]}
-                    scale={0.591}
+                    position={[-263.63, 1289.024, -105.786]}
+                    rotation={[0.054, -0.257, 0.057]}
+                    scale={0.465}
                 />
                 <mesh
                     name="Shift"
                     castShadow
                     receiveShadow
                     geometry={nodes.Shift.geometry}
-                    material={materials.White}
-                    position={[-268.047, 1315.5, -81.271]}
-                    rotation={[Math.PI / 2, 0, -2.132]}
-                    scale={7.665}
+                    material={whiteTransparent}
+                    position={[-260.805, 1309.896, -101.988]}
+                    rotation={[Math.PI / 2, 0, -2.003]}
+                    scale={6.037}
                 />
                 <mesh
                     name="shiftBack"
@@ -459,19 +485,19 @@ const Controls = () => {
                     receiveShadow
                     geometry={nodes.shiftBack.geometry}
                     material={blueGlow}
-                    position={[-273.164, 1318, -87.643]}
-                    rotation={[0, -1.004, -Math.PI]}
-                    scale={[-12.588, -4.977, -0.417]}
+                    position={[-264.16, 1311.865, -107.483]}
+                    rotation={[0, -1.133, -Math.PI]}
+                    scale={[-9.915, -3.92, -0.328]}
                 />
                 <mesh
                     name="R"
                     castShadow
                     receiveShadow
                     geometry={nodes.R.geometry}
-                    material={materials.White}
-                    position={[-271.463, 1287.7, -85.965]}
-                    rotation={[Math.PI / 2, 0, -2.132]}
-                    scale={7.665}
+                    material={whiteTransparent}
+                    position={[-263, 1288, -106]}
+                    rotation={[Math.PI / 2, 0, -2.003]}
+                    scale={6.037}
                 />
             </group>
         </group>

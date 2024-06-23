@@ -1,52 +1,94 @@
 'use client';
 import { useGLTF } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
 import { RigidBody } from '@react-three/rapier';
 import * as THREE from 'three';
+import React, { useRef } from 'react';
 
 const CenterPiece = () => {
-    const { nodes, materials } = useGLTF('/models/centerPiece.glb');
+    const { nodes } = useGLTF('/models/centerPiece.glb');
 
-    const blueGlow= new THREE.MeshStandardMaterial({
-        color:  new THREE.Color(0x007bff),
+    const blueGlow = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x007bff),
         emissive: new THREE.Color(0x007bff),
         emissiveIntensity: 1.5,
+        side: THREE.DoubleSide,
+    });
+    const sphereGlow = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x007bff),
+        emissive: new THREE.Color(0x007bff),
+        emissiveIntensity: 1.5,
+        side: THREE.DoubleSide,
+    });
+
+    const black = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x000000),
+        opacity: 0.9,
+        transparent: true,
+        side: THREE.DoubleSide,
+    });
+
+    // Refs for the meshes to be rotated
+    const lowerGridRef = useRef();
+    const topGridRef = useRef();
+    const sphereRef = useRef();
+
+    useFrame((state, delta) => {
+        if (lowerGridRef.current) {
+            lowerGridRef.current.rotation.y += 0.001;
+        }
+        if (topGridRef.current) {
+            topGridRef.current.rotation.y += 0.001;
+        }
+        if (sphereRef.current) {
+            const elapsed = state.clock.elapsedTime;
+
+            sphereRef.current.rotation.y += 0.01;
+
+            // Color pulsing
+            const pulse = (Math.sin(elapsed * 2) + 1) / 2;
+            sphereRef.current.material.emissiveIntensity = 1 + pulse * 3;
+        }
     });
 
     return (
         <group dispose={null}>
-            <RigidBody
-                type="fixed"
-                position={[0, 0, 0]}
-                colliders="trimesh"
-                friction={1}
-                restitution={0.2}
-                name="centerPiece"
-            >
+            <group name="Scene">
                 <mesh
+                    name="stand"
                     castShadow
                     receiveShadow
                     geometry={nodes.stand.geometry}
-                    material={materials.Black}
+                    material={black}
                 />
-            </RigidBody>
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.lowergrid.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.topgrid.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.sphere.geometry}
-                material={blueGlow}
-            />
+                <mesh
+                    name="lowergrid"
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.lowergrid.geometry}
+                    material={blueGlow}
+                    ref={lowerGridRef}
+                    position={[85, 1286.132, -218.001]}
+                />
+                <mesh
+                    name="topgrid"
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.topgrid.geometry}
+                    material={blueGlow}
+                    ref={topGridRef}
+                    position={[85, 1360.909, -218.001]}
+                />
+                <mesh
+                    name="sphere"
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.sphere.geometry}
+                    material={sphereGlow}
+                    ref={sphereRef}
+                    position={[85.01, 1324.133, -217.029]}
+                />
+            </group>
         </group>
     );
 };

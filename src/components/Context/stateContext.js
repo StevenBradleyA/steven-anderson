@@ -4,11 +4,23 @@ const GlobalStateContext = createContext();
 
 export const GlobalStateProvider = ({ children }) => {
     const [showGame, setShowGame] = useState(false);
+    const [isTunnel, setIsTunnel] = useState(false);
+    const [isOnGround, setIsOnGround] = useState(false);
+
     const [activeCamera, setActiveCamera] = useState('follow');
 
     return (
         <GlobalStateContext.Provider
-            value={{ showGame, setShowGame, activeCamera, setActiveCamera }}
+            value={{
+                showGame,
+                setShowGame,
+                activeCamera,
+                setActiveCamera,
+                isTunnel,
+                setIsTunnel,
+                isOnGround,
+                setIsOnGround,
+            }}
         >
             {children}
         </GlobalStateContext.Provider>

@@ -1,12 +1,11 @@
 'use client';
 import React, { Suspense, useMemo, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { CuboidCollider, Physics, RigidBody } from '@react-three/rapier';
+import { Physics } from '@react-three/rapier';
 import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Plane, useGLTF } from '@react-three/drei';
 import LowPolyIsland from './lowPolyIsland';
-import HachiRoku from './hachiroku';
 import GrassBlades from './grassBlades';
 import TreesAndRocks from './treesAndRocks';
 import RetroSun from './retroSun';
@@ -28,17 +27,17 @@ import Mustang from './interests/mustang';
 import MechanicalKeyboard from './interests/mechanicalKeyboard';
 import Siegmeyer from './interests/siegmeyer';
 import Hackerman from './hackerman';
-import Tunnel from './tunnel';
 import Controls from './controls';
 import ProjectLinks from './projects/projectLinks';
 import Countach from './countach/countach';
 import MustangEffects from './interests/mustangEffects';
 import MechanicalKeyboardEffects from './interests/mechanicalKeyboardEffects';
 import SiegmeyerEffects from './interests/siegmeyerEffects';
+import TunnelEffects from './tunnelEffects';
+import Hachiroku from './hachiroku';
 
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
-    const { nodes, materials } = useGLTF('/models/hachiroku.glb');
     // IDEAS
     // DAY TIME NIGHT TIME SLIDER Changes every 5 or you can select a time
     // SYNTHWAVE MODE
@@ -233,7 +232,7 @@ const ThreeScene = () => {
                         <LowPolyIsland trackRef={trackRef} />
                         <TreesAndRocks />
                         <RetroStands />
-                        <HachiRoku trackRef={trackRef} />
+                        <Hachiroku trackRef={trackRef} />
                         <TireStacks />
                         <HireMeSigns />
                         <StreetLights />
@@ -242,12 +241,12 @@ const ThreeScene = () => {
                         <CenterPiece />
                         <MustangEffects />
                         <MechanicalKeyboardEffects />
-                        <SiegmeyerEffects/>
+                        <SiegmeyerEffects />
+                        <TunnelEffects />
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
                     <Skills />
-                    <Tunnel />
                     <GrassBlades />
                     <RetroSun />
                     <Mustang />
