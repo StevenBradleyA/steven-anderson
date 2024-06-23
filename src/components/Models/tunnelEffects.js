@@ -4,9 +4,14 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 import { useGlobalState } from '../Context/stateContext';
+import { CuboidCollider, RigidBody } from '@react-three/rapier';
 
 const TunnelEffects = () => {
     const { nodes, materials } = useGLTF('/models/tunnelEffects.glb');
+
+ 
+
+
 
     const blueGrid = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -22,29 +27,42 @@ const TunnelEffects = () => {
     const blueLights = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
         emissive: new THREE.Color(0x007bff),
-        emissiveIntensity: 2,
+        emissiveIntensity: 2.5,
     });
     const { isTunnel, setIsTunnel } = useGlobalState();
     const [lightColor, setLightColor] = useState(hiddenLights);
-    const [targetY, setTargetY] = useState(1256);
-    const [currentY, setCurrentY] = useState(1256);
+    const [targetY, setTargetY] = useState(0);
+    const [currentY, setCurrentY] = useState(0);
+    const [tunnelIntersections, setTunnelIntersections] = useState(0);
 
     const handleIntersectionEnter = () => {
-        setTargetY(1293);
-        setIsTunnel(true);
-        setLightColor(blueLights);
+        setTunnelIntersections((prev) => {
+            const newCount = prev + 1;
+            if (newCount > 0) {
+                setTargetY(4);
+                setIsTunnel(true);
+                setLightColor(blueLights);
+            }
+            return newCount;
+        });
     };
 
     const handleIntersectionExit = () => {
-        setTargetY(1256);
-        setIsTunnel(false);
-        setLightColor(hiddenLights);
+        setTunnelIntersections((prev) => {
+            const newCount = prev - 1;
+            if (newCount <= 0) {
+                setTargetY(0);
+                setIsTunnel(false);
+                setLightColor(hiddenLights);
+            }
+            return newCount;
+        });
     };
 
     useFrame(() => {
         setCurrentY((prevY) => {
             const deltaY = targetY - prevY;
-            const step = 0.5;
+            const step = 0.2;
             if (Math.abs(deltaY) < step) {
                 return targetY;
             }
@@ -59,13 +77,15 @@ const TunnelEffects = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelGrid.geometry}
-                    material={materials.Blue}
+                    material={blueGrid}
+                    position={[0, currentY, 0]}
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelPlane.geometry}
                     material={materials.Black}
+                    position={[0, currentY, 0]}
                 />
                 <mesh
                     castShadow
@@ -188,6 +208,38 @@ const TunnelEffects = () => {
                     material={lightColor}
                 />
             </group>
+
+            <RigidBody
+                position={[31, 1155, -200]}
+                colliders={false}
+                type="fixed"
+            >
+                <CuboidCollider
+                    position={[0, 0, 0]}
+                    args={[600, 15, 100]}
+                    rotation={[0, -0.5, 0]}
+                    onIntersectionEnter={handleIntersectionEnter}
+                    onIntersectionExit={handleIntersectionExit}
+                    sensor
+                />
+
+                <CuboidCollider
+                    position={[380, 0, 350]}
+                    args={[200, 15, 150]}
+                    rotation={[0, 0.7, 0]}
+                    onIntersectionEnter={handleIntersectionEnter}
+                    onIntersectionExit={handleIntersectionExit}
+                    sensor
+                />
+                <CuboidCollider
+                    position={[-500, 0, -150]}
+                    args={[200, 15, 150]}
+                    rotation={[0, 0.4, 0]}
+                    onIntersectionEnter={handleIntersectionEnter}
+                    onIntersectionExit={handleIntersectionExit}
+                    sensor
+                />
+            </RigidBody>
         </>
     );
 };

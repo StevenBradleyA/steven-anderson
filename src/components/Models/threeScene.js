@@ -228,7 +228,7 @@ const ThreeScene = () => {
                         color="white"
                     />
 
-                    <Physics gravity={[0, -98.1, 0]} debug>
+                    <Physics gravity={[0, -98.1, 0]} >
                         <LowPolyIsland trackRef={trackRef} />
                         <TreesAndRocks />
                         <RetroStands />

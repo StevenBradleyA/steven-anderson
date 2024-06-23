@@ -4,6 +4,8 @@ import { useGLTF } from '@react-three/drei';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { useGlobalState } from '../Context/stateContext';
 import * as THREE from 'three';
+import { useFrame } from '@react-three/fiber';
+import { useSpring, animated } from '@react-spring/three';
 
 const LowPolyIsland = ({ trackRef }) => {
     const { nodes, materials } = useGLTF('/models/lowPolyIsland.glb');
@@ -14,6 +16,7 @@ const LowPolyIsland = ({ trackRef }) => {
     const black = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x000000),
         roughness: 1,
+        side: THREE.DoubleSide,
     });
     const islandBrown = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xa1673d),
@@ -23,6 +26,7 @@ const LowPolyIsland = ({ trackRef }) => {
     const grass = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x538958),
         roughness: 1,
+        side: THREE.DoubleSide,
     });
 
     const { isTunnel, setIsTunnel, setIsOnGround, isOnGround } =
@@ -30,9 +34,6 @@ const LowPolyIsland = ({ trackRef }) => {
     const [grassColor, setGrassColor] = useState(grass);
     const [islandColor, setIslandColor] = useState(islandBrown);
     const [groundIntersections, setGroundIntersections] = useState(0);
-    // create sensors to determine when car is on the ground.
-
-    // also tunnel sensors need to change materials here
 
     const handleOnGround = () => {
         setGroundIntersections((prev) => {
