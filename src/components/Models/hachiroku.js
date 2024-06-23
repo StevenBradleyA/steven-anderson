@@ -49,7 +49,8 @@ const Hachiroku = ({ trackRef }) => {
     const exhaustRef = useRef();
 
     // camera
-    const { activeCamera, setActiveCamera, showGame } = useGlobalState();
+    const { activeCamera, setActiveCamera, showGame, isOnGround } =
+        useGlobalState();
 
     // input
     const [keysPressed, setKeysPressed] = useState({});
@@ -68,7 +69,6 @@ const Hachiroku = ({ trackRef }) => {
 
     // car detection
     const [isUpsideDown, setIsUpsideDown] = useState(false);
-    const [groundCar, setGroundCar] = useState(false);
 
     // instead of colliders lets try intersects ray
 
@@ -122,12 +122,11 @@ const Hachiroku = ({ trackRef }) => {
     //     setAllWheelsOffGround(allOffGround);
     // }, [wheelsOnGround]);
 
-    useFrame(({ clock }) => {
+    useFrame(() => {
         const moveForward = keysPressed['ArrowUp'] || keysPressed['e'];
         const moveBackward = keysPressed['ArrowDown'] || keysPressed['d'];
         const steerLeft = keysPressed['ArrowLeft'] || keysPressed['s'];
         const steerRight = keysPressed['ArrowRight'] || keysPressed['f'];
-        // const drift = keysPressed['big man'];
         const respawn = keysPressed['r'];
         const flip = keysPressed['Shift'];
 
@@ -194,7 +193,7 @@ const Hachiroku = ({ trackRef }) => {
             setIsUpsideDown(false);
         }
         // speed
-        if (moveForward && activeCamera === 'follow') {
+        if (moveForward && activeCamera === 'follow' && isOnGround === true) {
             if (currentSpeed < topSpeed) {
                 setCurrentSpeed((prevSpeed) => {
                     const accelerationFactor =
@@ -202,7 +201,11 @@ const Hachiroku = ({ trackRef }) => {
                     return prevSpeed + forwardAcceleration * accelerationFactor;
                 });
             }
-        } else if (moveBackward && activeCamera === 'follow') {
+        } else if (
+            moveBackward &&
+            activeCamera === 'follow' &&
+            isOnGround === true
+        ) {
             if (currentSpeed > -topSpeed) {
                 setCurrentSpeed((prevSpeed) => prevSpeed - reverseAcceleration);
             }
@@ -248,21 +251,12 @@ const Hachiroku = ({ trackRef }) => {
             lrwRef.current.rotation.x += wheelRotationSpeed;
             rrwRef.current.rotation.x += wheelRotationSpeed;
         }
-        // drift
-        // if (drift) {
-        //     if (rearWheelFriction !== 0.01) {
-        //         setRearWheelFriction(0.01);
-        //     }
-        // } else {
-        //     if (rearWheelFriction !== 0.3) {
-        //         setRearWheelFriction(0.3);
-        //     }
-        // }
 
         if (
             carRef.current &&
             activeCamera === 'follow' &&
-            isUpsideDown === false
+            isUpsideDown === false &&
+            isOnGround === true
         ) {
             const car = carRef.current;
 
@@ -306,11 +300,7 @@ const Hachiroku = ({ trackRef }) => {
                 );
             }
         }
-
-        // console.log(groundCar);
     });
-
-    //  materials
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -332,7 +322,6 @@ const Hachiroku = ({ trackRef }) => {
         emissiveIntensity: 0.4,
     });
 
-    // When determining pivot point for each wheel. Set origin to geometry for each lrw (lugs, wheel, tire) in blender. Then set a parent pivot position and adjust positions relatively
     const brakeLights = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xff0000),
         emissive: new THREE.Color(0xff0000),
@@ -344,6 +333,7 @@ const Hachiroku = ({ trackRef }) => {
         emissiveIntensity: 0.5,
     });
 
+    // When determining pivot point for each wheel. Set origin to geometry for each lrw (lugs, wheel, tire) in blender. Then set a parent pivot position and adjust positions relatively
     return (
         <>
             <RigidBody

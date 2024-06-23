@@ -25,13 +25,34 @@ const LowPolyIsland = ({ trackRef }) => {
         roughness: 1,
     });
 
-    const { isTunnel, setIsTunnel } = useGlobalState();
+    const { isTunnel, setIsTunnel, setIsOnGround, isOnGround } =
+        useGlobalState();
     const [grassColor, setGrassColor] = useState(grass);
     const [islandColor, setIslandColor] = useState(islandBrown);
-
+    const [groundIntersections, setGroundIntersections] = useState(0);
     // create sensors to determine when car is on the ground.
 
     // also tunnel sensors need to change materials here
+
+    const handleOnGround = () => {
+        setGroundIntersections((prev) => {
+            const newCount = prev + 1;
+            if (newCount > 0) {
+                setIsOnGround(true);
+            }
+            return newCount;
+        });
+    };
+
+    const handleExitGround = () => {
+        setGroundIntersections((prev) => {
+            const newCount = prev - 1;
+            if (newCount <= 0) {
+                setIsOnGround(false);
+            }
+            return newCount;
+        });
+    };
 
     useEffect(() => {
         if (isTunnel === true) {
@@ -42,8 +63,6 @@ const LowPolyIsland = ({ trackRef }) => {
             setIslandColor(islandBrown);
         }
     }, [isTunnel]);
-
-    // make roof double sided island second floor
 
     return (
         <RigidBody
@@ -73,61 +92,60 @@ const LowPolyIsland = ({ trackRef }) => {
                     geometry={nodes.Grass.geometry}
                     material={grassColor}
                 />
-                {/* lower hitbox */}
                 <CuboidCollider
                     position={[0, 1145, 0]}
                     args={[1000, 5, 1000]}
                     rotation={[0, 0, 0]}
-                    onIntersectionEnter={() => console.log('on ground')}
-                    onIntersectionExit={() => console.log('off ground')}
+                    onIntersectionEnter={handleOnGround}
+                    onIntersectionExit={handleExitGround}
                     sensor
+                    name="lower"
                 />
                 <CuboidCollider
                     position={[0, 1285, 0]}
                     args={[800, 5, 800]}
                     rotation={[0, 0, 0]}
-                    onIntersectionEnter={() => console.log('on upper')}
-                    onIntersectionExit={() => console.log('off upper')}
+                    onIntersectionEnter={handleOnGround}
+                    onIntersectionExit={handleExitGround}
                     sensor
+                    name="upper"
                 />
-                {/* upper ramp */}
                 <CuboidCollider
                     position={[-180, 1220, 290]}
                     args={[100, 50, 100]}
                     rotation={[0, -0.6, -0.4]}
-                    onIntersectionEnter={() => console.log('on upper ramp')}
-                    onIntersectionExit={() => console.log('off upper ramp')}
+                    onIntersectionEnter={handleOnGround}
+                    onIntersectionExit={handleExitGround}
                     sensor
+                    name="upperRamp"
                 />
-
-                {/* lower ramp tunnel */}
+                <CuboidCollider
+                    position={[-30, 1175, 400]}
+                    args={[100, 50, 100]}
+                    rotation={[0, -0.6, 0]}
+                    onIntersectionEnter={handleOnGround}
+                    onIntersectionExit={handleExitGround}
+                    sensor
+                    name="flatRamp"
+                />
                 <CuboidCollider
                     position={[130, 1140, 510]}
                     args={[130, 50, 100]}
                     rotation={[0, -0.6, -0.3]}
-                    onIntersectionEnter={() => console.log('on lower ramp')}
-                    onIntersectionExit={() => console.log('off lower ramp')}
+                    onIntersectionEnter={handleOnGround}
+                    onIntersectionExit={handleExitGround}
                     sensor
+                    name="lowerRampTunnel"
                 />
-                {/* lower ramp  */}
-
                 <CuboidCollider
                     position={[-190, 1135, 550]}
                     args={[160, 50, 100]}
                     rotation={[0, -2.5, -0.3]}
-                    onIntersectionEnter={() => console.log('on lower ramp')}
-                    onIntersectionExit={() => console.log('off lower ramp')}
+                    onIntersectionEnter={handleOnGround}
+                    onIntersectionExit={handleExitGround}
                     sensor
+                    name="lowerRamp"
                 />
-
-                {/* <CuboidCollider
-                    position={[0, 1285, 0]}
-                    args={[800, 5, 800]}
-                    rotation={[0, 0, 0]}
-                    onIntersectionEnter={() => console.log('on upper')}
-                    onIntersectionExit={() => console.log('off upper')}
-                    sensor
-                /> */}
 
                 <mesh
                     castShadow
