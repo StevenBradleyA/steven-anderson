@@ -15,18 +15,7 @@ const TunnelEffects = () => {
         emissiveIntensity: 1.5,
     });
 
-    const hiddenLights = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0x007bff),
-        opacity: 0,
-        transparent: true,
-    });
-    const blueLights = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0x007bff),
-        emissive: new THREE.Color(0x007bff),
-        emissiveIntensity: 2.5,
-    });
     const { isTunnel, setIsTunnel } = useGlobalState();
-    const [lightColor, setLightColor] = useState(hiddenLights);
 
     const [targetY, setTargetY] = useState(2.8);
     const [currentY, setCurrentY] = useState(2.8);
@@ -392,7 +381,7 @@ const TunnelEffects = () => {
                 />
 
                 <CuboidCollider
-                    position={[380, 0, 350]}
+                    position={[300, 0, 350]}
                     args={[200, 15, 150]}
                     rotation={[0, 0.7, 0]}
                     onIntersectionEnter={handleIntersectionEnter}
@@ -400,7 +389,7 @@ const TunnelEffects = () => {
                     sensor
                 />
                 <CuboidCollider
-                    position={[-500, 0, -150]}
+                    position={[-450, 0, -150]}
                     args={[200, 15, 150]}
                     rotation={[0, 0.4, 0]}
                     onIntersectionEnter={handleIntersectionEnter}

@@ -17,7 +17,7 @@ export default function Home() {
                 <AnimatePresence>
                     {showGame === false && <TitleScreen />}
                 </AnimatePresence>
-                <Navigation/>
+                <Navigation />
                 <ThreeScene />
             </div>
         </main>

@@ -8,12 +8,6 @@ const MustangEffects = () => {
     const group = useRef();
     const { nodes } = useGLTF('/models/interests/mustangEffects.glb');
 
-    const retroGlow = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0xff00ff),
-        emissive: new THREE.Color(0xff007f),
-        emissiveIntensity: 1,
-    });
-
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
         side: THREE.DoubleSide,
@@ -27,9 +21,16 @@ const MustangEffects = () => {
         opacity: 0.1,
         transparent: true,
     });
+    const whiteTransparent = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xe7e7e7),
+        opacity: 0.6,
+        transparent: true,
+    });
 
-    const [targetY, setTargetY] = useState(1256);
-    const [currentY, setCurrentY] = useState(1256);
+    const [cubeTargetY, setCubeTargetY] = useState(1256);
+    const [enterTargetY, setEnterTargetY] = useState(1256);
+    const [cubeY, setCubeY] = useState(1256);
+    const [enterY, setEnterY] = useState(1256);
     const [isIntersecting, setIsIntersecting] = useState(false);
 
     const handleKeyPress = (event) => {
@@ -39,15 +40,17 @@ const MustangEffects = () => {
     };
 
     const handleIntersectionEnter = () => {
-        setTargetY(1293);
+        setCubeTargetY(1293);
+        setEnterTargetY(1288);
+
         setIsIntersecting(true);
     };
 
     const handleIntersectionExit = () => {
-        setTargetY(1256);
+        setCubeTargetY(1256);
+        setEnterTargetY(1256);
         setIsIntersecting(false);
     };
-
     useEffect(() => {
         if (isIntersecting) {
             window.addEventListener('keydown', handleKeyPress);
@@ -60,11 +63,19 @@ const MustangEffects = () => {
     }, [isIntersecting]);
 
     useFrame(() => {
-        setCurrentY((prevY) => {
-            const deltaY = targetY - prevY;
+        setCubeY((prevY) => {
+            const deltaY = cubeTargetY - prevY;
             const step = 0.5;
             if (Math.abs(deltaY) < step) {
-                return targetY;
+                return cubeTargetY;
+            }
+            return prevY + Math.sign(deltaY) * step;
+        });
+        setEnterY((prevY) => {
+            const deltaY = enterTargetY - prevY;
+            const step = 0.4;
+            if (Math.abs(deltaY) < step) {
+                return enterTargetY;
             }
             return prevY + Math.sign(deltaY) * step;
         });
@@ -72,32 +83,29 @@ const MustangEffects = () => {
 
     return (
         <>
-            <group name="Scene" dispose={null}>
+            <group dispose={null}>
                 <mesh
-                    name="cubeCorners002"
                     castShadow
                     receiveShadow
                     geometry={nodes.cubeCorners002.geometry}
                     material={blueGlow}
-                    position={[-333, currentY, 421.246]}
+                    position={[-333, cubeY, 421.246]}
                     scale={[42.161, 22.639, 42.618]}
                 />
-                {/* <mesh
-                    name="enter"
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.enter.geometry}
-                    material={blueGlow}
-                    position={[486.981, 1278, -190.642]}
-                /> */}
                 <mesh
-                    name="cubeFaces002"
                     castShadow
                     receiveShadow
                     geometry={nodes.cubeFaces002.geometry}
                     material={blueTransparent}
-                    position={[-333, currentY, 421.246]}
+                    position={[-333, cubeY, 421.246]}
                     scale={[42.161, 22.639, 42.618]}
+                />
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.mustangEnter.geometry}
+                    material={whiteTransparent}
+                    position={[-338, enterY, 367]}
                 />
             </group>
 
