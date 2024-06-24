@@ -228,7 +228,7 @@ const ThreeScene = () => {
                         color="white"
                     />
 
-                    <Physics gravity={[0, -98.1, 0]} >
+                    <Physics gravity={[0, -98.1, 0]}>
                         <LowPolyIsland trackRef={trackRef} />
                         <TreesAndRocks />
                         <RetroStands />
@@ -633,6 +633,24 @@ export interface RigidBodyOptions extends ColliderProps {
     
     transformState?: (state: RigidBodyState) => RigidBodyState;
 }
+
+
+*/
+
+/*
+
+  we can use linear interpolation to change sky colors
+
+  useFrame(() => {
+        setGrassTime((prevTime) => prevTime + 0.1);
+        const lerpedColor = grass
+            .clone()
+            .lerp(black, 0.5 * (Math.sin(grassTime) + 1));
+        if (grassRef.current) {
+            grassRef.current.material.color = lerpedColor;
+        }
+    });
+
 
 
 */

@@ -9,10 +9,6 @@ import { CuboidCollider, RigidBody } from '@react-three/rapier';
 const TunnelEffects = () => {
     const { nodes, materials } = useGLTF('/models/tunnelEffects.glb');
 
- 
-
-
-
     const blueGrid = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
         emissive: new THREE.Color(0x007bff),
@@ -31,8 +27,12 @@ const TunnelEffects = () => {
     });
     const { isTunnel, setIsTunnel } = useGlobalState();
     const [lightColor, setLightColor] = useState(hiddenLights);
-    const [targetY, setTargetY] = useState(0);
-    const [currentY, setCurrentY] = useState(0);
+
+    const [targetY, setTargetY] = useState(2.8);
+    const [currentY, setCurrentY] = useState(2.8);
+    const [currentOpacity, setCurrentOpacity] = useState(0);
+    const [targetOpacity, setTargetOpacity] = useState(0);
+
     const [tunnelIntersections, setTunnelIntersections] = useState(0);
 
     const handleIntersectionEnter = () => {
@@ -40,8 +40,8 @@ const TunnelEffects = () => {
             const newCount = prev + 1;
             if (newCount > 0) {
                 setTargetY(4);
+                setTargetOpacity(1);
                 setIsTunnel(true);
-                setLightColor(blueLights);
             }
             return newCount;
         });
@@ -51,9 +51,9 @@ const TunnelEffects = () => {
         setTunnelIntersections((prev) => {
             const newCount = prev - 1;
             if (newCount <= 0) {
-                setTargetY(0);
+                setTargetY(1.8);
+                setTargetOpacity(0);
                 setIsTunnel(false);
-                setLightColor(hiddenLights);
             }
             return newCount;
         });
@@ -62,11 +62,19 @@ const TunnelEffects = () => {
     useFrame(() => {
         setCurrentY((prevY) => {
             const deltaY = targetY - prevY;
-            const step = 0.2;
+            const step = 0.04;
             if (Math.abs(deltaY) < step) {
                 return targetY;
             }
             return prevY + Math.sign(deltaY) * step;
+        });
+        setCurrentOpacity((prevOpacity) => {
+            const deltaOpacity = targetOpacity - prevOpacity;
+            const step = 0.02;
+            if (Math.abs(deltaOpacity) < step) {
+                return targetOpacity;
+            }
+            return prevOpacity + Math.sign(deltaOpacity) * step;
         });
     });
 
@@ -91,121 +99,281 @@ const TunnelEffects = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights001.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights002.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights003.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights004.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights005.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights006.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights007.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights008.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights009.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights010.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights011.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights012.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights013.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights014.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights015.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights016.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights017.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights018.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={nodes.tunnelLights019.geometry}
-                    material={lightColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: new THREE.Color(0x007bff),
+                            opacity: currentOpacity,
+                            transparent: true,
+                            emissive: new THREE.Color(0x007bff),
+                            emissiveIntensity: 2.5,
+                        })
+                    }
                 />
             </group>
 

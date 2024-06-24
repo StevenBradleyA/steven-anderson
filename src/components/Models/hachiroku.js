@@ -341,7 +341,7 @@ const Hachiroku = ({ trackRef }) => {
                 mass={9}
                 colliders={false}
                 position={[0, 1300, 0]}
-                friction={0.2}
+                friction={0.15}
                 name="car"
             >
                 <CuboidCollider

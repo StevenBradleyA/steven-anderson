@@ -1,11 +1,10 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { useGlobalState } from '../Context/stateContext';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
-import { useSpring, animated } from '@react-spring/three';
 
 const LowPolyIsland = ({ trackRef }) => {
     const { nodes, materials } = useGLTF('/models/lowPolyIsland.glb');
@@ -13,26 +12,16 @@ const LowPolyIsland = ({ trackRef }) => {
         '/models/driftTrack.glb'
     );
 
-    const black = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0x000000),
-        roughness: 1,
-        side: THREE.DoubleSide,
-    });
-    const islandBrown = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0xa1673d),
-        roughness: 1,
-        side: THREE.DoubleSide,
-    });
-    const grass = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0x538958),
-        roughness: 1,
-        side: THREE.DoubleSide,
-    });
-
     const { isTunnel, setIsTunnel, setIsOnGround, isOnGround } =
         useGlobalState();
-    const [grassColor, setGrassColor] = useState(grass);
-    const [islandColor, setIslandColor] = useState(islandBrown);
+        
+    const grassRef = useRef();
+    const islandRef = useRef();
+    const islandBrown = new THREE.Color(0xa1673d);
+    const black = new THREE.Color(0x000000);
+    const grass = new THREE.Color(0x538958);
+    const [targetProgress, setTargetProgress] = useState(isTunnel ? 1 : 0);
+    const [progress, setProgress] = useState(targetProgress);
     const [groundIntersections, setGroundIntersections] = useState(0);
 
     const handleOnGround = () => {
@@ -56,14 +45,28 @@ const LowPolyIsland = ({ trackRef }) => {
     };
 
     useEffect(() => {
-        if (isTunnel === true) {
-            setGrassColor(black);
-            setIslandColor(black);
-        } else {
-            setGrassColor(grass);
-            setIslandColor(islandBrown);
+        if (!isTunnel) {
+            setProgress(1);
         }
     }, [isTunnel]);
+
+    useFrame(() => {
+        setProgress((prevProgress) => {
+            if (isTunnel) {
+                return Math.min(prevProgress + 0.02, 1);
+            } else {
+                return Math.max(prevProgress - 0.02, 0);
+            }
+        });
+
+        const lerpedGrass = grass.clone().lerp(black, progress);
+        const lerpedIsland = islandBrown.clone().lerp(black, progress);
+
+        if (grassRef.current && islandRef.current) {
+            grassRef.current.material.color = lerpedGrass;
+            islandRef.current.material.color = lerpedIsland;
+        }
+    });
 
     return (
         <RigidBody
@@ -82,16 +85,26 @@ const LowPolyIsland = ({ trackRef }) => {
                     material={materials.IslandBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.islandSecondLevel.geometry}
-                    material={islandColor}
+                    ref={islandRef}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: islandBrown,
+                            roughness: 1,
+                            side: THREE.DoubleSide,
+                        })
+                    }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
+                    ref={grassRef}
                     geometry={nodes.Grass.geometry}
-                    material={grassColor}
+                    material={
+                        new THREE.MeshStandardMaterial({
+                            color: grass,
+                            roughness: 1,
+                            side: THREE.DoubleSide,
+                        })
+                    }
                 />
                 <CuboidCollider
                     position={[0, 1145, 0]}
