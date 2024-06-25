@@ -132,7 +132,7 @@ const ThreeScene = () => {
 
     const Stars = () => {
         const { scene } = useThree();
-        const starCount = 500;
+        const starCount = 300;
         // const starCount = 1000;
 
         for (let i = 0; i < starCount; i++) {
@@ -141,9 +141,9 @@ const ThreeScene = () => {
                 new THREE.MeshBasicMaterial({ color: 'white' })
             );
             star.position.set(
-                Math.random() * 5000 - 2500,
-                Math.random() * 5000 - 2500,
-                Math.random() * 5000 - 2500
+                Math.random() * 4000 - 2500,
+                Math.random() * 3000 + 800,
+                Math.random() * 4000 - 2500
             );
             scene.add(star);
         }
@@ -219,14 +219,13 @@ const ThreeScene = () => {
                 }}
             >
                 <Suspense fallback={null}>
-                    <ambientLight intensity={1} />
+                    <ambientLight intensity={1.8} />
                     {/* <directionalLight position={[1500, 2500, -2500]} intensity={1} /> */}
 
                     <DirectionalLightWithHelper
                         position={[1500, 2500, -2500]}
                         intensity={1.2}
                         color="white"
-                        c
                     />
 
                     <Physics gravity={[0, -98.1, 0]}>
@@ -257,9 +256,9 @@ const ThreeScene = () => {
                     <Controls />
                     <Countach />
                     <Ferrari />
-                    {/* 
-                  <Stars />
-                  <Clouds /> */}
+
+                    <Stars />
+                    {/* <Clouds /> */}
                 </Suspense>
             </Canvas>
         </>

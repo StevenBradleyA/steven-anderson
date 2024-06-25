@@ -5,11 +5,17 @@ import * as THREE from 'three';
 const Mustang = () => {
     const { nodes, materials } = useGLTF('/models/interests/mustang.glb');
 
-    // const blueGlow = new THREE.MeshStandardMaterial({
-    //     color: new THREE.Color(0x007bff),
-    //     emissive: new THREE.Color(0x007bff),
-    //     emissiveIntensity: 1.5,
-    // });
+    const whiteGlow = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xE7E7E7),
+        emissive: new THREE.Color(0xE7E7E7),
+        emissiveIntensity: 1.5,
+    });
+
+    const redGlow = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xff0000),
+        emissive: new THREE.Color(0xff0000),
+        emissiveIntensity: 2.5,
+    });
 
     return (
         <group dispose={null}>
@@ -41,13 +47,13 @@ const Mustang = () => {
                 castShadow
                 receiveShadow
                 geometry={nodes.HeadLamps.geometry}
-                material={nodes.HeadLamps.material}
+                material={whiteGlow}
             />
             <mesh
                 castShadow
                 receiveShadow
                 geometry={nodes.BrakeLights001.geometry}
-                material={materials.Red}
+                material={redGlow}
             />
             <mesh
                 castShadow

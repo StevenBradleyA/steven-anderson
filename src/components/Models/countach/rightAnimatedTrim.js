@@ -9,12 +9,11 @@ const RightAnimatedCountachTrim = () => {
 
     const { actions } = useAnimations(animations, group);
 
-    // useEffect(() => {
-
-    //     if (actions) {
-    //         actions['CountachRightPopupTrimAction'].play();
-    //     }
-    // }, [actions]);
+    useEffect(() => {
+        if (actions) {
+            actions['CountachRightPopupTrimAction.001'].play();
+        }
+    }, [actions]);
 
     return (
         <group ref={group} dispose={null}>

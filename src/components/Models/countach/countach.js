@@ -19,12 +19,7 @@ const Countach = () => {
     const whiteGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xe7e7e7),
         emissive: new THREE.Color(0xe7e7e7),
-        emissiveIntensity: 0.3,
-    });
-    const popupHeadlights = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0xe7e7e7),
-        emissive: new THREE.Color(0xe7e7e7),
-        emissiveIntensity: 0.5,
+        emissiveIntensity: 0.2,
     });
 
     const brakeLights = new THREE.MeshStandardMaterial({
@@ -44,8 +39,14 @@ const Countach = () => {
                 <mesh
                     castShadow
                     receiveShadow
+                    geometry={nodes.Body001.geometry}
+                    material={corsaRed}
+                />
+                <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.BrakeLights002.geometry}
-                    material={materials.BrakeLights}
+                    material={brakeLights}
                 />
                 <mesh
                     castShadow
@@ -56,8 +57,14 @@ const Countach = () => {
                 <mesh
                     castShadow
                     receiveShadow
+                    geometry={nodes.Exhaust003.geometry}
+                    material={materials.Trim}
+                />
+                <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.Fogs001.geometry}
-                    material={materials.Fog}
+                    material={fogLights}
                 />
                 <mesh
                     castShadow
@@ -81,19 +88,7 @@ const Countach = () => {
                     castShadow
                     receiveShadow
                     geometry={nodes.WhiteLights.geometry}
-                    material={materials.White}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Body001.geometry}
-                    material={materials.CorsaRed}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Exhaust003.geometry}
-                    material={materials.Trim}
+                    material={whiteGlow}
                 />
             </group>
 

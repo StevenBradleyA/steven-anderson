@@ -9,12 +9,11 @@ const RightAnimatedCountachCase = () => {
 
     const { actions } = useAnimations(animations, group);
 
-    // useEffect(() => {
-    //     if (actions) {
-    //         actions['CountachRightPopupCaseAction'].play();
-    //     }
-    // }, [actions]);
-
+    useEffect(() => {
+        if (actions) {
+            actions['CountachRightPopupCaseAction.001'].play();
+        }
+    }, [actions]);
 
     return (
         <group ref={group} dispose={null}>

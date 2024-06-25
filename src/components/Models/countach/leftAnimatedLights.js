@@ -4,7 +4,7 @@ import * as THREE from 'three';
 
 const LeftAnimatedCountachLight = () => {
     const group = useRef();
-    const { nodes, materials, animations } = useGLTF(
+    const { nodes, animations } = useGLTF(
         '/models/countach/countachLeftLight.glb'
     );
     const { actions } = useAnimations(animations, group);
