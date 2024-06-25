@@ -64,7 +64,7 @@ const Skills = () => {
             <AnimatedReact />
             <AnimatedRedux />
             <AnimatedTailwind />
-            <AnimatedTypescript/>
+            <AnimatedTypescript />
             <AnimatedVercel />
         </>
     );

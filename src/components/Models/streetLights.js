@@ -1,168 +1,156 @@
 'use client';
 import { useGLTF } from '@react-three/drei';
 import { RigidBody } from '@react-three/rapier';
+import * as THREE from 'three';
 
 const StreetLights = () => {
     const { nodes, materials } = useGLTF('/models/streetLights.glb');
 
+    const yellowTransparent = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0xffd700),
+        opacity: 0.2,
+        transparent: true,
+        emissive: new THREE.Color(0xffd700),
+        emissiveIntensity: 0.8,
+    });
+
     return (
-        <RigidBody
-            // type="dynamic"
-            type="fixed"
-            // mass={0.5}
-            colliders="cuboid"
-            // friction={0.1}
-            // restitution={1}
-            name="streetLights"
-            // onWake={}
-        >
-            <group dispose={null}>
+        <>
+            <RigidBody type="fixed" colliders="cuboid" name="streetLights">
+                <group dispose={null}>
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.lightMounts.geometry}
+                        material={materials.DarkGray}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.mainBlock.geometry}
+                        material={materials.Silver}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.lightFixtures.geometry}
+                        material={materials.Silver}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.pole.geometry}
+                        material={materials.Silver}
+                    />
+
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.lightMounts001.geometry}
+                        material={materials.DarkGray}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.mainBlock001.geometry}
+                        material={materials.Silver}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.lightFixtures001.geometry}
+                        material={materials.Silver}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.pole001.geometry}
+                        material={materials.Silver}
+                    />
+
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.lightFixtures002.geometry}
+                        material={materials.Silver}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.lightMounts002.geometry}
+                        material={materials.DarkGray}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.mainBlock002.geometry}
+                        material={materials.Silver}
+                    />
+                    <mesh
+                        castShadow
+                        receiveShadow
+                        geometry={nodes.pole002.geometry}
+                        material={materials.Silver}
+                    />
+                </group>
+            </RigidBody>
+            <group>
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Cube_2_3_Mat2_0.geometry}
-                    material={materials.DarkGray}
+                    geometry={nodes.lightCone001.geometry}
+                    material={yellowTransparent}
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Cube_3_3_Mat2_0.geometry}
-                    material={materials.DarkGray}
+                    geometry={nodes.lightCone2001.geometry}
+                    material={yellowTransparent}
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Cube_4_Mat2_0.geometry}
-                    material={materials.Silver}
+                    geometry={nodes.lightHexagons001.geometry}
+                    material={yellowTransparent}
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Cylinder_1_20_Mat1_0.geometry}
-                    material={materials.Silver}
+                    geometry={nodes.lightCone002.geometry}
+                    material={yellowTransparent}
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Cylinder_2_21_Mat1_0.geometry}
-                    material={materials.Silver}
+                    geometry={nodes.lightCone2002.geometry}
+                    material={yellowTransparent}
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Cylinder_3_21_Mat1_0.geometry}
-                    material={materials.Silver}
+                    geometry={nodes.lightHexagons002.geometry}
+                    material={yellowTransparent}
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Cylinder_20_Mat1_0.geometry}
-                    material={materials.Silver}
+                    geometry={nodes.lightCone.geometry}
+                    material={yellowTransparent}
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Cube_1_10_Mat2_0.geometry}
-                    material={materials.DarkGray}
+                    geometry={nodes.lightCone2.geometry}
+                    material={yellowTransparent}
                 />
                 <mesh
                     castShadow
                     receiveShadow
-                    geometry={nodes.Cube_2_3_Mat2_0001.geometry}
-                    material={materials.DarkGray}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cube_3_3_Mat2_0001.geometry}
-                    material={materials.DarkGray}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cube_4_Mat2_0001.geometry}
-                    material={materials.Silver}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cylinder_1_20_Mat1_0001.geometry}
-                    material={materials.Silver}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cylinder_2_21_Mat1_0001.geometry}
-                    material={materials.Silver}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cylinder_3_21_Mat1_0001.geometry}
-                    material={materials.Silver}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cylinder_20_Mat1_0001.geometry}
-                    material={materials.Silver}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cube_1_10_Mat2_0001.geometry}
-                    material={materials.DarkGray}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cube_2_3_Mat2_0002.geometry}
-                    material={materials.DarkGray}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cube_3_3_Mat2_0002.geometry}
-                    material={materials.DarkGray}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cube_4_Mat2_0002.geometry}
-                    material={materials.Silver}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cylinder_1_20_Mat1_0002.geometry}
-                    material={materials.Silver}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cylinder_2_21_Mat1_0002.geometry}
-                    material={materials.Silver}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cylinder_3_21_Mat1_0002.geometry}
-                    material={materials.Silver}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cylinder_20_Mat1_0002.geometry}
-                    material={materials.Silver}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Cube_1_10_Mat2_0002.geometry}
-                    material={materials.DarkGray}
+                    geometry={nodes.lightHexagons.geometry}
+                    material={yellowTransparent}
                 />
             </group>
-        </RigidBody>
+        </>
     );
 };
 useGLTF.preload('/models/streetLights.glb');

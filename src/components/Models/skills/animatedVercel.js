@@ -11,7 +11,7 @@ const AnimatedVercel = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['vercelAction'].play();
+            actions['vercelAction.001'].play();
         }
     }, [actions]);
 
