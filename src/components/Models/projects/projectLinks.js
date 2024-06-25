@@ -2,6 +2,7 @@
 import ProjectKeeby from './projectKeeby';
 import ProjectHacktime from './projectHacktime';
 import ProjectGch from './projectGch';
+import ProjectComingSoon from './projectComingSoon';
 
 const ProjectLinks = () => {
     return (
@@ -9,6 +10,7 @@ const ProjectLinks = () => {
             <ProjectKeeby />
             <ProjectHacktime />
             <ProjectGch />
+            <ProjectComingSoon />
         </>
     );
 };

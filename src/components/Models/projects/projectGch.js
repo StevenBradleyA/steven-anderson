@@ -4,7 +4,6 @@ import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
 const ProjectGch = () => {
-    const group = useRef();
     const { nodes } = useGLTF('/models/projects/projectGch.glb');
 
     const retroGlow = new THREE.MeshStandardMaterial({
@@ -75,7 +74,7 @@ const ProjectGch = () => {
 
     return (
         <>
-            <group ref={group} dispose={null}>
+            <group dispose={null}>
                 <group name="Scene">
                     <mesh
                         name="Project3Enter"

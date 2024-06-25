@@ -1,11 +1,10 @@
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import * as THREE from 'three';
 
 const ProjectHacktime = () => {
-    const group = useRef();
     const { nodes } = useGLTF('/models/projects/projectHacktime.glb');
 
     const retroGlow = new THREE.MeshStandardMaterial({
@@ -76,7 +75,7 @@ const ProjectHacktime = () => {
 
     return (
         <>
-            <group ref={group} dispose={null}>
+            <group dispose={null}>
                 <group name="Scene">
                     <mesh
                         name="Project2Grid"

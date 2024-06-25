@@ -338,10 +338,10 @@ const Hachiroku = ({ trackRef }) => {
         <>
             <RigidBody
                 ref={carRef}
-                mass={9}
+                mass={10}
                 colliders={false}
                 position={[0, 1300, 0]}
-                friction={0.15}
+                friction={0.18}
                 name="car"
             >
                 <CuboidCollider
@@ -441,8 +441,8 @@ const Hachiroku = ({ trackRef }) => {
                     </group>
 
                     <CylinderCollider
-                        args={[1.4, 1.2]}
-                        position={[2.4, 1.3, 5.5]}
+                        args={[1.2, 1.2]}
+                        position={[2.6, 1.3, 5.5]}
                         rotation={[0, 0, Math.PI / 2]}
                         name="lfwCollider"
                         ref={lfwCollider}
@@ -473,8 +473,8 @@ const Hachiroku = ({ trackRef }) => {
                     </group>
 
                     <CylinderCollider
-                        args={[1.4, 1.2]}
-                        position={[-2.4, 1.3, 5.5]}
+                        args={[1.2, 1.2]}
+                        position={[-2.6, 1.3, 5.5]}
                         rotation={[0, 0, Math.PI / 2]}
                         name="rfwCollider"
                         ref={rfwCollider}
@@ -506,9 +506,9 @@ const Hachiroku = ({ trackRef }) => {
 
                     <group>
                         <CylinderCollider
-                            args={[1.4, 1.2]}
+                            args={[1.2, 1.2]}
                             name="lrwCollider"
-                            position={[2.4, 1.3, -5]}
+                            position={[2.6, 1.3, -5]}
                             rotation={[0, 0, Math.PI / 2]}
                         />
                         <group ref={lrwRef} position={[3.46, 1.34, -4.954]}>
@@ -537,8 +537,8 @@ const Hachiroku = ({ trackRef }) => {
 
                     <group>
                         <CylinderCollider
-                            args={[1.4, 1.2]}
-                            position={[-2.4, 1.3, -5]}
+                            args={[1.2, 1.2]}
+                            position={[-2.6, 1.3, -5]}
                             rotation={[0, 0, Math.PI / 2]}
                             // setContactSkin={0.1}
                             name="rrwCollider"

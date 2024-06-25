@@ -5,10 +5,6 @@ import { gsap } from 'gsap';
 import { useGlobalState } from '../Context/stateContext';
 
 const CameraManager = ({ carRef, keysPressed }) => {
-    // todo fixed height for follow mode that can be adjusted with a scroll wheel
-    // todo can I make the orbit mode not clip through object?
-    // todo orbit mode rotate by holding mouse wheel button
-    // todo free mode needs to switch immediately on mouse down not up like clicking should instantly switch not clicking then dragging the first click.
     // free camera mode
     // drop down menu to select camera
     const { activeCamera } = useGlobalState();
@@ -28,10 +24,10 @@ const CameraManager = ({ carRef, keysPressed }) => {
     const isRotating = useRef(false);
     const startPan = useRef(new THREE.Vector2());
     const startRotate = useRef(new THREE.Vector2());
-    const [followHeight, setFollowHeight] = useState(15);
-    const [followDistance, setFollowDistance] = useState(30);
+    const [followHeight, setFollowHeight] = useState(20);
+    const [followDistance, setFollowDistance] = useState(40);
     // free
-    const [cameraSpeed, setCameraSpeed] = useState(3);
+    const [cameraSpeed, setCameraSpeed] = useState(2);
 
     useEffect(() => {
         if (activeCamera === 'initial') {
@@ -115,9 +111,10 @@ const CameraManager = ({ carRef, keysPressed }) => {
             const increaseSpeed = keysPressed['g'];
             const decreaseSpeed = keysPressed['a'];
 
-            if (increaseSpeed) setCameraSpeed((prevSpeed) => prevSpeed + 0.2);
+            if (increaseSpeed)
+                setCameraSpeed((prevSpeed) => Math.min(prevSpeed + 0.2, 5));
             if (decreaseSpeed)
-                setCameraSpeed((prevSpeed) => Math.max(prevSpeed - 0.2, 0.2));
+                setCameraSpeed((prevSpeed) => Math.max(prevSpeed - 0.2, 0.5));
 
             const direction = new THREE.Vector3();
             camera.getWorldDirection(direction);
@@ -135,8 +132,6 @@ const CameraManager = ({ carRef, keysPressed }) => {
             if (moveUp) camera.position.addScaledVector(camera.up, cameraSpeed);
             if (moveDown)
                 camera.position.addScaledVector(camera.up, -cameraSpeed);
-
-            console.log(cameraSpeed);
         } else if (activeCamera === 'follow' && carRef.current) {
             const car = carRef.current;
             const carPosition = car.translation();
@@ -170,7 +165,6 @@ const CameraManager = ({ carRef, keysPressed }) => {
             camera.lookAt(targetLookAt);
         }
     });
-
     return null;
 };
 

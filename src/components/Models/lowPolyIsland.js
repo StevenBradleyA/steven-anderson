@@ -14,7 +14,7 @@ const LowPolyIsland = ({ trackRef }) => {
 
     const { isTunnel, setIsTunnel, setIsOnGround, isOnGround } =
         useGlobalState();
-        
+
     const grassRef = useRef();
     const islandRef = useRef();
     const islandBrown = new THREE.Color(0xa1673d);
@@ -23,6 +23,13 @@ const LowPolyIsland = ({ trackRef }) => {
     const [targetProgress, setTargetProgress] = useState(isTunnel ? 1 : 0);
     const [progress, setProgress] = useState(targetProgress);
     const [groundIntersections, setGroundIntersections] = useState(0);
+
+    const blueGlow = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x007bff),
+        emissive: new THREE.Color(0x007bff),
+        emissiveIntensity: 1.5,
+        side: THREE.DoubleSide,
+    });
 
     const handleOnGround = () => {
         setGroundIntersections((prev) => {
@@ -199,19 +206,19 @@ const LowPolyIsland = ({ trackRef }) => {
                     receiveShadow
                     geometry={trackNodes.Plane004.geometry}
                     material={trackMaterials.Track}
-                    ref={trackRef}
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={trackNodes.Plane004_1.geometry}
-                    material={trackMaterials.Blue}
+                    // material={trackMaterials.Blue}
+                    material={blueGlow}
                 />
                 <mesh
                     castShadow
                     receiveShadow
                     geometry={trackNodes.Plane004_2.geometry}
-                    material={trackMaterials.TrackMiddleLine}
+                    material={blueGlow}
                 />
                 <mesh
                     castShadow

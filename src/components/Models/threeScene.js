@@ -212,7 +212,7 @@ const ThreeScene = () => {
                     position: [0, 2000, 0],
                     near: 0.1,
                     far: 12000,
-                    fov: 75,
+                    fov: 60,
                 }}
                 onCreated={({ camera }) => {
                     camera.lookAt(0, 0, 0);
@@ -226,6 +226,7 @@ const ThreeScene = () => {
                         position={[1500, 2500, -2500]}
                         intensity={1.2}
                         color="white"
+                        c
                     />
 
                     <Physics gravity={[0, -98.1, 0]} debug>
@@ -243,6 +244,7 @@ const ThreeScene = () => {
                         <MechanicalKeyboardEffects />
                         <SiegmeyerEffects />
                         <TunnelEffects />
+                        <Hackerman />
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
@@ -252,7 +254,6 @@ const ThreeScene = () => {
                     <Mustang />
                     <MechanicalKeyboard />
                     <Siegmeyer />
-                    <Hackerman />
                     <Controls />
                     <Countach />
                     <Ferrari />

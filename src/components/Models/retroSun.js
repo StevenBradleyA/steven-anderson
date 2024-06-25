@@ -23,7 +23,7 @@ const RetroSun = () => {
     }, [sunRef]);
     return (
         <>
-            <group dispose={null} position={[-2800, -600, 2800]} scale={1.5}>
+            <group dispose={null} position={[-3200, -600, 3200]} scale={1.6}>
                 <mesh
                     castShadow
                     receiveShadow

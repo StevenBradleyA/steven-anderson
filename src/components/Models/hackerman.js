@@ -60,6 +60,14 @@ const Hackerman = () => {
                 geometry={nodes.grid.geometry}
                 material={blueGlow}
             />
+            <mesh
+                castShadow
+                receiveShadow
+                geometry={nodes.hackermanEnter001.geometry}
+                material={materials.White}
+                position={[256.935, 1277, 218.057]}
+                rotation={[0, -0.846, 0]}
+            />
         </group>
     );
 };
