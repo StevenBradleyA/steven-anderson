@@ -11,7 +11,7 @@ const AnimatedFlask = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['flaskAction'].play();
+            actions['flaskAction.001'].play();
         }
     }, [actions]);
 
@@ -24,7 +24,7 @@ const AnimatedFlask = () => {
                     receiveShadow
                     geometry={nodes.flask.geometry}
                     material={materials.Black}
-                    position={[-605.843, 1341.559, -540.346]}
+                    position={[-578, 1339, -490]}
                 />
             </group>
         </group>

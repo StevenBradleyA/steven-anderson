@@ -11,10 +11,9 @@ const AnimatedPrisma = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['prismaAction'].play();
+            actions['prismaAction.001'].play();
         }
     }, [actions]);
-
 
     return (
         <group ref={group} dispose={null}>
@@ -25,7 +24,8 @@ const AnimatedPrisma = () => {
                     receiveShadow
                     geometry={nodes.prisma.geometry}
                     material={materials.Black}
-                    position={[-501.957, 1329.628, -565.82]}
+                    position={[-501.957, 1336, -565.82]}
+                    rotation={[0, 0.545, 0]}
                 />
             </group>
         </group>

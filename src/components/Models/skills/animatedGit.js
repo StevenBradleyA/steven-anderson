@@ -9,14 +9,18 @@ const AnimatedGit = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['gitAction'].play();
+            actions['gitAction.001'].play();
         }
     }, [actions]);
 
     return (
         <group ref={group} dispose={null}>
             <group name="Scene">
-                <group name="git" position={[-449.685, 1353.328, -582.443]}>
+                <group
+                    name="git"
+                    position={[-469.121, 1342, -586.125]}
+                    rotation={[0, 0.77, 0]}
+                >
                     <mesh
                         name="Curve016"
                         castShadow

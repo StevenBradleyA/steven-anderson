@@ -11,7 +11,7 @@ const AnimatedReact = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['reactAction'].play();
+            actions['reactAction.001'].play();
         }
     }, [actions]);
 
@@ -24,7 +24,8 @@ const AnimatedReact = () => {
                     receiveShadow
                     geometry={nodes.react.geometry}
                     material={materials.react}
-                    position={[-601.181, 1321.889, -461.149]}
+                    position={[-557, 1321.889, -421]}
+                    rotation={[0, 0.578, 0]}
                 />
             </group>
         </group>

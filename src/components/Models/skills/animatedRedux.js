@@ -11,7 +11,7 @@ const AnimatedRedux = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['reduxAction'].play();
+            actions['reduxAction.001'].play();
         }
     }, [actions]);
 
@@ -25,6 +25,7 @@ const AnimatedRedux = () => {
                     geometry={nodes.redux.geometry}
                     material={materials.redux}
                     position={[-556.901, 1310.959, -561.631]}
+                    rotation={[0, 0.52, 0]}
                 />
             </group>
         </group>

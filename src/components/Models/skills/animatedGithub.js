@@ -11,7 +11,7 @@ const AnimatedGithub = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['githubAction'].play();
+            actions['githubAction.001'].play();
         }
     }, [actions]);
 
@@ -24,7 +24,8 @@ const AnimatedGithub = () => {
                     receiveShadow
                     geometry={nodes.github.geometry}
                     material={materials.Black}
-                    position={[-487.804, 1330.025, -635.113]}
+                    position={[-487.168, 1307.035, -634.595]}
+                    rotation={[-0.397, 0.811, 0.305]}
                 />
             </group>
         </group>

@@ -16,7 +16,11 @@ const AnimatedCss = () => {
     return (
         <group ref={group} dispose={null}>
             <group name="Scene">
-                <group name="css" position={[-402.157, 1308.094, -641.775]}>
+                <group
+                    name="css"
+                    position={[-421.639, 1309.071, -620.748]}
+                    rotation={[-0.283, 0.96, 0.279]}
+                >
                     <mesh
                         name="Curve021"
                         castShadow

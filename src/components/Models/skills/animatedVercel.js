@@ -24,7 +24,8 @@ const AnimatedVercel = () => {
                     receiveShadow
                     geometry={nodes.vercel.geometry}
                     material={materials.Black}
-                    position={[-565.459, 1305.438, -493.14]}
+                    position={[-557, 1305.438, -471]}
+                    rotation={[-0.372, 0.996, 0.334]}
                 />
             </group>
         </group>

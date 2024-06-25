@@ -11,14 +11,18 @@ const AnimatedPython = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['pythonAction'].play();
+            actions['pythonAction.001'].play();
         }
     }, [actions]);
 
     return (
         <group ref={group} dispose={null}>
             <group name="Scene">
-                <group name="python" position={[-465.25, 1331.763, -531.387]}>
+                <group
+                    name="python"
+                    position={[-479, 1313, -519]}
+                    rotation={[-0.169, 0.538, 0.177]}
+                >
                     <mesh
                         name="Curve045"
                         castShadow

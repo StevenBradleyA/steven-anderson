@@ -9,14 +9,18 @@ const AnimatedHtml = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['htmlAction'].play();
+            actions['htmlAction.001'].play();
         }
     }, [actions]);
 
     return (
         <group ref={group} dispose={null}>
             <group name="Scene">
-                <group name="html" position={[-627.359, 1330.932, -500.28]}>
+                <group
+                    name="html"
+                    position={[-607, 1320, -443]}
+                    rotation={[-0.268, 0.543, 0.119]}
+                >
                     <mesh
                         name="Curve036"
                         castShadow

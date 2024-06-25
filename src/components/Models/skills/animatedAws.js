@@ -9,14 +9,18 @@ const AnimatedAws = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['awsAction'].play();
+            actions['awsAction.001'].play();
         }
     }, [actions]);
 
     return (
         <group ref={group} dispose={null}>
             <group name="Scene">
-                <group name="aws" position={[-431.405, 1332.874, -625.61]}>
+                <group
+                    name="aws"
+                    position={[-465.997, 1330, -624.996]}
+                    rotation={[0, 0.809, 0]}
+                >
                     <mesh
                         name="Curve030"
                         castShadow

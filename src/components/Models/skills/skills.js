@@ -18,6 +18,7 @@ import AnimatedReact from './animatedReact';
 import AnimatedRedux from './animatedRedux';
 import AnimatedTailwind from './animatedTailwind';
 import AnimatedVercel from './animatedVercel';
+import AnimatedTypescript from './animatedTypescript';
 
 const Skills = () => {
     const group = useRef();
@@ -26,15 +27,25 @@ const Skills = () => {
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
         emissive: new THREE.Color(0x007bff),
-        emissiveIntensity: 1.2,
+        emissiveIntensity: 1.8,
     });
 
     return (
         <>
             <group dispose={null}>
                 <mesh
+                    castShadow
+                    receiveShadow
                     geometry={nodes.skillsGrid.geometry}
                     material={blueGlow}
+                />
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.skillEnter.geometry}
+                    material={materials.White}
+                    position={[-458.095, 1278, -489.896]}
+                    rotation={[-Math.PI, 0.736, -Math.PI]}
                 />
             </group>
 
@@ -53,6 +64,7 @@ const Skills = () => {
             <AnimatedReact />
             <AnimatedRedux />
             <AnimatedTailwind />
+            <AnimatedTypescript/>
             <AnimatedVercel />
         </>
     );

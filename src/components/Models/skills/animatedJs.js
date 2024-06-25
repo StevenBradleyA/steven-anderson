@@ -18,7 +18,8 @@ const AnimatedJavascript = () => {
             <group name="Scene">
                 <group
                     name="javascript"
-                    position={[-400.087, 1303.274, -576.33]}
+                    position={[-431, 1303.274, -583]}
+                    rotation={[0, 0.537, 0]}
                 >
                     <mesh
                         name="Curve037"

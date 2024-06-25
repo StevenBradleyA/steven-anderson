@@ -229,7 +229,7 @@ const ThreeScene = () => {
                         c
                     />
 
-                    <Physics gravity={[0, -98.1, 0]} debug>
+                    <Physics gravity={[0, -98.1, 0]}>
                         <LowPolyIsland trackRef={trackRef} />
                         <TreesAndRocks />
                         <RetroStands />
@@ -245,10 +245,10 @@ const ThreeScene = () => {
                         <SiegmeyerEffects />
                         <TunnelEffects />
                         <Hackerman />
+                        <Skills />
                     </Physics>
                     <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
-                    <Skills />
                     <GrassBlades />
                     <RetroSun />
                     <Mustang />

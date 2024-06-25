@@ -11,7 +11,7 @@ const AnimatedTailwind = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['tailwindAction'].play();
+            actions['tailwindAction.001'].play();
         }
     }, [actions]);
 
@@ -24,7 +24,8 @@ const AnimatedTailwind = () => {
                     receiveShadow
                     geometry={nodes.tailwind.geometry}
                     material={materials.tailwind}
-                    position={[-508.493, 1306.581, -525.584]}
+                    position={[-508.493, 1306.581, -494]}
+                    rotation={[0, 0.43, 0]}
                 />
             </group>
         </group>

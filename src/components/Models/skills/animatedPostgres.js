@@ -11,14 +11,14 @@ const AnimatedPostgres = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['postgresAction'].play();
+            actions['postgresAction.001'].play();
         }
     }, [actions]);
 
     return (
         <group ref={group} dispose={null}>
             <group name="Scene">
-                <group name="postgres" position={[-556.665, 1333.21, -528.511]}>
+                <group name="postgres" position={[-556.665, 1326, -528.511]}>
                     <mesh
                         name="Curve042"
                         castShadow

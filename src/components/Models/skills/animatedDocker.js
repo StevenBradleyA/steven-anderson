@@ -11,7 +11,7 @@ const AnimatedDocker = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['dockerAction'].play();
+            actions['dockerAction.001'].play();
         }
     }, [actions]);
 
@@ -24,7 +24,8 @@ const AnimatedDocker = () => {
                     receiveShadow
                     geometry={nodes.docker.geometry}
                     material={materials.docker}
-                    position={[-601.354, 1316.35, -563.196]}
+                    position={[-593.495, 1316.35, -513.921]}
+                    rotation={[0, 0.358, 0]}
                 />
             </group>
         </group>

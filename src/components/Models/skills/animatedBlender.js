@@ -11,14 +11,18 @@ const AnimatedBlender = () => {
 
     useEffect(() => {
         if (actions) {
-            actions['blenderAction'].play();
+            actions['blenderAction.001'].play();
         }
     }, [actions]);
 
     return (
         <group ref={group} dispose={null}>
             <group name="Scene">
-                <group name="blender" position={[-539.142, 1339.491, -602.593]}>
+                <group
+                    name="blender"
+                    position={[-527.971, 1324.384, -604.951]}
+                    rotation={[0.084, 0.28, -0.061]}
+                >
                     <mesh
                         name="Curve032"
                         castShadow

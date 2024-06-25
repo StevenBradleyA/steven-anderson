@@ -3,9 +3,7 @@ import { useEffect, useRef } from 'react';
 
 const AnimatedTypescript = () => {
     const group = useRef();
-    const { nodes, materials, animations } = useGLTF(
-        '/models/skills/typescript.glb'
-    );
+    const { nodes, materials, animations } = useGLTF('/models/skills/ts.glb');
 
     const { actions } = useAnimations(animations, group);
 
@@ -20,7 +18,8 @@ const AnimatedTypescript = () => {
             <group name="Scene">
                 <group
                     name="typescript"
-                    position={[-428.199, 1316.64, -544.848]}
+                    position={[-452.708, 1317.017, -554.317]}
+                    rotation={[-0.001, 0.364, 0.045]}
                 >
                     <mesh
                         name="Curve060"
@@ -42,6 +41,6 @@ const AnimatedTypescript = () => {
     );
 };
 
-useGLTF.preload('/models/skills/typescript.glb');
+useGLTF.preload('/models/skills/ts.glb');
 
 export default AnimatedTypescript;
