@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useProgress } from '@react-three/drei';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, easeInOut, motion } from 'framer-motion';
 import { useGlobalState } from '../Context/stateContext';
 import Image from 'next/image';
 import loadingScreen from '@public/Images/loadingScreen4k.png';
@@ -35,7 +35,7 @@ const TitleScreen = () => {
     const loadingScreenVariants = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
-        exit: { opacity: 0, transition: { duration: 3 } },
+        exit: { opacity: 0, transition: { duration: 0.25, easeInOut } },
     };
 
     return (

@@ -7,42 +7,59 @@ import { useGlobalState } from '../Context/stateContext';
 const CameraManager = ({ carRef, keysPressed }) => {
     // free camera mode
     // drop down menu to select camera
+    // controls in the initial camera mode
+    // when in inital mode esdf or arrows should auto switch for you...
+
     const { activeCamera } = useGlobalState();
 
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
-    const [targetPosition, setTargetPosition] = useState(
-        new THREE.Vector3(0, 1000, 0)
-    );
-    const [targetLookAt, setTargetLookAt] = useState(
-        new THREE.Vector3(0, 0, 0)
-    );
-
     // follow
-    const offset = new THREE.Vector3(0, 200, -500);
-    const isPanning = useRef(false);
     const isRotating = useRef(false);
-    const startPan = useRef(new THREE.Vector2());
     const startRotate = useRef(new THREE.Vector2());
-    const [followHeight, setFollowHeight] = useState(20);
+    const [followHeight, setFollowHeight] = useState(15);
     const [followDistance, setFollowDistance] = useState(40);
     // free
     const [cameraSpeed, setCameraSpeed] = useState(2);
+    // initial
+
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const positions = [
+        new THREE.Vector3(300, 1350, 150), // Powerglove
+        new THREE.Vector3(500, 1600, 5),
+        new THREE.Vector3(-500, 1600, 5),
+        new THREE.Vector3(442.934, 1400, 596.249), // lambo
+        new THREE.Vector3(-800, 1200, -400),
+        new THREE.Vector3(700, 1000, -300),
+        new THREE.Vector3(-300, 1700, 200),
+        new THREE.Vector3(150, 1450, -600),
+    ];
+
+    const lookAts = [
+        new THREE.Vector3(200, 1350, 200), //  Powerglove
+        new THREE.Vector3(0, 1200, 0),
+        new THREE.Vector3(0, 1200, 0),
+        new THREE.Vector3(442.934, 1159.222, 596.249), // lambo
+        new THREE.Vector3(0, 1100, 0),
+        new THREE.Vector3(-300, 1200, 100),
+        new THREE.Vector3(400, 1300, -100),
+        new THREE.Vector3(-150, 1400, 300),
+    ];
+
+    console.log(currentIndex);
 
     useEffect(() => {
+        let interval;
         if (activeCamera === 'initial') {
-            setTargetPosition(new THREE.Vector3(0, 1600, 0));
-            setTargetLookAt(new THREE.Vector3(0, 0, 0));
-        } else if (activeCamera === 'follow' && carRef.current) {
-            const currentPosition = carRef.current.translation();
-            if (currentPosition) {
-                setTargetPosition(
-                    new THREE.Vector3().copy(currentPosition).add(offset)
+            interval = setInterval(() => {
+                setCurrentIndex(
+                    (prevIndex) => (prevIndex + 1) % positions.length
                 );
-                setTargetLookAt(new THREE.Vector3().copy(currentPosition));
-            }
+            }, 10000);
         }
-    }, [activeCamera, carRef]);
+
+        return () => clearInterval(interval);
+    }, [activeCamera]);
 
     useEffect(() => {
         const onMouseDown = (event) => {
@@ -94,12 +111,9 @@ const CameraManager = ({ carRef, keysPressed }) => {
 
     useFrame(() => {
         if (activeCamera === 'initial') {
-            camera.position.lerpVectors(camera.position, targetPosition, 0.1);
-            cameraTarget.current.lerpVectors(
-                cameraTarget.current,
-                targetLookAt,
-                0.1
-            );
+            positions[currentIndex].z -= 0.2;
+            camera.position.lerp(positions[currentIndex], 0.1);
+            cameraTarget.current.lerp(lookAts[currentIndex], 0.1);
             camera.lookAt(cameraTarget.current);
         } else if (activeCamera === 'free') {
             const moveForward = keysPressed['e'];
@@ -161,52 +175,9 @@ const CameraManager = ({ carRef, keysPressed }) => {
                 carPosition.z
             );
             camera.lookAt(cameraTarget.current);
-        } else if (activeCamera === 'free') {
-            camera.lookAt(targetLookAt);
         }
     });
     return null;
 };
 
 export default CameraManager;
-
-// else if (
-//     activeCamera === 'follow' &&
-//     carRef.current &&
-//     backRef.current
-// ) {
-//     const carTranslation = carRef.current.translation();
-//     const rotation = carRef.current.rotation();
-//     const carQuaternion = new THREE.Quaternion(
-//         rotation.x,
-//         rotation.y,
-//         rotation.z,
-//         rotation.w
-//     );
-//     const backwardVector = new THREE.Vector3(0, 1, 0); // Backward in local space
-//     backwardVector.applyQuaternion(carQuaternion);
-
-//     const desiredPosition = new THREE.Vector3(
-//         carTranslation.x + backwardVector.x * followDistance,
-//         followHeight,
-//         carTranslation.z + backwardVector.z * followDistance
-//     );
-
-//     gsap.to(camera.position, {
-//         x: desiredPosition.x,
-//         y: desiredPosition.y,
-//         z: desiredPosition.z,
-//         duration: 0.5,
-//         ease: 'power2.out',
-//     });
-
-//     gsap.to(cameraTarget.current, {
-//         x: carTranslation.x,
-//         y: followHeight,
-//         z: carTranslation.z,
-//         duration: 0.5,
-//         ease: 'power2.out',
-//         onUpdate: () => camera.lookAt(cameraTarget.current),
-//     });
-// }
-// });

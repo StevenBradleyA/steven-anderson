@@ -138,22 +138,27 @@ const Hachiroku = ({ trackRef }) => {
 
         // respawn
         if (respawn && carRef.current && activeCamera === 'follow') {
-            carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
+            carRef.current.setTranslation({ x: -120, y: 1300, z: -150 }, true);
             carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
             carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-            const euler = new THREE.Euler(0, 0, 0);
+            const euler = new THREE.Euler(0, 0.5, 0);
             const quaternion = new THREE.Quaternion().setFromEuler(euler);
             carRef.current.setRotation(quaternion, true);
             setIsUpsideDown(false);
         }
         // auto respawn
         if (carRef.current) {
+            // position={[-120, 1300, -150]}
+            // rotation={[0, 0.5, 0]}
             const currentPosition = carRef.current.translation();
             if (currentPosition.y < respawnHeight) {
-                carRef.current.setTranslation({ x: 0, y: 1300, z: 0 }, true);
+                carRef.current.setTranslation(
+                    { x: -120, y: 1300, z: -150 },
+                    true
+                );
                 carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
                 carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-                const euler = new THREE.Euler(0, 0, 0);
+                const euler = new THREE.Euler(0, 0.5, 0);
                 const quaternion = new THREE.Quaternion().setFromEuler(euler);
                 carRef.current.setRotation(quaternion, true);
                 setIsUpsideDown(false);
@@ -340,7 +345,8 @@ const Hachiroku = ({ trackRef }) => {
                 ref={carRef}
                 mass={10}
                 colliders={false}
-                position={[0, 1300, 0]}
+                position={[-120, 1310, -150]}
+                rotation={[0, 0.5, 0]}
                 friction={0.18}
                 name="car"
             >

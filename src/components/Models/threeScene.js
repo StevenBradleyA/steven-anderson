@@ -36,7 +36,6 @@ import SiegmeyerEffects from './interests/siegmeyerEffects';
 import TunnelEffects from './tunnelEffects';
 import Hachiroku from './hachiroku';
 
-
 const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
     // IDEAS
