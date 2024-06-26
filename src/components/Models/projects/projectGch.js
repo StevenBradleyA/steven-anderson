@@ -1,10 +1,10 @@
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import * as THREE from 'three';
 const ProjectGch = () => {
-    const { nodes } = useGLTF('/models/projects/projectGch.glb');
+    const { nodes } = useGLTF('/models/projects/projectGchLink.glb');
 
     const retroGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xff00ff),
@@ -75,23 +75,19 @@ const ProjectGch = () => {
     return (
         <>
             <group dispose={null}>
-                <group name="Scene">
-                    <mesh
-                        name="Project3Enter"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Project3Enter.geometry}
-                        material={retroGlow}
-                        position={[438.778, currentY, -368.45]}
-                    />
-                    <mesh
-                        name="Project3Grid"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Project3Grid.geometry}
-                        material={color}
-                    />
-                </group>
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Project3Enter.geometry}
+                    material={retroGlow}
+                    position={[438.778, currentY, -368.45]}
+                />
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Project3Grid.geometry}
+                    material={color}
+                />
             </group>
             <RigidBody
                 position={[438.778, 1277, -368.45]}
@@ -111,6 +107,6 @@ const ProjectGch = () => {
     );
 };
 
-useGLTF.preload('/models/projects/projectGch.glb');
+useGLTF.preload('/models/projects/projectGchLink.glb');
 
 export default ProjectGch;

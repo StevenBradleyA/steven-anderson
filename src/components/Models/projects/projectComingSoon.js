@@ -1,11 +1,11 @@
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import * as THREE from 'three';
 
 const ProjectComingSoon = () => {
-    const { nodes } = useGLTF('/models/projects/projectComingSoon.glb');
+    const { nodes } = useGLTF('/models/projects/projectComingSoonLink.glb');
 
     const retroGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xff00ff),
@@ -76,23 +76,19 @@ const ProjectComingSoon = () => {
     return (
         <>
             <group dispose={null}>
-                <group name="Scene">
-                    <mesh
-                        name="Project4Grid"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Project4Grid.geometry}
-                        material={color}
-                    />
-                    <mesh
-                        name="Project4Enter"
-                        castShadow
-                        receiveShadow
-                        geometry={nodes.Project4Enter.geometry}
-                        material={retroGlow}
-                        position={[334.028, currentY, -527.068]}
-                    />
-                </group>
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Project4Grid.geometry}
+                    material={color}
+                />
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Project4Enter.geometry}
+                    material={retroGlow}
+                    position={[334.028, currentY, -527.068]}
+                />
             </group>
             <RigidBody
                 position={[334.028, 1277, -527.068]}
@@ -112,6 +108,6 @@ const ProjectComingSoon = () => {
     );
 };
 
-useGLTF.preload('/models/projects/projectComingSoon.glb');
+useGLTF.preload('/models/projects/projectComingSoonLink.glb');
 
 export default ProjectComingSoon;

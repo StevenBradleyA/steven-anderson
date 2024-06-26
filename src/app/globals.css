@@ -31,6 +31,18 @@ body {
         text-wrap: balance;
     }
 }
+/* --------------     fonts     --------------  */
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/Fonts/Poppins-Regular.ttf') format('truetype');
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Bebas Neue';
+    src: url('/Fonts/BebasNeue-Regular.ttf') format('truetype');
+    font-style: normal;
+}
 
 /* colors i like */
 /* BLUE */
@@ -45,9 +57,13 @@ body {
 /* ------ LOADING SCREEN ------ */
 
 .fade-transition {
-    transition: color 2s ease-in-out;
+    transition: color 1.5s linear;
 }
 
+.blue-to-white {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(180deg)
+        brightness(100%);
+}
 /* ------ END LOADING SCREEN ------ */
 /* ------ END LOADING SCREEN ------ */
 /* ------ END LOADING SCREEN ------ */

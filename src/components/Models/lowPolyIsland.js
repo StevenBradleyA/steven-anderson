@@ -12,8 +12,7 @@ const LowPolyIsland = ({ trackRef }) => {
         '/models/driftTrack.glb'
     );
 
-    const { isTunnel, setIsTunnel, setIsOnGround, isOnGround } =
-        useGlobalState();
+    const { isTunnel, setIsOnGround } = useGlobalState();
 
     const grassRef = useRef();
     const islandRef = useRef();
@@ -211,8 +210,7 @@ const LowPolyIsland = ({ trackRef }) => {
                     castShadow
                     receiveShadow
                     geometry={trackNodes.Plane004_1.geometry}
-                    // material={trackMaterials.Blue}
-                    material={blueGlow}
+                    material={trackMaterials.Blue}
                 />
                 <mesh
                     castShadow

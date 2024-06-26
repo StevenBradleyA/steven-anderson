@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import * as THREE from 'three';
 
 const ProjectKeeby = () => {
-    const { nodes } = useGLTF('/models/projects/projectKeeby.glb');
+    const { nodes } = useGLTF('/models/projects/projectKeebyLink.glb');
 
     const retroGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xff00ff),
@@ -76,20 +76,20 @@ const ProjectKeeby = () => {
     return (
         <>
             <group dispose={null}>
-                <group name="Scene">
-                    <mesh
-                        name="Project1Enter"
-                        geometry={nodes.Project1Enter.geometry}
-                        material={retroGlow}
-                        position={[463.88, currentY, -16.457]}
-                    />
-                    <mesh
-                        name="Project2Grid001"
-                        geometry={nodes.Project2Grid001.geometry}
-                        material={color}
-                        position={[-58, 0, 0]}
-                    />
-                </group>
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Project1Enter.geometry}
+                    material={retroGlow}
+                    position={[463.88, currentY, -16.457]}
+                />
+                <mesh
+                    castShadow
+                    receiveShadow
+                    geometry={nodes.Project2Grid001.geometry}
+                    material={color}
+                    position={[-58, 0, 0]}
+                />
             </group>
             <RigidBody
                 position={[463.88, 1277, -16.457]}
@@ -109,6 +109,6 @@ const ProjectKeeby = () => {
     );
 };
 
-useGLTF.preload('/models/projects/projectKeeby.glb');
+useGLTF.preload('/models/projects/projectKeebyLink.glb');
 
 export default ProjectKeeby;
