@@ -90,7 +90,7 @@ function Navigation() {
             style: { color: 'black' },
         },
         hover: {
-            x: [0, 14, 28, 42, 42],
+            x: [0, 14, 28, 46, 46],
             y: [0, 0, 0, 0, 120],
             opacity: [100, 100, 100, 100, 0],
             rotate: [0, 0, 0, 0, -180],

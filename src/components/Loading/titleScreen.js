@@ -56,7 +56,7 @@ const TitleScreen = () => {
                         priority
                     />
 
-                    <div className="flex flex-col z-50 absolute bottom-44 left-1/2 transform -translate-x-1/2 w-[1000px]  ">
+                    <div className="flex flex-col z-50 absolute bottom-32 desktop:bottom-40 left-1/2 transform -translate-x-1/2 w-[1000px]  ">
                         <div className="w-full bg-stevenBlue h-1 z-50 opacity-50 "></div>
                         <div className="w-full flex justify-between px-5 items-center mt-5">
                             <Image

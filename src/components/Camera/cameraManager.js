@@ -25,25 +25,29 @@ const CameraManager = ({ carRef, keysPressed }) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const positions = [
-        new THREE.Vector3(300, 1350, 150), // Powerglove
-        new THREE.Vector3(500, 1600, 5),
+        new THREE.Vector3(200, 1380, 10), // hackerman
+        new THREE.Vector3(445, 1170, 550), // lambo
+        new THREE.Vector3(-380, 1350, -200), // skills
         new THREE.Vector3(-500, 1600, 5),
-        new THREE.Vector3(442.934, 1400, 596.249), // lambo
-        new THREE.Vector3(-800, 1200, -400),
-        new THREE.Vector3(700, 1000, -300),
-        new THREE.Vector3(-300, 1700, 200),
-        new THREE.Vector3(150, 1450, -600),
+        new THREE.Vector3(150, 1450, -600), //nice
+        new THREE.Vector3(396.172, 1158.268, 735.183), //
+        new THREE.Vector3(-590, 1300, 300), //8 sieg
+        new THREE.Vector3(800, 1200, 600), //
+        new THREE.Vector3(-1000, 1400, -600),
+        new THREE.Vector3(300, 1800, -100),
     ];
 
     const lookAts = [
-        new THREE.Vector3(200, 1350, 200), //  Powerglove
+        new THREE.Vector3(300, 1300, 200), //  hackerman
+        new THREE.Vector3(442, 1175, 600), // lambo
+        new THREE.Vector3(-900, 1330, -845), // skills
         new THREE.Vector3(0, 1200, 0),
-        new THREE.Vector3(0, 1200, 0),
-        new THREE.Vector3(442.934, 1159.222, 596.249), // lambo
-        new THREE.Vector3(0, 1100, 0),
-        new THREE.Vector3(-300, 1200, 100),
-        new THREE.Vector3(400, 1300, -100),
-        new THREE.Vector3(-150, 1400, 300),
+        new THREE.Vector3(-150, 1400, 300), //nice
+        new THREE.Vector3(396.172, 1158.268, 735.183),
+        new THREE.Vector3(-580, 1250, 900), //8 sieg
+        new THREE.Vector3(700, 1200, 500), //10
+        new THREE.Vector3(0, 1400, -400), //11
+        new THREE.Vector3(300, 1600, -200), //12
     ];
 
     console.log(currentIndex);
@@ -55,7 +59,7 @@ const CameraManager = ({ carRef, keysPressed }) => {
                 setCurrentIndex(
                     (prevIndex) => (prevIndex + 1) % positions.length
                 );
-            }, 10000);
+            }, 20000);
         }
 
         return () => clearInterval(interval);
