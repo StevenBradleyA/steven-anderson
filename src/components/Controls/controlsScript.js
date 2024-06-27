@@ -2,9 +2,7 @@ import { Html } from '@react-three/drei';
 import React, { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const StartingScript = () => {
-    // add control info here
-
+const ControlsScript = () => {
     const controlTypes = ['movement', 'camera'];
     const [controlIndex, setControlIndex] = useState(0);
     const currentControlType = controlTypes[controlIndex];
@@ -22,50 +20,148 @@ const StartingScript = () => {
     // const variants = {
     //     initial: {
     //         opacity: 0,
-    //         x: 0,
-    //         // transition: { duration: 0.5, ease: 'easeInOut' },
+    //         x: -300,
+    //         rotate: -10,
+    //         transition: {
+    //             delay: 1.4,
+    //             duration: 1.2,
+    //             ease-in-out: 'ease-in-outInOut',
+    //         },
     //     },
-    //     animate: { opacity: 1, x: 0 },
+    //     animate: {
+    //         opacity: 1,
+    //         x: 0,
+    //         rotate: 0,
+    //         transition: {
+    //             duration: 1.2,
+    //             ease: 'easeInOut',
+    //         },
+    //     },
     //     exit: {
     //         opacity: 0,
-    //         x: 0,
-    //         transition: { duration: 1.5, ease: 'easeInOut' },
-    //     },
-    // };
-    // const cameraVariants = {
-    //     initial: {
-    //         opacity: 0,
-    //         x: 0,
-    //         transition: { duration: 2.5, ease: 'easeInOut', delay: 1 },
-    //     },
-    //     animate: { opacity: 1, x: 0 },
-    //     exit: {
-    //         opacity: 0,
-    //         x: 0,
-    //         transition: { duration: 0.5, ease: 'easeInOut' },
+    //         x: 300,
+    //         rotate: -10,
+    //         transition: {
+    //             duration: 1.2,
+    //             ease: 'easeInOut',
+    //         },
     //     },
     // };
 
+    // const cameraVariants = {
+    //     initial: {
+    //         opacity: 0,
+    //         x: -300,
+    //         rotate: -10,
+    //         transition: {
+    //             delay: 1.4,
+    //             duration: 1.2,
+    //             ease: 'easeOut',
+    //         },
+    //     },
+    //     animate: {
+    //         opacity: 1,
+    //         x: 0,
+    //         rotate: 0,
+    //         transition: {
+    //             duration: 1.2,
+    //             ease-in-out: 'easeInOut',
+    //         },
+    //     },
+    //     exit: {
+    //         opacity: 0,
+    //         x: 300,
+    //         rotate: -10,
+    //         transition: {
+    //             duration: 1.2,
+    //             ease: 'easeInOut',
+    //         },
+    //     },
+    // };
+
+    const variants = {
+        initial: {
+            opacity: 0,
+            y: -300,
+            transition: {
+                delay: 1.4,
+                type: 'spring',
+                stiffness: 100,
+                damping: 8,
+            },
+        },
+        animate: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: 'spring',
+                stiffness: 100,
+                damping: 8,
+            },
+        },
+        exit: {
+            opacity: 0,
+            y: 300,
+            transition: {
+                duration: 0.8,
+                ease: 'easeOut',
+            },
+        },
+    };
+
+    const cameraVariants = {
+        initial: {
+            opacity: 0,
+            y: -300,
+            transition: {
+                delay: 1.4,
+                type: 'spring',
+                stiffness: 100,
+                damping: 8,
+            },
+        },
+        animate: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: 'spring',
+                stiffness: 100,
+                damping: 8,
+            },
+        },
+        exit: {
+            opacity: 0,
+            y: 300,
+            transition: {
+                duration: 0.8,
+                ease: 'easeOut',
+            },
+        },
+    };
+
     return (
         <>
-            <div className="text-xl text-black absolute bottom-10 right-10 z-50 bg-white/70 p-5 w-[600px] h-[155px] rounded-lg flex ">
+            <div className="text-xl text-black absolute bottom-10 right-10 z-50 bg-white/70 p-5 w-[600px] h-[155px] rounded-lg flex  ">
                 <AnimatePresence>
                     {currentControlType === 'movement' && (
                         <motion.div
                             key="movement"
-                            initial={{ x: 0, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: 0, opacity: 0 }}
-                            // variants={variants}
-                            className="flex justify-between w-full"
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                            variants={variants}
+                            className="flex justify-between w-full absolute left-0 px-5 "
                         >
-                            <div className="flex flex-col  ">
-                                <h2 className="px-2">Movement</h2>
+                            <div className="flex flex-col items-start  ">
+                                <h2 className="px-2 bg-none hover:bg-stevenBlue hover:bg-opacity-30 flex p-1 rounded-lg ease-in-out ">
+                                    Movement
+                                </h2>
+
                                 <div className="flex items-center gap-5">
                                     <div className="flex flex-col items-center">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            className="w-12 h-12 -mb-2"
+                                            className="w-12 h-12 -mb-2 hover:text-stevenBlue ease-in-out"
                                             viewBox="0 0 24 24"
                                             fill="none"
                                         >
@@ -80,7 +176,7 @@ const StartingScript = () => {
                                         <div className="flex">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                className="w-12 h-12  -rotate-90 -mr-2"
+                                                className="w-12 h-12  -rotate-90 -mr-2 hover:text-stevenBlue ease-in-out"
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                             >
@@ -94,7 +190,7 @@ const StartingScript = () => {
                                             </svg>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                className="w-12 h-12 rotate-180"
+                                                className="w-12 h-12 rotate-180 hover:text-stevenBlue ease-in-out"
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                             >
@@ -108,7 +204,7 @@ const StartingScript = () => {
                                             </svg>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                className="w-12 h-12 rotate-90 -ml-2"
+                                                className="w-12 h-12 rotate-90 -ml-2 hover:text-stevenBlue ease-in-out"
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                             >
@@ -123,17 +219,17 @@ const StartingScript = () => {
                                         </div>
                                     </div>
                                     <div className="flex flex-col items-center gap-1">
-                                        <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                        <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                             E
                                         </div>
                                         <div className="flex gap-1">
-                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                                 S
                                             </div>
-                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                                 D
                                             </div>
-                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                                 F
                                             </div>
                                         </div>
@@ -143,20 +239,26 @@ const StartingScript = () => {
 
                             <div className="flex flex-col justify-between">
                                 <div className="flex gap-2 items-center">
-                                    <h2>Respawn</h2>
-                                    <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                    <h2 className="hover:bg-stevenBlue hover:bg-opacity-30 flex p-1 rounded-lg ease-in-out">
+                                        Respawn
+                                    </h2>
+                                    <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                         R
                                     </div>
                                 </div>
                                 <div className="flex gap-2 items-center">
-                                    <h2>Recover</h2>
-                                    <div className="border-4 border-black px-2 rounded-lg flex items-center justify-center">
+                                    <h2 className="hover:bg-stevenBlue hover:bg-opacity-30 flex p-1 rounded-lg ease-in-out ">
+                                        Recover
+                                    </h2>
+                                    <div className="border-4 border-black px-2 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                         Shift
                                     </div>
                                 </div>
                                 <div className="flex gap-2 items-center">
-                                    <h2>Switch Camera</h2>
-                                    <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                    <h2 className="hover:bg-stevenBlue hover:bg-opacity-30 flex p-1 rounded-lg ease-in-out">
+                                        Switch Camera
+                                    </h2>
+                                    <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                         C
                                     </div>
                                 </div>
@@ -167,19 +269,19 @@ const StartingScript = () => {
                     {currentControlType === 'camera' && (
                         <motion.div
                             key="camera"
-                            initial={{ x: 0, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            exit={{ x: 0, opacity: 0 }}
-                            // variants={cameraVariants}
-                            className="flex justify-between w-full"
+                            initial="initial"
+                            animate="animate"
+                            exit="exit"
+                            variants={cameraVariants}
+                            className="flex justify-between w-full absolute left-0 px-5"
                         >
-                            <div className="flex flex-col  ">
-                                <h2 className="px-2">{`Camera < Free Mode >`}</h2>
+                            <div className="flex flex-col items-start  ">
+                                <h2 className="px-2 bg-none hover:bg-stevenBlue hover:bg-opacity-30 flex p-1 rounded-lg ease-in-out ">{`Camera < Free Mode >`}</h2>
                                 <div className="flex items-center gap-5">
                                     <div className="flex flex-col items-center">
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            className="w-12 h-12 -mb-2"
+                                            className="w-12 h-12 -mb-2 hover:text-stevenBlue ease-in-out "
                                             viewBox="0 0 24 24"
                                             fill="none"
                                         >
@@ -194,7 +296,7 @@ const StartingScript = () => {
                                         <div className="flex">
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                className="w-12 h-12  -rotate-90 -mr-2"
+                                                className="w-12 h-12  -rotate-90 -mr-2 hover:text-stevenBlue ease-in-out"
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                             >
@@ -208,7 +310,7 @@ const StartingScript = () => {
                                             </svg>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                className="w-12 h-12 rotate-180"
+                                                className="w-12 h-12 rotate-180 hover:text-stevenBlue ease-in-out"
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                             >
@@ -222,7 +324,7 @@ const StartingScript = () => {
                                             </svg>
                                             <svg
                                                 xmlns="http://www.w3.org/2000/svg"
-                                                className="w-12 h-12 rotate-90 -ml-2"
+                                                className="w-12 h-12 rotate-90 -ml-2 hover:text-stevenBlue ease-in-out"
                                                 viewBox="0 0 24 24"
                                                 fill="none"
                                             >
@@ -237,17 +339,17 @@ const StartingScript = () => {
                                         </div>
                                     </div>
                                     <div className="flex flex-col items-center gap-1">
-                                        <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                        <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out  ease-in-out">
                                             E
                                         </div>
                                         <div className="flex gap-1">
-                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                                 S
                                             </div>
-                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                                 D
                                             </div>
-                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                                 F
                                             </div>
                                         </div>
@@ -261,7 +363,7 @@ const StartingScript = () => {
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="currentColor"
                                         version="1.1"
-                                        className="w-16 h-16"
+                                        className="w-16 h-16 hover:text-stevenBlue ease-in-out"
                                         viewBox="0 0 450.47 450.47"
                                     >
                                         <g>
@@ -270,7 +372,7 @@ const StartingScript = () => {
                                     </svg>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
-                                        className="w-12 h-12 mt-3"
+                                        className="w-12 h-12 mt-3 hover:text-stevenBlue ease-in-out"
                                         viewBox="0 0 24 24"
                                         fill="none"
                                     >
@@ -289,8 +391,10 @@ const StartingScript = () => {
                                     </svg>
                                 </div>
                                 <div className="flex gap-2 items-center">
-                                    <h2>Switch Camera</h2>
-                                    <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center">
+                                    <h2 className="bg-none hover:bg-stevenBlue hover:bg-opacity-30 flex p-1 rounded-lg ease-in-out">
+                                        Switch Camera
+                                    </h2>
+                                    <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
                                         C
                                     </div>
                                 </div>
@@ -303,4 +407,4 @@ const StartingScript = () => {
     );
 };
 
-export default StartingScript;
+export default ControlsScript;
