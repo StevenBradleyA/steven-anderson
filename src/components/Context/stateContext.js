@@ -6,8 +6,7 @@ export const GlobalStateProvider = ({ children }) => {
     const [showGame, setShowGame] = useState(false);
     const [isTunnel, setIsTunnel] = useState(false);
     const [isOnGround, setIsOnGround] = useState(false);
-
-    const [activeCamera, setActiveCamera] = useState('follow');
+    const [activeCamera, setActiveCamera] = useState('initial');
 
     return (
         <GlobalStateContext.Provider

@@ -74,11 +74,13 @@ const Hachiroku = ({ trackRef }) => {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            setKeysPressed((prevKeys) => ({ ...prevKeys, [event.key]: true }));
+            const key = event.key.toLowerCase();
+            setKeysPressed((prevKeys) => ({ ...prevKeys, [key]: true }));
         };
 
         const handleKeyUp = (event) => {
-            setKeysPressed((prevKeys) => ({ ...prevKeys, [event.key]: false }));
+            const key = event.key.toLowerCase();
+            setKeysPressed((prevKeys) => ({ ...prevKeys, [key]: false }));
         };
 
         window.addEventListener('keydown', handleKeyDown);
@@ -91,12 +93,16 @@ const Hachiroku = ({ trackRef }) => {
     }, []);
 
     useEffect(() => {
-        const switchCamera = keysPressed['c'] || keysPressed['C'];
-        const arrowKeyPressed =
-            keysPressed['ArrowUp'] ||
-            keysPressed['ArrowDown'] ||
-            keysPressed['ArrowLeft'] ||
-            keysPressed['ArrowRight'];
+        const switchCamera = keysPressed['c'];
+        const movementKey =
+            keysPressed['arrowup'] ||
+            keysPressed['arrowdown'] ||
+            keysPressed['arrowleft'] ||
+            keysPressed['arrowright'] ||
+            keysPressed['e'] ||
+            keysPressed['s'] ||
+            keysPressed['d'] ||
+            keysPressed['f'];
 
         if (switchCamera && showGame === true) {
             setActiveCamera((prev) => {
@@ -107,51 +113,28 @@ const Hachiroku = ({ trackRef }) => {
             });
         }
 
-        // if (arrowKeyPressed && showGame === true) {
-        //     setActiveCamera('follow');
-        // }
-    }, [keysPressed, setActiveCamera, showGame]);
-
-    // useEffect(() => {
-    //     const allOffGround =
-    //         !wheelsOnGround.lfw &&
-    //         !wheelsOnGround.rfw &&
-    //         !wheelsOnGround.lrw &&
-    //         !wheelsOnGround.rrw;
-
-    //     setAllWheelsOffGround(allOffGround);
-    // }, [wheelsOnGround]);
+        if (movementKey && showGame === true && activeCamera === 'initial') {
+            setActiveCamera('follow');
+        }
+    }, [keysPressed]);
 
     useFrame(() => {
-        const moveForward = keysPressed['ArrowUp'] || keysPressed['e'];
-        const moveBackward = keysPressed['ArrowDown'] || keysPressed['d'];
-        const steerLeft = keysPressed['ArrowLeft'] || keysPressed['s'];
-        const steerRight = keysPressed['ArrowRight'] || keysPressed['f'];
-        const respawn = keysPressed['r'];
-        const flip = keysPressed['Shift'];
+        if (activeCamera === 'follow') {
+            const moveForward = keysPressed['arrowup'] || keysPressed['e'];
+            const moveBackward = keysPressed['arrowdown'] || keysPressed['d'];
+            const steerLeft = keysPressed['arrowleft'] || keysPressed['s'];
+            const steerRight = keysPressed['arrowright'] || keysPressed['f'];
+            const respawn = keysPressed['r'];
+            const flip = keysPressed['shift'];
 
-        if (brakeLightsRef.current) {
-            brakeLightsRef.current.material.emissiveIntensity = moveBackward
-                ? 1.8
-                : 1.1;
-        }
+            if (brakeLightsRef.current) {
+                brakeLightsRef.current.material.emissiveIntensity = moveBackward
+                    ? 1.8
+                    : 1.1;
+            }
 
-        // respawn
-        if (respawn && carRef.current && activeCamera === 'follow') {
-            carRef.current.setTranslation({ x: -120, y: 1300, z: -150 }, true);
-            carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
-            carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-            const euler = new THREE.Euler(0, 0.5, 0);
-            const quaternion = new THREE.Quaternion().setFromEuler(euler);
-            carRef.current.setRotation(quaternion, true);
-            setIsUpsideDown(false);
-        }
-        // auto respawn
-        if (carRef.current) {
-            // position={[-120, 1300, -150]}
-            // rotation={[0, 0.5, 0]}
-            const currentPosition = carRef.current.translation();
-            if (currentPosition.y < respawnHeight) {
+            // respawn
+            if (respawn && carRef.current) {
                 carRef.current.setTranslation(
                     { x: -120, y: 1300, z: -150 },
                     true
@@ -162,150 +145,184 @@ const Hachiroku = ({ trackRef }) => {
                 const quaternion = new THREE.Quaternion().setFromEuler(euler);
                 carRef.current.setRotation(quaternion, true);
                 setIsUpsideDown(false);
-                setCurrentSpeed(0);
             }
-        }
-        // flip in place
-        if (flip && carRef.current && activeCamera === 'follow') {
-            const currentPosition = carRef.current.translation();
-            carRef.current.setTranslation(
-                {
-                    x: currentPosition.x,
-                    y: currentPosition.y + 2,
-                    z: currentPosition.z,
-                },
-                true
-            );
-            carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
-            carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
-            const currentRotation = carRef.current.rotation();
-            const currentQuaternion = new THREE.Quaternion(
-                currentRotation.x,
-                currentRotation.y,
-                currentRotation.z,
-                currentRotation.w
-            );
-            const currentEuler = new THREE.Euler().setFromQuaternion(
-                currentQuaternion
-            );
-            const preservedYaw = currentEuler.y;
-            const correctedEuler = new THREE.Euler(0, preservedYaw, 0);
-            const correctedQuaternion = new THREE.Quaternion().setFromEuler(
-                correctedEuler
-            );
+            // auto respawn
+            if (carRef.current) {
+                // position={[-120, 1300, -150]}
+                // rotation={[0, 0.5, 0]}
+                const currentPosition = carRef.current.translation();
+                if (currentPosition.y < respawnHeight) {
+                    carRef.current.setTranslation(
+                        { x: -120, y: 1300, z: -150 },
+                        true
+                    );
+                    carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+                    carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+                    const euler = new THREE.Euler(0, 0.5, 0);
+                    const quaternion = new THREE.Quaternion().setFromEuler(
+                        euler
+                    );
+                    carRef.current.setRotation(quaternion, true);
+                    setIsUpsideDown(false);
+                    setCurrentSpeed(0);
+                }
+            }
+            // flip in place
+            if (flip && carRef.current) {
+                const currentPosition = carRef.current.translation();
+                carRef.current.setTranslation(
+                    {
+                        x: currentPosition.x,
+                        y: currentPosition.y + 2,
+                        z: currentPosition.z,
+                    },
+                    true
+                );
+                carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+                carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+                const currentRotation = carRef.current.rotation();
+                const currentQuaternion = new THREE.Quaternion(
+                    currentRotation.x,
+                    currentRotation.y,
+                    currentRotation.z,
+                    currentRotation.w
+                );
+                const currentEuler = new THREE.Euler().setFromQuaternion(
+                    currentQuaternion
+                );
+                const preservedYaw = currentEuler.y;
+                const correctedEuler = new THREE.Euler(0, preservedYaw, 0);
+                const correctedQuaternion = new THREE.Quaternion().setFromEuler(
+                    correctedEuler
+                );
 
-            carRef.current.setRotation(correctedQuaternion, true);
-            setIsUpsideDown(false);
-        }
-        // speed
-        if (moveForward && activeCamera === 'follow' && isOnGround === true) {
-            if (currentSpeed < topSpeed) {
-                setCurrentSpeed((prevSpeed) => {
-                    const accelerationFactor =
-                        (topSpeed - prevSpeed) / topSpeed;
-                    return prevSpeed + forwardAcceleration * accelerationFactor;
-                });
+                carRef.current.setRotation(correctedQuaternion, true);
+                setIsUpsideDown(false);
             }
-        } else if (
-            moveBackward &&
-            activeCamera === 'follow' &&
-            isOnGround === true
-        ) {
-            if (currentSpeed > -topSpeed) {
-                setCurrentSpeed((prevSpeed) => prevSpeed - reverseAcceleration);
-            }
-        } else {
-            if (currentSpeed > 0) {
-                setCurrentSpeed((prevSpeed) =>
-                    Math.max(0, prevSpeed - braking)
-                );
-            } else if (currentSpeed < 0) {
-                setCurrentSpeed((prevSpeed) =>
-                    Math.min(0, prevSpeed + braking)
-                );
-            }
-        }
-        // wheel rotation
-        if (
-            lfwParentRef.current &&
-            rfwParentRef.current
-            // activeCamera === 'follow'
-        ) {
-            if (steerLeft) {
-                lfwParentRef.current.rotation.set(0, steerAngle, 0);
-                rfwParentRef.current.rotation.set(0, steerAngle, 0);
-            } else if (steerRight) {
-                lfwParentRef.current.rotation.set(0, -steerAngle, 0);
-                rfwParentRef.current.rotation.set(0, -steerAngle, 0);
+            // speed
+            if (
+                moveForward &&
+                activeCamera === 'follow' &&
+                isOnGround === true
+            ) {
+                if (currentSpeed < topSpeed) {
+                    setCurrentSpeed((prevSpeed) => {
+                        const accelerationFactor =
+                            (topSpeed - prevSpeed) / topSpeed;
+                        return (
+                            prevSpeed + forwardAcceleration * accelerationFactor
+                        );
+                    });
+                }
+            } else if (
+                moveBackward &&
+                activeCamera === 'follow' &&
+                isOnGround === true
+            ) {
+                if (currentSpeed > -topSpeed) {
+                    setCurrentSpeed(
+                        (prevSpeed) => prevSpeed - reverseAcceleration
+                    );
+                }
             } else {
-                lfwParentRef.current.rotation.set(0, 0, 0);
-                rfwParentRef.current.rotation.set(0, 0, 0);
+                if (currentSpeed > 0) {
+                    setCurrentSpeed((prevSpeed) =>
+                        Math.max(0, prevSpeed - braking)
+                    );
+                } else if (currentSpeed < 0) {
+                    setCurrentSpeed((prevSpeed) =>
+                        Math.min(0, prevSpeed + braking)
+                    );
+                }
             }
-        }
-
-        // wheel spin
-        const wheelRotationSpeed = currentSpeed / 30;
-        if (
-            lfwRef.current &&
-            rfwRef.current &&
-            lrwRef.current &&
-            rrwRef.current
-        ) {
-            lfwRef.current.rotation.x += wheelRotationSpeed;
-            rfwRef.current.rotation.x += wheelRotationSpeed;
-            lrwRef.current.rotation.x += wheelRotationSpeed;
-            rrwRef.current.rotation.x += wheelRotationSpeed;
-        }
-
-        if (
-            carRef.current &&
-            activeCamera === 'follow' &&
-            isUpsideDown === false &&
-            isOnGround === true
-        ) {
-            const car = carRef.current;
-
-            const rotation = car.rotation();
-            const carQuaternion = new THREE.Quaternion(
-                rotation.x,
-                rotation.y,
-                rotation.z,
-                rotation.w
-            );
-
-            const forwardVector = new THREE.Vector3(0, 0, 1);
-            forwardVector.applyQuaternion(carQuaternion);
-            const impulse = forwardVector.multiplyScalar(currentSpeed);
-            car.applyImpulse(
-                { x: impulse.x, y: impulse.y, z: impulse.z },
-                true
-            );
-
-            const torque = new THREE.Vector3(0, 1, 0);
-
-            if (currentSpeed < 0) {
-                torque.set(0, -1, 0);
+            // wheel rotation
+            if (
+                lfwParentRef.current &&
+                rfwParentRef.current &&
+                activeCamera === 'follow'
+            ) {
+                if (steerLeft) {
+                    lfwParentRef.current.rotation.set(0, steerAngle, 0);
+                    rfwParentRef.current.rotation.set(0, steerAngle, 0);
+                } else if (steerRight) {
+                    lfwParentRef.current.rotation.set(0, -steerAngle, 0);
+                    rfwParentRef.current.rotation.set(0, -steerAngle, 0);
+                } else {
+                    lfwParentRef.current.rotation.set(0, 0, 0);
+                    rfwParentRef.current.rotation.set(0, 0, 0);
+                }
             }
 
-            if (steerLeft) {
-                const leftTorque = torque.multiplyScalar(
-                    Math.abs(currentSpeed) * torqueFactor
+            // wheel spin
+            const wheelRotationSpeed = currentSpeed / 30;
+            if (
+                lfwRef.current &&
+                rfwRef.current &&
+                lrwRef.current &&
+                rrwRef.current
+            ) {
+                lfwRef.current.rotation.x += wheelRotationSpeed;
+                rfwRef.current.rotation.x += wheelRotationSpeed;
+                lrwRef.current.rotation.x += wheelRotationSpeed;
+                rrwRef.current.rotation.x += wheelRotationSpeed;
+            }
+
+            if (
+                carRef.current &&
+                activeCamera === 'follow' &&
+                isUpsideDown === false &&
+                isOnGround === true
+            ) {
+                const car = carRef.current;
+
+                const rotation = car.rotation();
+                const carQuaternion = new THREE.Quaternion(
+                    rotation.x,
+                    rotation.y,
+                    rotation.z,
+                    rotation.w
                 );
-                car.applyTorqueImpulse(
-                    { x: leftTorque.x, y: leftTorque.y, z: leftTorque.z },
+
+                const forwardVector = new THREE.Vector3(0, 0, 1);
+                forwardVector.applyQuaternion(carQuaternion);
+                const impulse = forwardVector.multiplyScalar(currentSpeed);
+                car.applyImpulse(
+                    { x: impulse.x, y: impulse.y, z: impulse.z },
                     true
                 );
-            } else if (steerRight) {
-                const rightTorque = torque.multiplyScalar(
-                    -Math.abs(currentSpeed) * torqueFactor
-                );
-                car.applyTorqueImpulse(
-                    { x: rightTorque.x, y: rightTorque.y, z: rightTorque.z },
-                    true
-                );
+
+                const torque = new THREE.Vector3(0, 1, 0);
+
+                if (currentSpeed < 0) {
+                    torque.set(0, -1, 0);
+                }
+
+                if (steerLeft) {
+                    const leftTorque = torque.multiplyScalar(
+                        Math.abs(currentSpeed) * torqueFactor
+                    );
+                    car.applyTorqueImpulse(
+                        { x: leftTorque.x, y: leftTorque.y, z: leftTorque.z },
+                        true
+                    );
+                } else if (steerRight) {
+                    const rightTorque = torque.multiplyScalar(
+                        -Math.abs(currentSpeed) * torqueFactor
+                    );
+                    car.applyTorqueImpulse(
+                        {
+                            x: rightTorque.x,
+                            y: rightTorque.y,
+                            z: rightTorque.z,
+                        },
+                        true
+                    );
+                }
             }
         }
     });
+
+    console.log(keysPressed);
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -337,7 +354,6 @@ const Hachiroku = ({ trackRef }) => {
         emissive: new THREE.Color(0xffa500),
         emissiveIntensity: 0.5,
     });
-
     // When determining pivot point for each wheel. Set origin to geometry for each lrw (lugs, wheel, tire) in blender. Then set a parent pivot position and adjust positions relatively
     return (
         <>

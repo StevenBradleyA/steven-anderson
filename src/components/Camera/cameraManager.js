@@ -14,15 +14,17 @@ const CameraManager = ({ carRef, keysPressed }) => {
 
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
+
     // follow
     const isRotating = useRef(false);
     const startRotate = useRef(new THREE.Vector2());
     const [followHeight, setFollowHeight] = useState(15);
     const [followDistance, setFollowDistance] = useState(40);
+
     // free
     const [cameraSpeed, setCameraSpeed] = useState(2);
+    
     // initial
-
     const [currentIndex, setCurrentIndex] = useState(0);
     const positions = [
         new THREE.Vector3(200, 1380, 10), // hackerman
@@ -49,8 +51,6 @@ const CameraManager = ({ carRef, keysPressed }) => {
         new THREE.Vector3(0, 1400, -400), //11
         new THREE.Vector3(300, 1600, -200), //12
     ];
-
-    console.log(currentIndex);
 
     useEffect(() => {
         let interval;
@@ -120,17 +120,18 @@ const CameraManager = ({ carRef, keysPressed }) => {
             cameraTarget.current.lerp(lookAts[currentIndex], 0.1);
             camera.lookAt(cameraTarget.current);
         } else if (activeCamera === 'free') {
-            const moveForward = keysPressed['e'];
-            const moveBackward = keysPressed['d'];
-            const moveLeft = keysPressed['s'];
-            const moveRight = keysPressed['f'];
-            const moveUp = keysPressed['r'];
+            const moveForward = keysPressed['e'] || keysPressed['arrowup'];
+            const moveBackward = keysPressed['d'] || keysPressed['arrowdown'];
+            const moveLeft = keysPressed['s'] || keysPressed['arrowleft'];
+            const moveRight = keysPressed['f'] || keysPressed['arrowright'];
+            const moveUp = keysPressed['r'] || keysPressed[' '];
             const moveDown = keysPressed['w'];
             const increaseSpeed = keysPressed['g'];
             const decreaseSpeed = keysPressed['a'];
 
             if (increaseSpeed)
                 setCameraSpeed((prevSpeed) => Math.min(prevSpeed + 0.2, 5));
+
             if (decreaseSpeed)
                 setCameraSpeed((prevSpeed) => Math.max(prevSpeed - 0.2, 0.5));
 
