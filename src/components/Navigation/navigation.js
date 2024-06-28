@@ -1,11 +1,14 @@
+'use client';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useGlobalState } from '../Context/stateContext';
 
 function Navigation() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const menuRef = useRef(null);
     const menuButtonRef = useRef(null);
     const [menuType, setMenuType] = useState('');
+    const { showLoadingScreen, activeCamera } = useGlobalState();
 
     // ------ Nav Animations ------
     const dotVariants = {
@@ -144,7 +147,7 @@ function Navigation() {
         };
     }, [isMenuOpen, handleClose, handleOutsideClick]);
 
-    return (
+    return showLoadingScreen === false ? (
         <div className=" fixed top-5 right-5 z-40 ">
             <AnimatePresence>
                 {isMenuOpen === false && (
@@ -530,7 +533,7 @@ function Navigation() {
                 )}
             </AnimatePresence>
         </div>
-    );
+    ) : null;
 }
 
 export default Navigation;

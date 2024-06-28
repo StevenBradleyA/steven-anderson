@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 const GlobalStateContext = createContext();
 
 export const GlobalStateProvider = ({ children }) => {
-    const [showGame, setShowGame] = useState(false);
+    const [showLoadingScreen, setShowLoadingScreen] = useState(true);
     const [isTunnel, setIsTunnel] = useState(false);
     const [isOnGround, setIsOnGround] = useState(false);
     const [activeCamera, setActiveCamera] = useState('initial');
@@ -11,8 +11,8 @@ export const GlobalStateProvider = ({ children }) => {
     return (
         <GlobalStateContext.Provider
             value={{
-                showGame,
-                setShowGame,
+                showLoadingScreen,
+                setShowLoadingScreen,
                 activeCamera,
                 setActiveCamera,
                 isTunnel,

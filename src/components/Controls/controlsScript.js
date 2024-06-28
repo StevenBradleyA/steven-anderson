@@ -87,7 +87,7 @@ const ControlsScript = () => {
                 delay: 1.4,
                 type: 'spring',
                 stiffness: 100,
-                damping: 8,
+                damping: 10,
             },
         },
         animate: {
@@ -96,7 +96,7 @@ const ControlsScript = () => {
             transition: {
                 type: 'spring',
                 stiffness: 100,
-                damping: 8,
+                damping: 10,
             },
         },
         exit: {
@@ -117,7 +117,7 @@ const ControlsScript = () => {
                 delay: 1.4,
                 type: 'spring',
                 stiffness: 100,
-                damping: 8,
+                damping: 10,
             },
         },
         animate: {
@@ -126,7 +126,7 @@ const ControlsScript = () => {
             transition: {
                 type: 'spring',
                 stiffness: 100,
-                damping: 8,
+                damping: 10,
             },
         },
         exit: {
@@ -141,7 +141,12 @@ const ControlsScript = () => {
 
     return (
         <>
-            <div className="text-xl text-black absolute bottom-10 right-10 z-50 bg-white/70 p-5 w-[600px] h-[155px] rounded-lg flex  ">
+            <motion.div
+                className="text-xl text-black absolute bottom-10 right-10 z-50 bg-white/70 p-5 w-[600px] h-[155px] rounded-lg flex  "
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ ease: 'easeInOut', duration: 1 }}
+            >
                 <AnimatePresence>
                     {currentControlType === 'movement' && (
                         <motion.div
@@ -402,7 +407,7 @@ const ControlsScript = () => {
                         </motion.div>
                     )}
                 </AnimatePresence>
-            </div>
+            </motion.div>
         </>
     );
 };

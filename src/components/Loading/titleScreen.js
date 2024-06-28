@@ -13,13 +13,13 @@ import palm from '@public/Images/palm.png';
 import tree from '@public/Images/tree.png';
 
 const TitleScreen = () => {
-    const { setShowGame, showGame } = useGlobalState();
+    const { setShowLoadingScreen, showLoadingScreen } = useGlobalState();
     const { progress } = useProgress();
 
     useEffect(() => {
         const anyInput = (event) => {
             if (progress === 100) {
-                setShowGame(true);
+                setShowLoadingScreen(false);
             }
         };
 
@@ -30,7 +30,7 @@ const TitleScreen = () => {
             window.removeEventListener('keydown', anyInput);
             window.removeEventListener('click', anyInput);
         };
-    }, [progress, setShowGame]);
+    }, [progress, setShowLoadingScreen]);
 
     const loadingScreenVariants = {
         initial: { opacity: 0 },
@@ -40,7 +40,7 @@ const TitleScreen = () => {
 
     return (
         <AnimatePresence>
-            {showGame === false && (
+            {showLoadingScreen  && (
                 <motion.div
                     key="picture"
                     initial="initial"

@@ -23,7 +23,7 @@ const CameraManager = ({ carRef, keysPressed }) => {
 
     // free
     const [cameraSpeed, setCameraSpeed] = useState(2);
-    
+
     // initial
     const [currentIndex, setCurrentIndex] = useState(0);
     const positions = [

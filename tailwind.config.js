@@ -9,6 +9,7 @@ module.exports = {
         extend: {
             backgroundColor: {
                 stevenBlue: '#007bff',
+                midnightBlack: '#121212',
                 blackAlternative: '#181818',
                 dark: '#222',
                 darkGray: '#616161',
@@ -16,14 +17,6 @@ module.exports = {
                 lightGray: '#d3d3d3',
                 messenger: 'rgba(25, 147, 147, 0.2)',
                 failure: '#ff0000',
-                pogGray: '#2d2d2d',
-                testTwo: '#121212',
-                testFour: '#161618',
-                testSeven: '#212121',
-                testTen: '#242526',
-                testEleven: '#282828',
-                testTwelve: '#3A3B3C',
-                testThirteen: '#404040',
                 hotPink: 'rgb(244, 94, 145)',
                 lightYellow: 'rgb(252, 243, 215)',
                 poolBlue: 'rgb(57, 162, 217)',

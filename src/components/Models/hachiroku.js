@@ -49,7 +49,7 @@ const Hachiroku = ({ trackRef }) => {
     const exhaustRef = useRef();
 
     // camera
-    const { activeCamera, setActiveCamera, showGame, isOnGround } =
+    const { activeCamera, setActiveCamera, showLoadingScreen, isOnGround } =
         useGlobalState();
 
     // input
@@ -104,7 +104,7 @@ const Hachiroku = ({ trackRef }) => {
             keysPressed['d'] ||
             keysPressed['f'];
 
-        if (switchCamera && showGame === true) {
+        if (switchCamera && showLoadingScreen === false) {
             setActiveCamera((prev) => {
                 if (prev === 'initial') return 'follow';
                 if (prev === 'follow') return 'free';
@@ -113,7 +113,7 @@ const Hachiroku = ({ trackRef }) => {
             });
         }
 
-        if (movementKey && showGame === true && activeCamera === 'initial') {
+        if (movementKey && showLoadingScreen === false && activeCamera === 'initial') {
             setActiveCamera('follow');
         }
     }, [keysPressed]);

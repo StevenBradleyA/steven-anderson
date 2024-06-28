@@ -367,3 +367,58 @@ body {
 /* ----------     END SCANLINES     ----------- */
 /* ----------     END SCANLINES     ----------- */
 /* ----------     END SCANLINES     ----------- */
+
+.blur {
+    height: 15rem;
+    width: 15rem;
+    background-color: #007bff;
+    filter: blur(100px);
+    border-radius: 100px;
+}
+
+.mid-grid {
+    width: 800px;
+    height: 800px;
+    background: transparent;
+    z-index: 1;
+    mask-image: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 1) 10%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    -webkit-mask-image: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 1) 10%,
+        rgba(255, 255, 255, 0) 60%
+    );
+}
+
+.mid-grid::before,
+.mid-grid::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 10;
+}
+
+.mid-grid::before {
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.2) 1px,
+        transparent 1px
+    );
+    background-size: 80px 80px;
+}
+
+.mid-grid::after {
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.2) 1px,
+        transparent 1px
+    );
+    background-size: 80px 80px;
+}
