@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useProgress } from '@react-three/drei';
 import { AnimatePresence, easeInOut, motion } from 'framer-motion';
 import { useGlobalState } from '../Context/stateContext';
@@ -13,13 +13,13 @@ import palm from '@public/Images/palm.png';
 import tree from '@public/Images/tree.png';
 
 const TitleScreen = () => {
-    const { setShowLoadingScreen, showLoadingScreen } = useGlobalState();
+    const { setShowGame, showGame } = useGlobalState();
     const { progress } = useProgress();
 
     useEffect(() => {
         const anyInput = (event) => {
             if (progress === 100) {
-                setShowLoadingScreen(false);
+                setShowGame(true);
             }
         };
 
@@ -30,29 +30,29 @@ const TitleScreen = () => {
             window.removeEventListener('keydown', anyInput);
             window.removeEventListener('click', anyInput);
         };
-    }, [progress, setShowLoadingScreen]);
+    }, [progress, setShowGame]);
 
     const loadingScreenVariants = {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
-        exit: { opacity: 0, transition: { duration: 0.25, easeInOut } },
+        exit: { opacity: 0, transition: { duration: 2.5, easeInOut } },
     };
 
     return (
         <AnimatePresence>
-            {showLoadingScreen  && (
+            {showGame === false && (
                 <motion.div
                     key="picture"
                     initial="initial"
                     animate="animate"
                     exit="exit"
                     variants={loadingScreenVariants}
-                    className="z-50"
+                    className="z-50 fixed top-0 left-0 right-0 bottom-0 object-cover w-full h-full"
                 >
                     <Image
                         src={loadingScreen}
                         alt="loading screen"
-                        className="fixed top-0 left-0 right-0 bottom-0 object-cover w-full h-full z-40 "
+                        className="fixed top-0 left-0 right-0 bottom-0 object-cover w-full h-full z-50  "
                         priority
                     />
 

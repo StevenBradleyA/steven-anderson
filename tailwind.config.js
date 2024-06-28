@@ -11,7 +11,7 @@ module.exports = {
                 stevenBlue: '#007bff',
                 midnightBlack: '#121212',
                 blackAlternative: '#181818',
-                outerSpace: '##2E3B4E',
+                outerSpace: '#2E3B4E',
                 dark: '#222',
                 darkGray: '#616161',
                 keebyGray: '#2f2f2f',
@@ -24,13 +24,15 @@ module.exports = {
                 vibrantPurple: 'rgb(175, 110, 255)',
                 vibrantGreen: 'rgb(0, 255, 170)',
             },
-
+            borderColor: {
+                stevenBlue: '#007bff',
+                outerSpace: '#2E3B4E',
+            },
             textColor: {
                 blackAlternative: '#181818',
                 stevenBlue: '#007bff',
                 hack: '#00dd00',
-                outerSpace: '##2E3B4E',
-
+                outerSpace: '#2E3B4E',
                 failure: '#ff0000',
                 darkGray: '#616161',
                 keebyGray: '#2f2f2f',
