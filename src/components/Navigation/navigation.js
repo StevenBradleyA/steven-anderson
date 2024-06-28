@@ -12,10 +12,9 @@ function Navigation() {
     const menuRef = useRef(null);
     const menuButtonRef = useRef(null);
     const [menuType, setMenuType] = useState('');
-    const { showGame, setShowGame, activeCamera } = useGlobalState();
+    const { showGame } = useGlobalState();
 
     const path = usePathname();
-    console.log(path);
 
     // ------ Nav Animations ------
     const dotVariants = {
@@ -153,8 +152,6 @@ function Navigation() {
             window.removeEventListener('mousedown', handleOutsideClick);
         };
     }, [isMenuOpen, handleClose, handleOutsideClick]);
-
-    console.log(showGame);
 
     return (
         <>
