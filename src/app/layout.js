@@ -1,12 +1,7 @@
-import { Inter } from 'next/font/google';
 import './globals.css';
-import {
-    GlobalStateProvider
-} from '@/components/Context/stateContext';
+import { GlobalStateProvider } from '@/components/Context/stateContext';
 import Head from 'next/head';
 import Navigation from '@/components/Navigation/navigation';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
     title: 'Steven Anderson',
@@ -22,7 +17,7 @@ export default function RootLayout({ children }) {
                 <meta name="description" content={metadata.description} />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <body className={inter.className}>
+            <body className="font-poppins">
                 <GlobalStateProvider>
                     <Navigation />
                     {children}

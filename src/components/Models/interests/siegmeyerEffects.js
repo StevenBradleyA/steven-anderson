@@ -34,7 +34,7 @@ const SiegmeyerEffects = () => {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            console.log('mustang');
+            console.log('sieg');
         }
     };
 

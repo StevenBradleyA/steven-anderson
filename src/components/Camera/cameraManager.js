@@ -7,8 +7,6 @@ import { useGlobalState } from '../Context/stateContext';
 const CameraManager = ({ carRef, keysPressed }) => {
     // free camera mode
     // drop down menu to select camera
-    // controls in the initial camera mode
-    // when in inital mode esdf or arrows should auto switch for you...
 
     const { activeCamera } = useGlobalState();
 
@@ -59,7 +57,7 @@ const CameraManager = ({ carRef, keysPressed }) => {
                 setCurrentIndex(
                     (prevIndex) => (prevIndex + 1) % positions.length
                 );
-            }, 20000);
+            }, 10000);
         }
 
         return () => clearInterval(interval);

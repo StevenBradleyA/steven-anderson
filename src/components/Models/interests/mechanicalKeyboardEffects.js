@@ -37,7 +37,7 @@ const MechanicalKeyboardEffects = () => {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            console.log('mustang');
+            console.log('keeb');
         }
     };
 

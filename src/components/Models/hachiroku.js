@@ -113,7 +113,11 @@ const Hachiroku = ({ trackRef }) => {
             });
         }
 
-        if (movementKey && showLoadingScreen === false && activeCamera === 'initial') {
+        if (
+            movementKey &&
+            showLoadingScreen === false &&
+            activeCamera === 'initial'
+        ) {
             setActiveCamera('follow');
         }
     }, [keysPressed]);
@@ -321,8 +325,6 @@ const Hachiroku = ({ trackRef }) => {
             }
         }
     });
-
-    console.log(keysPressed);
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
