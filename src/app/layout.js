@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
                 <meta name="description" content={metadata.description} />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <body className="font-poppins">
+            <body className="font-poppins night-sky">
                 <GlobalStateProvider>
                     <Navigation />
                     {children}
