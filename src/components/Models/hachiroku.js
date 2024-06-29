@@ -35,10 +35,8 @@ const Hachiroku = ({ trackRef }) => {
 
     // car refs
     const carRef = useRef();
-    const bodyRef = useRef();
     const rfwParentRef = useRef();
     const rfwRef = useRef();
-    const roofRef = useRef();
     const lfwParentRef = useRef();
     const lfwRef = useRef();
     const lrwRef = useRef();
@@ -46,7 +44,6 @@ const Hachiroku = ({ trackRef }) => {
     const lfwCollider = useRef();
     const rfwCollider = useRef();
     const brakeLightsRef = useRef();
-    const exhaustRef = useRef();
 
     // camera
     const { activeCamera, setActiveCamera, showGame, isOnGround } =
@@ -54,23 +51,20 @@ const Hachiroku = ({ trackRef }) => {
 
     // input
     const [keysPressed, setKeysPressed] = useState({});
-    const [torqueFactor, setTorqueFactor] = useState(1.09);
+    const [torqueFactor, setTorqueFactor] = useState(1.3);
 
     // movement
     const [currentSpeed, setCurrentSpeed] = useState(0);
-    const [totalFriction, setTotalFriction] = useState(0.5);
-    const [rearWheelFriction, setRearWheelFriction] = useState(0.3);
-    const [topSpeed, setTopSpeed] = useState(950);
-    const forwardAcceleration = 50;
-    const reverseAcceleration = 40;
-    const braking = 80;
+    const [topSpeed, setTopSpeed] = useState(900);
+
+    // const forwardAcceleration = 1500;
+    // const reverseAcceleration = 1300;
+    // const braking = 5000;
     const steerAngle = Math.PI / 9;
     const respawnHeight = 900;
 
     // car detection
     const [isUpsideDown, setIsUpsideDown] = useState(false);
-
-    // instead of colliders lets try intersects ray
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -118,7 +112,211 @@ const Hachiroku = ({ trackRef }) => {
         }
     }, [keysPressed]);
 
-    useFrame(() => {
+    // useFrame(() => {
+    //     if (activeCamera === 'follow') {
+    //         const moveForward = keysPressed['arrowup'] || keysPressed['e'];
+    //         const moveBackward = keysPressed['arrowdown'] || keysPressed['d'];
+    //         const steerLeft = keysPressed['arrowleft'] || keysPressed['s'];
+    //         const steerRight = keysPressed['arrowright'] || keysPressed['f'];
+    //         const respawn = keysPressed['r'];
+    //         const flip = keysPressed['shift'];
+
+    //         if (brakeLightsRef.current) {
+    //             brakeLightsRef.current.material.emissiveIntensity = moveBackward
+    //                 ? 1.8
+    //                 : 1.1;
+    //         }
+
+    //         // respawn
+    //         if (respawn && carRef.current) {
+    //             carRef.current.setTranslation(
+    //                 { x: -120, y: 1300, z: -150 },
+    //                 true
+    //             );
+    //             carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+    //             carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+    //             const euler = new THREE.Euler(0, 0.5, 0);
+    //             const quaternion = new THREE.Quaternion().setFromEuler(euler);
+    //             carRef.current.setRotation(quaternion, true);
+    //             setIsUpsideDown(false);
+    //         }
+    //         // auto respawn
+    //         if (carRef.current) {
+    //             // position={[-120, 1300, -150]}
+    //             // rotation={[0, 0.5, 0]}
+    //             const currentPosition = carRef.current.translation();
+    //             if (currentPosition.y < respawnHeight) {
+    //                 carRef.current.setTranslation(
+    //                     { x: -120, y: 1300, z: -150 },
+    //                     true
+    //                 );
+    //                 carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+    //                 carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+    //                 const euler = new THREE.Euler(0, 0.5, 0);
+    //                 const quaternion = new THREE.Quaternion().setFromEuler(
+    //                     euler
+    //                 );
+    //                 carRef.current.setRotation(quaternion, true);
+    //                 setIsUpsideDown(false);
+    //                 setCurrentSpeed(0);
+    //             }
+    //         }
+    //         // flip in place
+    //         if (flip && carRef.current) {
+    //             const currentPosition = carRef.current.translation();
+    //             carRef.current.setTranslation(
+    //                 {
+    //                     x: currentPosition.x,
+    //                     y: currentPosition.y + 2,
+    //                     z: currentPosition.z,
+    //                 },
+    //                 true
+    //             );
+    //             carRef.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
+    //             carRef.current.setAngvel({ x: 0, y: 0, z: 0 }, true);
+    //             const currentRotation = carRef.current.rotation();
+    //             const currentQuaternion = new THREE.Quaternion(
+    //                 currentRotation.x,
+    //                 currentRotation.y,
+    //                 currentRotation.z,
+    //                 currentRotation.w
+    //             );
+    //             const currentEuler = new THREE.Euler().setFromQuaternion(
+    //                 currentQuaternion
+    //             );
+    //             const preservedYaw = currentEuler.y;
+    //             const correctedEuler = new THREE.Euler(0, preservedYaw, 0);
+    //             const correctedQuaternion = new THREE.Quaternion().setFromEuler(
+    //                 correctedEuler
+    //             );
+
+    //             carRef.current.setRotation(correctedQuaternion, true);
+    //             setIsUpsideDown(false);
+    //         }
+    //         // speed
+    //         if (
+    //             moveForward &&
+    //             activeCamera === 'follow' &&
+    //             isOnGround === true
+    //         ) {
+    //             if (currentSpeed < topSpeed) {
+    //                 setCurrentSpeed((prevSpeed) => {
+    //                     const accelerationFactor =
+    //                         (topSpeed - prevSpeed) / topSpeed;
+    //                     return (
+    //                         prevSpeed + forwardAcceleration * accelerationFactor
+    //                     );
+    //                 });
+    //             }
+    //         } else if (
+    //             moveBackward &&
+    //             activeCamera === 'follow' &&
+    //             isOnGround === true
+    //         ) {
+    //             if (currentSpeed > -topSpeed) {
+    //                 setCurrentSpeed(
+    //                     (prevSpeed) => prevSpeed - reverseAcceleration
+    //                 );
+    //             }
+    //         } else {
+    //             if (currentSpeed > 0) {
+    //                 setCurrentSpeed((prevSpeed) =>
+    //                     Math.max(0, prevSpeed - braking)
+    //                 );
+    //             } else if (currentSpeed < 0) {
+    //                 setCurrentSpeed((prevSpeed) =>
+    //                     Math.min(0, prevSpeed + braking)
+    //                 );
+    //             }
+    //         }
+    //         // wheel rotation
+    //         if (
+    //             lfwParentRef.current &&
+    //             rfwParentRef.current &&
+    //             activeCamera === 'follow'
+    //         ) {
+    //             if (steerLeft) {
+    //                 lfwParentRef.current.rotation.set(0, steerAngle, 0);
+    //                 rfwParentRef.current.rotation.set(0, steerAngle, 0);
+    //             } else if (steerRight) {
+    //                 lfwParentRef.current.rotation.set(0, -steerAngle, 0);
+    //                 rfwParentRef.current.rotation.set(0, -steerAngle, 0);
+    //             } else {
+    //                 lfwParentRef.current.rotation.set(0, 0, 0);
+    //                 rfwParentRef.current.rotation.set(0, 0, 0);
+    //             }
+    //         }
+
+    //         // wheel spin
+    //         const wheelRotationSpeed = currentSpeed / 30;
+    //         if (
+    //             lfwRef.current &&
+    //             rfwRef.current &&
+    //             lrwRef.current &&
+    //             rrwRef.current
+    //         ) {
+    //             lfwRef.current.rotation.x += wheelRotationSpeed;
+    //             rfwRef.current.rotation.x += wheelRotationSpeed;
+    //             lrwRef.current.rotation.x += wheelRotationSpeed;
+    //             rrwRef.current.rotation.x += wheelRotationSpeed;
+    //         }
+
+    //         if (
+    //             carRef.current &&
+    //             activeCamera === 'follow' &&
+    //             isUpsideDown === false &&
+    //             isOnGround === true
+    //         ) {
+    //             const car = carRef.current;
+
+    //             const rotation = car.rotation();
+    //             const carQuaternion = new THREE.Quaternion(
+    //                 rotation.x,
+    //                 rotation.y,
+    //                 rotation.z,
+    //                 rotation.w
+    //             );
+
+    //             const forwardVector = new THREE.Vector3(0, 0, 1);
+    //             forwardVector.applyQuaternion(carQuaternion);
+    //             const impulse = forwardVector.multiplyScalar(currentSpeed);
+    //             car.applyImpulse(
+    //                 { x: impulse.x, y: impulse.y, z: impulse.z },
+    //                 true
+    //             );
+
+    //             const torque = new THREE.Vector3(0, 1, 0);
+
+    //             if (currentSpeed < 0) {
+    //                 torque.set(0, -1, 0);
+    //             }
+
+    //             if (steerLeft) {
+    //                 const leftTorque = torque.multiplyScalar(
+    //                     Math.abs(currentSpeed) * torqueFactor
+    //                 );
+    //                 car.applyTorqueImpulse(
+    //                     { x: leftTorque.x, y: leftTorque.y, z: leftTorque.z },
+    //                     true
+    //                 );
+    //             } else if (steerRight) {
+    //                 const rightTorque = torque.multiplyScalar(
+    //                     -Math.abs(currentSpeed) * torqueFactor
+    //                 );
+    //                 car.applyTorqueImpulse(
+    //                     {
+    //                         x: rightTorque.x,
+    //                         y: rightTorque.y,
+    //                         z: rightTorque.z,
+    //                     },
+    //                     true
+    //                 );
+    //             }
+    //         }
+    //     }
+    // });
+
+    useFrame((state, delta) => {
         if (activeCamera === 'follow') {
             const moveForward = keysPressed['arrowup'] || keysPressed['e'];
             const moveBackward = keysPressed['arrowdown'] || keysPressed['d'];
@@ -126,6 +324,10 @@ const Hachiroku = ({ trackRef }) => {
             const steerRight = keysPressed['arrowright'] || keysPressed['f'];
             const respawn = keysPressed['r'];
             const flip = keysPressed['shift'];
+
+            const scaledForwardAcceleration = 1500 * delta;
+            const scaledReverseAcceleration = 1300 * delta;
+            const scaledBraking = 3000 * delta;
 
             if (brakeLightsRef.current) {
                 brakeLightsRef.current.material.emissiveIntensity = moveBackward
@@ -148,8 +350,6 @@ const Hachiroku = ({ trackRef }) => {
             }
             // auto respawn
             if (carRef.current) {
-                // position={[-120, 1300, -150]}
-                // rotation={[0, 0.5, 0]}
                 const currentPosition = carRef.current.translation();
                 if (currentPosition.y < respawnHeight) {
                     carRef.current.setTranslation(
@@ -170,10 +370,11 @@ const Hachiroku = ({ trackRef }) => {
             // flip in place
             if (flip && carRef.current) {
                 const currentPosition = carRef.current.translation();
+                const heightIncrease = 100 * delta;
                 carRef.current.setTranslation(
                     {
                         x: currentPosition.x,
-                        y: currentPosition.y + 2,
+                        y: currentPosition.y + heightIncrease,
                         z: currentPosition.z,
                     },
                     true
@@ -210,7 +411,8 @@ const Hachiroku = ({ trackRef }) => {
                         const accelerationFactor =
                             (topSpeed - prevSpeed) / topSpeed;
                         return (
-                            prevSpeed + forwardAcceleration * accelerationFactor
+                            prevSpeed +
+                            scaledForwardAcceleration * accelerationFactor
                         );
                     });
                 }
@@ -221,17 +423,17 @@ const Hachiroku = ({ trackRef }) => {
             ) {
                 if (currentSpeed > -topSpeed) {
                     setCurrentSpeed(
-                        (prevSpeed) => prevSpeed - reverseAcceleration
+                        (prevSpeed) => prevSpeed - scaledReverseAcceleration
                     );
                 }
             } else {
                 if (currentSpeed > 0) {
                     setCurrentSpeed((prevSpeed) =>
-                        Math.max(0, prevSpeed - braking)
+                        Math.max(0, prevSpeed - scaledBraking)
                     );
                 } else if (currentSpeed < 0) {
                     setCurrentSpeed((prevSpeed) =>
-                        Math.min(0, prevSpeed + braking)
+                        Math.min(0, prevSpeed + scaledBraking)
                     );
                 }
             }
@@ -342,11 +544,6 @@ const Hachiroku = ({ trackRef }) => {
         emissiveIntensity: 0.4,
     });
 
-    const brakeLights = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0xff0000),
-        emissive: new THREE.Color(0xff0000),
-        emissiveIntensity: 1.1,
-    });
     const fogLights = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xffa500),
         emissive: new THREE.Color(0xffa500),
@@ -361,7 +558,7 @@ const Hachiroku = ({ trackRef }) => {
                 colliders={false}
                 position={[-120, 1310, -150]}
                 rotation={[0, 0.5, 0]}
-                friction={0.18}
+                friction={0.2}
                 name="car"
             >
                 <CuboidCollider
@@ -560,7 +757,6 @@ const Hachiroku = ({ trackRef }) => {
                             args={[1.2, 1.2]}
                             position={[-2.6, 1.3, -5]}
                             rotation={[0, 0, Math.PI / 2]}
-                            // setContactSkin={0.1}
                             name="rrwCollider"
                         />
                         <group ref={rrwRef} position={[-3.447, 1.34, -4.98]}>

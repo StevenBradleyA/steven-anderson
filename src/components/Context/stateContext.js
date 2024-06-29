@@ -6,6 +6,8 @@ export const GlobalStateProvider = ({ children }) => {
     const [showGame, setShowGame] = useState(false);
     const [isTunnel, setIsTunnel] = useState(false);
     const [isOnGround, setIsOnGround] = useState(false);
+    const [isUpsideDown, setIsUpsideDown] = useState(false);
+
     const [activeCamera, setActiveCamera] = useState('initial');
 
     return (
