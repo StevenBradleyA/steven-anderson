@@ -6,7 +6,9 @@ import * as THREE from 'three';
 
 const SiegmeyerEffects = () => {
     const group = useRef();
-    const { nodes } = useGLTF('/models/interests/siegmeyerEffects.glb');
+    const { nodes, materials } = useGLTF(
+        '/models/interests/siegmeyerEffects.glb'
+    );
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
         side: THREE.DoubleSide,
