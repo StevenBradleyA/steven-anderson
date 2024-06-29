@@ -35,18 +35,18 @@ body {
 
 @font-face {
     font-family: 'Poppins';
-    src: url('/Fonts/Poppins-Regular.ttf') format('truetype');
+    src: url('/fonts/Poppins-Regular.ttf') format('truetype');
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Poppins Bold';
-    src: url('/Fonts/Poppins-Bold.ttf') format('truetype');
+    src: url('/fonts/Poppins-Bold.ttf') format('truetype');
     font-style: normal;
 }
 @font-face {
     font-family: 'Bebas Neue';
-    src: url('/Fonts/BebasNeue-Regular.ttf') format('truetype');
+    src: url('/fonts/Bebas-Neue-Regular.ttf') format('truetype');
     font-style: normal;
 }
 
