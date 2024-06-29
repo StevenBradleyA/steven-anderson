@@ -21,6 +21,8 @@ export const GlobalStateProvider = ({ children }) => {
                 setIsTunnel,
                 isOnGround,
                 setIsOnGround,
+                isUpsideDown,
+                setIsUpsideDown,
             }}
         >
             {children}

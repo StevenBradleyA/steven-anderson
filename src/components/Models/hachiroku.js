@@ -46,8 +46,14 @@ const Hachiroku = ({ trackRef }) => {
     const brakeLightsRef = useRef();
 
     // camera
-    const { activeCamera, setActiveCamera, showGame, isOnGround } =
-        useGlobalState();
+    const {
+        activeCamera,
+        setActiveCamera,
+        showGame,
+        isOnGround,
+        setIsUpsideDown,
+        isUpsideDown,
+    } = useGlobalState();
 
     // input
     const [keysPressed, setKeysPressed] = useState({});
@@ -64,7 +70,6 @@ const Hachiroku = ({ trackRef }) => {
     const respawnHeight = 900;
 
     // car detection
-    const [isUpsideDown, setIsUpsideDown] = useState(false);
 
     useEffect(() => {
         const handleKeyDown = (event) => {
