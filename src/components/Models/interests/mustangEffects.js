@@ -6,7 +6,7 @@ import * as THREE from 'three';
 
 const MustangEffects = () => {
     const group = useRef();
-    const { nodes } = useGLTF('/models/interests/mustangEffects.glb');
+    const { nodes } = useGLTF('/models/mustangEffects.glb');
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -127,6 +127,6 @@ const MustangEffects = () => {
     );
 };
 
-useGLTF.preload('/models/interests/mustangEffects.glb');
+useGLTF.preload('/models/mustangEffects.glb');
 
 export default MustangEffects;

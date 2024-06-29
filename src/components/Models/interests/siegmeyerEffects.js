@@ -1,14 +1,11 @@
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import * as THREE from 'three';
 
 const SiegmeyerEffects = () => {
-    const group = useRef();
-    const { nodes, materials } = useGLTF(
-        '/models/interests/siegmeyerEffects.glb'
-    );
+    const { nodes } = useGLTF('/models/siegmeyerEffects.glb');
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
         side: THREE.DoubleSide,
@@ -128,6 +125,6 @@ const SiegmeyerEffects = () => {
     );
 };
 
-useGLTF.preload('/models/interests/siegmeyerEffects.glb');
+useGLTF.preload('/models/siegmeyerEffects.glb');
 
 export default SiegmeyerEffects;

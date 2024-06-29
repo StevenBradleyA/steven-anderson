@@ -3,11 +3,11 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 const Mustang = () => {
-    const { nodes, materials } = useGLTF('/models/interests/mustang.glb');
+    const { nodes, materials } = useGLTF('/models/mustang.glb');
 
     const whiteGlow = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0xE7E7E7),
-        emissive: new THREE.Color(0xE7E7E7),
+        color: new THREE.Color(0xe7e7e7),
+        emissive: new THREE.Color(0xe7e7e7),
         emissiveIntensity: 1.5,
     });
 
@@ -64,6 +64,6 @@ const Mustang = () => {
         </group>
     );
 };
-useGLTF.preload('/models/interests/mustang.glb');
+useGLTF.preload('/models/mustang.glb');
 
 export default Mustang;

@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 const Siegmeyer = () => {
-    const { nodes, materials } = useGLTF('/models/interests/siegmeyer.glb');
+    const { nodes, materials } = useGLTF('/models/siegmeyer.glb');
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -123,6 +123,6 @@ const Siegmeyer = () => {
         </group>
     );
 };
-useGLTF.preload('/models/interests/siegmeyer.glb');
+useGLTF.preload('/models/siegmeyer.glb');
 
 export default Siegmeyer;

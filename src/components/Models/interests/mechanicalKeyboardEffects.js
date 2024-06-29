@@ -6,9 +6,7 @@ import * as THREE from 'three';
 
 const MechanicalKeyboardEffects = () => {
     const group = useRef();
-    const { nodes } = useGLTF(
-        '/models/interests/mechanicalKeyboardEffects.glb'
-    );
+    const { nodes } = useGLTF('/models/mechanicalKeyboardEffects.glb');
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -130,6 +128,6 @@ const MechanicalKeyboardEffects = () => {
     );
 };
 
-useGLTF.preload('/models/interests/mechanicalKeyboardEffects.glb');
+useGLTF.preload('/models/mechanicalKeyboardEffects.glb');
 
 export default MechanicalKeyboardEffects;

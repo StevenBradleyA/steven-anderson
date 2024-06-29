@@ -3,7 +3,7 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 
 const MechanicalKeyboard = () => {
-    const { nodes, materials } = useGLTF('/models/interests/mechanicalKeyboard.glb');
+    const { nodes, materials } = useGLTF('/models/mechanicalKeyboard.glb');
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -46,6 +46,6 @@ const MechanicalKeyboard = () => {
         </group>
     );
 };
-useGLTF.preload('/models/interests/mechanicalKeyboard.glb');
+useGLTF.preload('/models/mechanicalKeyboard.glb');
 
 export default MechanicalKeyboard;
