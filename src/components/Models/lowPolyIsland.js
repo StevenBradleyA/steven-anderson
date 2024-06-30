@@ -6,7 +6,7 @@ import { useGlobalState } from '../Context/stateContext';
 import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
 
-const LowPolyIsland = ({ trackRef }) => {
+const LowPolyIsland = () => {
     const { nodes, materials } = useGLTF('/models/lowPolyIsland.glb');
     const { nodes: trackNodes, materials: trackMaterials } = useGLTF(
         '/models/driftTrack.glb'

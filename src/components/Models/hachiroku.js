@@ -30,7 +30,7 @@ import { useGlobalState } from '../Context/stateContext';
 
 // Extend the material in React Three Fiber
 
-const Hachiroku = ({ trackRef }) => {
+const Hachiroku = () => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
 
     // car refs
