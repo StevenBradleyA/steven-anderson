@@ -322,6 +322,11 @@ const Hachiroku = () => {
     // });
 
     useFrame((state, delta) => {
+
+        console.log(delta)
+
+        
+
         if (activeCamera === 'follow') {
             const moveForward = keysPressed['arrowup'] || keysPressed['e'];
             const moveBackward = keysPressed['arrowdown'] || keysPressed['d'];
