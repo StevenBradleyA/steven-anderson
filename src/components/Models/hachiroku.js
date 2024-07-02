@@ -45,6 +45,7 @@ const Hachiroku = () => {
     const rfwCollider = useRef();
     const brakeLightsRef = useRef();
 
+    const currentSpeedRef = useRef(0);
     // camera
     const {
         activeCamera,
@@ -323,10 +324,6 @@ const Hachiroku = () => {
 
     useFrame((state, delta) => {
 
-        console.log(delta)
-
-        
-
         if (activeCamera === 'follow') {
             const moveForward = keysPressed['arrowup'] || keysPressed['e'];
             const moveBackward = keysPressed['arrowdown'] || keysPressed['d'];
@@ -338,6 +335,7 @@ const Hachiroku = () => {
             const scaledForwardAcceleration = 1500 * delta;
             const scaledReverseAcceleration = 1300 * delta;
             const scaledBraking = 3000 * delta;
+            let currentSpeed = currentSpeedRef.current;
 
             if (brakeLightsRef.current) {
                 brakeLightsRef.current.material.emissiveIntensity = moveBackward
@@ -410,43 +408,7 @@ const Hachiroku = () => {
                 carRef.current.setRotation(correctedQuaternion, true);
                 setIsUpsideDown(false);
             }
-            // speed
-            if (
-                moveForward &&
-                activeCamera === 'follow' &&
-                isOnGround === true
-            ) {
-                if (currentSpeed < topSpeed) {
-                    setCurrentSpeed((prevSpeed) => {
-                        const accelerationFactor =
-                            (topSpeed - prevSpeed) / topSpeed;
-                        return (
-                            prevSpeed +
-                            scaledForwardAcceleration * accelerationFactor
-                        );
-                    });
-                }
-            } else if (
-                moveBackward &&
-                activeCamera === 'follow' &&
-                isOnGround === true
-            ) {
-                if (currentSpeed > -topSpeed) {
-                    setCurrentSpeed(
-                        (prevSpeed) => prevSpeed - scaledReverseAcceleration
-                    );
-                }
-            } else {
-                if (currentSpeed > 0) {
-                    setCurrentSpeed((prevSpeed) =>
-                        Math.max(0, prevSpeed - scaledBraking)
-                    );
-                } else if (currentSpeed < 0) {
-                    setCurrentSpeed((prevSpeed) =>
-                        Math.min(0, prevSpeed + scaledBraking)
-                    );
-                }
-            }
+
             // wheel rotation
             if (
                 lfwParentRef.current &&
@@ -479,57 +441,70 @@ const Hachiroku = () => {
                 rrwRef.current.rotation.x += wheelRotationSpeed;
             }
 
-            if (
-                carRef.current &&
-                activeCamera === 'follow' &&
-                isUpsideDown === false &&
-                isOnGround === true
-            ) {
-                const car = carRef.current;
+            // actual movement....
 
-                const rotation = car.rotation();
-                const carQuaternion = new THREE.Quaternion(
-                    rotation.x,
-                    rotation.y,
-                    rotation.z,
-                    rotation.w
+            // Update speed
+            if (moveForward && isOnGround) {
+                if (currentSpeed < topSpeed) {
+                    const accelerationFactor =
+                        (topSpeed - currentSpeed) / topSpeed;
+                    currentSpeed +=
+                        scaledForwardAcceleration * accelerationFactor;
+                }
+            } else if (moveBackward && isOnGround) {
+                if (currentSpeed > -topSpeed) {
+                    currentSpeed -= scaledReverseAcceleration;
+                }
+            } else {
+                if (currentSpeed > 0) {
+                    currentSpeed = Math.max(0, currentSpeed - scaledBraking);
+                } else if (currentSpeed < 0) {
+                    currentSpeed = Math.min(0, currentSpeed + scaledBraking);
+                }
+            }
+
+            currentSpeedRef.current = currentSpeed;
+
+      
+            const car = carRef.current;
+            const rotation = car.rotation();
+            const carQuaternion = new THREE.Quaternion(
+                rotation.x,
+                rotation.y,
+                rotation.z,
+                rotation.w
+            );
+            const forwardVector = new THREE.Vector3(0, 0, 1).applyQuaternion(
+                carQuaternion
+            );
+            const impulse = forwardVector.multiplyScalar(currentSpeed);
+
+            car.applyImpulse(
+                { x: impulse.x, y: impulse.y, z: impulse.z },
+                true
+            );
+            const torque = new THREE.Vector3(0, 1, 0);
+
+            if (currentSpeed < 0) {
+                torque.set(0, -1, 0);
+            }
+
+            if (steerLeft) {
+                const leftTorque = torque.multiplyScalar(
+                    Math.abs(currentSpeed) * torqueFactor
                 );
-
-                const forwardVector = new THREE.Vector3(0, 0, 1);
-                forwardVector.applyQuaternion(carQuaternion);
-                const impulse = forwardVector.multiplyScalar(currentSpeed);
-                car.applyImpulse(
-                    { x: impulse.x, y: impulse.y, z: impulse.z },
+                car.applyTorqueImpulse(
+                    { x: leftTorque.x, y: leftTorque.y, z: leftTorque.z },
                     true
                 );
-
-                const torque = new THREE.Vector3(0, 1, 0);
-
-                if (currentSpeed < 0) {
-                    torque.set(0, -1, 0);
-                }
-
-                if (steerLeft) {
-                    const leftTorque = torque.multiplyScalar(
-                        Math.abs(currentSpeed) * torqueFactor
-                    );
-                    car.applyTorqueImpulse(
-                        { x: leftTorque.x, y: leftTorque.y, z: leftTorque.z },
-                        true
-                    );
-                } else if (steerRight) {
-                    const rightTorque = torque.multiplyScalar(
-                        -Math.abs(currentSpeed) * torqueFactor
-                    );
-                    car.applyTorqueImpulse(
-                        {
-                            x: rightTorque.x,
-                            y: rightTorque.y,
-                            z: rightTorque.z,
-                        },
-                        true
-                    );
-                }
+            } else if (steerRight) {
+                const rightTorque = torque.multiplyScalar(
+                    -Math.abs(currentSpeed) * torqueFactor
+                );
+                car.applyTorqueImpulse(
+                    { x: rightTorque.x, y: rightTorque.y, z: rightTorque.z },
+                    true
+                );
             }
         }
     });
