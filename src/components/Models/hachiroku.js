@@ -48,7 +48,8 @@ const Hachiroku = () => {
     // fps
     const currentSpeedRef = useRef(0);
     let accumulator = 0;
-    const fixedTimeStep = 1 / 60;
+    const frameCap = 1 / 100;
+    const accumulatorRef = useRef(0);
 
     // camera
     const {
@@ -68,9 +69,10 @@ const Hachiroku = () => {
     const [currentSpeed, setCurrentSpeed] = useState(0);
     const [topSpeed, setTopSpeed] = useState(900);
 
-    // const forwardAcceleration = 1500;
-    // const reverseAcceleration = 1300;
-    // const braking = 5000;
+    const forwardAcceleration = 90;
+    const reverseAcceleration = 80;
+    const braking = 150;
+
     const steerAngle = Math.PI / 9;
     const respawnHeight = 900;
     // car detection
@@ -326,9 +328,9 @@ const Hachiroku = () => {
     // });
 
     useFrame((state, delta) => {
-        accumulator += delta;
+        accumulatorRef.current += delta;
 
-        if (accumulator >= fixedTimeStep && activeCamera === 'follow') {
+        if (accumulatorRef.current >= frameCap && activeCamera === 'follow') {
             const moveForward = keysPressed['arrowup'] || keysPressed['e'];
             const moveBackward = keysPressed['arrowdown'] || keysPressed['d'];
             const steerLeft = keysPressed['arrowleft'] || keysPressed['s'];
@@ -336,9 +338,6 @@ const Hachiroku = () => {
             const respawn = keysPressed['r'];
             const flip = keysPressed['shift'];
 
-            const scaledForwardAcceleration = 1500 * fixedTimeStep;
-            const scaledReverseAcceleration = 1300 * fixedTimeStep;
-            const scaledBraking = 3000 * fixedTimeStep;
             let currentSpeed = currentSpeedRef.current;
 
             if (brakeLightsRef.current) {
@@ -452,18 +451,17 @@ const Hachiroku = () => {
                 if (currentSpeed < topSpeed) {
                     const accelerationFactor =
                         (topSpeed - currentSpeed) / topSpeed;
-                    currentSpeed +=
-                        scaledForwardAcceleration * accelerationFactor;
+                    currentSpeed += forwardAcceleration * accelerationFactor;
                 }
             } else if (moveBackward && isOnGround) {
                 if (currentSpeed > -topSpeed) {
-                    currentSpeed -= scaledReverseAcceleration;
+                    currentSpeed -= reverseAcceleration;
                 }
             } else {
                 if (currentSpeed > 0) {
-                    currentSpeed = Math.max(0, currentSpeed - scaledBraking);
+                    currentSpeed = Math.max(0, currentSpeed - braking);
                 } else if (currentSpeed < 0) {
-                    currentSpeed = Math.min(0, currentSpeed + scaledBraking);
+                    currentSpeed = Math.min(0, currentSpeed + braking);
                 }
             }
 
@@ -510,7 +508,7 @@ const Hachiroku = () => {
                 );
             }
 
-            accumulator -= fixedTimeStep;
+            accumulatorRef.current -= frameCap;
         }
     });
 
