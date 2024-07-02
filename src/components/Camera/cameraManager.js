@@ -3,6 +3,7 @@ import { useThree, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { gsap } from 'gsap';
 import { useGlobalState } from '../Context/stateContext';
+import { damp, damp3, dampLookAt } from 'maath/easing';
 
 const CameraManager = ({ carRef, keysPressed }) => {
     // free camera mode
@@ -271,6 +272,17 @@ const CameraManager = ({ carRef, keysPressed }) => {
     const lerpSpeed = 10;
 
     useFrame((state, delta) => {
+        // const minDelta = 0.01111; // minimum delta
+        // const maxDelta = 0.16; // maximum delta
+        // delta = Math.max(minDelta, Math.min(maxDelta, delta));
+
+        // console.log(delta)
+        // let dampeningFactor1 = 0.05;
+        // if (delta < 0.01111) {
+        //     dampeningFactor1 = 0.25;
+        //     console.log('yup')
+        // }
+
         const movementSpeed = cameraSpeedRef.current * delta;
 
         if (activeCamera === 'initial') {
@@ -321,38 +333,32 @@ const CameraManager = ({ carRef, keysPressed }) => {
         } else if (activeCamera === 'follow' && carRef.current) {
             const car = carRef.current;
 
-            accumulatorRef.current += delta;
+            const carPosition = car.translation();
+            const carRotation = car.rotation();
+            const carQuaternion = new THREE.Quaternion(
+                carRotation.x,
+                carRotation.y,
+                carRotation.z,
+                carRotation.w
+            );
 
-            if (accumulatorRef.current >= fixedTimeStep) {
-                const carPosition = car.translation();
-                const carRotation = car.rotation();
-                const carQuaternion = new THREE.Quaternion(
-                    carRotation.x,
-                    carRotation.y,
-                    carRotation.z,
-                    carRotation.w
-                );
+            const backwardVector = new THREE.Vector3(0, 0, 1);
+            backwardVector.applyQuaternion(carQuaternion);
 
-                const backwardVector = new THREE.Vector3(0, 0, 1);
-                backwardVector.applyQuaternion(carQuaternion);
+            const desiredPosition = new THREE.Vector3(
+                carPosition.x - backwardVector.x * followDistance,
+                carPosition.y + followHeight,
+                carPosition.z - backwardVector.z * followDistance
+            );
 
-                const desiredPosition = new THREE.Vector3(
-                    carPosition.x - backwardVector.x * followDistance,
-                    carPosition.y + followHeight,
-                    carPosition.z - backwardVector.z * followDistance
-                );
+            damp3(camera.position, desiredPosition, 0.25, delta);
 
-                camera.position.lerp(desiredPosition, lerpSpeed * delta);
-
-                cameraTarget.current.set(
-                    carPosition.x,
-                    carPosition.y,
-                    carPosition.z
-                );
-                camera.lookAt(cameraTarget.current);
-
-                accumulatorRef.current = 0;
-            }
+            cameraTarget.current.set(
+                carPosition.x,
+                carPosition.y,
+                carPosition.z
+            );
+            dampLookAt(camera, cameraTarget.current, 0.08, delta);
         }
     });
 
