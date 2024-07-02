@@ -9,9 +9,14 @@ const CameraManager = ({ carRef, keysPressed }) => {
     // drop down menu to select camera
 
     const { activeCamera } = useGlobalState();
-
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
+
+    // fps
+    // fps
+    const currentSpeedRef = useRef(0);
+    let accumulator = 0;
+    const fixedTimeStep = 1 / 60;
 
     // follow
     const isRotating = useRef(false);
@@ -311,7 +316,6 @@ const CameraManager = ({ carRef, keysPressed }) => {
             const car = carRef.current;
             const carPosition = car.translation();
             const carRotation = car.rotation();
-
             const carQuaternion = new THREE.Quaternion(
                 carRotation.x,
                 carRotation.y,

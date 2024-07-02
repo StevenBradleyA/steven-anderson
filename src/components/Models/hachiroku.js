@@ -45,7 +45,11 @@ const Hachiroku = () => {
     const rfwCollider = useRef();
     const brakeLightsRef = useRef();
 
+    // fps
     const currentSpeedRef = useRef(0);
+    let accumulator = 0;
+    const fixedTimeStep = 1 / 60;
+
     // camera
     const {
         activeCamera,
@@ -69,7 +73,6 @@ const Hachiroku = () => {
     // const braking = 5000;
     const steerAngle = Math.PI / 9;
     const respawnHeight = 900;
-
     // car detection
 
     useEffect(() => {
@@ -323,8 +326,9 @@ const Hachiroku = () => {
     // });
 
     useFrame((state, delta) => {
+        accumulator += delta;
 
-        if (activeCamera === 'follow') {
+        if (accumulator >= fixedTimeStep && activeCamera === 'follow') {
             const moveForward = keysPressed['arrowup'] || keysPressed['e'];
             const moveBackward = keysPressed['arrowdown'] || keysPressed['d'];
             const steerLeft = keysPressed['arrowleft'] || keysPressed['s'];
@@ -332,9 +336,9 @@ const Hachiroku = () => {
             const respawn = keysPressed['r'];
             const flip = keysPressed['shift'];
 
-            const scaledForwardAcceleration = 1500 * delta;
-            const scaledReverseAcceleration = 1300 * delta;
-            const scaledBraking = 3000 * delta;
+            const scaledForwardAcceleration = 1500 * fixedTimeStep;
+            const scaledReverseAcceleration = 1300 * fixedTimeStep;
+            const scaledBraking = 3000 * fixedTimeStep;
             let currentSpeed = currentSpeedRef.current;
 
             if (brakeLightsRef.current) {
@@ -465,7 +469,6 @@ const Hachiroku = () => {
 
             currentSpeedRef.current = currentSpeed;
 
-      
             const car = carRef.current;
             const rotation = car.rotation();
             const carQuaternion = new THREE.Quaternion(
@@ -506,6 +509,8 @@ const Hachiroku = () => {
                     true
                 );
             }
+
+            accumulator -= fixedTimeStep;
         }
     });
 
