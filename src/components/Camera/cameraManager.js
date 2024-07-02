@@ -266,9 +266,9 @@ const CameraManager = ({ carRef, keysPressed }) => {
     //     }
     // });
     // fps
-    const currentSpeedRef = useRef(0);
     let accumulator = 0;
-    const fixedTimeStep = 1 / 60;
+    const fixedTimeStep = 1 / 100;
+    const lerpSpeed = 10;
 
     useFrame((state, delta) => {
         const movementSpeed = cameraSpeedRef.current * delta;
@@ -319,9 +319,11 @@ const CameraManager = ({ carRef, keysPressed }) => {
             if (moveDown)
                 camera.position.addScaledVector(camera.up, -movementSpeed);
         } else if (activeCamera === 'follow' && carRef.current) {
-            accumulator += delta;
             const car = carRef.current;
-            if (accumulator >= fixedTimeStep) {
+
+            accumulatorRef.current += delta;
+
+            if (accumulatorRef.current >= fixedTimeStep) {
                 const carPosition = car.translation();
                 const carRotation = car.rotation();
                 const carQuaternion = new THREE.Quaternion(
@@ -340,7 +342,7 @@ const CameraManager = ({ carRef, keysPressed }) => {
                     carPosition.z - backwardVector.z * followDistance
                 );
 
-                camera.position.lerp(desiredPosition, 0.1);
+                camera.position.lerp(desiredPosition, lerpSpeed * delta);
 
                 cameraTarget.current.set(
                     carPosition.x,
@@ -349,7 +351,7 @@ const CameraManager = ({ carRef, keysPressed }) => {
                 );
                 camera.lookAt(cameraTarget.current);
 
-                accumulator -= fixedTimeStep;
+                accumulatorRef.current = 0;
             }
         }
     });
