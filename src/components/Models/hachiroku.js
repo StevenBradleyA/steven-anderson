@@ -48,8 +48,7 @@ const Hachiroku = () => {
     // fps
     const currentSpeedRef = useRef(0);
     let accumulator = 0;
-    const frameCap = 1 / 100;
-    const accumulatorRef = useRef(0);
+    const fixedTimeStep = 1 / 60;
 
     // camera
     const {
@@ -328,15 +327,21 @@ const Hachiroku = () => {
     // });
 
     useFrame((state, delta) => {
-        accumulatorRef.current += delta;
 
-        if (accumulatorRef.current >= frameCap && activeCamera === 'follow') {
+
+        accumulator += delta;
+
+        while (accumulator >= fixedTimeStep && activeCamera === 'follow') {
             const moveForward = keysPressed['arrowup'] || keysPressed['e'];
             const moveBackward = keysPressed['arrowdown'] || keysPressed['d'];
             const steerLeft = keysPressed['arrowleft'] || keysPressed['s'];
             const steerRight = keysPressed['arrowright'] || keysPressed['f'];
             const respawn = keysPressed['r'];
             const flip = keysPressed['shift'];
+
+            // const scaledForwardAcceleration = 1500;
+            // const scaledReverseAcceleration = 1300;
+            // const scaledBraking = 3000;
 
             let currentSpeed = currentSpeedRef.current;
 
@@ -508,7 +513,7 @@ const Hachiroku = () => {
                 );
             }
 
-            accumulatorRef.current -= frameCap;
+            accumulator -= fixedTimeStep;
         }
     });
 
