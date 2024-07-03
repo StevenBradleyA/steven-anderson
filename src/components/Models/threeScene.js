@@ -61,7 +61,7 @@ const ThreeScene = () => {
                         <TreesAndRocks />
                         <RetroStands />
                         <Hachiroku />
-                        {/* <TireStacks /> */}
+                        <TireStacks />
                         <HireMeSigns />
                         <StreetLights />
                         <Projects />
@@ -74,17 +74,16 @@ const ThreeScene = () => {
                         <Hackerman />
                         <Skills />
                     </Physics>
-                    <axesHelper args={[150]} position={[0, 1200, 0]} />
                     <CustomBackground />
                     <GrassBlades />
-                    {/* <RetroSun /> */}
+                    <RetroSun />
                     <Mustang />
                     <MechanicalKeyboard />
                     <Siegmeyer />
                     <Controls />
                     <Countach />
                     <Ferrari />
-                    {/* <Stars /> */}
+                    <Stars />
                 </Suspense>
             </Canvas>
         </>

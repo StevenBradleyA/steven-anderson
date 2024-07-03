@@ -6,20 +6,9 @@ import { useGlobalState } from '../Context/stateContext';
 import { damp, damp3, dampLookAt } from 'maath/easing';
 
 const CameraManager = ({ carRef, keysPressed }) => {
-    // free camera mode
-    // drop down menu to select camera
-
     const { activeCamera } = useGlobalState();
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
-
-    // fps
-    // fps
-    // const currentSpeedRef = useRef(0);
-    // let accumulator = 0;
-    // const fixedTimeStep = 1 / 60;
-    const accumulatorRef = useRef(0);
-    const frameCap = 1 / 100;
 
     // follow
     const isRotating = useRef(false);
@@ -28,7 +17,6 @@ const CameraManager = ({ carRef, keysPressed }) => {
     const [followDistance, setFollowDistance] = useState(40);
 
     // free
-    const [cameraSpeed, setCameraSpeed] = useState(100);
     const cameraSpeedRef = useRef(100);
 
     // initial
@@ -89,14 +77,14 @@ const CameraManager = ({ carRef, keysPressed }) => {
                 const quaternion = new THREE.Quaternion();
                 const axis = new THREE.Vector3();
 
-                axis.set(0, 1, 0); // Y-axis for horizontal rotation
+                axis.set(0, 1, 0);
                 quaternion.setFromAxisAngle(axis, -deltaX * 0.002);
                 camera.quaternion.multiplyQuaternions(
                     quaternion,
                     camera.quaternion
                 );
 
-                axis.set(1, 0, 0); // X-axis for vertical rotation
+                axis.set(1, 0, 0);
                 quaternion.setFromAxisAngle(axis, -deltaY * 0.002);
                 camera.quaternion.multiplyQuaternions(
                     camera.quaternion,
@@ -120,169 +108,7 @@ const CameraManager = ({ carRef, keysPressed }) => {
         };
     }, [camera, gl.domElement, activeCamera]);
 
-    // useFrame((state, delta) => {
-    //     if (activeCamera === 'initial') {
-    //         positions[currentIndex].z -= 0.2;
-    //         camera.position.lerp(positions[currentIndex], 0.1);
-    //         cameraTarget.current.lerp(lookAts[currentIndex], 0.1);
-    //         camera.lookAt(cameraTarget.current);
-    //     } else if (activeCamera === 'free') {
-    //         const moveForward = keysPressed['e'] || keysPressed['arrowup'];
-    //         const moveBackward = keysPressed['d'] || keysPressed['arrowdown'];
-    //         const moveLeft = keysPressed['s'] || keysPressed['arrowleft'];
-    //         const moveRight = keysPressed['f'] || keysPressed['arrowright'];
-    //         const moveUp = keysPressed['r'] || keysPressed[' '];
-    //         const moveDown = keysPressed['w'];
-    //         const increaseSpeed = keysPressed['g'];
-    //         const decreaseSpeed = keysPressed['a'];
-
-    //         if (increaseSpeed)
-    //             setCameraSpeed((prevSpeed) => Math.min(prevSpeed + 0.2, 5));
-
-    //         if (decreaseSpeed)
-    //             setCameraSpeed((prevSpeed) => Math.max(prevSpeed - 0.2, 0.5));
-
-    //         const direction = new THREE.Vector3();
-    //         camera.getWorldDirection(direction);
-
-    //         if (moveForward)
-    //             camera.position.addScaledVector(direction, cameraSpeed);
-    //         if (moveBackward)
-    //             camera.position.addScaledVector(direction, -cameraSpeed);
-
-    //         const right = new THREE.Vector3();
-    //         right.crossVectors(camera.up, direction).normalize();
-
-    //         if (moveLeft) camera.position.addScaledVector(right, cameraSpeed);
-    //         if (moveRight) camera.position.addScaledVector(right, -cameraSpeed);
-    //         if (moveUp) camera.position.addScaledVector(camera.up, cameraSpeed);
-    //         if (moveDown)
-    //             camera.position.addScaledVector(camera.up, -cameraSpeed);
-    //     } else if (activeCamera === 'follow' && carRef.current) {
-    //         const car = carRef.current;
-    //         const carPosition = car.translation();
-    //         const carRotation = car.rotation();
-
-    //         const carQuaternion = new THREE.Quaternion(
-    //             carRotation.x,
-    //             carRotation.y,
-    //             carRotation.z,
-    //             carRotation.w
-    //         );
-
-    //         const backwardVector = new THREE.Vector3(0, 0, 1);
-    //         backwardVector.applyQuaternion(carQuaternion);
-
-    //         const desiredPosition = new THREE.Vector3(
-    //             carPosition.x - backwardVector.x * followDistance,
-    //             carPosition.y + followHeight,
-    //             carPosition.z - backwardVector.z * followDistance
-    //         );
-
-    //         camera.position.lerp(desiredPosition, 0.1);
-
-    //         cameraTarget.current.set(
-    //             carPosition.x,
-    //             carPosition.y,
-    //             carPosition.z
-    //         );
-    //         camera.lookAt(cameraTarget.current);
-    //     }
-    // });
-
-    // useFrame((state, delta) => {
-    //     const movementSpeed = cameraSpeed * delta;
-    //     if (activeCamera === 'initial') {
-    //         positions[currentIndex].z -= 12 * delta;
-    //         camera.position.lerp(positions[currentIndex], 6 * delta);
-    //         cameraTarget.current.lerp(lookAts[currentIndex], 6 * delta);
-    //         camera.lookAt(cameraTarget.current);
-    //     } else if (activeCamera === 'free') {
-    //         const moveForward = keysPressed['e'] || keysPressed['arrowup'];
-    //         const moveBackward = keysPressed['d'] || keysPressed['arrowdown'];
-    //         const moveLeft = keysPressed['s'] || keysPressed['arrowleft'];
-    //         const moveRight = keysPressed['f'] || keysPressed['arrowright'];
-    //         const moveUp = keysPressed['r'] || keysPressed[' '];
-    //         const moveDown = keysPressed['w'];
-    //         const increaseSpeed = keysPressed['g'];
-    //         const decreaseSpeed = keysPressed['a'];
-
-    //         if (increaseSpeed)
-    //             setCameraSpeed((prevSpeed) =>
-    //                 Math.min(prevSpeed + 80 * delta, 250)
-    //             );
-
-    //         if (decreaseSpeed)
-    //             setCameraSpeed((prevSpeed) =>
-    //                 Math.max(prevSpeed - 80 * delta, 50)
-    //             );
-
-    //         const direction = new THREE.Vector3();
-    //         camera.getWorldDirection(direction);
-
-    //         if (moveForward)
-    //             camera.position.addScaledVector(direction, movementSpeed);
-    //         if (moveBackward)
-    //             camera.position.addScaledVector(direction, -movementSpeed);
-
-    //         const right = new THREE.Vector3();
-    //         right.crossVectors(camera.up, direction).normalize();
-
-    //         if (moveLeft) camera.position.addScaledVector(right, movementSpeed);
-    //         if (moveRight)
-    //             camera.position.addScaledVector(right, -movementSpeed);
-    //         if (moveUp)
-    //             camera.position.addScaledVector(camera.up, movementSpeed);
-    //         if (moveDown)
-    //             camera.position.addScaledVector(camera.up, -movementSpeed);
-    //     } else if (activeCamera === 'follow' && carRef.current) {
-    //         const car = carRef.current;
-    //         const carPosition = car.translation();
-    //         const carRotation = car.rotation();
-
-    //         const carQuaternion = new THREE.Quaternion(
-    //             carRotation.x,
-    //             carRotation.y,
-    //             carRotation.z,
-    //             carRotation.w
-    //         );
-
-    //         const backwardVector = new THREE.Vector3(0, 0, 1);
-    //         backwardVector.applyQuaternion(carQuaternion);
-
-    //         const desiredPosition = new THREE.Vector3(
-    //             carPosition.x - backwardVector.x * followDistance,
-    //             carPosition.y + followHeight,
-    //             carPosition.z - backwardVector.z * followDistance
-    //         );
-
-    //         camera.position.lerp(desiredPosition, 10 * delta);
-
-    //         cameraTarget.current.set(
-    //             carPosition.x,
-    //             carPosition.y,
-    //             carPosition.z
-    //         );
-    //         camera.lookAt(cameraTarget.current);
-    //     }
-    // });
-    // fps
-    let accumulator = 0;
-    const fixedTimeStep = 1 / 100;
-    const lerpSpeed = 10;
-
     useFrame((state, delta) => {
-        // const minDelta = 0.01111; // minimum delta
-        // const maxDelta = 0.16; // maximum delta
-        // delta = Math.max(minDelta, Math.min(maxDelta, delta));
-
-        // console.log(delta)
-        // let dampeningFactor1 = 0.05;
-        // if (delta < 0.01111) {
-        //     dampeningFactor1 = 0.25;
-        //     console.log('yup')
-        // }
-
         const movementSpeed = cameraSpeedRef.current * delta;
 
         if (activeCamera === 'initial') {

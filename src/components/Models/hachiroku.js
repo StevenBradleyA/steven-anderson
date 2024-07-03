@@ -57,10 +57,14 @@ const Hachiroku = () => {
 
     // input
     const [keysPressed, setKeysPressed] = useState({});
-    const torqueFactor = 20;
-    const topSpeed = 150;
+
+    // car tuning
+    const topSpeed = 180;
+    const torqueFactor = 10;
     const steerAngle = Math.PI / 9;
     const respawnHeight = 900;
+    const maxSpeedForTurning = 69; // nice
+
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -166,11 +170,13 @@ const Hachiroku = () => {
                     true
                 );
             }
-            // const steeringSense = speed * 0.2;
+            const speedInfluence = Math.min(speed, maxSpeedForTurning);
             if (steerLeft && speed > 0) {
                 const torque = new THREE.Vector3(0, 1, 0);
                 const leftTorque = torque.multiplyScalar(
-                    speed * torqueFactor * (isMovingForward ? 1 : -1)
+                    speedInfluence *
+                        torqueFactor *
+                        (!isMovingForward && moveBackward ? -1 : 1)
                 );
                 car.applyTorqueImpulse(
                     { x: leftTorque.x, y: leftTorque.y, z: leftTorque.z },
@@ -181,7 +187,9 @@ const Hachiroku = () => {
             if (steerRight && speed > 0) {
                 const torque = new THREE.Vector3(0, -1, 0);
                 const rightTorque = torque.multiplyScalar(
-                    speed * torqueFactor * (isMovingForward ? 1 : -1)
+                    speedInfluence *
+                        torqueFactor *
+                        (!isMovingForward && moveBackward ? -1 : 1)
                 );
                 car.applyTorqueImpulse(
                     { x: rightTorque.x, y: rightTorque.y, z: rightTorque.z },
@@ -329,7 +337,7 @@ const Hachiroku = () => {
                 colliders={false}
                 position={[-120, 1310, -150]}
                 rotation={[0, 0.5, 0]}
-                friction={0.15}
+                friction={0.10}
                 name="car"
             >
                 <CuboidCollider
