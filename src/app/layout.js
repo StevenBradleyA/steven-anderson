@@ -14,7 +14,6 @@ export const metadata = {
     //     { media: '(prefers-color-scheme: light)', color: '#000000' },
     // ],
     applicationName: 'Steven Anderson Portfolio',
-    themeColor: '#121212',
     authors: [{ name: 'Steven Anderson', url: 'https://steven-anderson.com' }],
     generator: 'Next.js',
     keywords: [
@@ -70,6 +69,13 @@ export const metadata = {
             'en-US': 'https://steven-anderson.com/en-US',
         },
     },
+};
+// try '#121212' for theme color
+
+/** @type {import("next").Viewport} */
+export const viewport = {
+    themeColor: 'dark',
+    colorScheme: 'dark',
 };
 
 export default function RootLayout({ children }) {
