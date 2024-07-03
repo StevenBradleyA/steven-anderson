@@ -1,8 +1,6 @@
 'use client';
 import NightSky from '@/components/Background/nightSky';
 import { useState } from 'react';
-import palm from '@public/Images/home.png';
-import Image from 'next/image';
 import Link from 'next/link';
 
 export default function NotFound() {

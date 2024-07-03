@@ -3,27 +3,40 @@
 @tailwind utilities;
 
 :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
+    --foreground-rgb: 255, 255, 255;
+    --background-dark: radial-gradient(
+        ellipse at bottom,
+        #1b2735 0%,
+        #090a0f 100%
+    );
 }
 
+/* Dark mode styles */
 @media (prefers-color-scheme: dark) {
-    :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 0, 0, 0;
-        --background-end-rgb: 0, 0, 0;
+    body {
+        background: var(--background-dark);
+        color: rgb(var(--foreground-rgb));
     }
+}
+/* Dark mode styles */
+@media (prefers-color-scheme: light) {
+    body {
+        background: var(--background-dark);
+        color: rgb(var(--foreground-rgb));
+    }
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 body {
     color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-            to bottom,
-            transparent,
-            rgb(var(--background-end-rgb))
-        )
-        rgb(var(--background-start-rgb));
+    background: var(--background-dark);
 }
 
 @layer utilities {
@@ -126,6 +139,17 @@ body {
     transform: translate(-5.5px, -5.5px);
 }
 /* end main nav button */
+
+/* nav background ---  */
+.nav-menu-background {
+    background: rgba(255, 255, 255, 0);
+    visibility: hidden;
+}
+.nav-menu-background-open {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+/* end nav background */
 
 /* control button  */
 .control-button-top-circle,

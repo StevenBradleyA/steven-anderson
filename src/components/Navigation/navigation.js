@@ -62,7 +62,6 @@ function Navigation() {
     const sidebar = {
         open: (height = 1000) => ({
             clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
-            background: 'rgba(255, 255, 255, 0.7)',
             transition: {
                 type: 'spring',
                 stiffness: 20,
@@ -71,7 +70,6 @@ function Navigation() {
         }),
         closed: {
             clipPath: 'circle(0px at 530px 30px)',
-            background: 'transparent',
             transition: {
                 delay: 0.5,
                 type: 'spring',
@@ -81,7 +79,6 @@ function Navigation() {
         },
         exit: {
             clipPath: 'circle(0px at 530px 30px)',
-            background: 'rgba(255, 255, 255, 0.7)',
             transition: {
                 type: 'spring',
                 stiffness: 400,
@@ -186,6 +183,7 @@ function Navigation() {
                             src={homePalm}
                             className="w-12 h-12 object-cover"
                             alt="home button"
+                            priority
                         />
                     </Link>
 
@@ -351,14 +349,18 @@ function Navigation() {
                     </AnimatePresence>
 
                     {/* HEYYYYYYYYY */}
-
+                    {/* HEREeeeeeeeeeeee */}
                     <AnimatePresence>
                         {isMenuOpen && (
                             <motion.div className=" absolute right-0 top-0 bottom-0 w-[550px] h-[100px] rounded-lg text-black flex flex-col z-10  text-xl overflow-hidden">
                                 {/* top bar */}
                                 <motion.div
                                     ref={menuRef}
-                                    className=" flex w-full justify-between items-center h-full px-6"
+                                    className={` flex w-full justify-between items-center h-full px-6 ${
+                                        isMenuOpen
+                                            ? 'nav-menu-background-open'
+                                            : 'nav-menu-background'
+                                    }`}
                                     variants={sidebar}
                                     initial="closed"
                                     animate={isMenuOpen ? 'open' : 'closed'}
@@ -705,7 +707,11 @@ function Navigation() {
                             <motion.div className=" absolute right-0 top-96 bottom-0 w-[550px] h-[100px] rounded-lg text-black flex flex-col z-10  text-xl overflow-hidden">
                                 <motion.div
                                     ref={secondaryMenuRef}
-                                    className=" flex w-full justify-between items-center h-full px-6"
+                                    className={` flex w-full justify-between items-center h-full px-6 ${
+                                        isSecondaryMenuOpen
+                                            ? 'nav-menu-background-open'
+                                            : 'nav-menu-background'
+                                    }`}
                                     variants={sidebar}
                                     initial="closed"
                                     animate={
@@ -757,7 +763,11 @@ function Navigation() {
                             <motion.div className=" absolute right-0 top-96 bottom-0 w-[550px] h-[100px] rounded-lg text-black flex flex-col z-10  text-xl overflow-hidden">
                                 <motion.div
                                     ref={tertiaryMenuRef}
-                                    className=" flex w-full justify-between items-center h-full px-6"
+                                    className={` flex w-full justify-between items-center h-full px-6 ${
+                                        isTertiaryMenuOpen
+                                            ? 'nav-menu-background-open'
+                                            : 'nav-menu-background'
+                                    }`}
                                     variants={sidebar}
                                     initial="closed"
                                     animate={
