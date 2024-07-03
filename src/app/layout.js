@@ -9,10 +9,6 @@ export const metadata = {
     title: 'Steven Anderson',
     description:
         'Full-stack web developer in Seattle with expertise in React and Next.js building scalable and high-performance web applications.',
-    // themeColor: [
-    //     { media: '(prefers-color-scheme: dark)', color: '#000000' },
-    //     { media: '(prefers-color-scheme: light)', color: '#000000' },
-    // ],
     applicationName: 'Steven Anderson Portfolio',
     authors: [{ name: 'Steven Anderson', url: 'https://steven-anderson.com' }],
     generator: 'Next.js',
