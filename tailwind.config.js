@@ -72,6 +72,7 @@ module.exports = {
                 bebas: ['Bebas Neue', 'sans-serif'],
                 poppins: ['Poppins', 'sans-serif'],
                 poppinsBold: ['Poppins Bold', 'sans-serif'],
+                orbitron: ['Orbitron', 'sans-serif'],
             },
         },
     },

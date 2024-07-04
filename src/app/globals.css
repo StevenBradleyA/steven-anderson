@@ -62,11 +62,17 @@ body {
     src: url('/fonts/Bebas-Neue-Regular.ttf') format('truetype');
     font-style: normal;
 }
+@font-face {
+    font-family: 'Orbitron';
+    src: url('/fonts/Orbitron-Regular.ttf') format('truetype');
+    font-style: normal;
+}
 
 /* colors i like */
 /* BLUE */
 /* #007BFF  */
 /* rgba(0, 123, 255, 1) */
+/* bg-[#4EBEFF] hover:bg-[#3DA0E3] text-white  */
 
 /* end blue */
 
@@ -454,6 +460,56 @@ body {
 /* ----------     END SCANLINES     ----------- */
 /* ----------     END SCANLINES     ----------- */
 /* ----------     END SCANLINES     ----------- */
+
+
+/* contact */
+/* 
+.contact-button {
+    overflow: hidden;
+}
+
+.contact-button-text {
+    transition: transform 0.4s cubic-bezier(0.35, 0, 0, 1),
+        opacity 0.4s cubic-bezier(0.35, 0, 0, 1);
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.contact-button-circle {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0.4s cubic-bezier(0.35, 0, 0, 1);
+}
+
+.contact-button-arrow {
+    transition: opacity 0.4s cubic-bezier(0.35, 0, 0, 1),
+        transform 0.4s cubic-bezier(0.35, 0, 0, 1);
+    opacity: 0;
+    transform: scale(0) translateX(0);
+    visibility: hidden;
+}
+
+.contact-button:hover .contact-button-circle {
+    opacity: 0;
+    transform: scale(0.9);
+    visibility: hidden;
+    transition-delay: 0s, 0s;
+}
+
+.contact-button:hover .contact-button-arrow {
+    opacity: 1;
+    transform: scale(1) translateX(15px);
+    visibility: visible;
+}
+.contact-button:hover .contact-button-text {
+    transform: translateX(15px);
+} */
+
+
+
+
+
+
 
 /* cool blur and grid effect */
 /* 
