@@ -1,7 +1,8 @@
 'use client';
 import NightSky from '@/components/Background/nightSky';
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { delay } from 'lodash';
 
 export default function Contact() {
     // form
@@ -11,6 +12,13 @@ export default function Contact() {
     const [enableErrorDisplay, setEnableErrorDisplay] = useState(false);
 
     // animations
+
+    const [randomIndices, setRandomIndices] = useState({
+        word1: 0,
+        word2: 0,
+        word3: 0,
+    });
+    const controls = useAnimation();
 
     const firstMail = {
         initial: {
@@ -57,6 +65,7 @@ export default function Contact() {
     };
 
     // clean snap
+
     // const firstMail = {
     //     initial: {
     //         scale: 1,
@@ -97,6 +106,40 @@ export default function Contact() {
     //     },
     // };
 
+    const topLetter = {
+        initial: {
+            y: 0,
+            opacity: 100,
+        },
+        animate: {
+            y: -150,
+            transition: { duration: 0.3, ease: 'easeInOut' },
+            opacity: 100,
+        },
+        exit: {
+            y: [-150, 0, 0],
+            transition: { duration: 0.3, ease: 'easeInOut' },
+            opacity: [0, 0, 100],
+        },
+    };
+
+    const bottomLetter = {
+        initial: {
+            y: 150,
+            opacity: 100,
+        },
+        animate: {
+            y: 0,
+            transition: { duration: 0.3, ease: 'easeInOut' },
+            opacity: 100,
+        },
+        exit: {
+            y: [0, 150, 150],
+            transition: { duration: 3, ease: 'easeInOut', delay: 5 },
+            opacity: [0, 0, 100],
+        },
+    };
+
     useEffect(() => {
         const errorsObj = {};
 
@@ -129,26 +172,83 @@ export default function Contact() {
         }
     };
 
+    // going to have to map through each word for each one we can have a motion div with our movement logic
+    // animate = {controls} instead of while Hover
+
+    // const controls = useAnimation();
+
+    useEffect(() => {
+        const words = ["Let's", 'work', 'together!'];
+        const getRandomIndex = (word) =>
+            Math.floor(Math.random() * word.length);
+
+        const interval = setInterval(() => {
+            setRandomIndices({
+                word1: getRandomIndex(words[0]),
+                word2: getRandomIndex(words[1]),
+                word3: getRandomIndex(words[2]),
+            });
+            // Start the animation
+            controls.start('animate').then(() => {
+                controls.start('exit');
+            });
+        }, 5000);
+
+        return () => clearInterval(interval);
+    }, [controls]);
+
+    console.log(randomIndices);
     return (
         <div className="night-sky w-full min-h-screen flex flex-col items-center">
             <NightSky />
             <div className="flex px-20 w-full desktop:w-[80%] ultrawide:w-3/4 gap-20 mt-48 desktop:mt-64">
                 <div className=" w-1/2 z-40">
-                    <h1 className=" text-8xl flex flex-col font-orbitron  relative ">
-                        <div className="opacity-0">{`Let's work`}</div>
-                        <div className="pl-10 opacity-0">{`together!`}</div>
-
-                        <div className=" text-8xl flex flex-col font-orbitron  absolute top-0 left-0 ">
-                            <div>{`Let's work`}</div>
-                            <div className="pl-10">{`together!`}</div>
+                    <motion.div
+                        className=" text-8xl flex flex-col font-orbitron  relative  "
+                        // whileHover="hover"
+                        animate={controls}
+                        initial="initial"
+                        exit="exit"
+                    >
+                        <div className="relative overflow-hidden">
+                            <div className="opacity-0">{`Let's work`}</div>
+                            <motion.div
+                                className=" text-8xl flex flex-col font-orbitron  absolute top-0 left-0 "
+                                variants={topLetter}
+                            >
+                                <div className="flex gap-6">
+                                    <div>{`Let's`}</div>
+                                    <div>work</div>
+                                </div>
+                            </motion.div>
+                            <motion.div
+                                className=" text-8xl flex flex-col font-orbitron  absolute top-0 left-0 "
+                                variants={bottomLetter}
+                            >
+                                <div className="flex gap-6">
+                                    <div>{`Let's`}</div>
+                                    <div>work</div>
+                                </div>
+                            </motion.div>
                         </div>
-                        <div className=" text-8xl flex flex-col font-orbitron  absolute top-0 left-0 ">
-                            <div>{`Let's work`}</div>
-                            <div className="pl-10">{`together!`}</div>
+                        <div className="pl-10 relative overflow-hidden pb-5">
+                            <div className="opacity-0">{`together!`}</div>
+                            <motion.div
+                                className=" text-8xl flex flex-col font-orbitron  absolute top-0 left-0 "
+                                variants={topLetter}
+                            >
+                                <div className="pl-10">{`together!`}</div>
+                            </motion.div>
+                            <motion.div
+                                className=" text-8xl flex flex-col font-orbitron  absolute top-0 left-0 "
+                                variants={bottomLetter}
+                            >
+                                <div className="pl-10">{`together!`}</div>
+                            </motion.div>
                         </div>
-                    </h1>
+                    </motion.div>
 
-                    <p className="mt-10 text-lg">
+                    <p className="mt-5 text-lg">
                         {`Whether you're hiring an entry level developer, willing to
                         write a refferal, or want me to build you an awesome
                         site please reach out!`}
