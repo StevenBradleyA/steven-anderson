@@ -1,5 +1,6 @@
 import './globals.css';
 import { GlobalStateProvider } from '@/components/Context/stateContext';
+import { GlobalMobileProvider } from '@/components/Context/mobileContext';
 // import Head from 'next/head';
 import Navigation from '@/components/Navigation/navigation';
 
@@ -80,8 +81,10 @@ export default function RootLayout({ children }) {
             {/* night-sky here */}
             <body className="font-poppins ">
                 <GlobalStateProvider>
-                    <Navigation />
-                    {children}
+                    <GlobalMobileProvider>
+                        <Navigation />
+                        {children}
+                    </GlobalMobileProvider>
                 </GlobalStateProvider>
             </body>
         </html>

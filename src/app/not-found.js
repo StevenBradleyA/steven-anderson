@@ -21,7 +21,7 @@ export default function NotFound() {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     return (
-        <div className="night-sky fixed top-0 left-0 right-0 bottom-0 text-white">
+        <div className=" fixed top-0 left-0 right-0 bottom-0 text-white">
             <NightSky />
             <div className="relative z-10 h-[88vh] w-full overflow-hidden mt-32">
                 <svg
