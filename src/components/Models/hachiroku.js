@@ -65,7 +65,6 @@ const Hachiroku = () => {
     const respawnHeight = 900;
     const maxSpeedForTurning = 69; // nice
 
-
     useEffect(() => {
         const handleKeyDown = (event) => {
             const key = event.key.toLowerCase();
@@ -196,7 +195,6 @@ const Hachiroku = () => {
                     true
                 );
             }
-            console.log('speed', speed);
 
             if (brakeLightsRef.current) {
                 brakeLightsRef.current.material.emissiveIntensity = moveBackward
@@ -337,7 +335,7 @@ const Hachiroku = () => {
                 colliders={false}
                 position={[-120, 1310, -150]}
                 rotation={[0, 0.5, 0]}
-                friction={0.10}
+                friction={0.1}
                 name="car"
             >
                 <CuboidCollider

@@ -197,7 +197,6 @@ export default function Contact() {
         return () => clearInterval(interval);
     }, [controls]);
 
-    console.log(randomIndices);
     return (
         <div className="night-sky w-full min-h-screen flex flex-col items-center">
             <NightSky />
