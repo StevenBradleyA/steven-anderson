@@ -220,109 +220,121 @@ export default function Contact() {
             {isMobile === false ? (
                 <div className="flex px-20 w-full desktop:w-[80%] ultrawide:w-3/4, gap-20 desktop:gap-32 mt-48 desktop:mt-64 items-start">
                     <div className=" w-1/2 z-40">
-                        <div className=" text-8xl flex flex-col font-orbitron">
-                            <div className="relative overflow-hidden flex flex-col">
-                                <div className="opacity-0">{`Let's work`}</div>
-                                <div className="flex absolute top-0 left-0 ">
-                                    {firstWord.map((letter, index) => (
-                                        <motion.span
-                                            key={index}
-                                            animate={controls}
-                                            initial="initial"
-                                            variants={
-                                                index === randomIndices.word1
-                                                    ? topLetter
-                                                    : topFixed
-                                            }
-                                        >
-                                            {letter}
-                                        </motion.span>
-                                    ))}
+                        <div className=" tablet:text-5xl laptop:text-8xl flex flex-col font-orbitron">
+                            <div className="relative overflow-hidden flex w-full tablet:gap-5 desktop:gap-10">
+                                <div className="relative text-transparent ">
+                                    {`Let's`}
+                                    <div className="flex absolute top-0 left-0 text-white ">
+                                        {firstWord.map((letter, index) => (
+                                            <motion.span
+                                                key={index}
+                                                animate={controls}
+                                                initial="initial"
+                                                variants={
+                                                    index ===
+                                                    randomIndices.word1
+                                                        ? topLetter
+                                                        : topFixed
+                                                }
+                                            >
+                                                {letter}
+                                            </motion.span>
+                                        ))}
+                                    </div>
+                                    <div className=" flex  absolute top-0 left-0 text-white">
+                                        {firstWord.map((letter, index) => (
+                                            <motion.span
+                                                key={index}
+                                                animate={controls}
+                                                initial="initial"
+                                                variants={
+                                                    index ===
+                                                    randomIndices.word1
+                                                        ? bottomLetter
+                                                        : bottomFixed
+                                                }
+                                            >
+                                                {letter}
+                                            </motion.span>
+                                        ))}
+                                    </div>
                                 </div>
-                                <div className=" flex  absolute top-0 left-0 ">
-                                    {firstWord.map((letter, index) => (
-                                        <motion.span
-                                            key={index}
-                                            animate={controls}
-                                            initial="initial"
-                                            variants={
-                                                index === randomIndices.word1
-                                                    ? bottomLetter
-                                                    : bottomFixed
-                                            }
-                                        >
-                                            {letter}
-                                        </motion.span>
-                                    ))}
-                                </div>
-
-                                <div className=" flex  absolute top-0 left-[19rem] ">
-                                    {secondWord.map((letter, index) => (
-                                        <motion.span
-                                            key={index}
-                                            animate={controls}
-                                            initial="initial"
-                                            variants={
-                                                index === randomIndices.word2
-                                                    ? topLetter
-                                                    : topFixed
-                                            }
-                                        >
-                                            {letter}
-                                        </motion.span>
-                                    ))}
-                                </div>
-                                <div className=" flex  absolute top-0 left-[19rem] ">
-                                    {secondWord.map((letter, index) => (
-                                        <motion.span
-                                            key={index}
-                                            animate={controls}
-                                            initial="initial"
-                                            variants={
-                                                index === randomIndices.word2
-                                                    ? bottomLetter
-                                                    : bottomFixed
-                                            }
-                                        >
-                                            {letter}
-                                        </motion.span>
-                                    ))}
+                                <div className="relative text-transparent ">
+                                    work
+                                    <div className=" flex  absolute top-0 left-0 text-white">
+                                        {secondWord.map((letter, index) => (
+                                            <motion.span
+                                                key={index}
+                                                animate={controls}
+                                                initial="initial"
+                                                variants={
+                                                    index ===
+                                                    randomIndices.word2
+                                                        ? topLetter
+                                                        : topFixed
+                                                }
+                                            >
+                                                {letter}
+                                            </motion.span>
+                                        ))}
+                                    </div>
+                                    <div className=" flex  absolute top-0 left-0 text-white ">
+                                        {secondWord.map((letter, index) => (
+                                            <motion.span
+                                                key={index}
+                                                animate={controls}
+                                                initial="initial"
+                                                variants={
+                                                    index ===
+                                                    randomIndices.word2
+                                                        ? bottomLetter
+                                                        : bottomFixed
+                                                }
+                                            >
+                                                {letter}
+                                            </motion.span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
 
-                            <div className="relative overflow-hidden pb-5">
-                                <div className="opacity-0">{`together!`}</div>
-                                <div className=" flex  absolute top-0 left-10 ">
-                                    {thirdWord.map((letter, index) => (
-                                        <motion.span
-                                            key={index}
-                                            animate={controls}
-                                            initial="initial"
-                                            variants={
-                                                index === randomIndices.word3
-                                                    ? topLetter
-                                                    : topFixed
-                                            }
-                                        >
-                                            {letter}
-                                        </motion.span>
-                                    ))}
-                                </div>
-                                <div className=" flex  absolute top-0 left-10 ">
-                                    {thirdWord.map((letter, index) => (
-                                        <motion.span
-                                            key={index}
-                                            animate={controls}
-                                            initial="initial"
-                                            variants={
-                                                index === randomIndices.word3
-                                                    ? bottomLetter
-                                                    : bottomFixed
-                                            }
-                                        >
-                                            {letter}
-                                        </motion.span>
-                                    ))}
+                            <div className="relative overflow-hidden tablet:pl-5 laptop:pl-12 pb-5">
+                                <div className="text-transparent relative ">
+                                    {`together!`}
+                                    <div className=" flex  absolute top-0 left-0 text-white ">
+                                        {thirdWord.map((letter, index) => (
+                                            <motion.span
+                                                key={index}
+                                                animate={controls}
+                                                initial="initial"
+                                                variants={
+                                                    index ===
+                                                    randomIndices.word3
+                                                        ? topLetter
+                                                        : topFixed
+                                                }
+                                            >
+                                                {letter}
+                                            </motion.span>
+                                        ))}
+                                    </div>
+                                    <div className=" flex  absolute top-0 left-0 text-white">
+                                        {thirdWord.map((letter, index) => (
+                                            <motion.span
+                                                key={index}
+                                                animate={controls}
+                                                initial="initial"
+                                                variants={
+                                                    index ===
+                                                    randomIndices.word3
+                                                        ? bottomLetter
+                                                        : bottomFixed
+                                                }
+                                            >
+                                                {letter}
+                                            </motion.span>
+                                        ))}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -457,16 +469,6 @@ export default function Contact() {
                             )}
                         </div>
 
-                        {/* <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            handleOpenMail(e);
-                        }}
-                        className="py-2 px-4 mt-4 inline-block rounded-md
-                    bg-[#4EBEFF] hover:bg-[#3DA0E3] text-white font-semibold"
-                    >
-                        Get in touch
-                    </button> */}
                         <motion.button
                             className="mt-5 text-md contact-button flex items-center gap-2 rounded-md bg-[#3DA0E3] py-2 pl-4 pr-8 text-black relative "
                             style={{
@@ -514,9 +516,9 @@ export default function Contact() {
                     </form>
                 </div>
             ) : (
-                <div className="flex flex-col px-10 w-full  mt-40 ">
+                <div className="flex flex-col px-10 w-full  mt-40 mb-20 ">
                     <div className=" w-full z-40">
-                        <div className=" text-6xl flex flex-col font-orbitron relative w-full">
+                        <div className=" text-5xl flex flex-col font-orbitron relative w-full">
                             <div className="relative overflow-hidden flex justify-center w-full gap-3">
                                 <div className="relative text-transparent ">
                                     {`Let's`}
