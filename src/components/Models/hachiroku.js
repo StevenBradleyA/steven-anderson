@@ -11,24 +11,7 @@ import * as THREE from 'three';
 import CameraManager from '../Camera/cameraManager';
 import { useGlobalState } from '../Context/stateContext';
 
-// todo decide on camera buttons -- should mouse clicking trigger free mode? also fix free cam locking
-
 // prompt user with press shift to flip car... or r for respawn -- when is upside true
-
-// todo ground movement only
-// aka all four wheels off track no move
-// probably want to disable movement when all wheels off ground
-// last major car change is going to be flying. Car can just fly when off the ground.
-// have to determine when all 4 wheels are off or back 2 wheels not in contact
-// todo for car ... movement on ground only -- -- smoothness of follow? drift button maybe
-// so drift and ground only movement
-// Brake light integration?
-// import glsl from 'babel-plugin-glsl/macro';
-
-// Create a custom shader material
-// Define the shader material
-
-// Extend the material in React Three Fiber
 
 const Hachiroku = () => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
@@ -60,7 +43,7 @@ const Hachiroku = () => {
 
     // car tuning
     const topSpeed = 180;
-    const torqueFactor = 10;
+    const torqueFactor = 12;
     const steerAngle = Math.PI / 9;
     const respawnHeight = 900;
     const maxSpeedForTurning = 69; // nice

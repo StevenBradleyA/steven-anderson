@@ -6,7 +6,7 @@ import { useGlobalState } from '../Context/stateContext';
 import { damp, damp3, dampLookAt } from 'maath/easing';
 
 const CameraManager = ({ carRef, keysPressed }) => {
-    const { activeCamera } = useGlobalState();
+    const { activeCamera, setActiveCamera } = useGlobalState();
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
 
@@ -66,6 +66,7 @@ const CameraManager = ({ carRef, keysPressed }) => {
                 isRotating.current = true;
                 startRotate.current.set(event.clientX, event.clientY);
             }
+            if (activeCamera === 'initial') setActiveCamera('follow');
         };
 
         const onMouseMove = (event) => {

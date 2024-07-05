@@ -468,7 +468,13 @@ function Navigation() {
                                                         false
                                                     );
                                                 }
-                                                setIsSecondaryMenuOpen(true);
+                                                isSecondaryMenuOpen === true
+                                                    ? setIsSecondaryMenuOpen(
+                                                          false
+                                                      )
+                                                    : setIsSecondaryMenuOpen(
+                                                          true
+                                                      );
                                             }}
                                         >
                                             <svg
@@ -528,7 +534,13 @@ function Navigation() {
                                                         false
                                                     );
                                                 }
-                                                setIsTertiaryMenuOpen(true);
+                                                isTertiaryMenuOpen === true
+                                                    ? setIsTertiaryMenuOpen(
+                                                          false
+                                                      )
+                                                    : setIsTertiaryMenuOpen(
+                                                          true
+                                                      );
                                             }}
                                         >
                                             <svg
@@ -833,7 +845,13 @@ function Navigation() {
                                                         false
                                                     );
                                                 }
-                                                setIsSecondaryMenuOpen(true);
+                                                isSecondaryMenuOpen === true
+                                                    ? setIsSecondaryMenuOpen(
+                                                          false
+                                                      )
+                                                    : setIsSecondaryMenuOpen(
+                                                          true
+                                                      );
                                             }}
                                         >
                                             <svg
@@ -893,7 +911,13 @@ function Navigation() {
                                                         false
                                                     );
                                                 }
-                                                setIsTertiaryMenuOpen(true);
+                                                isTertiaryMenuOpen === true
+                                                    ? setIsTertiaryMenuOpen(
+                                                          false
+                                                      )
+                                                    : setIsTertiaryMenuOpen(
+                                                          true
+                                                      );
                                             }}
                                         >
                                             <svg
