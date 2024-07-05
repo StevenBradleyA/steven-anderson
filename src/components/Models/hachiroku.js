@@ -36,10 +36,12 @@ const Hachiroku = () => {
         isOnGround,
         setIsUpsideDown,
         isUpsideDown,
+        keysPressed,
+        setKeysPressed,
     } = useGlobalState();
 
     // input
-    const [keysPressed, setKeysPressed] = useState({});
+    // const [keysPressed, setKeysPressed] = useState({});
 
     // car tuning
     const topSpeed = 180;

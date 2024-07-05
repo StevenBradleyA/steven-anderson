@@ -1,33 +1,38 @@
 'use client';
-import { motion, useDragControls } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
+import { useRef, useEffect } from 'react';
+import { useGlobalState } from '../Context/stateContext';
 
 const MobileControls = () => {
-    const controls = useDragControls();
-
     const constraintsRef = useRef(null);
 
-    const handleDrag = (event, info) => {
+    const { setKeysPressed } = useGlobalState();
 
+
+
+    
+    const handleDrag = (event, info) => {
         const x = info.offset.x;
         const y = info.offset.y;
         // console.log(`Dragging at x: ${x}, y: ${y}`)
-        const threshold = 15; 
+        const threshold = 15;
 
-        if (x > threshold) {
-            console.log('right');
-        } else if (x < -threshold) {
-            console.log('left');
-        }
-
-        if (y > threshold) {
-            console.log('backward');
-        } else if (y < -threshold) {
-            console.log('forward');
-        }
-
-
-
+        setKeysPressed((prevKeys) => ({
+            ...prevKeys,
+            f: x > threshold,
+            s: x < -threshold,
+            d: y > threshold,
+            e: y < -threshold,
+        }));
+    };
+    const handleDragEnd = () => {
+        setKeysPressed((prevKeys) => ({
+            ...prevKeys,
+            f: false,
+            s: false,
+            d: false,
+            e: false,
+        }));
     };
 
     return (
@@ -44,6 +49,7 @@ const MobileControls = () => {
                     dragSnapToOrigin
                     dragElastic={0.25}
                     onDrag={handleDrag}
+                    onDragEnd={handleDragEnd}
                 />
             </div>
         </>

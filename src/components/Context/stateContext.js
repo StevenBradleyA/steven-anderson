@@ -8,6 +8,7 @@ export const GlobalStateProvider = ({ children }) => {
     const [isOnGround, setIsOnGround] = useState(false);
     const [isUpsideDown, setIsUpsideDown] = useState(false);
     const [activeCamera, setActiveCamera] = useState('initial');
+    const [keysPressed, setKeysPressed] = useState({});
 
     return (
         <GlobalStateContext.Provider
@@ -22,6 +23,8 @@ export const GlobalStateProvider = ({ children }) => {
                 setIsOnGround,
                 isUpsideDown,
                 setIsUpsideDown,
+                keysPressed,
+                setKeysPressed,
             }}
         >
             {children}
