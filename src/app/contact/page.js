@@ -432,7 +432,6 @@ export default function Contact() {
                                 id="fullName"
                                 name="fullName"
                                 autoComplete="name"
-                                // required
                                 aria-required="true"
                                 className=" bg-blue-300 bg-opacity-30 rounded-xl p-2 focus:outline-none focus:ring-[#007bff] focus:ring-2 hover:bg-blue-400 hover:bg-opacity-30 focus:bg-blue-400 focus:bg-opacity-30 ease-in-out "
                                 placeholder="Enter your full name ..."
@@ -454,7 +453,6 @@ export default function Contact() {
                                 id="message"
                                 name="message"
                                 autoComplete="message"
-                                // required
                                 aria-required="true"
                                 className=" bg-blue-300 bg-opacity-30 rounded-xl p-2 w-full h-40 focus:outline-none focus:ring-[#007bff] focus:ring-2 hover:bg-blue-400 hover:bg-opacity-30 focus:bg-blue-400 focus:bg-opacity-30 ease-in-out "
                                 placeholder="Enter your message ..."
