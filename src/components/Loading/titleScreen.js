@@ -188,7 +188,7 @@ const TitleScreen = () => {
                             animate="animate"
                             exit="exit"
                             variants={loadingScreenVariants}
-                            className="z-50 fixed top-0 left-0 right-0 bottom-0 object-cover w-full h-full px-5"
+                            className="z-50 fixed top-0 left-0 right-0 bottom-0 object-cover w-full h-full px-2"
                         >
                             <Image
                                 src={loadingScreen}
@@ -198,7 +198,7 @@ const TitleScreen = () => {
                             />
 
                             <div className="w-full relative h-full">
-                                <div className="flex flex-col z-50 absolute bottom-40 left-0 right-0  ">
+                                <div className="flex flex-col z-50 absolute bottom-20 left-0 right-0  ">
                                     <div className="w-full bg-stevenBlue h-[2px] z-50 opacity-50 "></div>
                                     <div className="w-full flex justify-between items-center mt-3">
                                         <Image
@@ -301,7 +301,7 @@ const TitleScreen = () => {
                             </div>
                             <motion.button
                                 key="title-button"
-                                className={`font-bebas fade-transition absolute bottom-10 text-3xl -translate-x-1/2  left-1/2 z-50  ${
+                                className={`font-bebas fade-transition absolute bottom-5 text-3xl -translate-x-1/2  left-1/2 z-50 w-full  ${
                                     progress === 100
                                         ? 'text-stevenBlue hover:opacity-50'
                                         : 'text-gray-400'

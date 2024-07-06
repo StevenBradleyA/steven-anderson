@@ -34,8 +34,6 @@ const Hachiroku = () => {
         setActiveCamera,
         showGame,
         isOnGround,
-        setIsUpsideDown,
-        isUpsideDown,
         keysPressed,
         setKeysPressed,
     } = useGlobalState();
@@ -198,7 +196,6 @@ const Hachiroku = () => {
                 const euler = new THREE.Euler(0, 0.5, 0);
                 const quaternion = new THREE.Quaternion().setFromEuler(euler);
                 carRef.current.setRotation(quaternion, true);
-                setIsUpsideDown(false);
             }
             // auto respawn
             if (carRef.current) {
@@ -215,7 +212,6 @@ const Hachiroku = () => {
                         euler
                     );
                     carRef.current.setRotation(quaternion, true);
-                    setIsUpsideDown(false);
                 }
             }
             // flip in place
@@ -249,7 +245,6 @@ const Hachiroku = () => {
                 );
 
                 carRef.current.setRotation(correctedQuaternion, true);
-                setIsUpsideDown(false);
             }
 
             // wheel rotation
@@ -333,12 +328,12 @@ const Hachiroku = () => {
                     position={[0, 4.8, -2.5]}
                     name="roofCollider"
                     mass={0.002}
-                    onCollisionEnter={({ other }) => {
-                        if (other.rigidBodyObject.name === 'track') {
-                            setIsUpsideDown(true);
-                        }
-                    }}
-                    onCollisionExit={() => setIsUpsideDown(false)}
+                    // onCollisionEnter={({ other }) => {
+                    //     if (other.rigidBodyObject.name === 'track') {
+                    //         setIsUpsideDown(true);
+                    //     }
+                    // }}
+                    // onCollisionExit={() => setIsUpsideDown(false)}
                 />
 
                 <group dispose={null}>
@@ -546,8 +541,6 @@ const Hachiroku = () => {
                     </group>
                 </group>
             </RigidBody>
-
-            {/* end car */}
 
             <CameraManager
                 carRef={carRef}

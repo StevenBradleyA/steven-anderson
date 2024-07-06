@@ -34,7 +34,7 @@ const MobileControls = () => {
 
     return (
         <>
-            <div className="absolute  bottom-10 left-10 z-50">
+            {/* <div className="absolute  bottom-10 left-10 z-50">
                 <motion.div
                     className="drag-area z-50 w-[100px] h-[100px] rounded-full bg-white/50 absolute bottom-0 left-0"
                     ref={constraintsRef}
@@ -48,7 +48,79 @@ const MobileControls = () => {
                     onDrag={handleDrag}
                     onDragEnd={handleDragEnd}
                 />
-            </div>
+            </div> */}
+            <button
+                className="bottom-16 left-2 w-10 h-10 rounded-full bg-white/50 absolute  z-40 "
+                onTouchStart={(e) => {
+                    e.preventDefault();
+                    setKeysPressed((prevKeys) => ({
+                        ...prevKeys,
+                        e: true,
+                        s: true,
+                    }));
+                }}
+                onTouchEnd={(e) => {
+                    e.preventDefault();
+                    setKeysPressed((prevKeys) => ({
+                        ...prevKeys,
+                        e: false,
+                        s: false,
+                    }));
+                }}
+            ></button>
+            <button
+                className="bottom-16 left-16 w-10 h-10 rounded-full bg-white/50 absolute  z-40 "
+                onTouchStart={(e) => {
+                    e.preventDefault();
+                    setKeysPressed((prevKeys) => ({
+                        ...prevKeys,
+                        e: true,
+                        f: true,
+                    }));
+                }}
+                onTouchEnd={(e) => {
+                    e.preventDefault();
+                    setKeysPressed((prevKeys) => ({
+                        ...prevKeys,
+                        e: false,
+                        f: false,
+                    }));
+                }}
+            ></button>
+            <button
+                className="bottom-28 left-9 w-10 h-10 rounded-full bg-white/50 absolute  z-40 "
+                onTouchStart={(e) => {
+                    e.preventDefault();
+                    setKeysPressed((prevKeys) => ({
+                        ...prevKeys,
+                        e: true,
+                    }));
+                }}
+                onTouchEnd={(e) => {
+                    e.preventDefault();
+                    setKeysPressed((prevKeys) => ({
+                        ...prevKeys,
+                        e: false,
+                    }));
+                }}
+            ></button>
+            <button
+                className="bottom-4 left-9 w-10 h-10 rounded-full bg-white/50 absolute  z-40 "
+                onTouchStart={(e) => {
+                    e.preventDefault();
+                    setKeysPressed((prevKeys) => ({
+                        ...prevKeys,
+                        d: true,
+                    }));
+                }}
+                onTouchEnd={(e) => {
+                    e.preventDefault();
+                    setKeysPressed((prevKeys) => ({
+                        ...prevKeys,
+                        d: false,
+                    }));
+                }}
+            ></button>
 
             <button
                 className="absolute bottom-10 right-2 z-40"

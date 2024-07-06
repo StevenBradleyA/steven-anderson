@@ -19,6 +19,7 @@ export default function Home() {
                 {showGame === true &&
                     activeCamera === 'follow' &&
                     isMobile === true && <MobileControls />}
+
                 <ThreeScene />
             </div>
         </main>
