@@ -41,9 +41,6 @@ const ThreeScene = () => {
                     far: 11000,
                     fov: 60,
                 }}
-                // onCreated={({ camera }) => {
-                //     camera.lookAt(0, 0, 0);
-                // }}
                 onCreated={({ gl, camera }) => {
                     gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
                     camera.lookAt(0, 0, 0);
