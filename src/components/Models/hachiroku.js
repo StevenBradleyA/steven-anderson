@@ -394,21 +394,15 @@ const Hachiroku = () => {
                             material={whiteGlow}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.LicensePlate.geometry}
                             material={materials.Trim}
                         />
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.LicensePlateText.geometry}
                             material={blueGlow}
                         />
 
                         <mesh
-                            castShadow
-                            receiveShadow
                             geometry={nodes.Calipers.geometry}
                             material={blueGlow}
                         />
@@ -424,22 +418,16 @@ const Hachiroku = () => {
                     <group ref={lfwParentRef} position={[3.375, 1.377, 5.559]}>
                         <group ref={lfwRef}>
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.LeftFrontLugNuts.geometry}
                                 material={materials['86wheel']}
                                 position={[0.074, 0.008, -0.007]}
                             />
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.LeftFrontTire.geometry}
                                 material={materials.Tire}
                                 position={[-0.191, -0.004, -0.009]}
                             />
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.LeftFrontWheel.geometry}
                                 material={materials['86wheel']}
                             />
@@ -456,21 +444,15 @@ const Hachiroku = () => {
                     <group ref={rfwParentRef} position={[-3.447, 1.377, 5.533]}>
                         <group ref={rfwRef}>
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.RightFrontWheel.geometry}
                                 material={materials['86wheel']}
                             />
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.RightFrontTire.geometry}
                                 material={materials.Tire}
                                 position={[0.19, -0.003, 0.008]}
                             />
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.RightFrontLugNuts.geometry}
                                 material={materials['86wheel']}
                                 position={[-0.074, 0.008, 0.006]}
@@ -487,22 +469,16 @@ const Hachiroku = () => {
                         />
                         <group ref={lrwRef} position={[3.46, 1.34, -4.954]}>
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.LeftRearLugNuts.geometry}
                                 material={materials['86wheel']}
                                 position={[0.074, 0.008, -0.006]}
                             />
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.LeftRearTire.geometry}
                                 material={materials.Tire}
                                 position={[-0.191, -0.004, -0.008]}
                             />
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.LeftRearWheel.geometry}
                                 material={materials['86wheel']}
                             />
@@ -518,22 +494,16 @@ const Hachiroku = () => {
                         />
                         <group ref={rrwRef} position={[-3.447, 1.34, -4.98]}>
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.RightRearLugNuts.geometry}
                                 material={materials['86wheel']}
                                 position={[-0.073, 0.008, 0.007]}
                             />
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.RightRearTire.geometry}
                                 material={materials.Tire}
                                 position={[0.191, -0.004, 0.008]}
                             />
                             <mesh
-                                castShadow
-                                receiveShadow
                                 geometry={nodes.RightRearWheel.geometry}
                                 material={materials['86wheel']}
                             />

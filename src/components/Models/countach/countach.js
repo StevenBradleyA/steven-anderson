@@ -37,55 +37,46 @@ const Countach = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    castShadow
                     receiveShadow
                     geometry={nodes.Body001.geometry}
                     material={corsaRed}
                 />
                 <mesh
-                    castShadow
                     receiveShadow
                     geometry={nodes.BrakeLights002.geometry}
                     material={brakeLights}
                 />
                 <mesh
-                    castShadow
                     receiveShadow
                     geometry={nodes.Exhaust002.geometry}
                     material={materials.Silver}
                 />
                 <mesh
-                    castShadow
                     receiveShadow
                     geometry={nodes.Exhaust003.geometry}
                     material={materials.Trim}
                 />
                 <mesh
-                    castShadow
                     receiveShadow
                     geometry={nodes.Fogs001.geometry}
                     material={fogLights}
                 />
                 <mesh
-                    castShadow
                     receiveShadow
                     geometry={nodes.Glass001.geometry}
                     material={materials.Glass}
                 />
                 <mesh
-                    castShadow
                     receiveShadow
                     geometry={nodes.tires.geometry}
                     material={materials.Tire}
                 />
                 <mesh
-                    castShadow
                     receiveShadow
                     geometry={nodes.Wheels.geometry}
                     material={materials.Silver}
                 />
                 <mesh
-                    castShadow
                     receiveShadow
                     geometry={nodes.WhiteLights.geometry}
                     material={whiteGlow}

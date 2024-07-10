@@ -26,8 +26,6 @@ const LeftAnimatedCountachLight = () => {
             <group name="Scene">
                 <mesh
                     name="CountachLeftPopupLights"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.CountachLeftPopupLights.geometry}
                     material={popupHeadlights}
                     position={[443.594, 1159.119, 595.863]}

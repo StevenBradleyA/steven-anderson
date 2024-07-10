@@ -87,24 +87,18 @@ const MechanicalKeyboardEffects = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.cubeCorners001.geometry}
                     material={blueGlow}
                     position={[-465.931, cubeY, 371]}
                     scale={[42.161, 22.639, 42.618]}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.cubeFaces001.geometry}
                     material={blueTransparent}
                     position={[-465.931, cubeY, 371]}
                     scale={[42.161, 22.639, 42.618]}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.keebEnter.geometry}
                     material={whiteTransparent}
                     position={[-472, enterY, 318]}

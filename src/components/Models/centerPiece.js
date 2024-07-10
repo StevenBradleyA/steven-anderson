@@ -23,7 +23,7 @@ const CenterPiece = () => {
 
     const black = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x000000),
-        opacity: 0.9,
+        opacity: 0.95,
         transparent: true,
         side: THREE.DoubleSide,
     });
@@ -56,15 +56,11 @@ const CenterPiece = () => {
             <group name="Scene">
                 <mesh
                     name="stand"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.stand.geometry}
                     material={black}
                 />
                 <mesh
                     name="lowergrid"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.lowergrid.geometry}
                     material={blueGlow}
                     ref={lowerGridRef}
@@ -72,8 +68,6 @@ const CenterPiece = () => {
                 />
                 <mesh
                     name="topgrid"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.topgrid.geometry}
                     material={blueGlow}
                     ref={topGridRef}
@@ -81,8 +75,6 @@ const CenterPiece = () => {
                 />
                 <mesh
                     name="sphere"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.sphere.geometry}
                     material={sphereGlow}
                     ref={sphereRef}

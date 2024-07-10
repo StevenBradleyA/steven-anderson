@@ -23,15 +23,11 @@ const AnimatedAws = () => {
                 >
                     <mesh
                         name="Curve030"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve030.geometry}
                         material={materials.awsOrange}
                     />
                     <mesh
                         name="Curve030_1"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve030_1.geometry}
                         material={materials.awsBlue}
                     />

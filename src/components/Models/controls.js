@@ -24,294 +24,93 @@ const Controls = () => {
 
     return (
         <group dispose={null}>
+            <mesh geometry={nodes.arrowDown.geometry} material={blueGlow} />
+            <mesh geometry={nodes.arrowLeft.geometry} material={blueGlow} />
+            <mesh geometry={nodes.arrowRight.geometry} material={blueGlow} />
+            <mesh geometry={nodes.arrowUp.geometry} material={blueGlow} />
             <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.arrowDown.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.arrowLeft.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.arrowRight.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.arrowUp.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.controlsGrid.geometry}
                 material={whiteTransparent}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.controlsDivider.geometry}
                 material={whiteTransparent}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.controlsDivider001.geometry}
                 material={whiteTransparent}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.controlsText.geometry}
                 material={whiteTransparent}
             />
+            <mesh geometry={nodes.dBack001.geometry} material={blueGlow} />
+            <mesh geometry={nodes.eBack001.geometry} material={blueGlow} />
+            <mesh geometry={nodes.fBack001.geometry} material={blueGlow} />
+            <mesh geometry={nodes.movementText.geometry} material={blueGlow} />
+            <mesh geometry={nodes.sBack001.geometry} material={blueGlow} />
+            <mesh geometry={nodes.D002.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.F002.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.S002.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.E002.geometry} material={whiteGlow} />
             <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.dBack001.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.eBack001.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.fBack001.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.movementText.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.sBack001.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.D002.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.F002.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.S002.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.E002.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.Camera001.geometry}
                 material={whiteTransparent}
             />
+            <mesh geometry={nodes.Mode.geometry} material={blueGlow} />
+            <mesh geometry={nodes.cBack.geometry} material={blueGlow} />
+            <mesh geometry={nodes.Tour.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.Follow.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.Free.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.mouse.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.freeMode.geometry} material={whiteGlow} />
             <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Mode.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.cBack.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Tour.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Follow.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Free.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.mouse.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.freeMode.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.controlsGrid001.geometry}
                 material={whiteTransparent}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.movementText001.geometry}
                 material={blueGlow}
             />
+            <mesh geometry={nodes.fBack.geometry} material={blueGlow} />
+            <mesh geometry={nodes.eBack.geometry} material={blueGlow} />
+            <mesh geometry={nodes.dBack.geometry} material={blueGlow} />
+            <mesh geometry={nodes.sBack.geometry} material={blueGlow} />
             <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.fBack.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.eBack.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.dBack.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.sBack.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.cameraDivider001.geometry}
                 material={whiteTransparent}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.cameraDivider.geometry}
                 material={whiteTransparent}
             />
+            <mesh geometry={nodes.D003.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.F003.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.E003.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.S003.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.c.geometry} material={whiteGlow} />
             <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.D003.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.F003.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.E003.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.S003.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.c.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.Respawn001.geometry}
                 material={whiteTransparent}
             />
+            <mesh geometry={nodes.Respawn.geometry} material={blueGlow} />
             <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Respawn.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.respawnGrid.geometry}
                 material={whiteTransparent}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.respawnDivider.geometry}
                 material={whiteTransparent}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.divider.geometry}
                 material={whiteTransparent}
             />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Recover.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.rBack.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Shift.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.shiftBack.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.R.geometry}
-                material={whiteGlow}
-            />
+            <mesh geometry={nodes.Recover.geometry} material={blueGlow} />
+            <mesh geometry={nodes.rBack.geometry} material={blueGlow} />
+            <mesh geometry={nodes.Shift.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.shiftBack.geometry} material={blueGlow} />
+            <mesh geometry={nodes.R.geometry} material={whiteGlow} />
         </group>
     );
 };

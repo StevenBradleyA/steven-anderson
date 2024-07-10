@@ -23,440 +23,294 @@ const TreesAndRocks = () => {
         >
             <group dispose={null}>
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Conifer4005.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Conifer4006.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Conifer5004.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Conifer4009.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Conifer2008.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Conifer2010.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Conifer2012.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Conifer4011.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.stone_2001.geometry}
                     material={materials.Stone}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.stone_7001.geometry}
                     material={materials.Stone}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Rock_Type2_02_mesh002.geometry}
                     material={materials.Stone}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Rock_Type2_03_mesh001.geometry}
                     material={materials.Stone}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Rock_Type4_04_mesh002.geometry}
                     material={materials.Stone}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Rock_Type6_01_mesh002.geometry}
                     material={materials.Stone}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.stone_6001.geometry}
                     material={materials.Stone}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.stone_7002.geometry}
                     material={materials.Stone}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.stone_with_moss_7002.geometry}
                     material={materials.Stone}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Rock_Type2_03_mesh002.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.stone_2002.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer1_Cylinder003.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer1_Cylinder003_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder003.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder003_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer3_Cylinder002.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer3_Cylinder002_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer4_Cylinder002.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer4_Cylinder002_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer5_Cylinder001.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer5_Cylinder001_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer6_Cylinder003.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer6_Cylinder003_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder004.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder004_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer3_Cylinder003.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer3_Cylinder003_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer4_Cylinder003.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer4_Cylinder003_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer6_Cylinder004.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer6_Cylinder004_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder005.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder005_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer1_Cylinder005.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer1_Cylinder005_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder006.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder006_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer4_Cylinder004.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer4_Cylinder004_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer6_Cylinder005.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer6_Cylinder005_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer5_Cylinder002.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer5_Cylinder002_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder007.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder007_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer1_Cylinder006.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer1_Cylinder006_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder008.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder008_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer3_Cylinder004.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer3_Cylinder004_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder009.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder009_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer5_Cylinder003.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer5_Cylinder003_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer3_Cylinder005.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer3_Cylinder005_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer4_Cylinder005.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer4_Cylinder005_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer4_Cylinder006.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer4_Cylinder006_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer5_Cylinder007.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer5_Cylinder007_1.geometry}
                     material={materials.ConiferBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder010.geometry}
                     material={materials.ConiferGreen}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.conifer2_Cylinder010_1.geometry}
                     material={materials.ConiferBrown}
                 />

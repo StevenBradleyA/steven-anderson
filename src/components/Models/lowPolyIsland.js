@@ -85,8 +85,6 @@ const LowPolyIsland = () => {
         >
             <group dispose={null}>
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Island.geometry}
                     material={materials.IslandBrown}
                 />
@@ -168,32 +166,22 @@ const LowPolyIsland = () => {
                 />
 
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.grassSecondLevel.geometry}
                     material={materials.grass}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Cube.geometry}
                     material={materials.grass}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Cube_1.geometry}
                     material={materials.IslandBrown}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Cube070.geometry}
                     material={materials.grass}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Cube070_1.geometry}
                     material={materials.IslandBrown}
                 />
@@ -201,26 +189,18 @@ const LowPolyIsland = () => {
 
             <group dispose={null}>
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={trackNodes.Plane004.geometry}
                     material={trackMaterials.Track}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={trackNodes.Plane004_1.geometry}
                     material={trackMaterials.Blue}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={trackNodes.Plane004_2.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={trackNodes.Plane004_3.geometry}
                     material={trackMaterials.TrackSides}
                 />

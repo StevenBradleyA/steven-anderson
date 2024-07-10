@@ -14,32 +14,13 @@ const MechanicalKeyboard = () => {
     return (
         <group dispose={null}>
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.Object_4.geometry}
                 material={materials.Silver}
             />
+            <mesh geometry={nodes.Specials4.geometry} material={blueGlow} />
+            <mesh geometry={nodes.Feet.geometry} material={blueGlow} />
+            <mesh geometry={nodes.Case005.geometry} material={materials.Trim} />
             <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Specials4.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Feet.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Case005.geometry}
-                material={materials.Trim}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.Specials4002.geometry}
                 material={materials.Trim}
             />

@@ -76,15 +76,8 @@ const ProjectHacktime = () => {
     return (
         <>
             <group dispose={null}>
+                <mesh geometry={nodes.Project2Grid.geometry} material={color} />
                 <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Project2Grid.geometry}
-                    material={color}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Project2Enter.geometry}
                     material={retroGlow}
                     position={[486.981, currentY, -190.642]}

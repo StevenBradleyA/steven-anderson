@@ -77,15 +77,11 @@ const ProjectKeeby = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Project1Enter.geometry}
                     material={retroGlow}
                     position={[463.88, currentY, -16.457]}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Project2Grid001.geometry}
                     material={color}
                     position={[-58, 0, 0]}

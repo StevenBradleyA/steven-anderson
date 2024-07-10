@@ -26,8 +26,6 @@ const AnimatedFerrariLeftLight = () => {
             <group name="Scene">
                 <mesh
                     name="PopupLeftLight"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.PopupLeftLight.geometry}
                     material={popupHeadlights}
                     position={[396.172, 1158.268, 735.183]}

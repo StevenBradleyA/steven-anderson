@@ -34,14 +34,10 @@ const Skills = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.skillsGrid.geometry}
                     material={blueGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.skillEnter.geometry}
                     material={materials.White}
                     position={[-458.095, 1278, -489.896]}

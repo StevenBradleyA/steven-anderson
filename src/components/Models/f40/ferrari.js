@@ -20,7 +20,6 @@ const Ferrari = () => {
         emissive: new THREE.Color(0xe7e7e7),
         emissiveIntensity: 0.3,
     });
- 
 
     const brakeLights = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xff0000),
@@ -36,63 +35,37 @@ const Ferrari = () => {
     return (
         <>
             <group dispose={null}>
+                <mesh geometry={nodes.Body003.geometry} material={corsaRed} />
                 <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Body003.geometry}
-                    material={corsaRed}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.BrakeLights003.geometry}
                     material={brakeLights}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Exhaust001.geometry}
                     material={materials.Silver}
                 />
+                <mesh geometry={nodes.Fogs002.geometry} material={fogLights} />
                 <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Fogs002.geometry}
-                    material={fogLights}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Glass003.geometry}
                     material={materials.Glass}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Headlights.geometry}
                     material={whiteGlow}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Tires.geometry}
                     material={materials.Tire}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Trim003.geometry}
                     material={materials.Trim}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Wheels001.geometry}
                     material={materials.Silver}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.WhiteLights001.geometry}
                     material={whiteGlow}
                 />

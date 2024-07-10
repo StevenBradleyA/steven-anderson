@@ -20,8 +20,6 @@ const AnimatedVercel = () => {
             <group name="Scene">
                 <mesh
                     name="vercel"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.vercel.geometry}
                     material={materials.Black}
                     position={[-557, 1305.438, -471]}

@@ -23,15 +23,11 @@ const AnimatedTypescript = () => {
                 >
                     <mesh
                         name="Curve060"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve060.geometry}
                         material={materials.White}
                     />
                     <mesh
                         name="Curve060_1"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve060_1.geometry}
                         material={materials.TypeScript}
                     />

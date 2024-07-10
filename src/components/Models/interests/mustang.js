@@ -19,48 +19,19 @@ const Mustang = () => {
 
     return (
         <group dispose={null}>
+            <mesh geometry={nodes.Body002.geometry} material={materials.Blue} />
+            <mesh geometry={nodes.Disks.geometry} material={materials.Silver} />
             <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Body002.geometry}
-                material={materials.Blue}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Disks.geometry}
-                material={materials.Silver}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.Glass002.geometry}
                 material={materials.Glass}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.Tires_and_wheels.geometry}
                 material={materials.Tire}
             />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.HeadLamps.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.BrakeLights001.geometry}
-                material={redGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Trim001.geometry}
-                material={materials.Trim}
-            />
+            <mesh geometry={nodes.HeadLamps.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.BrakeLights001.geometry} material={redGlow} />
+            <mesh geometry={nodes.Trim001.geometry} material={materials.Trim} />
         </group>
     );
 };

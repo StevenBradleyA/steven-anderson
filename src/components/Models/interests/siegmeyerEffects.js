@@ -85,22 +85,16 @@ const SiegmeyerEffects = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.cubeFaces.geometry}
                     material={blueTransparent}
                     position={[-590.053, cubeY, 325.7]}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.cubeCorners.geometry}
                     material={blueGlow}
                     position={[-590.035, cubeY, 325.7]}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.siegmeyerEnter001.geometry}
                     material={whiteTransparent}
                     position={[-596, enterY, 274]}

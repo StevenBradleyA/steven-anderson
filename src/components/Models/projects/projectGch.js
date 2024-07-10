@@ -76,18 +76,11 @@ const ProjectGch = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Project3Enter.geometry}
                     material={retroGlow}
                     position={[438.778, currentY, -368.45]}
                 />
-                <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Project3Grid.geometry}
-                    material={color}
-                />
+                <mesh geometry={nodes.Project3Grid.geometry} material={color} />
             </group>
             <RigidBody
                 position={[438.778, 1277, -368.45]}

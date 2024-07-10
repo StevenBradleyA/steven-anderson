@@ -71,22 +71,16 @@ const TunnelEffects = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelGrid.geometry}
                     material={blueGrid}
                     position={[0, currentY, 0]}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelPlane.geometry}
                     material={materials.Black}
                     position={[0, currentY, 0]}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -99,8 +93,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights001.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -113,8 +105,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights002.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -127,8 +117,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights003.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -141,8 +129,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights004.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -155,8 +141,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights005.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -169,8 +153,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights006.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -183,8 +165,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights007.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -197,8 +177,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights008.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -211,8 +189,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights009.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -225,8 +201,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights010.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -239,8 +213,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights011.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -253,8 +225,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights012.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -267,8 +237,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights013.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -281,8 +249,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights014.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -295,8 +261,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights015.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -309,8 +273,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights016.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -323,8 +285,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights017.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -337,8 +297,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights018.geometry}
                     material={
                         new THREE.MeshStandardMaterial({
@@ -351,8 +309,6 @@ const TunnelEffects = () => {
                     }
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tunnelLights019.geometry}
                     material={
                         new THREE.MeshStandardMaterial({

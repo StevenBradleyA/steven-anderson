@@ -20,8 +20,6 @@ const AnimatedReact = () => {
             <group name="Scene">
                 <mesh
                     name="react"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.react.geometry}
                     material={materials.react}
                     position={[-557, 1321.889, -421]}

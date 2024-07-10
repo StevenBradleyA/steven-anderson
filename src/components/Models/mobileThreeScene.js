@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import { EffectComposer, Bloom } from '@react-three/postprocessing';
+import { Suspense } from 'react';
 
 const MobileThreeScene = () => {
     const { nodes, materials } = useGLTF('/models/mobile-portfolio.glb');
@@ -37,111 +38,119 @@ const MobileThreeScene = () => {
         color: new THREE.Color(0x003300),
     });
     return (
-        <Canvas
-            camera={{
-                position: [-700, 150, -700],
-                near: 0.1,
-                far: 6000,
-                fov: 60,
-            }}
-        >
-            <ambientLight intensity={1} />
-            <EffectComposer>
-                <Bloom
-                    luminanceThreshold={0}
-                    luminanceSmoothing={0.9}
-                    opacity={1}
-                    intensity={0.3}
-                />
-            </EffectComposer>
-            <group dispose={null}>
-                <mesh geometry={nodes.top.geometry} material={darkGreenGlow} />
-                <mesh
-                    geometry={nodes.bottom.geometry}
-                    material={materials.black}
-                />
-                <mesh
-                    geometry={nodes.topGrid.geometry}
-                    material={lightGreenGlow}
-                />
-                <mesh
-                    geometry={nodes.bottomGrid.geometry}
-                    material={purpleGlow}
-                />
-                <mesh
-                    geometry={nodes.groundGrid.geometry}
-                    material={blueGlow}
-                />
-                <mesh geometry={nodes.grid.geometry} material={blueGlow} />
-                <mesh
-                    geometry={nodes.gridSquare.geometry}
-                    material={whiteGlow}
-                />
-                <mesh geometry={nodes.Text005.geometry} material={whiteGlow} />
-                <mesh geometry={nodes.Title.geometry} material={blueGlow} />
-                <mesh
-                    geometry={nodes.PowerGlove.geometry}
-                    material={materials.ComputerShell}
-                />
-                <mesh
-                    geometry={nodes.PowerGlovePlastics.geometry}
-                    material={materials.Plastic}
-                />
-                <mesh
-                    geometry={nodes.PowerGloveText.geometry}
-                    material={blueGlow}
-                />
-                <mesh
-                    geometry={nodes.Object_9003.geometry}
-                    material={purpleGlow}
-                />
-                <mesh
-                    geometry={nodes.Object_9003_1.geometry}
-                    material={orangeGlow}
-                />
-                <mesh
-                    geometry={nodes.conifer5_Cylinder001.geometry}
-                    material={materials['Material.007']}
-                />
-                <mesh
-                    geometry={nodes.conifer5_Cylinder001_1.geometry}
-                    material={materials['Material.001']}
-                />
-                <mesh
-                    geometry={nodes.conifer5_Cylinder002.geometry}
-                    material={materials['Material.007']}
-                />
-                <mesh
-                    geometry={nodes.conifer5_Cylinder002_1.geometry}
-                    material={materials['Material.001']}
-                />
-                <mesh
-                    geometry={nodes.conifer5_Cylinder003.geometry}
-                    material={materials['Material.007']}
-                />
-                <mesh
-                    geometry={nodes.conifer5_Cylinder003_1.geometry}
-                    material={materials['Material.001']}
-                />
-                <mesh
-                    geometry={nodes.conifer5_Cylinder004.geometry}
-                    material={materials['Material.007']}
-                />
-                <mesh
-                    geometry={nodes.conifer5_Cylinder004_1.geometry}
-                    material={materials['Material.001']}
-                />
-                <mesh
-                    geometry={nodes.conifer5_Cylinder007.geometry}
-                    material={materials['Material.007']}
-                />
-                <mesh
-                    geometry={nodes.conifer5_Cylinder007_1.geometry}
-                    material={materials['Material.001']}
-                />
-            </group>
-            <OrbitControls />
-        </Canvas>
+        <Suspense fallback={<div>Loading...</div>}>
+            <Canvas
+                camera={{
+                    position: [-700, 150, -700],
+                    near: 0.1,
+                    far: 6000,
+                    fov: 60,
+                }}
+            >
+                <ambientLight intensity={1} />
+                <EffectComposer>
+                    <Bloom
+                        luminanceThreshold={0}
+                        luminanceSmoothing={0.9}
+                        opacity={1}
+                        intensity={0.3}
+                    />
+                </EffectComposer>
+                <group dispose={null}>
+                    <mesh
+                        geometry={nodes.top.geometry}
+                        material={darkGreenGlow}
+                    />
+                    <mesh
+                        geometry={nodes.bottom.geometry}
+                        material={materials.black}
+                    />
+                    <mesh
+                        geometry={nodes.topGrid.geometry}
+                        material={lightGreenGlow}
+                    />
+                    <mesh
+                        geometry={nodes.bottomGrid.geometry}
+                        material={purpleGlow}
+                    />
+                    <mesh
+                        geometry={nodes.groundGrid.geometry}
+                        material={blueGlow}
+                    />
+                    <mesh geometry={nodes.grid.geometry} material={blueGlow} />
+                    <mesh
+                        geometry={nodes.gridSquare.geometry}
+                        material={whiteGlow}
+                    />
+                    <mesh
+                        geometry={nodes.Text005.geometry}
+                        material={whiteGlow}
+                    />
+                    <mesh geometry={nodes.Title.geometry} material={blueGlow} />
+                    <mesh
+                        geometry={nodes.PowerGlove.geometry}
+                        material={materials.ComputerShell}
+                    />
+                    <mesh
+                        geometry={nodes.PowerGlovePlastics.geometry}
+                        material={materials.Plastic}
+                    />
+                    <mesh
+                        geometry={nodes.PowerGloveText.geometry}
+                        material={blueGlow}
+                    />
+                    <mesh
+                        geometry={nodes.Object_9003.geometry}
+                        material={purpleGlow}
+                    />
+                    <mesh
+                        geometry={nodes.Object_9003_1.geometry}
+                        material={orangeGlow}
+                    />
+                    <mesh
+                        geometry={nodes.conifer5_Cylinder001.geometry}
+                        material={materials['Material.007']}
+                    />
+                    <mesh
+                        geometry={nodes.conifer5_Cylinder001_1.geometry}
+                        material={materials['Material.001']}
+                    />
+                    <mesh
+                        geometry={nodes.conifer5_Cylinder002.geometry}
+                        material={materials['Material.007']}
+                    />
+                    <mesh
+                        geometry={nodes.conifer5_Cylinder002_1.geometry}
+                        material={materials['Material.001']}
+                    />
+                    <mesh
+                        geometry={nodes.conifer5_Cylinder003.geometry}
+                        material={materials['Material.007']}
+                    />
+                    <mesh
+                        geometry={nodes.conifer5_Cylinder003_1.geometry}
+                        material={materials['Material.001']}
+                    />
+                    <mesh
+                        geometry={nodes.conifer5_Cylinder004.geometry}
+                        material={materials['Material.007']}
+                    />
+                    <mesh
+                        geometry={nodes.conifer5_Cylinder004_1.geometry}
+                        material={materials['Material.001']}
+                    />
+                    <mesh
+                        geometry={nodes.conifer5_Cylinder007.geometry}
+                        material={materials['Material.007']}
+                    />
+                    <mesh
+                        geometry={nodes.conifer5_Cylinder007_1.geometry}
+                        material={materials['Material.001']}
+                    />
+                </group>
+                <OrbitControls />
+            </Canvas>
+        </Suspense>
     );
 };
 useGLTF.preload('/models/mobile-portfolio.glb');

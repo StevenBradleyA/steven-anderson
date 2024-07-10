@@ -23,22 +23,16 @@ const AnimatedHtml = () => {
                 >
                     <mesh
                         name="Curve036"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve036.geometry}
                         material={materials.htmllight}
                     />
                     <mesh
                         name="Curve036_1"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve036_1.geometry}
                         material={materials.White}
                     />
                     <mesh
                         name="Curve036_2"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve036_2.geometry}
                         material={materials.htmlorange}
                     />

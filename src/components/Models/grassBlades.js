@@ -15,2970 +15,2026 @@ const GrassBlades = () => {
     return (
         <group dispose={null}>
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4001.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4002.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1001.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2001.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1002.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1003.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2002.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2003.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3001.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4003.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4004.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4005.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1004.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1005.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2004.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2005.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3002.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4006.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4007.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4008.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1006.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1007.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2006.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2007.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3003.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4009.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4010.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4011.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1008.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2008.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2009.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3004.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4012.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4013.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4014.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1009.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1010.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2010.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2011.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3005.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4015.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4016.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4017.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1011.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1012.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2012.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2013.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3006.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4018.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4019.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4020.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1013.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1014.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2014.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2015.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3007.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4021.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4022.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1015.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1016.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2016.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2017.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3008.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4023.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4024.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4025.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1017.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1018.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2018.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2019.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3009.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4026.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4027.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4028.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1019.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1020.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2020.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2021.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3010.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4029.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4030.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4031.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1021.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1022.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2022.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2023.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3011.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4032.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4033.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4034.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1023.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1024.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2024.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2025.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3012.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4035.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4036.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4037.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1025.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1026.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2026.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2027.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3013.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4038.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4039.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4040.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1027.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1028.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2028.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2029.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3014.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4041.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4042.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4043.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1029.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1030.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2030.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2031.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3015.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4044.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4045.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4046.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1031.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1032.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2032.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2033.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3016.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4047.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4048.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4049.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1033.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1034.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2034.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2035.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3017.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4050.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4051.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4052.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1035.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1036.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2036.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2037.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3018.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4053.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4054.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4055.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1037.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1038.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2038.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2039.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3019.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4056.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4057.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4058.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1039.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1040.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2040.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2041.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3020.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4059.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4060.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4061.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1041.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1042.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2042.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2043.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3021.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4062.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4063.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4064.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1043.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1044.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2044.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2045.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3022.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4065.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4066.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4067.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1045.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1046.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2046.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2047.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3023.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4068.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4069.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4070.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1047.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1048.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2048.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2049.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3024.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4071.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4072.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4073.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1049.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1050.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2050.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2051.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3025.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4074.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4075.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4076.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1051.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1052.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2052.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2053.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3026.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4077.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4078.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4079.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1053.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1054.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2054.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2055.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3027.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4080.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4081.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4082.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1055.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1056.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2056.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2057.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3028.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4083.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4084.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4085.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1057.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1058.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2058.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2059.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3029.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4086.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4087.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4088.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1059.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1060.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2060.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2061.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3030.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4089.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4090.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4091.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1061.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1062.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2062.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2063.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3031.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4092.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4093.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4094.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1063.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1064.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2064.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2065.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3032.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4095.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4096.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4097.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1065.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1066.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2066.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2067.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3033.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4098.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4099.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4100.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1067.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1068.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2068.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2069.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3034.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4101.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4102.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4103.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1069.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1070.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2070.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2071.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3035.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4104.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4105.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4106.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1071.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1072.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2072.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2073.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3036.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4107.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4108.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4109.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1073.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1074.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2074.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2075.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3037.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4110.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4111.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4112.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1077.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1078.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2078.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2079.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3039.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4116.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4117.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4118.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1079.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1080.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2080.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2081.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3040.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4119.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4120.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4121.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1081.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1082.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2082.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2083.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3041.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4122.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4123.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4124.geometry}
                 material={materials.GrassBladeGreen}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4126.geometry}
                 material={blueGlow}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1075.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1085.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2077.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2086.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3038.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4113.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4114.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4115.geometry}
                 material={blueGlow}
                 position={[-228, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2089.geometry}
                 material={blueGlow}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1089.geometry}
                 material={blueGlow}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2090.geometry}
                 material={blueGlow}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4131.geometry}
                 material={blueGlow}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4132.geometry}
                 material={blueGlow}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4133.geometry}
                 material={blueGlow}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1084.geometry}
                 material={blueGlow}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3042.geometry}
                 material={blueGlow}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4125.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1083.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1087.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2084.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3044.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4127.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4137.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2094.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4141.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1091.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1092.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2095.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3046.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4142.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4143.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2098.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1099.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3050.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4155.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2105.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4193.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4194.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4195.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4196.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4197.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4198.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4199.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4200.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4201.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4202.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4203.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4204.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4205.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4206.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3067.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3068.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3069.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3070.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3071.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3072.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3073.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3074.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3075.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3076.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3077.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3078.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3079.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3080.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1160.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1161.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1162.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1163.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1164.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1165.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1166.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1167.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1168.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1169.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1170.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1171.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1172.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1173.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2134.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2135.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2136.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2137.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2138.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2139.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2140.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2141.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2142.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2143.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2144.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2145.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2146.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2147.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4207.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4208.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4209.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4210.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4211.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4212.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4213.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4214.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4215.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4216.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4217.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4218.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4219.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4220.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1174.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1175.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1176.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1177.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1178.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1179.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1180.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1181.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1182.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1183.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1184.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1185.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1186.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1187.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2148.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2149.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2150.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2151.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2152.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2153.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2154.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2155.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2156.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2157.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2158.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2159.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2160.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2161.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2173.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2175.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2179.geometry}
                 material={blueGlow}
                 position={[293, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4147.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1095.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade1096.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2099.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade3048.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4148.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade4149.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.GrassBlade2102.geometry}
                 material={blueGlow}
                 position={[124, 0, 0]}

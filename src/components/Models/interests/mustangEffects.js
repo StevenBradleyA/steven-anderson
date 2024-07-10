@@ -85,24 +85,18 @@ const MustangEffects = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.cubeCorners002.geometry}
                     material={blueGlow}
                     position={[-333, cubeY, 421.246]}
                     scale={[42.161, 22.639, 42.618]}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.cubeFaces002.geometry}
                     material={blueTransparent}
                     position={[-333, cubeY, 421.246]}
                     scale={[42.161, 22.639, 42.618]}
                 />
                 <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.mustangEnter.geometry}
                     material={whiteTransparent}
                     position={[-338, enterY, 367]}

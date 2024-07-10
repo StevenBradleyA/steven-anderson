@@ -23,15 +23,11 @@ const AnimatedJavascript = () => {
                 >
                     <mesh
                         name="Curve037"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve037.geometry}
                         material={materials.javascript}
                     />
                     <mesh
                         name="Curve037_1"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve037_1.geometry}
                         material={materials.Black}
                     />

@@ -20,8 +20,6 @@ const AnimatedFerrariLeftCase = () => {
             <group name="Scene">
                 <mesh
                     name="PopupLeftCase"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.PopupLeftCase.geometry}
                     material={materials.CorsaRed}
                     position={[396.337, 1158.54, 735.191]}

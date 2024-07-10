@@ -20,8 +20,6 @@ const RightAnimatedCountachTrim = () => {
             <group name="Scene">
                 <mesh
                     name="CountachRightPopupTrim"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.CountachRightPopupTrim.geometry}
                     material={materials.Trim}
                     position={[452.183, 1159.218, 609.289]}

@@ -20,8 +20,6 @@ const AnimatedFlask = () => {
             <group name="Scene">
                 <mesh
                     name="flask"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.flask.geometry}
                     material={materials.Black}
                     position={[-578, 1339, -490]}

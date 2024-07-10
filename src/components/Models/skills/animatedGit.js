@@ -23,15 +23,11 @@ const AnimatedGit = () => {
                 >
                     <mesh
                         name="Curve016"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve016.geometry}
                         material={materials.git}
                     />
                     <mesh
                         name="Curve016_1"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve016_1.geometry}
                         material={materials.White}
                     />

@@ -20,8 +20,6 @@ const AnimatedTailwind = () => {
             <group name="Scene">
                 <mesh
                     name="tailwind"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.tailwind.geometry}
                     material={materials.tailwind}
                     position={[-508.493, 1306.581, -494]}

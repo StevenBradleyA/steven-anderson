@@ -76,15 +76,8 @@ const ProjectComingSoon = () => {
     return (
         <>
             <group dispose={null}>
+                <mesh geometry={nodes.Project4Grid.geometry} material={color} />
                 <mesh
-                    castShadow
-                    receiveShadow
-                    geometry={nodes.Project4Grid.geometry}
-                    material={color}
-                />
-                <mesh
-                    castShadow
-                    receiveShadow
                     geometry={nodes.Project4Enter.geometry}
                     material={retroGlow}
                     position={[334.028, currentY, -527.068]}

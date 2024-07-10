@@ -20,8 +20,6 @@ const AnimatedPrisma = () => {
             <group name="Scene">
                 <mesh
                     name="prisma"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.prisma.geometry}
                     material={materials.Black}
                     position={[-501.957, 1336, -565.82]}

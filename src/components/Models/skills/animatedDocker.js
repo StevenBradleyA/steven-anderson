@@ -20,8 +20,6 @@ const AnimatedDocker = () => {
             <group name="Scene">
                 <mesh
                     name="docker"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.docker.geometry}
                     material={materials.docker}
                     position={[-593.495, 1316.35, -513.921]}

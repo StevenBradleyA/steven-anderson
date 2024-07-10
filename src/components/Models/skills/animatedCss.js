@@ -23,22 +23,16 @@ const AnimatedCss = () => {
                 >
                     <mesh
                         name="Curve021"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve021.geometry}
                         material={materials.css}
                     />
                     <mesh
                         name="Curve021_1"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve021_1.geometry}
                         material={materials.csslight}
                     />
                     <mesh
                         name="Curve021_2"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve021_2.geometry}
                         material={materials.White}
                     />

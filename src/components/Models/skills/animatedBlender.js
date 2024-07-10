@@ -25,22 +25,16 @@ const AnimatedBlender = () => {
                 >
                     <mesh
                         name="Curve032"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve032.geometry}
                         material={materials.White}
                     />
                     <mesh
                         name="Curve032_1"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve032_1.geometry}
                         material={materials.BlenderBlue}
                     />
                     <mesh
                         name="Curve032_2"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve032_2.geometry}
                         material={materials.blenderOrange}
                     />

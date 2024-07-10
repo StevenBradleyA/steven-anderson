@@ -25,15 +25,11 @@ const AnimatedPython = () => {
                 >
                     <mesh
                         name="Curve045"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve045.geometry}
                         material={materials.python}
                     />
                     <mesh
                         name="Curve045_1"
-                        castShadow
-                        receiveShadow
                         geometry={nodes.Curve045_1.geometry}
                         material={materials.pythonyellow}
                     />

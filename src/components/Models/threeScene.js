@@ -33,7 +33,7 @@ const ThreeScene = () => {
     // The X axis is red. The Y axis is green. The Z axis is blue.
 
     return (
-        <>
+        <Suspense fallback={<div>Loading...</div>}>
             <Canvas
                 camera={{
                     position: [0, 2000, 0],
@@ -41,10 +41,10 @@ const ThreeScene = () => {
                     far: 11000,
                     fov: 60,
                 }}
-                onCreated={({ gl, camera }) => {
-                    gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-                    camera.lookAt(0, 0, 0);
-                }}
+                // onCreated={({ gl, camera }) => {
+                //     gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                //     camera.lookAt(0, 0, 0);
+                // }}
             >
                 <Suspense fallback={null}>
                     <ambientLight intensity={1.8} />
@@ -83,7 +83,7 @@ const ThreeScene = () => {
                     <Stars />
                 </Suspense>
             </Canvas>
-        </>
+        </Suspense>
     );
 };
 

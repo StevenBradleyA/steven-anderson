@@ -20,8 +20,6 @@ const LeftAnimatedCountachCase = () => {
             <group name="Scene">
                 <mesh
                     name="CountachLeftPopupCase"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.CountachLeftPopupCase.geometry}
                     material={materials.CorsaRed}
                     position={[442.934, 1159.222, 596.249]}

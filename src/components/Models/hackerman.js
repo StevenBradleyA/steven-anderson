@@ -19,50 +19,22 @@ const Hackerman = () => {
     return (
         <group dispose={null}>
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.PowerGlove.geometry}
                 material={materials.ComputerShell}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.PowerGlovePlastics.geometry}
                 material={materials.Plastic}
             />
             <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.PowerGloveText.geometry}
                 material={blueGlow}
             />
+            <mesh geometry={nodes.Title.geometry} material={blueGlow} />
+            <mesh geometry={nodes.Text005.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.gridSquare.geometry} material={whiteGlow} />
+            <mesh geometry={nodes.grid.geometry} material={blueGlow} />
             <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Title.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.Text005.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.gridSquare.geometry}
-                material={whiteGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
-                geometry={nodes.grid.geometry}
-                material={blueGlow}
-            />
-            <mesh
-                castShadow
-                receiveShadow
                 geometry={nodes.hackermanEnter001.geometry}
                 material={materials.White}
                 position={[256.935, 1277, 218.057]}

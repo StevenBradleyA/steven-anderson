@@ -20,8 +20,6 @@ const AnimatedRedux = () => {
             <group name="Scene">
                 <mesh
                     name="redux"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.redux.geometry}
                     material={materials.redux}
                     position={[-556.901, 1310.959, -561.631]}

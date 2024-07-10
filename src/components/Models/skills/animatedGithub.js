@@ -20,8 +20,6 @@ const AnimatedGithub = () => {
             <group name="Scene">
                 <mesh
                     name="github"
-                    castShadow
-                    receiveShadow
                     geometry={nodes.github.geometry}
                     material={materials.Black}
                     position={[-487.168, 1307.035, -634.595]}
