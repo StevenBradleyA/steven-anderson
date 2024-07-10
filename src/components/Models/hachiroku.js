@@ -38,15 +38,12 @@ const Hachiroku = () => {
         setKeysPressed,
     } = useGlobalState();
 
-    // input
-    // const [keysPressed, setKeysPressed] = useState({});
-
     // car tuning
-    const topSpeed = 180;
+    const topSpeed = 200;
     const torqueFactor = 12;
     const steerAngle = Math.PI / 9;
     const respawnHeight = 900;
-    const maxSpeedForTurning = 69; // nice
+    const maxSpeedForTurning = 69; 
 
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -103,8 +100,8 @@ const Hachiroku = () => {
             const respawn = keysPressed['r'];
             const flip = keysPressed['shift'];
 
-            const scaledForwardAcceleration = 50000 * delta;
-            const scaledReverseAcceleration = 40000 * delta;
+            const scaledForwardAcceleration = 55000 * delta;
+            const scaledReverseAcceleration = 45000 * delta;
             const car = carRef.current;
             const velocity = car.linvel();
             const speed = Math.sqrt(
@@ -286,15 +283,6 @@ const Hachiroku = () => {
         emissive: new THREE.Color(0x007bff),
         emissiveIntensity: 1.8,
     });
-    const slateGray = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0x353839),
-        roughness: 1,
-    });
-    const glass = new THREE.MeshStandardMaterial({
-        color: new THREE.Color(0x353839),
-        roughness: 0.5,
-        metalness: 0.7,
-    });
     const whiteGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xe7e7e7),
         emissive: new THREE.Color(0xe7e7e7),
@@ -311,7 +299,7 @@ const Hachiroku = () => {
         <>
             <RigidBody
                 ref={carRef}
-                mass={15}
+                mass={20}
                 colliders={false}
                 position={[-120, 1310, -150]}
                 rotation={[0, 0.5, 0]}

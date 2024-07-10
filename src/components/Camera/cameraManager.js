@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { gsap } from 'gsap';
 import { useGlobalState } from '../Context/stateContext';
 import { damp, damp3, dampLookAt } from 'maath/easing';
 
@@ -185,7 +184,7 @@ const CameraManager = ({ carRef, keysPressed }) => {
                 carPosition.y,
                 carPosition.z
             );
-            dampLookAt(camera, cameraTarget.current, 0.08, delta);
+            dampLookAt(camera, cameraTarget.current, 0.15, delta);
         }
     });
 

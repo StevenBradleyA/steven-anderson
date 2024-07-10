@@ -53,7 +53,7 @@ const ThreeScene = () => {
                         intensity={1.2}
                         color="white"
                     />
-                    <Physics gravity={[0, -98.1, 0]}>
+                    <Physics gravity={[0, -110, 0]}>
                         <LowPolyIsland />
                         <TreesAndRocks />
                         <RetroStands />
