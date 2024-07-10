@@ -9,6 +9,7 @@ module.exports = {
         extend: {
             backgroundColor: {
                 stevenBlue: '#007bff',
+                buttonBlue: "#3DA0E3",
                 midnightBlack: '#121212',
                 blackAlternative: '#181818',
                 outerSpace: '#2E3B4E',
