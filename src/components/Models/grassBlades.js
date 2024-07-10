@@ -12,7 +12,6 @@ const GrassBlades = () => {
         emissiveIntensity: 1.8,
     });
 
-    // todo make grass blue up top
     return (
         <group dispose={null}>
             <mesh

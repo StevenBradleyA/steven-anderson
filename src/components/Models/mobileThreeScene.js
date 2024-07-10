@@ -1,21 +1,11 @@
 'use client';
-import { Canvas, useThree } from '@react-three/fiber';
-import { OrbitControls, useGLTF, PerspectiveCamera } from '@react-three/drei';
-import { useEffect, useRef, useState } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls, useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
-import { GodRays, EffectComposer, Bloom } from '@react-three/postprocessing';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
 
 const MobileThreeScene = () => {
     const { nodes, materials } = useGLTF('/models/mobile-portfolio.glb');
-
-    const sunRef = useRef();
-    const [godRaysReady, setGodRaysReady] = useState(false);
-
-    useEffect(() => {
-        if (sunRef.current) {
-            setGodRaysReady(true);
-        }
-    }, [sunRef]);
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -49,36 +39,21 @@ const MobileThreeScene = () => {
     return (
         <Canvas
             camera={{
-                position: [-500, 50, -500],
+                position: [-700, 150, -700],
                 near: 0.1,
                 far: 6000,
-                fov: 70,
+                fov: 60,
             }}
         >
             <ambientLight intensity={1} />
-            {/* <pointLight position={[10, 10, 10]} /> */}
-            {/* {godRaysReady && ( */}
             <EffectComposer>
-                {/* <GodRays
-                        sun={sunRef.current}
-                        samples={30}
-                        density={0.1}
-                        decay={1}
-                        weight={0.2}
-                        exposure={0.1}
-                        clampMax={1.0}
-                        blur={true}
-                    /> */}
-
                 <Bloom
                     luminanceThreshold={0}
                     luminanceSmoothing={0.9}
-                    // height={300}
                     opacity={1}
                     intensity={0.3}
                 />
             </EffectComposer>
-            {/* )} */}
             <group dispose={null}>
                 <mesh geometry={nodes.top.geometry} material={darkGreenGlow} />
                 <mesh
@@ -123,7 +98,6 @@ const MobileThreeScene = () => {
                 <mesh
                     geometry={nodes.Object_9003_1.geometry}
                     material={orangeGlow}
-                    ref={sunRef}
                 />
                 <mesh
                     geometry={nodes.conifer5_Cylinder001.geometry}
@@ -166,7 +140,7 @@ const MobileThreeScene = () => {
                     material={materials['Material.001']}
                 />
             </group>
-            <OrbitControls minZoom={1.5}/>
+            <OrbitControls />
         </Canvas>
     );
 };
