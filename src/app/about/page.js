@@ -1,12 +1,14 @@
 'use client';
 import NightSky from '@/components/Background/nightSky';
+import { useMobile } from '@/components/Context/mobileContext';
 import Footer from '@/components/Footer/footer';
+import MobileFooter from '@/components/Footer/mobileFooter';
 import { useState, useEffect } from 'react';
 
 export default function AboutPage() {
+    const { isMobile } = useMobile();
     const [projectIndex, setProjectIndex] = useState(2);
     const [skillIndex, setSkillIndex] = useState(0);
-
     const [translateX, setTranslateX] = useState(0);
 
     // todo add ranking to skills -- typescript advanced C# (basic)     Python (intermediate) etc...
@@ -1223,7 +1225,7 @@ export default function AboutPage() {
                     </svg>
                 </button>
             </div>
-            <Footer />
+            {isMobile ? <MobileFooter /> : <Footer />}
         </div>
     );
 }

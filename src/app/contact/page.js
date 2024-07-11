@@ -4,15 +4,15 @@ import { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useMobile } from '@/components/Context/mobileContext';
 import Footer from '@/components/Footer/footer';
+import MobileFooter from '@/components/Footer/mobileFooter';
 
 export default function Contact() {
+    const { isMobile } = useMobile();
     // form
     const [name, setName] = useState('');
     const [message, setMessage] = useState('');
     const [errors, setErrors] = useState({});
     const [enableErrorDisplay, setEnableErrorDisplay] = useState(false);
-
-    const { isMobile } = useMobile();
 
     // animation tracking
     const [randomIndices, setRandomIndices] = useState({
@@ -812,11 +812,9 @@ export default function Contact() {
                     </div>
                 </div>
             )}
-            <div className='w-full mt-96'>
-            <Footer/>
-
+            <div className="w-full mt-96">
+                {isMobile ? <MobileFooter /> : <Footer />}
             </div>
-
         </div>
     );
 }
