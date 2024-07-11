@@ -24,7 +24,7 @@ export default function NightSky() {
 
     return (
         <>
-            <div className="starry-background absolute top-0 left-0 right-0 bottom-0">
+            <div className=" absolute top-0 left-0 right-0 bottom-0 z-10 pointer-events-none">
                 <div
                     className="starsSmall"
                     style={{ boxShadow: shadowsSmall }}
