@@ -3,6 +3,7 @@ import NightSky from '@/components/Background/nightSky';
 import { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useMobile } from '@/components/Context/mobileContext';
+import Footer from '@/components/Footer/footer';
 
 export default function Contact() {
     // form
@@ -811,6 +812,11 @@ export default function Contact() {
                     </div>
                 </div>
             )}
+            <div className='w-full mt-96'>
+            <Footer/>
+
+            </div>
+
         </div>
     );
 }
