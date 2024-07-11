@@ -13,20 +13,16 @@ export default function Home() {
     const { showGame, activeCamera } = useGlobalState();
     const { isMobile } = useMobile();
     const [renderContent, setRenderContent] = useState(false);
-    // console.log(isMobile)
     useEffect(() => {
-        // Delay rendering to ensure isMobile state has settled
         const timer = setTimeout(() => {
             setRenderContent(true);
-        }, 100); // Delay for 100ms or adjust as necessary
+        }, 5200);
 
         return () => clearTimeout(timer);
     }, [isMobile]);
 
-    if (renderContent) {
-        return (
-                <LoadingSpinner />
-        );
+    if (!renderContent) {
+        return <LoadingSpinner />;
     }
     return (
         <main className="flex min-h-screen flex-col items-center justify-between p-24">

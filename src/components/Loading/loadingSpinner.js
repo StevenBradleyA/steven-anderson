@@ -9,9 +9,9 @@ const LoadingSpinner = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShow(false);
-        }, 4800); // Adjust the delay as needed
+        }, 4600);
 
-        return () => clearTimeout(timer); // Clean up the timer on unmount
+        return () => clearTimeout(timer);
     }, []);
 
     const enterExitAnimation = {
@@ -33,10 +33,11 @@ const LoadingSpinner = () => {
     };
 
     const checkMarkAnimation = {
-        initial: { opacity: 0 },
+        initial: { opacity: 0, scale: 0.5 },
         animate: {
             opacity: 1,
-            transition: { duration: 0, delay: 3.5 },
+            scale: 1,
+            transition: { duration: 0.2, delay: 3, ease: 'easeIn' },
         },
     };
 
