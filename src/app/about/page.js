@@ -184,6 +184,7 @@ export default function AboutPage() {
                             </svg>
                             Redux
                         </li>
+
                         <li className="flex items-center text-white hover:text-stevenBlue ease-in">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -199,6 +200,22 @@ export default function AboutPage() {
                                 />
                             </svg>
                             Next.js
+                        </li>
+                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-6 h-6"
+                                viewBox="0 0 25 25"
+                                fill="none"
+                            >
+                                <circle
+                                    cx="12.5"
+                                    cy="12.5"
+                                    r="2"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                            Three.js
                         </li>
                         <li className="flex items-center text-white hover:text-stevenBlue ease-in">
                             <svg
