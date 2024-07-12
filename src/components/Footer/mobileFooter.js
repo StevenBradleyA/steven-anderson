@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import palmTree from '@public/images/og-image.png';
+import palmTree from '@public/Images/og-image.png';
 import Link from 'next/link';
 
 const MobileFooter = () => {
