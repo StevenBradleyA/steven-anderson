@@ -45,627 +45,627 @@ export default function AboutPage() {
                 <h2 className="text-9xl z-40">Anderson</h2>
 
                 <p className="border-l-2 border-white px-5 w-96 text-3xl mt-10 z-40">
-                    {' '}
-                    I'm a full-stack web developer from the Seattle area.{' '}
+                    {`I'm a full-stack web developer from the Seattle area.`}
                 </p>
             </div>
+            <div className="px-40 w-full">
+                <div className="mt-60  flex w-full gap-20 justify-between  relative ">
+                    <h2 className="text-6xl font-orbitron">Portfolio</h2>
+                    {skillIndex === 0 && (
+                        <ul className="flex gap-x-5 gap-y-3 w-96 flex-wrap text-lg absolute right-0 top-0">
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Javascript
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Typescript
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Python
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                SQL
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                HTML
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                CSS
+                            </li>
+                        </ul>
+                    )}
+                    {skillIndex === 1 && (
+                        <ul className="flex gap-x-5 gap-y-3 w-[45rem] desktop:w-[60rem] absolute top-0 right-0 flex-wrap text-lg ">
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                React
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Redux
+                            </li>
 
-            <div className="mt-60  flex w-full justify-between px-40  relative ">
-                <h2 className="text-6xl font-orbitron">Portfolio</h2>
-                {skillIndex === 0 && (
-                    <ul className="flex gap-x-5 gap-y-3 w-96 flex-wrap text-lg ">
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Javascript
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Typescript
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Python
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            SQL
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            HTML
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            CSS
-                        </li>
-                    </ul>
-                )}
-                {skillIndex === 1 && (
-                    <ul className="flex gap-x-5 gap-y-3 w-[60rem] flex-wrap text-lg ">
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            React
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Redux
-                        </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Next.js
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Three.js
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Express
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Flask
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Socket.io
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Tailwind CSS
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Framer Motion
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                TensorFlow
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                PyTorch
+                            </li>
 
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Next.js
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Three.js
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Express
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Flask
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Socket.io
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Tailwind CSS
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Framer Motion
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            TensorFlow
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            PyTorch
-                        </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Prisma
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                tRPC
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                PostgreSQL
+                            </li>
+                        </ul>
+                    )}
+                    {skillIndex === 2 && (
+                        <ul className="flex gap-x-5 gap-y-3 absolute top-0 right-0 w-[40rem] flex-wrap text-lg ">
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                AWS
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Blender
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Git
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Vercel
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Docker
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Postman
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Photoshop
+                            </li>
 
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Prisma
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            tRPC
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            PostgreSQL
-                        </li>
-                    </ul>
-                )}
-                {skillIndex === 2 && (
-                    <ul className="flex gap-x-5 gap-y-3 w-[40rem] flex-wrap text-lg ">
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            AWS
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Blender
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Git
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Vercel
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Docker
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Postman
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Photoshop
-                        </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Adobe Illustrator
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Davinci Resolve
+                            </li>
+                        </ul>
+                    )}
+                    {skillIndex === 3 && (
+                        <ul className="flex gap-x-5 gap-y-3  w-[45rem] desktop:w-[55rem] absolute top-0 right-0 flex-wrap text-lg ">
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Full Stack Development
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Live Testing
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Team Collaboration
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                AI & Machine Learning
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Database Management
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                API Development
+                            </li>
 
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Adobe Illustrator
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Davinci Resolve
-                        </li>
-                    </ul>
-                )}
-                {skillIndex === 3 && (
-                    <ul className="flex gap-x-5 gap-y-3 w-[55rem] flex-wrap text-lg ">
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Full Stack Development
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Live Testing
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Team Collaboration
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            AI & Machine Learning
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Database Management
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            API Development
-                        </li>
-
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            Cloud Services
-                        </li>
-                        <li className="flex items-center text-white hover:text-stevenBlue ease-in">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="w-6 h-6"
-                                viewBox="0 0 25 25"
-                                fill="none"
-                            >
-                                <circle
-                                    cx="12.5"
-                                    cy="12.5"
-                                    r="2"
-                                    fill="currentColor"
-                                />
-                            </svg>
-                            UI/UX Design
-                        </li>
-                    </ul>
-                )}
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                Cloud Services
+                            </li>
+                            <li className="flex items-center text-white hover:text-stevenBlue ease-in">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-6 h-6"
+                                    viewBox="0 0 25 25"
+                                    fill="none"
+                                >
+                                    <circle
+                                        cx="12.5"
+                                        cy="12.5"
+                                        r="2"
+                                        fill="currentColor"
+                                    />
+                                </svg>
+                                UI/UX Design
+                            </li>
+                        </ul>
+                    )}
+                </div>
             </div>
-            <div className="flex w-full justify-between  px-40 relative text-white/50 mt-20 ">
+            <div className="flex w-full justify-between  px-40 relative text-white/50 mt-28 ">
                 <div className="w-full h-[250px] flex justify-between z-40">
                     <div className="bg-outerSpace w-[150px] laptop:w-[250px] desktop:w-[350px] h-full rounded-lg"></div>
                     <div className="bg-outerSpace w-[150px] laptop:w-[250px] desktop:w-[350px] h-full rounded-lg"></div>
@@ -745,8 +745,11 @@ export default function AboutPage() {
                     </button>
                 </div>
             </div>
-
-            <div className="h-[570px] w-full relative mt-60">
+            <h2 className="w-full flex justify-center mt-20 text-5xl ">
+                {' '}
+                PROJECTS
+            </h2>
+            <div className="h-[570px] w-full relative mt-20">
                 <div
                     className={`absolute flex top-0 left-1/2 -translate-x-[50%]  z-40  justify-center gap-[50px] w-[2500px]`}
                     style={{

@@ -7,11 +7,13 @@ const MobileFooter = () => {
         <>
             <div className="w-full bg-outerSpace bg-opacity-50  z-40 flex flex-col p-5 text-white/50 text-xs">
                 <div className="flex w-full gap-10 items-center">
-                    <Image
-                        alt="profile"
-                        src={palmTree}
-                        className="w-16 h-16 object-cover"
-                    />
+                    <Link href={'/'} aria-label="Explore my portfolio game">
+                        <Image
+                            alt="profile"
+                            src={palmTree}
+                            className="w-16 h-16 object-cover"
+                        />
+                    </Link>
                     <p className="w-full">
                         Steven-anderson is my portfolio site built on Next.js,
                         R3F, and Blender.

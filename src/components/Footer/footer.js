@@ -8,11 +8,13 @@ const Footer = () => {
             <div className="w-full bg-outerSpace bg-opacity-50  z-40 flex flex-col px-10 pt-10 pb-3 text-white/50">
                 <div className="flex w-full justify-between items-center">
                     <div>
-                        <Image
-                            alt="profile"
-                            src={palmTree}
-                            className="w-16 h-16 object-cover"
-                        />
+                        <Link href={'/'} aria-label="Explore my portfolio game">
+                            <Image
+                                alt="profile"
+                                src={palmTree}
+                                className="w-16 h-16 object-cover"
+                            />
+                        </Link>
                         <p className="w-96 mt-5">
                             Steven-anderson is my portfolio site built on
                             Next.js, R3F, and Blender.
