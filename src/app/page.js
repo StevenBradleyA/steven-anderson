@@ -4,7 +4,6 @@ import ThreeScene from '@/components/Models/threeScene';
 import { useGlobalState } from '@/components/Context/stateContext';
 import ControlsScript from '@/components/Controls/controlsScript';
 import { useMobile } from '@/components/Context/mobileContext';
-import MobileControls from '@/components/Controls/mobileControls';
 import MobileThreeScene from '@/components/Models/mobileThreeScene';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '@/components/Loading/loadingSpinner';
@@ -31,10 +30,6 @@ export default function Home() {
                 {showGame === true &&
                     activeCamera === 'initial' &&
                     isMobile === false && <ControlsScript />}
-
-                {/* {showGame === true &&
-                    activeCamera === 'follow' &&
-                    isMobile === true && <MobileControls />} */}
                 {isMobile === false ? <ThreeScene /> : <MobileThreeScene />}
             </div>
         </main>

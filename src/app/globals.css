@@ -673,52 +673,13 @@ body {
     position: relative;
 }
 
-#loading-bar-animation .status .state:before {
-    content: 'Loading';
-    position: absolute;
-    left: 0;
-    top: 0;
-    animation: fadeLeft 0.5s forwards ease;
-    animation-delay: 3.2s;
-}
-
-@keyframes fadeLeft {
-    0% {
-        text-indent: 0;
-        opacity: 1;
-    }
-    100% {
-        text-indent: -100px;
-        opacity: 0;
-    }
-}
-
-#loading-bar-animation .status .state:after {
-    content: 'Access Granted';
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    animation: fadeLeft2 0.5s forwards ease;
-    animation-delay: 3.2s;
-}
-
-@keyframes fadeLeft2 {
-    0% {
-        text-indent: 100px;
-        opacity: 0;
-    }
-    100% {
-        text-indent: 0;
-        opacity: 1;
-    }
-}
-
 #loading-bar-animation .status .percentage {
     float: right;
 }
 
 #loading-bar-animation .status .percentage:before {
+    animation: percentage-slow 3s forwards, percentage-fast 0.4s forwards;
+    animation-delay: 0s, 3s;
     -webkit-animation: percentage-slow 3s forwards,
         percentage-fast 0.4s forwards;
     -webkit-animation-delay: 0s, 3s;

@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useProgress } from '@react-three/drei';
 import { AnimatePresence, easeInOut, motion } from 'framer-motion';
 import { useGlobalState } from '../Context/stateContext';
-import { useMobile } from '../Context/mobileContext';
 import Image from 'next/image';
 import loadingScreen from '@public/Images/loadingScreen4k.png';
 import barcode from '@public/Images/barcode.png';
@@ -37,6 +36,42 @@ const TitleScreen = () => {
         initial: { opacity: 0 },
         animate: { opacity: 1 },
         exit: { opacity: 0, transition: { duration: 2.5, easeInOut } },
+    };
+
+    const leftChevron = {
+        initial: { x: 0, rotate: 180, scale: 1 },
+        hover: {
+            x: [0, 200, 200, 200],
+            rotate: 0,
+            scale: [1, 0.3, 0.8],
+            transition: {
+                duration: 0.8,
+                ease: [0.42, 0, 0.58, 1],
+            },
+        },
+    };
+    const rightChevron = {
+        initial: { x: 0, scale: 1 },
+        hover: {
+            x: 0,
+            scale: [1, 0.3, 0.8],
+            transition: {
+                duration: 0.8,
+                ease: [0.42, 0, 0.58, 1],
+            },
+        },
+    };
+    const face = {
+        initial: { pathLength: 0, opacity: 0 },
+        hover: {
+            opacity: 1,
+            pathLength: 1,
+            transition: {
+                duration: 0.3,
+                delay: 0.5,
+                ease: 'easeOut',
+            },
+        },
     };
 
     return (
@@ -165,13 +200,66 @@ const TitleScreen = () => {
                     </div>
                     <motion.button
                         key="title-button"
-                        className={`font-bebas fade-transition absolute bottom-20 text-3xl -translate-x-1/2  left-1/2 z-50  ${
+                        className={`font-bebas fade-transition absolute bottom-20 text-3xl -translate-x-1/2  left-1/2 z-50 flex gap-1  ${
                             progress === 100
-                                ? 'text-stevenBlue hover:opacity-50'
+                                ? 'text-stevenBlue'
                                 : 'text-gray-400'
                         }`}
+                        whileHover="hover"
+                        initial="initial"
                     >
-                        {`< Press Any Key >`}
+                        <div className="relative px-10 flex">
+                            Press Any Key
+                            <motion.svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8 absolute left-0 top-0 rotate-180 "
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                variants={leftChevron}
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M13.9394 12.0001L8.46973 6.53039L9.53039 5.46973L16.0607 12.0001L9.53039 18.5304L8.46973 17.4697L13.9394 12.0001Z"
+                                    fill="currentColor"
+                                    stroke="currentColor"
+                                    strokeWidth={1}
+                                />
+                            </motion.svg>
+                            <motion.svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8 absolute right-0 top-0 "
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                variants={rightChevron}
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M13.9394 12.0001L8.46973 6.53039L9.53039 5.46973L16.0607 12.0001L9.53039 18.5304L8.46973 17.4697L13.9394 12.0001Z"
+                                    fill="currentColor"
+                                    stroke="currentColor"
+                                    strokeWidth={1}
+                                />
+                            </motion.svg>
+                        </div>
+                        <motion.svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="w-16 h-16 absolute -right-[22px] -top-4"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                        >
+                            <motion.path
+                                fill-rule="evenodd"
+                                clip-rule="evenodd"
+                                d="M19 12C19 15.866 15.866 19 12 19C8.13401 19 5 15.866 5 12C5 8.13401 8.13401 5 12 5C13.8565 5 15.637 5.7375 16.9497 7.05025C18.2625 8.36301 19 10.1435 19 12Z"
+                                stroke="currentColor"
+                                strokeWidth="1.5"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                variants={face}
+                            />
+                        </motion.svg>
                     </motion.button>
                 </motion.div>
             )}

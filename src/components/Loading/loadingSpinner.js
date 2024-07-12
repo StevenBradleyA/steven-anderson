@@ -66,6 +66,24 @@ const LoadingSpinner = () => {
         },
     };
 
+    const loadingText = {
+        initial: { opacity: 1, x: 0 },
+        animate: {
+            opacity: 0,
+            x: -100,
+            transition: { duration: 0.5, delay: 3.2 },
+        },
+    };
+
+    const grantedText = {
+        initial: { opacity: 0, x: 100 },
+        animate: {
+            opacity: 1,
+            x: 0,
+            transition: { duration: 0.5, delay: 3.2 },
+        },
+    };
+
     return (
         <>
             <NightSky />
@@ -154,8 +172,19 @@ const LoadingSpinner = () => {
                             <div className="loading-bar">
                                 <div className="progress-bar"></div>
                             </div>
-                            <div className="status">
-                                <div className="state"></div>
+                            <div className="status relative">
+                                <motion.div
+                                    className="absolute top-0 left-0 "
+                                    variants={loadingText}
+                                >
+                                    LOADING
+                                </motion.div>
+                                <motion.div
+                                    className="absolute top-0 left-0 "
+                                    variants={grantedText}
+                                >
+                                    ACCESS GRANTED
+                                </motion.div>
                                 <div className="percentage"></div>
                             </div>
                         </motion.div>
