@@ -200,9 +200,9 @@ const TitleScreen = () => {
                     </div>
                     <motion.button
                         key="title-button"
-                        className={`font-bebas fade-transition absolute bottom-20 text-3xl -translate-x-1/2  left-1/2 z-50 flex gap-1  ${
+                        className={`font-bebas fade-transition absolute bottom-20 text-3xl -translate-x-1/2  left-1/2 z-50 flex gap-1 hover:opacity-70 ease-in ${
                             progress === 100
-                                ? 'text-stevenBlue'
+                                ? 'text-stevenBlue '
                                 : 'text-gray-400'
                         }`}
                         whileHover="hover"
