@@ -1148,10 +1148,10 @@ function Navigation() {
                 {isMobile === false ? (
                     <AnimatePresence>
                         {isSecondaryMenuOpen && isMenuOpen && (
-                            <motion.div className=" absolute right-0 top-96 bottom-0 w-[550px] h-[100px] rounded-lg text-black flex flex-col z-10  text-xl overflow-hidden">
+                            <motion.div className=" absolute right-0 top-60 bottom-0 w-[550px] h-[300px] rounded-lg text-black flex flex-col z-10  text-xl overflow-hidden">
                                 <motion.div
                                     ref={secondaryMenuRef}
-                                    className={` flex w-full justify-between items-center h-full px-6 ${
+                                    className={` flex w-full flex-col  h-full p-6 relative gap-5 ${
                                         isSecondaryMenuOpen
                                             ? 'nav-menu-background-open'
                                             : 'nav-menu-background'
@@ -1164,7 +1164,7 @@ function Navigation() {
                                     exit={'exit'}
                                 >
                                     <motion.button
-                                        className="flex items-center flex-col text-sm close-button text-white"
+                                        className="flex items-center flex-col text-sm close-button text-white absolute top-2 right-2"
                                         initial={{ opacity: 0, x: 200 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
@@ -1192,11 +1192,152 @@ function Navigation() {
                                                 />
                                             </svg>
                                         </div>
-                                        <h2 className="px-2 py-1 rounded-lg close-button-text ">
-                                            Close
-                                        </h2>
                                     </motion.button>
-                                    <motion.button>controls </motion.button>
+                                    <motion.div className="flex items-center justify-between ">
+                                        <div className="flex gap-5 items-center">
+                                            <div className="flex flex-col items-center gap-1">
+                                                <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
+                                                    E
+                                                </div>
+                                                <div className="flex gap-1">
+                                                    <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
+                                                        S
+                                                    </div>
+                                                    <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
+                                                        D
+                                                    </div>
+                                                    <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
+                                                        F
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="flex flex-col items-center ">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="w-12 h-12 -mb-2 hover:text-stevenBlue ease-in-out"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                >
+                                                    <path
+                                                        d="M15 11L12 8M12 8L9 11M12 8V16M7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V7.2C20 6.0799 20 5.51984 19.782 5.09202C19.5903 4.71569 19.2843 4.40973 18.908 4.21799C18.4802 4 17.9201 4 16.8 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40973 4.40973 4.71569 4.21799 5.09202C4 5.51984 4 6.07989 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.07989 20 7.2 20Z"
+                                                        stroke="currentColor"
+                                                        strokeWidth="2"
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                    />
+                                                </svg>
+                                                <div className="flex">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="w-12 h-12  -rotate-90 -mr-2 hover:text-stevenBlue ease-in-out"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                    >
+                                                        <path
+                                                            d="M15 11L12 8M12 8L9 11M12 8V16M7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V7.2C20 6.0799 20 5.51984 19.782 5.09202C19.5903 4.71569 19.2843 4.40973 18.908 4.21799C18.4802 4 17.9201 4 16.8 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40973 4.40973 4.71569 4.21799 5.09202C4 5.51984 4 6.07989 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.07989 20 7.2 20Z"
+                                                            stroke="currentColor"
+                                                            strokeWidth="2"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        />
+                                                    </svg>
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="w-12 h-12 rotate-180 hover:text-stevenBlue ease-in-out"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                    >
+                                                        <path
+                                                            d="M15 11L12 8M12 8L9 11M12 8V16M7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V7.2C20 6.0799 20 5.51984 19.782 5.09202C19.5903 4.71569 19.2843 4.40973 18.908 4.21799C18.4802 4 17.9201 4 16.8 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40973 4.40973 4.71569 4.21799 5.09202C4 5.51984 4 6.07989 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.07989 20 7.2 20Z"
+                                                            stroke="currentColor"
+                                                            strokeWidth="2"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        />
+                                                    </svg>
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="w-12 h-12 rotate-90 -ml-2 hover:text-stevenBlue ease-in-out"
+                                                        viewBox="0 0 24 24"
+                                                        fill="none"
+                                                    >
+                                                        <path
+                                                            d="M15 11L12 8M12 8L9 11M12 8V16M7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V7.2C20 6.0799 20 5.51984 19.782 5.09202C19.5903 4.71569 19.2843 4.40973 18.908 4.21799C18.4802 4 17.9201 4 16.8 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40973 4.40973 4.71569 4.21799 5.09202C4 5.51984 4 6.07989 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.07989 20 7.2 20Z"
+                                                            stroke="currentColor"
+                                                            strokeWidth="2"
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                        />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div className=" w-[200px]">
+                                            <h3>Movement</h3>
+                                            <p className="text-xs text-stevenBlue">
+                                                *Try countersteering to balance
+                                                your drift
+                                            </p>
+                                        </div>
+                                    </motion.div>
+                                    <motion.div className="flex  items-center justify-between ">
+                                        <div className="flex items-center gap-5">
+                                            <div className="flex items-center gap-1">
+                                                <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
+                                                    R
+                                                </div>
+                                                <h2 className="hover:bg-stevenBlue hover:bg-opacity-30 flex p-1 rounded-lg ease-in-out text-base">
+                                                    Respawn
+                                                </h2>
+                                            </div>
+                                            <div className="flex items-center gap-1">
+                                                <div className="border-4 border-black px-2 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out ">
+                                                    Shift
+                                                </div>
+                                                <h2 className="hover:bg-stevenBlue hover:bg-opacity-30 flex p-1 rounded-lg ease-in-out text-base">
+                                                    Recover
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div className=" w-[200px]">
+                                            <h3>Uh oh</h3>
+                                            <p className="text-xs text-stevenBlue">
+                                                *Use these to get unstuck or
+                                                reset
+                                            </p>
+                                        </div>
+                                    </motion.div>
+
+                                    <motion.div className="flex gap-5 items-center justify-between  ">
+                                        <div className="flex items-center gap-1">
+                                            <div className="border-4 border-black w-9 h-9 rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
+                                                C
+                                            </div>
+                                            <h2 className="hover:bg-stevenBlue hover:bg-opacity-30 flex p-1 rounded-lg ease-in-out text-base">
+                                                Switch Camera
+                                            </h2>
+                                        </div>
+                                        {/* <div className="flex flex-col">
+                                            <h2 className="border-4 border-black  rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
+                                                Tour
+                                            </h2>
+                                            <h2 className="border-4 border-black  rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
+                                                Follow
+                                            </h2>
+                                            <h2 className="border-4 border-black  rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
+                                                Free
+                                            </h2>
+                                        </div> */}
+
+                                        <div className=" w-[200px]">
+                                            <h3>Camera</h3>
+                                            <p className="text-xs text-stevenBlue">
+                                                *Switch the camera to explore
+                                                the world in different ways
+                                            </p>
+                                        </div>
+                                    </motion.div>
                                 </motion.div>
                             </motion.div>
                         )}

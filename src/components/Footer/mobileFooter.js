@@ -11,7 +11,7 @@ const MobileFooter = () => {
                         <Image
                             alt="profile"
                             src={palmTree}
-                            className="w-16 h-16 object-cover"
+                            className="w-16 h-16 "
                         />
                     </Link>
                     <p className="w-full">
