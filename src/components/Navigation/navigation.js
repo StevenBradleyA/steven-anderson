@@ -5,7 +5,7 @@ import { useGlobalState } from '../Context/stateContext';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import homePalm from '@public/Images/home.png';
+import homePalm from '@public/images/home.png';
 import { useMobile } from '../Context/mobileContext';
 
 function Navigation() {

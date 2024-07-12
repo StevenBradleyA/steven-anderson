@@ -3,14 +3,14 @@ import { useProgress } from '@react-three/drei';
 import { AnimatePresence, easeInOut, motion } from 'framer-motion';
 import { useGlobalState } from '../Context/stateContext';
 import Image from 'next/image';
-import loadingScreen from '@public/Images/loadingScreen4k.png';
-import barcode from '@public/Images/barcode.png';
-import computer from '@public/Images/computer.png';
-import grid from '@public/Images/grid.png';
-import sphere from '@public/Images/sphere.png';
-import hacktime from '@public/Images/hacktime.png';
-import palm from '@public/Images/palm.png';
-import tree from '@public/Images/tree.png';
+import loadingScreen from '@public/images/loadingScreen4k.png';
+import barcode from '@public/images/barcode.png';
+import computer from '@public/images/computer.png';
+import grid from '@public/images/grid.png';
+import sphere from '@public/images/sphere.png';
+import hacktime from '@public/images/hacktime.png';
+import palm from '@public/images/palm.png';
+import tree from '@public/images/tree.png';
 
 const TitleScreen = () => {
     const { setShowGame, showGame } = useGlobalState();
