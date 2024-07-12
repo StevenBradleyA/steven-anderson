@@ -1,3 +1,4 @@
+'use client';
 import NightSky from '@/components/Background/nightSky';
 import { useMobile } from '@/components/Context/mobileContext';
 import Footer from '@/components/Footer/footer';
@@ -13,7 +14,7 @@ export default function TermsOfService() {
                 <div className=" mt-72 w-1/2 rounded-lg bg-[#2E3B4E] bg-opacity-30  p-5 h-96 z-10">
                     things
                 </div>
-                <div className="mt-96 ">
+                <div className="mt-96 w-full ">
                     {isMobile ? <MobileFooter /> : <Footer />}
                 </div>
             </div>

@@ -9,16 +9,19 @@ import { useEffect, useState } from 'react';
 import LoadingSpinner from '@/components/Loading/loadingSpinner';
 
 export default function Home() {
-    const { showGame, activeCamera } = useGlobalState();
+    const { showGame, activeCamera, renderContent, setRenderContent } =
+        useGlobalState();
     const { isMobile } = useMobile();
-    const [renderContent, setRenderContent] = useState(false);
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setRenderContent(true);
-        }, 5200);
 
-        return () => clearTimeout(timer);
-    }, [isMobile]);
+    useEffect(() => {
+        if (renderContent === false) {
+            const timer = setTimeout(() => {
+                setRenderContent(true);
+            }, 5200);
+
+            return () => clearTimeout(timer);
+        }
+    }, []);
 
     if (!renderContent) {
         return <LoadingSpinner />;
