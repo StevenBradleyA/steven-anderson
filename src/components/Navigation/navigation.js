@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import homePalm from '@public/Images/home.png';
 import { useMobile } from '../Context/mobileContext';
+import AudioPlayer from '../Audio/audioPlayer';
 
 function Navigation() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1318,18 +1319,6 @@ function Navigation() {
                                                 Switch Camera
                                             </h2>
                                         </div>
-                                        {/* <div className="flex flex-col">
-                                            <h2 className="border-4 border-black  rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
-                                                Tour
-                                            </h2>
-                                            <h2 className="border-4 border-black  rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
-                                                Follow
-                                            </h2>
-                                            <h2 className="border-4 border-black  rounded-lg flex items-center justify-center hover:text-stevenBlue hover:border-[#007bff] ease-in-out">
-                                                Free
-                                            </h2>
-                                        </div> */}
-
                                         <div className=" w-[200px]">
                                             <h3>Camera</h3>
                                             <p className="text-xs text-stevenBlue">
@@ -1403,10 +1392,10 @@ function Navigation() {
                 {isMobile === false ? (
                     <AnimatePresence>
                         {isTertiaryMenuOpen && isMenuOpen && (
-                            <motion.div className=" absolute right-0 top-96 bottom-0 w-[550px] h-[100px] rounded-lg text-black flex flex-col z-10  text-xl overflow-hidden">
+                            <motion.div className=" absolute right-0 top-96 bottom-0 w-[550px] h-[300px] rounded-lg text-black flex flex-col z-10  text-xl overflow-hidden">
                                 <motion.div
                                     ref={tertiaryMenuRef}
-                                    className={` flex w-full justify-between items-center h-full px-6 ${
+                                    className={` flex w-full justify-between items-center h-full px-6 relative ${
                                         isTertiaryMenuOpen
                                             ? 'nav-menu-background-open'
                                             : 'nav-menu-background'
@@ -1419,7 +1408,7 @@ function Navigation() {
                                     exit={'exit'}
                                 >
                                     <motion.button
-                                        className="flex items-center flex-col text-sm close-button text-white"
+                                        className="flex items-center flex-col text-sm close-button text-white absolute top-2 right-2"
                                         initial={{ opacity: 0, x: 200 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
@@ -1447,12 +1436,9 @@ function Navigation() {
                                                 />
                                             </svg>
                                         </div>
-                                        <h2 className="px-2 py-1 rounded-lg close-button-text ">
-                                            Close
-                                        </h2>
                                     </motion.button>
 
-                                    <motion.button>audio </motion.button>
+                                    <AudioPlayer />
                                 </motion.div>
                             </motion.div>
                         )}
@@ -1509,7 +1495,7 @@ function Navigation() {
                                         </h2>
                                     </motion.button>
 
-                                    <motion.button>audio </motion.button>
+                                    <AudioPlayer />
                                 </motion.div>
                             </motion.div>
                         )}

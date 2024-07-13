@@ -11,24 +11,30 @@ import sphere from '@public/Images/sphere.png';
 import hacktime from '@public/Images/hacktime.png';
 import palm from '@public/Images/palm.png';
 import tree from '@public/Images/tree.png';
+import { useAudioPlayer } from '../Context/audioContext';
 
 const TitleScreen = () => {
     const { setShowGame, showGame } = useGlobalState();
+    const { handlePlay } = useAudioPlayer();
     const { progress } = useProgress();
 
     useEffect(() => {
         const anyInput = (event) => {
+            handlePlay();
             if (progress === 100) {
                 setShowGame(true);
             }
         };
+        const handleClick = () => {
+            handlePlay();
+        };
 
         window.addEventListener('keydown', anyInput);
-        window.addEventListener('click', anyInput);
+        window.addEventListener('click', handleClick);
 
         return () => {
             window.removeEventListener('keydown', anyInput);
-            window.removeEventListener('click', anyInput);
+            window.removeEventListener('click', handleClick);
         };
     }, [progress, setShowGame]);
 
@@ -98,6 +104,7 @@ const TitleScreen = () => {
                             <Image
                                 alt="portfolio icon"
                                 src={barcode}
+                                priority
                                 className="w-28 h-full hover:filter-blue-to-white opacity-50 ease-in"
                             />
 
@@ -200,13 +207,19 @@ const TitleScreen = () => {
                     </div>
                     <motion.button
                         key="title-button"
-                        className={`font-bebas fade-transition absolute bottom-20 text-3xl -translate-x-1/2  left-1/2 z-50 flex gap-1 hover:opacity-70 ease-in ${
+                        className={`font-bebas fade-transition absolute bottom-20 text-3xl -translate-x-1/2  left-1/2 z-50 flex gap-1 hover:text-white/50 ease-in ${
                             progress === 100
                                 ? 'text-stevenBlue '
                                 : 'text-gray-400'
                         }`}
                         whileHover="hover"
                         initial="initial"
+                        onClick={() => {
+                            if (progress === 100) {
+                                handlePlay();
+                                setShowGame(true);
+                            }
+                        }}
                     >
                         <div className="relative px-10 flex">
                             Press Any Key

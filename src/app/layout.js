@@ -3,6 +3,7 @@ import { GlobalStateProvider } from '@/components/Context/stateContext';
 import { GlobalMobileProvider } from '@/components/Context/mobileContext';
 // import Head from 'next/head';
 import Navigation from '@/components/Navigation/navigation';
+import { AudioPlayerProvider } from '@/components/Context/audioContext';
 
 /** @type {import("next").Metadata} */
 
@@ -82,8 +83,10 @@ export default function RootLayout({ children }) {
             <body className="font-poppins ">
                 <GlobalStateProvider>
                     <GlobalMobileProvider>
-                        <Navigation />
-                        {children}
+                        <AudioPlayerProvider>
+                            <Navigation />
+                            {children}
+                        </AudioPlayerProvider>
                     </GlobalMobileProvider>
                 </GlobalStateProvider>
             </body>
