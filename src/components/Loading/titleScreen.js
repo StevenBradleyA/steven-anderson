@@ -20,13 +20,17 @@ const TitleScreen = () => {
 
     useEffect(() => {
         const anyInput = (event) => {
-            handlePlay();
+            if (showGame === false) {
+                handlePlay();
+            }
             if (progress === 100) {
                 setShowGame(true);
             }
         };
         const handleClick = () => {
-            handlePlay();
+            if (showGame === false) {
+                handlePlay();
+            }
         };
 
         window.addEventListener('keydown', anyInput);
@@ -36,7 +40,7 @@ const TitleScreen = () => {
             window.removeEventListener('keydown', anyInput);
             window.removeEventListener('click', handleClick);
         };
-    }, [progress, setShowGame]);
+    }, [progress, setShowGame, showGame]);
 
     const loadingScreenVariants = {
         initial: { opacity: 0 },

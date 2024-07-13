@@ -46,27 +46,16 @@ export const AudioPlayerProvider = ({ children }) => {
     };
 
     const changeGenre = (genre) => {
-        if (genre === 'phonk') {
-            setCurrentGenre('phonk');
-        }
-        if (genre === 'synthwave') {
-            setCurrentGenre('synthwave');
-        }
+        setCurrentGenre(genre);
         setIsPlaying(false);
         audioRef.current.pause();
         setSources(genres[genre]);
         setCurrentSongIndex(0);
         audioRef.current.load();
-
-        const onCanPlayThrough = () => {
-            audioRef.current.removeEventListener(
-                'canplaythrough',
-                onCanPlayThrough
-            );
-            handlePlay();
-        };
-
-        audioRef.current.addEventListener('canplaythrough', onCanPlayThrough);
+        setTimeout(() => {
+            audioRef.current.play();
+            setIsPlaying(true);
+        }, [1000]);
     };
 
     const shuffleArray = (array) => {
@@ -79,12 +68,13 @@ export const AudioPlayerProvider = ({ children }) => {
     };
 
     const handlePlayPause = () => {
-        if (isPlaying) {
+        if (isPlaying === true) {
             audioRef.current.pause();
+            setIsPlaying(false);
         } else {
             audioRef.current.play();
+            setIsPlaying(true);
         }
-        setIsPlaying(!isPlaying);
     };
 
     const handlePlay = () => {
@@ -173,7 +163,9 @@ export const AudioPlayerProvider = ({ children }) => {
     }, [currentSongIndex, isPlaying]);
 
     useEffect(() => {
-        audioRef.current.volume = volume;
+        if (audioRef.current) {
+            audioRef.current.volume = volume;
+        }
     }, [volume]);
 
     useEffect(() => {
@@ -231,6 +223,8 @@ export const AudioPlayerProvider = ({ children }) => {
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
                 onEnded={handleEnded}
+                // onPlay={() => setIsPlaying(true)}
+                // onPause={() => setIsPlaying(false)}
             />
             {children}
         </AudioPlayerContext.Provider>
