@@ -17,7 +17,7 @@ export default function Home() {
         if (renderContent === false) {
             const timer = setTimeout(() => {
                 setRenderContent(true);
-            }, 5200);
+            }, 4800);
 
             return () => clearTimeout(timer);
         }

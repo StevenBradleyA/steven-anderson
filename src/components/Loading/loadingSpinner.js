@@ -9,7 +9,7 @@ const LoadingSpinner = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setShow(false);
-        }, 4600);
+        }, 4000);
 
         return () => clearTimeout(timer);
     }, []);
@@ -45,14 +45,14 @@ const LoadingSpinner = () => {
         initial: { opacity: 1 },
         animate: {
             opacity: 0,
-            transition: { duration: 0, delay: 1.8 },
+            transition: { duration: 0, delay: 1.4 },
         },
     };
     const cursorExtendAnimation = {
         initial: { opacity: 0 },
         animate: {
             opacity: [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            transition: { duration: 1.5, delay: 1.7 },
+            transition: { duration: 1, delay: 1.4 },
             transitionEnd: {
                 opacity: 0,
             },
@@ -62,7 +62,7 @@ const LoadingSpinner = () => {
         initial: { opacity: 0 },
         animate: {
             opacity: 1,
-            transition: { duration: 0, delay: 3.2 },
+            transition: { duration: 0, delay: 2.3 },
         },
     };
 
@@ -71,7 +71,7 @@ const LoadingSpinner = () => {
         animate: {
             opacity: 0,
             x: -100,
-            transition: { duration: 0.5, delay: 3.2 },
+            transition: { duration: 0.5, delay: 2.3 },
         },
     };
 
@@ -80,7 +80,7 @@ const LoadingSpinner = () => {
         animate: {
             opacity: 1,
             x: 0,
-            transition: { duration: 0.5, delay: 3.2 },
+            transition: { duration: 0.5, delay: 2.6 },
         },
     };
 
