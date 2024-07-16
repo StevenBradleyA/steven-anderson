@@ -9,7 +9,7 @@ export const AudioPlayerProvider = ({ children }) => {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [currentSongIndex, setCurrentSongIndex] = useState(0);
-    const [volume, setVolume] = useState(0.2);
+    const [volume, setVolume] = useState(0.25);
     const [isShuffling, setIsShuffling] = useState(false);
     const [shuffledOrder, setShuffledOrder] = useState([]);
     const [isRepeating, setIsRepeating] = useState(false);
@@ -327,8 +327,6 @@ export const AudioPlayerProvider = ({ children }) => {
                 onTimeUpdate={handleTimeUpdate}
                 onLoadedMetadata={handleLoadedMetadata}
                 onEnded={handleEnded}
-                // onPlay={() => setIsPlaying(true)}
-                // onPause={() => setIsPlaying(false)}
             />
             {children}
         </AudioPlayerContext.Provider>
