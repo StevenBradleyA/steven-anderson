@@ -79,7 +79,6 @@ export const viewport = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            {/* night-sky here */}
             <body className="font-poppins ">
                 <GlobalStateProvider>
                     <GlobalMobileProvider>

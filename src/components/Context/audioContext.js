@@ -15,33 +15,137 @@ export const AudioPlayerProvider = ({ children }) => {
     const [isRepeating, setIsRepeating] = useState(false);
     const [currentGenre, setCurrentGenre] = useState('synthwave');
     const [sources, setSources] = useState([
-        { src: '/music/first.mp3', title: 'Song 1', artist: 'Artist 1' },
-        { src: '/music/second.mp3', title: 'Song 2', artist: 'Artist 2' },
-        { src: '/music/third.mp3', title: 'Song 3', artist: 'Artist 3' },
+        {
+            src: '/music/synthwave/horizon.mp3',
+            title: 'Horizon',
+            artist: 'VOYAGER',
+        },
+        {
+            src: '/music/synthwave/flare.mp3',
+            title: 'Flare',
+            artist: 'Jasper De Ceuster',
+        },
+        {
+            src: '/music/synthwave/supernal.mp3',
+            title: 'Supernal',
+            artist: 'Forhill & oDDling',
+        },
+        {
+            src: '/music/synthwave/addictiveFeeling.mp3',
+            title: 'Addictive Feeling',
+            artist: 'Mad Animal',
+        },
+        {
+            src: '/music/synthwave/laDreamin.mp3',
+            title: 'L.A Dreamin',
+            artist: 'Mad Animal',
+        },
+        {
+            src: '/music/synthwave/loveFrequencies.mp3',
+            title: 'Love Frequencies',
+            artist: 'Mad Animal',
+        },
+        {
+            src: '/music/synthwave/addictiveFeeling.mp3',
+            title: 'Addictive Feeling',
+            artist: 'Mad Animal',
+        },
+        {
+            src: '/music/synthwave/ghostTrigger.mp3',
+            title: 'Ghost Trigger',
+            artist: 'SHIKIMO',
+        },
+        {
+            src: '/music/synthwave/retrowave.mp3',
+            title: 'Retrowave',
+            artist: 'Paul Velchev',
+        },
     ]);
 
     const genres = {
         synthwave: [
             {
-                src: '/music/first.mp3',
-                title: 'Synthwave 1',
-                artist: 'Artist 1',
+                src: '/music/synthwave/horizon.mp3',
+                title: 'Horizon',
+                artist: 'VOYAGER',
             },
             {
-                src: '/music/second.mp3',
-                title: 'Synthwave 2',
-                artist: 'Artist 2',
+                src: '/music/synthwave/flare.mp3',
+                title: 'Flare',
+                artist: 'Jasper De Ceuster',
             },
             {
-                src: '/music/third.mp3',
-                title: 'Synthwave 3',
-                artist: 'Artist 3',
+                src: '/music/synthwave/supernal.mp3',
+                title: 'Supernal',
+                artist: 'Forhill & oDDling',
+            },
+            {
+                src: '/music/synthwave/addictiveFeeling.mp3',
+                title: 'Addictive Feeling',
+                artist: 'Mad Animal',
+            },
+            {
+                src: '/music/synthwave/laDreamin.mp3',
+                title: 'L.A Dreamin',
+                artist: 'Mad Animal',
+            },
+            {
+                src: '/music/synthwave/loveFrequencies.mp3',
+                title: 'Love Frequencies',
+                artist: 'Mad Animal',
+            },
+            {
+                src: '/music/synthwave/addictiveFeeling.mp3',
+                title: 'Addictive Feeling',
+                artist: 'Mad Animal',
+            },
+            {
+                src: '/music/synthwave/ghostTrigger.mp3',
+                title: 'Ghost Trigger',
+                artist: 'SHIKIMO',
+            },
+            {
+                src: '/music/synthwave/retrowave.mp3',
+                title: 'Retrowave',
+                artist: 'Paul Velchev',
             },
         ],
         phonk: [
-            { src: '/music/first.mp3', title: 'Phonk 1', artist: 'Artist 1' },
-            { src: '/music/second.mp3', title: 'Phonk 2', artist: 'Artist 2' },
-            { src: '/music/third.mp3', title: 'Phonk 3', artist: 'Artist 3' },
+            {
+                src: '/music/phonk/upgrade.mp3',
+                title: 'UPGRADE',
+                artist: 'OFFL1NX',
+            },
+            {
+                src: '/music/phonk/chase.mp3',
+                title: 'Chase',
+                artist: 'KSLV',
+            },
+            {
+                src: '/music/phonk/doOrDie.mp3',
+                title: 'DO OR DIE',
+                artist: 'Dxrk',
+            },
+            {
+                src: '/music/phonk/paradigma.mp3',
+                title: 'PARADIGMA',
+                artist: 'ORSEN',
+            },
+            {
+                src: '/music/phonk/rapture.mp3',
+                title: 'RAPTURE',
+                artist: 'INTERWORLD',
+            },
+            {
+                src: '/music/phonk/cowbell.mp3',
+                title: 'cowbell',
+                artist: 'ditro',
+            },
+            {
+                src: '/music/phonk/sxndnxdes.mp3',
+                title: 'S.X.N.D N.X.D.E.S',
+                artist: 'GREEN ORXNGE, SEND 1',
+            },
         ],
     };
 
