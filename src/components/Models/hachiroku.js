@@ -16,6 +16,10 @@ import { useGlobalState } from '../Context/stateContext';
 const Hachiroku = () => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
 
+    // input
+    const keysPressed = useRef({});
+    const switchCameraFlag = useRef(false);
+
     // car refs
     const carRef = useRef();
     const rfwParentRef = useRef();
@@ -29,31 +33,25 @@ const Hachiroku = () => {
     const brakeLightsRef = useRef();
 
     // camera
-    const {
-        activeCamera,
-        setActiveCamera,
-        showGame,
-        isOnGround,
-        keysPressed,
-        setKeysPressed,
-    } = useGlobalState();
+    const { activeCamera, setActiveCamera, showGame, isOnGround } =
+        useGlobalState();
 
     // car tuning
     const topSpeed = 200;
     const torqueFactor = 12;
     const steerAngle = Math.PI / 9;
     const respawnHeight = 900;
-    const maxSpeedForTurning = 69; 
+    const maxSpeedForTurning = 69;
 
     useEffect(() => {
         const handleKeyDown = (event) => {
             const key = event.key.toLowerCase();
-            setKeysPressed((prevKeys) => ({ ...prevKeys, [key]: true }));
+            keysPressed.current[key] = true;
         };
 
         const handleKeyUp = (event) => {
             const key = event.key.toLowerCase();
-            setKeysPressed((prevKeys) => ({ ...prevKeys, [key]: false }));
+            keysPressed.current[key] = false;
         };
 
         window.addEventListener('keydown', handleKeyDown);
@@ -65,19 +63,10 @@ const Hachiroku = () => {
         };
     }, []);
 
-    useEffect(() => {
-        const switchCamera = keysPressed['c'];
-        const movementKey =
-            keysPressed['arrowup'] ||
-            keysPressed['arrowdown'] ||
-            keysPressed['arrowleft'] ||
-            keysPressed['arrowright'] ||
-            keysPressed['e'] ||
-            keysPressed['s'] ||
-            keysPressed['d'] ||
-            keysPressed['f'];
+    useFrame((state, delta) => {
+        const switchCamera = keysPressed.current['c'];
 
-        if (switchCamera && showGame === true) {
+        if (showGame === true && switchCamera && !switchCameraFlag.current) {
             setActiveCamera((prev) => {
                 if (prev === 'initial') return 'follow';
                 if (prev === 'follow') return 'free';
@@ -86,19 +75,33 @@ const Hachiroku = () => {
             });
         }
 
-        if (movementKey && showGame === true && activeCamera === 'initial') {
-            setActiveCamera('follow');
-        }
-    }, [keysPressed]);
+        switchCameraFlag.current = switchCamera;
 
-    useFrame((state, delta) => {
+        if (showGame === true && activeCamera === 'initial') {
+            const movementKey =
+                keysPressed.current['arrowup'] ||
+                keysPressed.current['arrowdown'] ||
+                keysPressed.current['arrowleft'] ||
+                keysPressed.current['arrowright'] ||
+                keysPressed.current['e'] ||
+                keysPressed.current['s'] ||
+                keysPressed.current['d'] ||
+                keysPressed.current['f'];
+
+            if (movementKey) setActiveCamera('follow');
+        }
+
         if (activeCamera === 'follow') {
-            const moveForward = keysPressed['arrowup'] || keysPressed['e'];
-            const moveBackward = keysPressed['arrowdown'] || keysPressed['d'];
-            const steerLeft = keysPressed['arrowleft'] || keysPressed['s'];
-            const steerRight = keysPressed['arrowright'] || keysPressed['f'];
-            const respawn = keysPressed['r'];
-            const flip = keysPressed['shift'];
+            const moveForward =
+                keysPressed.current['arrowup'] || keysPressed.current['e'];
+            const moveBackward =
+                keysPressed.current['arrowdown'] || keysPressed.current['d'];
+            const steerLeft =
+                keysPressed.current['arrowleft'] || keysPressed.current['s'];
+            const steerRight =
+                keysPressed.current['arrowright'] || keysPressed.current['f'];
+            const respawn = keysPressed.current['r'];
+            const flip = keysPressed.current['shift'];
 
             const scaledForwardAcceleration = 55000 * delta;
             const scaledReverseAcceleration = 45000 * delta;

@@ -15,7 +15,7 @@ const RetroSun = () => {
     //     emissive: new THREE.Color(0xff007f),
     //     emissiveIntensity: 0.8,
     // });
-    
+
     useEffect(() => {
         if (sunRef.current) {
             const emissive = new THREE.Color(

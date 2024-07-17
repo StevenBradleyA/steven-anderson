@@ -8,7 +8,6 @@ export const GlobalStateProvider = ({ children }) => {
     const [isTunnel, setIsTunnel] = useState(false);
     const [isOnGround, setIsOnGround] = useState(false);
     const [activeCamera, setActiveCamera] = useState('initial');
-    const [keysPressed, setKeysPressed] = useState({});
 
     return (
         <GlobalStateContext.Provider
@@ -23,8 +22,6 @@ export const GlobalStateProvider = ({ children }) => {
                 setIsTunnel,
                 isOnGround,
                 setIsOnGround,
-                keysPressed,
-                setKeysPressed,
             }}
         >
             {children}

@@ -5,9 +5,10 @@ import { useGlobalState } from '../Context/stateContext';
 import { damp, damp3, dampLookAt } from 'maath/easing';
 
 const CameraManager = ({ carRef, keysPressed }) => {
-    const { activeCamera, setActiveCamera } = useGlobalState();
+    const { activeCamera, setActiveCamera, showGame } = useGlobalState();
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
+
 
     // follow
     const isRotating = useRef(false);
@@ -117,14 +118,18 @@ const CameraManager = ({ carRef, keysPressed }) => {
             cameraTarget.current.lerp(lookAts[currentIndex], 6 * delta);
             camera.lookAt(cameraTarget.current);
         } else if (activeCamera === 'free') {
-            const moveForward = keysPressed['e'] || keysPressed['arrowup'];
-            const moveBackward = keysPressed['d'] || keysPressed['arrowdown'];
-            const moveLeft = keysPressed['s'] || keysPressed['arrowleft'];
-            const moveRight = keysPressed['f'] || keysPressed['arrowright'];
-            const moveUp = keysPressed['r'] || keysPressed[' '];
-            const moveDown = keysPressed['w'];
-            const increaseSpeed = keysPressed['g'];
-            const decreaseSpeed = keysPressed['a'];
+            const moveForward =
+                keysPressed.current['e'] || keysPressed.current['arrowup'];
+            const moveBackward =
+                keysPressed.current['d'] || keysPressed.current['arrowdown'];
+            const moveLeft =
+                keysPressed.current['s'] || keysPressed.current['arrowleft'];
+            const moveRight =
+                keysPressed.current['f'] || keysPressed.current['arrowright'];
+            const moveUp = keysPressed.current['r'] || keysPressed.current[' '];
+            const moveDown = keysPressed.current['w'];
+            const increaseSpeed = keysPressed.current['g'];
+            const decreaseSpeed = keysPressed.current['a'];
 
             if (increaseSpeed)
                 cameraSpeedRef.current = Math.min(
