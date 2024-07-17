@@ -72,7 +72,7 @@ const ThreeScene = () => {
                         <Skills />
                     </Physics>
                     <CustomBackground />
-                    <GrassBlades />
+                    {/* <GrassBlades /> */}
                     <RetroSun />
                     <Mustang />
                     <MechanicalKeyboard />

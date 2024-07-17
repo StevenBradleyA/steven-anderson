@@ -1461,8 +1461,8 @@ function Navigation() {
                                     }
                                     exit={'exit'}
                                 >
-                                    <motion.button
-                                        className="flex items-center flex-col text-sm close-button text-white"
+                                   <motion.button
+                                        className="flex items-center flex-col text-sm close-button text-white absolute top-2 right-2"
                                         initial={{ opacity: 0, x: 200 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{
@@ -1490,9 +1490,6 @@ function Navigation() {
                                                 />
                                             </svg>
                                         </div>
-                                        <h2 className="px-2 py-1 rounded-lg close-button-text ">
-                                            Close
-                                        </h2>
                                     </motion.button>
 
                                     <AudioPlayer />

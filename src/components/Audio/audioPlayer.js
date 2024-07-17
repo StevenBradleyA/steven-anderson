@@ -1,6 +1,7 @@
 'use client';
 
 import { useAudioPlayer } from '../Context/audioContext';
+import { useCallback } from 'react';
 
 const AudioPlayer = () => {
     const {
@@ -23,30 +24,38 @@ const AudioPlayer = () => {
         isPlaying,
     } = useAudioPlayer();
 
-    const formatTime = (seconds) => {
+    // const formatTime = (seconds) => {
+    //     const minutes = Math.floor(seconds / 60);
+    //     const remainingSeconds = Math.floor(seconds % 60);
+    //     return `${minutes}:${
+    //         remainingSeconds < 10 ? '0' : ''
+    //     }${remainingSeconds}`;
+    // };
+
+    const formatTime = useCallback((seconds) => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = Math.floor(seconds % 60);
-        return `${minutes}:${
-            remainingSeconds < 10 ? '0' : ''
-        }${remainingSeconds}`;
-    };
+        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+    }, []);
+
+
     return (
-        <div className="flex flex-col w-full h-full items-center">
+        <div className="flex flex-col w-full h-full items-center px-3">
             <div className="mt-10">{currentTitle}</div>
             <div className="text-sm text-black/50 ">{currentArtist}</div>
             <input
-                className="w-3/4 custom-range mt-3"
+                className="w-full tablet:w-3/4 custom-range mt-3"
                 type="range"
                 min="0"
                 max={duration}
                 value={currentTime}
                 onChange={handleSliderChange}
             />
-            <div className="w-3/4 flex justify-between text-xs text-black/50">
+            <div className="w-full tablet:w-3/4 flex justify-between text-xs text-black/50">
                 <div>{formatTime(currentTime)}</div>
                 <div>{formatTime(duration)}</div>
             </div>
-            <div className="flex w-3/4 justify-between mt-3">
+            <div className="flex w-full tablet:w-3/4 justify-between mt-3">
                 <button
                     onClick={toggleShuffle}
                     className="hover:text-stevenBlue ease-in"
