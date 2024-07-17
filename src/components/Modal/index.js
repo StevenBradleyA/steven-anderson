@@ -48,7 +48,7 @@ const ModalDialog = ({ isOpen, onClose, children }) => {
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                     />
                     <motion.div
-                        className="relative flex rounded-lg bg-keebyGray p-10 shadow-lg"
+                        className="relative flex rounded-lg bg-white/50 p-10 shadow-lg text-black"
                         initial={{ scale: 0.8, y: -20, opacity: 0 }}
                         animate={{ scale: 1, y: 0, opacity: 1 }}
                         exit={{ scale: 0.8, y: 20, opacity: 0 }}
@@ -60,7 +60,7 @@ const ModalDialog = ({ isOpen, onClose, children }) => {
                         onClick={handleModalClick}
                     >
                         <button
-                            className="absolute right-4 top-2 transform text-lg text-gray-600 transition-transform duration-300 ease-in-out hover:rotate-45 hover:scale-110 hover:text-green-500"
+                            className="absolute right-4 top-2 transform text-lg text-gray-600 transition-transform duration-300 ease-in-out hover:rotate-45 hover:scale-110 hover:text-stevenBlue"
                             onClick={handleClose}
                         >
                             &times;
