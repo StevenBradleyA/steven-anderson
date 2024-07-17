@@ -8,6 +8,7 @@ export const GlobalStateProvider = ({ children }) => {
     const [isTunnel, setIsTunnel] = useState(false);
     const [isOnGround, setIsOnGround] = useState(false);
     const [activeCamera, setActiveCamera] = useState('initial');
+    const [modalPopup, setModalPopup] = useState('');
 
     return (
         <GlobalStateContext.Provider
@@ -22,6 +23,8 @@ export const GlobalStateProvider = ({ children }) => {
                 setIsTunnel,
                 isOnGround,
                 setIsOnGround,
+                modalPopup,
+                setModalPopup,
             }}
         >
             {children}

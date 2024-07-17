@@ -32,7 +32,7 @@ const ProjectGch = () => {
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
             window.open(
-                'https://www.youtube.com/watch?v=wu4NYMmk8pk&t=23s',
+                'https://www.genevieveclare.hair',
                 '_blank'
             );
         }

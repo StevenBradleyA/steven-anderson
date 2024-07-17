@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
     CuboidCollider,
     RigidBody,
@@ -10,8 +10,6 @@ import { useGLTF } from '@react-three/drei';
 import * as THREE from 'three';
 import CameraManager from '../Camera/cameraManager';
 import { useGlobalState } from '../Context/stateContext';
-
-// prompt user with press shift to flip car... or r for respawn -- when is upside true
 
 const Hachiroku = () => {
     const { nodes, materials } = useGLTF('/models/hachiroku.glb');
@@ -297,7 +295,6 @@ const Hachiroku = () => {
         emissive: new THREE.Color(0xffa500),
         emissiveIntensity: 0.5,
     });
-    // When determining pivot point for each wheel. Set origin to geometry for each lrw (lugs, wheel, tire) in blender. Then set a parent pivot position and adjust positions relatively
     return (
         <>
             <RigidBody

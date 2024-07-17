@@ -7,10 +7,16 @@ import { useMobile } from '@/components/Context/mobileContext';
 import MobileThreeScene from '@/components/Models/mobileThreeScene';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '@/components/Loading/loadingSpinner';
+import SiegmeyerPopup from '@/components/Popups/siegmeyerPopup';
 
 export default function Home() {
-    const { showGame, activeCamera, renderContent, setRenderContent } =
-        useGlobalState();
+    const {
+        showGame,
+        activeCamera,
+        renderContent,
+        setRenderContent,
+        modalPopup,
+    } = useGlobalState();
     const { isMobile } = useMobile();
 
     useEffect(() => {
@@ -34,6 +40,7 @@ export default function Home() {
                     activeCamera === 'initial' &&
                     isMobile === false && <ControlsScript />}
                 {isMobile === false ? <ThreeScene /> : <MobileThreeScene />}
+                {modalPopup === 'siegmeyer' && <SiegmeyerPopup />}
             </div>
         </main>
     );

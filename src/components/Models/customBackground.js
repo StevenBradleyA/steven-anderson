@@ -4,10 +4,11 @@ import React, { useMemo } from 'react';
 import * as THREE from 'three';
 import { useAudioPlayer } from '../Context/audioContext';
 
+// #8a2be2
+// #ff69b4
+
 const CustomBackground = () => {
     const { genre } = useAudioPlayer();
-    // #8a2be2
-    // #ff69b4
     const createGradientTexture = (startColor, endColor) => {
         const size = 512;
         const canvas = document.createElement('canvas');
@@ -45,19 +46,6 @@ const CustomBackground = () => {
             ),
         [genre]
     );
-
-    // const gradientTexture = useMemo(
-    //     () => createGradientTexture('#2e0249', '#000000'),
-    //     []
-    // );
-    // const bottomGradientTexture = useMemo(
-    //     () => createGradientTexture('#000000', '#000000'),
-    //     []
-    // );
-    // const topGradientTexture = useMemo(
-    //     () => createGradientTexture('#2e0249', '#2e0249'),
-    //     []
-    // );
 
     const planes = [
         {

@@ -2,19 +2,18 @@ import { useState, useEffect, useRef } from 'react';
 import { useThree, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { useGlobalState } from '../Context/stateContext';
-import { damp, damp3, dampLookAt } from 'maath/easing';
+import { damp3, dampLookAt } from 'maath/easing';
 
 const CameraManager = ({ carRef, keysPressed }) => {
-    const { activeCamera, setActiveCamera, showGame } = useGlobalState();
+    const { activeCamera, setActiveCamera } = useGlobalState();
     const { camera, gl } = useThree();
     const cameraTarget = useRef(new THREE.Vector3());
-
 
     // follow
     const isRotating = useRef(false);
     const startRotate = useRef(new THREE.Vector2());
-    const [followHeight, setFollowHeight] = useState(15);
-    const [followDistance, setFollowDistance] = useState(40);
+    const followHeight = 15;
+    const followDistance = 40;
 
     // free
     const cameraSpeedRef = useRef(100);
@@ -66,7 +65,6 @@ const CameraManager = ({ carRef, keysPressed }) => {
                 isRotating.current = true;
                 startRotate.current.set(event.clientX, event.clientY);
             }
-            if (activeCamera === 'initial') setActiveCamera('follow');
         };
 
         const onMouseMove = (event) => {
