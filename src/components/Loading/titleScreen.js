@@ -11,34 +11,36 @@ import sphere from '@public/Images/sphere.png';
 import hacktime from '@public/Images/hacktime.png';
 import palm from '@public/Images/palm.png';
 import tree from '@public/Images/tree.png';
-// import { useAudioPlayer } from '../Context/audioContext';
+import { useAudioPlayer } from '../Context/audioContext';
 
 const TitleScreen = () => {
     const { setShowGame, showGame } = useGlobalState();
-    // const { handlePlay } = useAudioPlayer();
+    const { setIsPlaying, audioRef, isPlaying } = useAudioPlayer();
     const { progress } = useProgress();
 
     useEffect(() => {
         const anyInput = (event) => {
-            // if (showGame === false) {
-            //     handlePlay();
-            // }
+            if (showGame === false && isPlaying === false) {
+                audioRef.current.play();
+                setIsPlaying(true);
+            }
             if (progress === 100) {
                 setShowGame(true);
             }
         };
-        // const handleClick = () => {
-        //     if (showGame === false) {
-        //         handlePlay();
-        //     }
-        // };
+        const handleClick = () => {
+            if (showGame === false && isPlaying === false) {
+                audioRef.current.play();
+                setIsPlaying(true);
+            }
+        };
 
         window.addEventListener('keydown', anyInput);
-        // window.addEventListener('click', handleClick);
+        window.addEventListener('click', handleClick);
 
         return () => {
             window.removeEventListener('keydown', anyInput);
-            // window.removeEventListener('click', handleClick);
+            window.removeEventListener('click', handleClick);
         };
     }, [progress, setShowGame, showGame]);
 

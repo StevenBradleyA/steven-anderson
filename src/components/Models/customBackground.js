@@ -2,13 +2,12 @@
 import { Plane } from '@react-three/drei';
 import React, { useMemo } from 'react';
 import * as THREE from 'three';
-// import { useAudioPlayer } from '../Context/audioContext';
+import { useAudioPlayer } from '../Context/audioContext';
 
 const CustomBackground = () => {
-    // const { currentGenre } = useAudioPlayer();
+    const { genre } = useAudioPlayer();
     // #8a2be2
     // #ff69b4
-    console.log('hello there');
     const createGradientTexture = (startColor, endColor) => {
         const size = 512;
         const canvas = document.createElement('canvas');
@@ -26,39 +25,39 @@ const CustomBackground = () => {
         return new THREE.CanvasTexture(canvas);
     };
 
-    // const gradientTexture = useMemo(
-    //     () =>
-    //         createGradientTexture(
-    //             currentGenre === 'phonk' ? '#007bff   ' : '#2e0249',
-    //             '#000000'
-    //         ),
-    //     [currentGenre]
-    // );
-    // const bottomGradientTexture = useMemo(
-    //     () => createGradientTexture('#000000', '#000000'),
-    //     []
-    // );
-    // const topGradientTexture = useMemo(
-    //     () =>
-    //         createGradientTexture(
-    //             currentGenre === 'phonk' ? '#007bff      ' : '#2e0249',
-    //             currentGenre === 'phonk' ? '#007bff      ' : '#2e0249'
-    //         ),
-    //     [currentGenre]
-    // );
-
     const gradientTexture = useMemo(
-        () => createGradientTexture('#2e0249', '#000000'),
-        []
+        () =>
+            createGradientTexture(
+                genre === 'phonk' ? '#007bff' : '#2e0249',
+                '#000000'
+            ),
+        [genre]
     );
     const bottomGradientTexture = useMemo(
         () => createGradientTexture('#000000', '#000000'),
         []
     );
     const topGradientTexture = useMemo(
-        () => createGradientTexture('#2e0249', '#2e0249'),
-        []
+        () =>
+            createGradientTexture(
+                genre === 'phonk' ? '#007bff' : '#2e0249',
+                genre === 'phonk' ? '#007bff' : '#2e0249'
+            ),
+        [genre]
     );
+
+    // const gradientTexture = useMemo(
+    //     () => createGradientTexture('#2e0249', '#000000'),
+    //     []
+    // );
+    // const bottomGradientTexture = useMemo(
+    //     () => createGradientTexture('#000000', '#000000'),
+    //     []
+    // );
+    // const topGradientTexture = useMemo(
+    //     () => createGradientTexture('#2e0249', '#2e0249'),
+    //     []
+    // );
 
     const planes = [
         {
@@ -93,7 +92,7 @@ const CustomBackground = () => {
         }, // Bottom
     ];
 
-    // console.log(currentGenre)
+    // console.log(genre)
 
     return (
         <>

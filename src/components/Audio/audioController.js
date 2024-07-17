@@ -217,6 +217,7 @@ const AudioController = () => {
             currentTimeRef.current = 0;
             setDisplayedTime(0);
             setGenre('phonk');
+            setTrackIndex(0);
             setTimeout(() => {
                 setIsPlaying(true);
                 audioRef.current.play();
@@ -224,6 +225,7 @@ const AudioController = () => {
         } else if (genre === 'phonk') {
             setIsPlaying(false);
             setGenre('synthwave');
+            setTrackIndex(0);
             setTimeout(() => {
                 setIsPlaying(true);
                 audioRef.current.play();
