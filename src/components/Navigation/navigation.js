@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import homePalm from '@public/Images/home.png';
 import { useMobile } from '../Context/mobileContext';
-import AudioPlayer from '../Audio/audioPlayer';
+import AudioController from '../Audio/audioController';
 
 function Navigation() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -1438,7 +1438,7 @@ function Navigation() {
                                         </div>
                                     </motion.button>
 
-                                    <AudioPlayer />
+                                    <AudioController />
                                 </motion.div>
                             </motion.div>
                         )}
@@ -1461,7 +1461,7 @@ function Navigation() {
                                     }
                                     exit={'exit'}
                                 >
-                                   <motion.button
+                                    <motion.button
                                         className="flex items-center flex-col text-sm close-button text-white absolute top-2 right-2"
                                         initial={{ opacity: 0, x: 200 }}
                                         animate={{ opacity: 1, x: 0 }}
@@ -1492,7 +1492,7 @@ function Navigation() {
                                         </div>
                                     </motion.button>
 
-                                    <AudioPlayer />
+                                    <AudioController />
                                 </motion.div>
                             </motion.div>
                         )}

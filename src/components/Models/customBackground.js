@@ -2,7 +2,7 @@
 import { Plane } from '@react-three/drei';
 import React, { useMemo } from 'react';
 import * as THREE from 'three';
-import { useAudioPlayer } from '../Context/audioContext';
+// import { useAudioPlayer } from '../Context/audioContext';
 
 const CustomBackground = () => {
     // const { currentGenre } = useAudioPlayer();

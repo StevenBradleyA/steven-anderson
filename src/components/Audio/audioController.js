@@ -1,64 +1,281 @@
 'use client';
-
+import { useRef, useEffect, useState } from 'react';
 import { useAudioPlayer } from '../Context/audioContext';
-import { useCallback } from 'react';
 
-const AudioPlayer = () => {
+const AudioController = () => {
+    const trackList = {
+        synthwave: [
+            {
+                src: '/music/synthwave/horizon.mp3',
+                title: 'Horizon',
+                artist: 'VOYAGER',
+                duration: 247.848,
+            },
+            {
+                src: '/music/synthwave/flare.mp3',
+                title: 'Flare',
+                artist: 'Jasper De Ceuster',
+                duration: 218.976,
+            },
+            {
+                src: '/music/synthwave/supernal.mp3',
+                title: 'Supernal',
+                artist: 'Forhill & oDDling',
+                duration: 235.704,
+            },
+            {
+                src: '/music/synthwave/addictiveFeeling.mp3',
+                title: 'Addictive Feeling',
+                artist: 'Mad Animal',
+                duration: 307.272,
+            },
+            {
+                src: '/music/synthwave/laDreamin.mp3',
+                title: 'L.A Dreamin',
+                artist: 'Mad Animal',
+                duration: 219.624,
+            },
+            {
+                src: '/music/synthwave/loveFrequencies.mp3',
+                title: 'Love Frequencies',
+                artist: 'Mad Animal',
+                duration: 226.176,
+            },
+            {
+                src: '/music/synthwave/ghostTrigger.mp3',
+                title: 'Ghost Trigger',
+                artist: 'SHIKIMO',
+                duration: 292.224,
+            },
+            {
+                src: '/music/synthwave/retrowave.mp3',
+                title: 'Retrowave',
+                artist: 'Paul Velchev',
+                duration: 148.632,
+            },
+        ],
+        phonk: [
+            {
+                src: '/music/phonk/upgrade.mp3',
+                title: 'UPGRADE',
+                artist: 'OFFL1NX',
+                duration: 112.728,
+            },
+            {
+                src: '/music/phonk/chase.mp3',
+                title: 'Chase',
+                artist: 'KSLV',
+                duration: 124.488,
+            },
+            {
+                src: '/music/phonk/doOrDie.mp3',
+                title: 'DO OR DIE',
+                artist: 'Dxrk',
+                duration: 96.408,
+            },
+            {
+                src: '/music/phonk/paradigma.mp3',
+                title: 'PARADIGMA',
+                artist: 'ORSEN',
+                duration: 123.792,
+            },
+            {
+                src: '/music/phonk/rapture.mp3',
+                title: 'RAPTURE',
+                artist: 'INTERWORLD',
+                duration: 164.784,
+            },
+            {
+                src: '/music/phonk/cowbell.mp3',
+                title: 'cowbell',
+                artist: 'ditro',
+                duration: 184.752,
+            },
+            {
+                src: '/music/phonk/sxndnxdes.mp3',
+                title: 'S.X.N.D N.X.D.E.S',
+                artist: 'GREEN ORXNGE, SEND 1',
+                duration: 109.68,
+            },
+        ],
+    };
+
     const {
-        currentTime,
-        duration,
-        volume,
-        isShuffling,
-        isRepeating,
-        currentTitle,
-        currentArtist,
-        handlePlayPause,
-        handleSliderChange,
-        handleVolumeChange,
-        handleNext,
-        handlePrev,
-        changeGenre,
-        toggleShuffle,
-        toggleRepeat,
-        currentGenre,
+        audioRef,
         isPlaying,
+        setIsPlaying,
+        genre,
+        setGenre,
+        trackIndex,
+        setTrackIndex,
+        isShuffle,
+        setIsShuffle,
+        isRepeat,
+        setIsRepeat,
     } = useAudioPlayer();
 
-    // const formatTime = (seconds) => {
-    //     const minutes = Math.floor(seconds / 60);
-    //     const remainingSeconds = Math.floor(seconds % 60);
-    //     return `${minutes}:${
-    //         remainingSeconds < 10 ? '0' : ''
-    //     }${remainingSeconds}`;
-    // };
+    const currentTimeRef = useRef(0);
+    const requestRef = useRef();
+    const [displayedTime, setDisplayedTime] = useState(0);
 
-    const formatTime = useCallback((seconds) => {
+    useEffect(() => {
+        const updateCurrentTime = () => {
+            if (audioRef.current) {
+                currentTimeRef.current = audioRef.current.currentTime;
+                setDisplayedTime(currentTimeRef.current);
+                if (
+                    currentTimeRef.current >=
+                        trackList[genre][trackIndex].duration &&
+                    isRepeat === false
+                ) {
+                    nextTrack();
+                } else if (
+                    currentTimeRef.current >=
+                        trackList[genre][trackIndex].duration &&
+                    isRepeat === true
+                ) {
+                    audioRef.current.currentTime = 0;
+                    currentTimeRef.current = 0;
+                    setDisplayedTime(0);
+                }
+            }
+            requestRef.current = requestAnimationFrame(updateCurrentTime);
+        };
+
+        if (isPlaying) {
+            requestRef.current = requestAnimationFrame(updateCurrentTime);
+        } else {
+            cancelAnimationFrame(requestRef.current);
+        }
+
+        return () => cancelAnimationFrame(requestRef.current);
+    }, [isPlaying, genre, trackIndex, isRepeat]);
+
+    const togglePlay = () => {
+        if (isPlaying) {
+            audioRef.current.pause();
+        } else {
+            audioRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+    };
+
+    const nextTrack = () => {
+        if (isShuffle === true) {
+            setTrackIndex((prevIndex) => {
+                let newIndex;
+                do {
+                    newIndex = Math.floor(
+                        Math.random() * trackList[genre].length
+                    );
+                } while (newIndex === prevIndex);
+                return newIndex;
+            });
+        } else {
+            setTrackIndex(
+                (prevIndex) => (prevIndex + 1) % trackList[genre].length
+            );
+        }
+
+        setIsPlaying(false);
+        currentTimeRef.current = 0;
+        setDisplayedTime(0);
+        setTimeout(() => {
+            setIsPlaying(true);
+            audioRef.current.play();
+        }, 200);
+    };
+
+    const prevTrack = () => {
+        if (trackIndex === 0 && isShuffle === false) {
+            setTrackIndex(trackList[genre].length - 1);
+        } else if (trackIndex > 0 && isShuffle === false) {
+            setTrackIndex((prevIndex) => prevIndex - 1);
+        } else if (isShuffle === true) {
+            setTrackIndex((prevIndex) => {
+                let newIndex;
+                do {
+                    newIndex = Math.floor(
+                        Math.random() * trackList[genre].length
+                    );
+                } while (newIndex === prevIndex);
+                return newIndex;
+            });
+        }
+
+        setIsPlaying(false);
+        currentTimeRef.current = 0;
+        setDisplayedTime(0);
+        setTimeout(() => {
+            setIsPlaying(true);
+            audioRef.current.play();
+        }, 200);
+    };
+    const changeGenre = () => {
+        if (genre === 'synthwave') {
+            setIsPlaying(false);
+            currentTimeRef.current = 0;
+            setDisplayedTime(0);
+            setGenre('phonk');
+            setTimeout(() => {
+                setIsPlaying(true);
+                audioRef.current.play();
+            }, 200);
+        } else if (genre === 'phonk') {
+            setIsPlaying(false);
+            setGenre('synthwave');
+            setTimeout(() => {
+                setIsPlaying(true);
+                audioRef.current.play();
+            }, 200);
+        }
+    };
+
+    const changeVolume = (e) => {
+        audioRef.current.volume = e.target.value;
+    };
+
+    const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
         const remainingSeconds = Math.floor(seconds % 60);
-        return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-    }, []);
+        return `${minutes}:${
+            remainingSeconds < 10 ? '0' : ''
+        }${remainingSeconds}`;
+    };
 
+    const handleSliderChange = (e) => {
+        const newTime = e.target.value;
+        currentTimeRef.current = newTime;
+        audioRef.current.currentTime = newTime;
+        setDisplayedTime(newTime);
+    };
 
     return (
         <div className="flex flex-col w-full h-full items-center px-3">
-            <div className="mt-10">{currentTitle}</div>
-            <div className="text-sm text-black/50 ">{currentArtist}</div>
+            <div className="mt-10">{trackList[genre][trackIndex]['title']}</div>
+            <div className="text-sm text-black/50 ">
+                {trackList[genre][trackIndex]['artist']}
+            </div>
             <input
                 className="w-full tablet:w-3/4 custom-range mt-3"
                 type="range"
                 min="0"
-                max={duration}
-                value={currentTime}
+                max={trackList[genre][trackIndex]['duration']}
+                value={currentTimeRef.current}
                 onChange={handleSliderChange}
             />
             <div className="w-full tablet:w-3/4 flex justify-between text-xs text-black/50">
-                <div>{formatTime(currentTime)}</div>
-                <div>{formatTime(duration)}</div>
+                <div>{formatTime(displayedTime)}</div>
+                <div>
+                    {formatTime(trackList[genre][trackIndex]['duration'])}
+                </div>
             </div>
             <div className="flex w-full tablet:w-3/4 justify-between mt-3">
                 <button
-                    onClick={toggleShuffle}
-                    className="hover:text-stevenBlue ease-in"
+                    onClick={() => setIsShuffle(!isShuffle)}
+                    className={`hover:text-white ease-in ${
+                        isShuffle ? 'text-stevenBlue' : 'text-black'
+                    }`}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -68,9 +285,7 @@ const AudioPlayer = () => {
                     >
                         <path
                             d="M2 16.25C1.58579 16.25 1.25 16.5858 1.25 17C1.25 17.4142 1.58579 17.75 2 17.75V16.25ZM10.7478 14.087L10.1047 13.7011L10.7478 14.087ZM13.2522 9.91303L13.8953 10.2989L13.2522 9.91303ZM22 7L22.5303 7.53033C22.8232 7.23744 22.8232 6.76256 22.5303 6.46967L22 7ZM19.4697 8.46967C19.1768 8.76256 19.1768 9.23744 19.4697 9.53033C19.7626 9.82322 20.2374 9.82322 20.5303 9.53033L19.4697 8.46967ZM20.5303 4.46967C20.2374 4.17678 19.7626 4.17678 19.4697 4.46967C19.1768 4.76256 19.1768 5.23744 19.4697 5.53033L20.5303 4.46967ZM15.2205 7.3894L14.851 6.73675V6.73675L15.2205 7.3894ZM2 17.75H5.60286V16.25H2V17.75ZM11.3909 14.4728L13.8953 10.2989L12.6091 9.52716L10.1047 13.7011L11.3909 14.4728ZM18.3971 7.75H22V6.25H18.3971V7.75ZM21.4697 6.46967L19.4697 8.46967L20.5303 9.53033L22.5303 7.53033L21.4697 6.46967ZM22.5303 6.46967L20.5303 4.46967L19.4697 5.53033L21.4697 7.53033L22.5303 6.46967ZM13.8953 10.2989C14.3295 9.57518 14.6286 9.07834 14.9013 8.70996C15.1644 8.35464 15.3692 8.16707 15.59 8.04205L14.851 6.73675C14.384 7.00113 14.0315 7.36397 13.6958 7.8174C13.3697 8.25778 13.0285 8.82806 12.6091 9.52716L13.8953 10.2989ZM18.3971 6.25C17.5819 6.25 16.9173 6.24918 16.3719 6.30219C15.8104 6.35677 15.3179 6.47237 14.851 6.73675L15.59 8.04205C15.8108 7.91703 16.077 7.83793 16.517 7.79516C16.9733 7.75082 17.5531 7.75 18.3971 7.75V6.25ZM5.60286 17.75C6.41814 17.75 7.0827 17.7508 7.62807 17.6978C8.18961 17.6432 8.6821 17.5276 9.14905 17.2632L8.41 15.9579C8.18919 16.083 7.92299 16.1621 7.48296 16.2048C7.02675 16.2492 6.44685 16.25 5.60286 16.25V17.75ZM10.1047 13.7011C9.67046 14.4248 9.37141 14.9217 9.09867 15.29C8.8356 15.6454 8.63081 15.8329 8.41 15.9579L9.14905 17.2632C9.616 16.9989 9.96851 16.636 10.3042 16.1826C10.6303 15.7422 10.9715 15.1719 11.3909 14.4728L10.1047 13.7011Z"
-                            fill={`${
-                                isShuffling ? '#007bff' : 'currentColor'
-                            } `}
+                            fill="currentColor"
                         />
                         <path
                             opacity="0.5"
@@ -81,7 +296,7 @@ const AudioPlayer = () => {
                 </button>
 
                 <button
-                    onClick={handlePrev}
+                    onClick={prevTrack}
                     className="hover:text-stevenBlue ease-in"
                 >
                     <svg
@@ -101,7 +316,7 @@ const AudioPlayer = () => {
                     </svg>
                 </button>
                 <button
-                    onClick={() => handlePlayPause()}
+                    onClick={togglePlay}
                     className="bg-stevenBlue rounded-full p-3 z-40 hover:bg-opacity-70 ease-in"
                 >
                     {isPlaying ? (
@@ -147,7 +362,7 @@ const AudioPlayer = () => {
                     )}
                 </button>
                 <button
-                    onClick={handleNext}
+                    onClick={nextTrack}
                     className="hover:text-stevenBlue ease-in"
                 >
                     <svg
@@ -167,8 +382,10 @@ const AudioPlayer = () => {
                     </svg>
                 </button>
                 <button
-                    onClick={toggleRepeat}
-                    className="hover:text-stevenBlue ease-in"
+                    onClick={() => setIsRepeat(!isRepeat)}
+                    className={`hover:text-white ease-in ${
+                        isRepeat ? 'text-stevenBlue' : 'text-black'
+                    }`}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -196,9 +413,7 @@ const AudioPlayer = () => {
                         </g>
                         <path
                             d="M20.4201 18.84H6.58008C4.92008 18.84 3.58008 17.5 3.58008 15.84V12.52"
-                            stroke={`${
-                                isRepeating ? '#007bff' : 'currentColor'
-                            } `}
+                            stroke="currentColor"
                             strokeWidth="1.5"
                             strokeMiterlimit="10"
                             strokeLinecap="round"
@@ -206,9 +421,7 @@ const AudioPlayer = () => {
                         />
                         <path
                             d="M17.2598 22.0002L20.4198 18.8402L17.2598 15.6802"
-                            stroke={`${
-                                isRepeating ? '#007bff' : 'currentColor'
-                            } `}
+                            stroke="currentColor"
                             strokeWidth="1.5"
                             strokeMiterlimit="10"
                             strokeLinecap="round"
@@ -223,23 +436,16 @@ const AudioPlayer = () => {
                 min="0"
                 max="1"
                 step="0.01"
-                value={volume}
-                onChange={handleVolumeChange}
+                onChange={changeVolume}
                 className="custom-volume-slider mt-5 w-1/2"
             />
 
             <button
                 className="absolute right-2 bottom-2 flex gap-1 p-2 rounded-lg border-2 border-stevenBlue text-stevenBlue  text-sm items-center hover:border-red-500 ease-in hover:text-red-500 phonk-button "
-                onClick={() => {
-                    if (currentGenre === 'synthwave') {
-                        changeGenre('phonk');
-                    } else if (currentGenre === 'phonk') {
-                        changeGenre('synthwave');
-                    }
-                }}
+                onClick={changeGenre}
             >
                 <div className="text-black/50 phonk-button-text">{`${
-                    currentGenre === 'phonk' ? 'Synthwave' : 'PHONK'
+                    genre === 'phonk' ? 'Synthwave' : 'PHONK'
                 }`}</div>
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -255,4 +461,161 @@ const AudioPlayer = () => {
     );
 };
 
-export default AudioPlayer;
+export default AudioController;
+
+// const [genre, setGenre] = useState('synthwave');
+// const [isPlaying, setIsPlaying] = useState(false);
+// const [currentSongIndex, setCurrentSongIndex] = useState(0);
+// const [sources, setSources] = useState(genres[genre]);
+// const [shuffledOrder, setShuffledOrder] = useState([]);
+// const [isShuffling, setIsShuffling] = useState(false);
+// const [isRepeating, setIsRepeating] = useState(false);
+// const [currentTime, setCurrentTime] = useState(0);
+// const [duration, setDuration] = useState(0);
+// const [volume, setVolume] = useState(0.5);
+
+// const changeGenre = (genre) => {
+//     setGenre(genre);
+//     setIsPlaying(false);
+//     audioRef.current.pause();
+//     setSources(genres[genre]);
+//     setCurrentSongIndex(0);
+//     audioRef.current.load();
+//     setTimeout(() => {
+//         audioRef.current.play();
+//         setIsPlaying(true);
+//     }, 1000);
+// };
+
+// const shuffleArray = (array) => {
+//     let shuffled = [...array];
+//     for (let i = shuffled.length - 1; i > 0; i--) {
+//         const j = Math.floor(Math.random() * (i + 1));
+//         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+//     }
+//     return shuffled;
+// };
+
+// const handlePlayPause = () => {
+//     if (isPlaying) {
+//         audioRef.current.pause();
+//     } else {
+//         audioRef.current.play();
+//     }
+//     setIsPlaying(!isPlaying);
+// };
+
+// const handleSliderChange = (e) => {
+//     const time = e.target.value;
+//     audioRef.current.currentTime = time;
+//     setCurrentTime(time);
+// };
+
+// const handleVolumeChange = (e) => {
+//     const volume = e.target.value;
+//     setVolume(volume);
+//     audioRef.current.volume = volume;
+// };
+
+// const handleNext = () => {
+//     if (isRepeating) {
+//         audioRef.current.currentTime = 0;
+//         audioRef.current.play();
+//         return;
+//     }
+//     const nextIndex = isShuffling
+//         ? (currentSongIndex + 1) % shuffledOrder.length
+//         : (currentSongIndex + 1) % sources.length;
+//     setCurrentSongIndex(nextIndex);
+// };
+
+// const handlePrev = () => {
+//     const prevIndex = isShuffling
+//         ? (currentSongIndex - 1 + shuffledOrder.length) %
+//           shuffledOrder.length
+//         : (currentSongIndex - 1 + sources.length) % sources.length;
+//     setCurrentSongIndex(prevIndex);
+// };
+
+// const toggleShuffle = () => {
+//     setIsShuffling(!isShuffling);
+//     if (!isShuffling) {
+//         const order = shuffleArray(sources.map((_, index) => index));
+//         setShuffledOrder(order);
+//         setCurrentSongIndex(order[0]);
+//     } else {
+//         setShuffledOrder([]);
+//         setCurrentSongIndex(0);
+//     }
+// };
+
+// const toggleRepeat = () => {
+//     setIsRepeating(!isRepeating);
+// };
+
+// const selectSong = (index) => {
+//     setCurrentSongIndex(index);
+// };
+
+// const formatTime = useCallback((seconds) => {
+//     const minutes = Math.floor(seconds / 60);
+//     const remainingSeconds = Math.floor(seconds % 60);
+//     return `${minutes}:${
+//         remainingSeconds < 10 ? '0' : ''
+//     }${remainingSeconds}`;
+// }, []);
+
+// useEffect(() => {
+//     if (audioRef.current && isPlaying) {
+//         audioRef.current.play();
+//     }
+// }, [currentSongIndex, isPlaying]);
+
+// useEffect(() => {
+//     if (audioRef.current) {
+//         audioRef.current.volume = volume;
+//     }
+// }, [volume]);
+
+// useEffect(() => {
+//     if (audioRef.current) {
+//         audioRef.current.load();
+//         setDuration(audioRef.current.duration || 0);
+//         setCurrentTime(0);
+//     }
+// }, [sources]);
+
+// useEffect(() => {
+//     const audio = audioRef.current;
+//     const onTimeUpdate = () => setCurrentTime(audio.currentTime);
+//     const onLoadedMetadata = () => setDuration(audio.duration);
+//     const onEnded = () => handleNext();
+
+//     if (audio) {
+//         audio.addEventListener('timeupdate', onTimeUpdate);
+//         audio.addEventListener('loadedmetadata', onLoadedMetadata);
+//         audio.addEventListener('ended', onEnded);
+//     }
+
+//     return () => {
+//         if (audio) {
+//             audio.removeEventListener('timeupdate', onTimeUpdate);
+//             audio.removeEventListener('loadedmetadata', onLoadedMetadata);
+//             audio.removeEventListener('ended', onEnded);
+//         }
+//     };
+// }, [handleNext]);
+
+// const formatTime = (seconds) => {
+//     const minutes = Math.floor(seconds / 60);
+//     const remainingSeconds = Math.floor(seconds % 60);
+//     return `${minutes}:${
+//         remainingSeconds < 10 ? '0' : ''
+//     }${remainingSeconds}`;
+// };
+
+// const formatTime = useCallback((seconds) => {
+//     const minutes = Math.floor(seconds / 60);
+//     const remainingSeconds = Math.floor(seconds % 60);
+//     return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+// }, []);
