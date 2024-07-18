@@ -1,3 +1,4 @@
+import { useGlobalState } from '@/components/Context/stateContext';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
@@ -32,10 +33,11 @@ const MustangEffects = () => {
     const [cubeY, setCubeY] = useState(1256);
     const [enterY, setEnterY] = useState(1256);
     const [isIntersecting, setIsIntersecting] = useState(false);
+    const { setModalPopup } = useGlobalState();
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            console.log('mustang');
+            setModalPopup('mustang');
         }
     };
 

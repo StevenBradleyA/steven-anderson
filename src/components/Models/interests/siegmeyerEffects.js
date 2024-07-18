@@ -1,5 +1,4 @@
 import { useGlobalState } from '@/components/Context/stateContext';
-import SiegmeyerPopup from '@/components/Popups/siegmeyerPopup';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
@@ -36,7 +35,6 @@ const SiegmeyerEffects = () => {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            console.log('sieg');
             setModalPopup('siegmeyer');
         }
     };

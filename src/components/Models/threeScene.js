@@ -30,8 +30,6 @@ import CustomBackground from './customBackground';
 import Stars from './stars';
 
 const ThreeScene = () => {
-    // The X axis is red. The Y axis is green. The Z axis is blue.
-
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Canvas

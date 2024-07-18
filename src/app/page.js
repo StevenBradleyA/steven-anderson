@@ -8,6 +8,9 @@ import MobileThreeScene from '@/components/Models/mobileThreeScene';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '@/components/Loading/loadingSpinner';
 import SiegmeyerPopup from '@/components/Popups/siegmeyerPopup';
+import MustangPopup from '@/components/Popups/mustangPopup';
+import KeyboardPopup from '@/components/Popups/keyboardPopup';
+import SkillsPopup from '@/components/Popups/skillsPopup';
 
 export default function Home() {
     const {
@@ -41,6 +44,9 @@ export default function Home() {
                     isMobile === false && <ControlsScript />}
                 {isMobile === false ? <ThreeScene /> : <MobileThreeScene />}
                 {modalPopup === 'siegmeyer' && <SiegmeyerPopup />}
+                {modalPopup === 'skills' && <SkillsPopup />}
+                {modalPopup === 'keyboard' && <KeyboardPopup />}
+                {modalPopup === 'mustang' && <MustangPopup />}
             </div>
         </main>
     );
