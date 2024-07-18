@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import ModalDialog from '../Modal';
 import { useGlobalState } from '../Context/stateContext';
+import bonfire from '@public/images/bonfire.png';
+import Image from 'next/image';
 
 export default function SiegmeyerPopup() {
     const [isModalOpen, setIsModalOpen] = useState(true);
@@ -14,6 +16,14 @@ export default function SiegmeyerPopup() {
     return (
         <ModalDialog isOpen={isModalOpen} onClose={closeModal}>
             <div className="w-[500px] ">
+                <div className="flex justify-center w-full ">
+                    <Image
+                        alt="bonfire"
+                        src={bonfire}
+                        className=" w-20 object-cover"
+                    />
+                </div>
+
                 <h2 className="text-xl font-bold">Gaming </h2>
                 <p className="mt-4">
                     Video games have always been a medium for creating
