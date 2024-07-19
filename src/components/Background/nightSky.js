@@ -1,11 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
 
-const generateStarPositions = (n) => {
+const generateStarPositions = (n, width, height) => {
     const positions = [];
     for (let i = 0; i < n; i++) {
-        const x = Math.random() * 2000;
-        const y = Math.random() * 2000;
+        const x = Math.random() * width;
+        const y = Math.random() * height;
         positions.push(`${x}px ${y}px #FFF`);
     }
     return positions.join(', ');
@@ -17,9 +17,18 @@ export default function NightSky() {
     const [shadowsBig, setShadowsBig] = useState('');
 
     useEffect(() => {
-        setShadowsSmall(generateStarPositions(700));
-        setShadowsMedium(generateStarPositions(200));
-        setShadowsBig(generateStarPositions(100));
+        const updateStarPositions = () => {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            setShadowsSmall(generateStarPositions(700, width, height));
+            setShadowsMedium(generateStarPositions(200, width, height));
+            setShadowsBig(generateStarPositions(100, width, height));
+        };
+
+        updateStarPositions();
+        window.addEventListener('resize', updateStarPositions);
+
+        return () => window.removeEventListener('resize', updateStarPositions);
     }, []);
 
     return (

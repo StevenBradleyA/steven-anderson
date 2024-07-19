@@ -915,6 +915,35 @@ input[type='range'].custom-volume-slider::-ms-fill-upper {
 /* ----------     END AUDIO MODAL     ----------- */
 /* ----------     END AUDIO MODAL     ----------- */
 
+/* ----------     MODAL     ----------- */
+/* ----------     MODAL     ----------- */
+/* ----------     MODAL     ----------- */
+
+.shadow-vapor {
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.7);
+}
+
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.05) 2px,
+        transparent 2px,
+        transparent 5px
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ----------    END MODAL     ----------- */
+/* ----------    END MODAL     ----------- */
+/* ----------    END MODAL     ----------- */
+
 /* contact */
 /* 
 .contact-button {

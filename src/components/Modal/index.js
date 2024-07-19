@@ -1,8 +1,9 @@
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ModalDialog = ({ isOpen, onClose, children }) => {
+    const modalRef = useRef(null);
     const handleClose = useCallback(() => {
         onClose();
     }, [onClose]);
@@ -17,7 +18,11 @@ const ModalDialog = ({ isOpen, onClose, children }) => {
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
-            if (isOpen && event.target) {
+            if (
+                isOpen &&
+                modalRef.current &&
+                !modalRef.current.contains(event.target)
+            ) {
                 handleClose();
             }
         };
@@ -48,7 +53,9 @@ const ModalDialog = ({ isOpen, onClose, children }) => {
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                     />
                     <motion.div
-                        className="relative flex rounded-lg bg-white/50 p-10 shadow-lg text-black"
+                        // className="relative flex rounded-lg bg-white/50 p-10 shadow-lg text-black"
+                        ref={modalRef}
+                        className="relative flex rounded-lg bg-gradient-to-br from-purple-600 to-pink-600 p-5 shadow-vapor text-white"
                         initial={{ scale: 0.8, y: -20, opacity: 0 }}
                         animate={{ scale: 1, y: 0, opacity: 1 }}
                         exit={{ scale: 0.8, y: 20, opacity: 0 }}
@@ -65,6 +72,7 @@ const ModalDialog = ({ isOpen, onClose, children }) => {
                         >
                             &times;
                         </button>
+                        <div className="scanlines"></div>
                         {children}
                     </motion.div>
                 </motion.div>
