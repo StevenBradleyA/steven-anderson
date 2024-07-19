@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import ModalDialog from '../Modal';
 import { useGlobalState } from '../Context/stateContext';
-import bonfire from '@public/rename/bonfire.png';
+import bonfire from '@public/images/bonfire.png';
 import Image from 'next/image';
 
 export default function SiegmeyerPopup() {

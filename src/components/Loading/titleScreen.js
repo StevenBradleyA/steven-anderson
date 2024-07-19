@@ -3,14 +3,14 @@ import { useProgress } from '@react-three/drei';
 import { AnimatePresence, easeInOut, motion } from 'framer-motion';
 import { useGlobalState } from '../Context/stateContext';
 import Image from 'next/image';
-import loadingScreen from '@public/rename/loadingScreen4k.png';
-import barcode from '@public/rename/barcode.png';
-import computer from '@public/rename/computer.png';
-import grid from '@public/rename/grid.png';
-import sphere from '@public/rename/sphere.png';
-import hacktime from '@public/rename/hacktime.png';
-import palm from '@public/rename/palm.png';
-import tree from '@public/rename/tree.png';
+import loadingScreen from '@public/images/loadingScreen4k.png';
+import barcode from '@public/images/barcode.png';
+import computer from '@public/images/computer.png';
+import grid from '@public/images/grid.png';
+import sphere from '@public/images/sphere.png';
+import hacktime from '@public/images/hacktime.png';
+import palm from '@public/images/palm.png';
+import tree from '@public/images/tree.png';
 import { useAudioPlayer } from '../Context/audioContext';
 
 const TitleScreen = () => {
