@@ -10,12 +10,6 @@ const RetroSun = () => {
     const sunRef = useRef();
     const { genre } = useAudioPlayer();
 
-    // const initialMaterial = new THREE.MeshStandardMaterial({
-    //     color: materials.Sun.color,
-    //     emissive: new THREE.Color(0xff007f),
-    //     emissiveIntensity: 0.8,
-    // });
-
     useEffect(() => {
         if (sunRef.current) {
             const emissive = new THREE.Color(
@@ -32,7 +26,6 @@ const RetroSun = () => {
                 <mesh
                     geometry={nodes.Sun001.geometry}
                     material={materials.Sun}
-                    // material={initialMaterial}
                     ref={sunRef}
                 />
             </group>

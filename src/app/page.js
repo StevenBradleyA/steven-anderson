@@ -1,16 +1,23 @@
 'use client';
 import TitleScreen from '@/components/Loading/titleScreen';
-import ThreeScene from '@/components/Models/threeScene';
 import { useGlobalState } from '@/components/Context/stateContext';
 import ControlsScript from '@/components/Controls/controlsScript';
 import { useMobile } from '@/components/Context/mobileContext';
-import MobileThreeScene from '@/components/Models/mobileThreeScene';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import LoadingSpinner from '@/components/Loading/loadingSpinner';
 import SiegmeyerPopup from '@/components/Popups/siegmeyerPopup';
 import MustangPopup from '@/components/Popups/mustangPopup';
 import KeyboardPopup from '@/components/Popups/keyboardPopup';
 import SkillsPopup from '@/components/Popups/skillsPopup';
+import dynamic from 'next/dynamic';
+
+const ThreeScene = dynamic(() => import('@/components/Models/threeScene'), {
+    ssr: false,
+});
+const MobileThreeScene = dynamic(
+    () => import('@/components/Models/mobileThreeScene'),
+    { ssr: false }
+);
 
 export default function Home() {
     const {
@@ -21,7 +28,6 @@ export default function Home() {
         modalPopup,
     } = useGlobalState();
     const { isMobile } = useMobile();
-
     useEffect(() => {
         if (renderContent === false) {
             const timer = setTimeout(() => {

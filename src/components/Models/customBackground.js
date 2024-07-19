@@ -1,36 +1,46 @@
 'use client';
 import { Plane } from '@react-three/drei';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import * as THREE from 'three';
 import { useAudioPlayer } from '../Context/audioContext';
 
-// #8a2be2
-// #ff69b4
-
 const CustomBackground = () => {
     const { genre } = useAudioPlayer();
-    const createGradientTexture = (startColor, endColor) => {
+    const createGradientTexture = (
+        startColor,
+        endColor,
+        transitionHeight = 0.35
+    ) => {
         const size = 512;
-        const canvas = document.createElement('canvas');
-        canvas.width = size;
-        canvas.height = size;
-        const context = canvas.getContext('2d');
+        const data = new Uint8Array(size * 4);
 
-        const gradient = context.createLinearGradient(0, 0, 0, size);
-        gradient.addColorStop(0, startColor);
-        gradient.addColorStop(1, endColor);
+        const color1 = new THREE.Color(startColor);
+        const color2 = new THREE.Color(endColor);
 
-        context.fillStyle = gradient;
-        context.fillRect(0, 0, size, size);
+        for (let i = 0; i < size; i++) {
+            let alpha = i / (size - 1);
+            alpha = Math.pow(alpha, 1 / transitionHeight);
 
-        return new THREE.CanvasTexture(canvas);
+            const color = color2.clone().lerp(color1, alpha);
+            data[i * 4] = Math.round(color.r * 255);
+            data[i * 4 + 1] = Math.round(color.g * 255);
+            data[i * 4 + 2] = Math.round(color.b * 255);
+            data[i * 4 + 3] = 255;
+        }
+
+        const texture = new THREE.DataTexture(data, 1, size, THREE.RGBAFormat);
+        texture.needsUpdate = true;
+        return texture;
     };
-
+    // #BF00FF
+    // #9400D3
+    // #8A0707
     const gradientTexture = useMemo(
         () =>
             createGradientTexture(
-                genre === 'phonk' ? '#007bff' : '#2e0249',
-                '#000000'
+                genre === 'phonk' ? '#007bff' : '#9400D3',
+                '#000000',
+                0.35
             ),
         [genre]
     );
@@ -41,8 +51,8 @@ const CustomBackground = () => {
     const topGradientTexture = useMemo(
         () =>
             createGradientTexture(
-                genre === 'phonk' ? '#007bff' : '#2e0249',
-                genre === 'phonk' ? '#007bff' : '#2e0249'
+                genre === 'phonk' ? '#007bff' : '#9400D3',
+                genre === 'phonk' ? '#007bff' : '#9400D3'
             ),
         [genre]
     );
@@ -79,8 +89,6 @@ const CustomBackground = () => {
             texture: bottomGradientTexture,
         }, // Bottom
     ];
-
-    // console.log(genre)
 
     return (
         <>

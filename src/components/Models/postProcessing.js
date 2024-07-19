@@ -1,7 +1,19 @@
+'use client';
 import { Bloom, EffectComposer, GodRays } from '@react-three/postprocessing';
+import { useEffect, useState } from 'react';
 
 const PostProcessing = ({ sunRef }) => {
-    return sunRef.current ? (
+    const [isSunReady, setIsSunReady] = useState(false);
+
+    useEffect(() => {
+        if (sunRef.current) {
+            setIsSunReady(true);
+        } else {
+            setIsSunReady(false);
+        }
+    }, [sunRef]);
+
+    return isSunReady ? (
         <EffectComposer>
             <GodRays
                 sun={sunRef.current}
