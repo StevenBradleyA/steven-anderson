@@ -36,7 +36,6 @@ const Hachiroku = () => {
 
     // car tuning
     const topSpeed = 200;
-    const torqueFactor = 12;
     const steerAngle = Math.PI / 9;
     const respawnHeight = 900;
     const maxSpeedForTurning = 69;
@@ -103,6 +102,8 @@ const Hachiroku = () => {
 
             const scaledForwardAcceleration = 55000 * delta;
             const scaledReverseAcceleration = 45000 * delta;
+            const scaledTorquFactor = 1200 * delta;
+
             const car = carRef.current;
             const velocity = car.linvel();
             const speed = Math.sqrt(
@@ -155,7 +156,7 @@ const Hachiroku = () => {
                 const torque = new THREE.Vector3(0, 1, 0);
                 const leftTorque = torque.multiplyScalar(
                     speedInfluence *
-                        torqueFactor *
+                        scaledTorquFactor *
                         (!isMovingForward && moveBackward ? -1 : 1)
                 );
                 car.applyTorqueImpulse(
@@ -168,7 +169,7 @@ const Hachiroku = () => {
                 const torque = new THREE.Vector3(0, -1, 0);
                 const rightTorque = torque.multiplyScalar(
                     speedInfluence *
-                        torqueFactor *
+                        scaledTorquFactor *
                         (!isMovingForward && moveBackward ? -1 : 1)
                 );
                 car.applyTorqueImpulse(
