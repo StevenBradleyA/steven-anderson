@@ -1,5 +1,11 @@
 'use client';
-import React, { createContext, useState, useContext, useRef } from 'react';
+import React, {
+    createContext,
+    useState,
+    useContext,
+    useRef,
+    useEffect,
+} from 'react';
 
 const AudioContext = createContext();
 
@@ -88,6 +94,46 @@ export const AudioProvider = ({ children }) => {
 
     const [genre, setGenre] = useState('synthwave');
     const [trackIndex, setTrackIndex] = useState(0);
+
+    const nextTrack = () => {
+        if (isShuffle === true && isRepeat === false) {
+            setTrackIndex((prevIndex) => {
+                let newIndex;
+                do {
+                    newIndex = Math.floor(
+                        Math.random() * trackList[genre].length
+                    );
+                } while (newIndex === prevIndex);
+                return newIndex;
+            });
+        } else if (isRepeat === true) {
+            audioRef.current.currentTime = 0;
+        } else {
+            setTrackIndex(
+                (prevIndex) => (prevIndex + 1) % trackList[genre].length
+            );
+        }
+
+        setIsPlaying(false);
+        setTimeout(() => {
+            setIsPlaying(true);
+            audioRef.current.play();
+        }, 200);
+    };
+
+    useEffect(() => {
+        const audioElement = audioRef.current;
+        const handleSongEnd = () => {
+            console.log('are you running with controller open? ');
+            nextTrack();
+        };
+
+        audioElement.addEventListener('ended', handleSongEnd);
+
+        return () => {
+            audioElement.removeEventListener('ended', handleSongEnd);
+        };
+    }, [audioRef, isShuffle, isRepeat]);
 
     return (
         <AudioContext.Provider
