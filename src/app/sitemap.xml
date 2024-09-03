@@ -1,18 +1,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://steven-anderson.com</loc>
+    <loc>https://www.steven-anderson.com</loc>
     <lastmod>2023-04-06T15:02:24.021Z</lastmod>
     <changefreq>yearly</changefreq>
     <priority>1</priority>
   </url>
   <url>
-    <loc>https://steven-anderson.com/about</loc>
+    <loc>https://www.steven-anderson.com/about</loc>
     <lastmod>2023-04-06T15:02:24.021Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://steven-anderson.com/contact</loc>
+    <loc>https://www.steven-anderson.com/contact</loc>
     <lastmod>2023-04-06T15:02:24.021Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>

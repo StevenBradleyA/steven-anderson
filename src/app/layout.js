@@ -1,9 +1,9 @@
 import './globals.css';
-import { GlobalStateProvider } from '@/components/Context/stateContext';
-import { GlobalMobileProvider } from '@/components/Context/mobileContext';
+import { GlobalStateProvider } from '~/components/Context/stateContext';
+import { GlobalMobileProvider } from '~/components/Context/mobileContext';
 // import Head from 'next/head';
-import Navigation from '@/components/Navigation/navigation';
-import { AudioProvider } from '@/components/Context/audioContext';
+import Navigation from '~/components/Navigation/navigation';
+import { AudioProvider } from '~/components/Context/audioContext';
 
 /** @type {import("next").Metadata} */
 

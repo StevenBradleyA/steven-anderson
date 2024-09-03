@@ -190,7 +190,7 @@ function Navigation() {
                     >
                         <Image
                             src={homePalm}
-                            className="w-12 h-12 object-cover"
+                            className="w-12 h-12 object-cover hover:opacity-80"
                             alt="home button"
                             priority
                         />
@@ -432,8 +432,6 @@ function Navigation() {
                     </AnimatePresence>
                 )}
 
-                {/* HEYYYYYYYYY */}
-                {/* HEREeeeeeeeeeeee */}
                 {isMobile === false ? (
                     <AnimatePresence>
                         {isMenuOpen && (

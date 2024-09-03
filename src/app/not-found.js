@@ -1,5 +1,5 @@
 'use client';
-import NightSky from '@/components/Background/nightSky';
+import NightSky from '~/components/Background/nightSky';
 import { useState } from 'react';
 import Link from 'next/link';
 

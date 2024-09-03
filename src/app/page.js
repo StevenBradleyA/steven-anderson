@@ -1,21 +1,21 @@
 'use client';
-import TitleScreen from '@/components/Loading/titleScreen';
-import { useGlobalState } from '@/components/Context/stateContext';
-import ControlsScript from '@/components/Controls/controlsScript';
-import { useMobile } from '@/components/Context/mobileContext';
+import TitleScreen from '~/components/Loading/titleScreen';
+import { useGlobalState } from '~/components/Context/stateContext';
+import ControlsScript from '~/components/Controls/controlsScript';
+import { useMobile } from '~/components/Context/mobileContext';
 import { useEffect } from 'react';
-import LoadingSpinner from '@/components/Loading/loadingSpinner';
-import SiegmeyerPopup from '@/components/Popups/siegmeyerPopup';
-import MustangPopup from '@/components/Popups/mustangPopup';
-import KeyboardPopup from '@/components/Popups/keyboardPopup';
-import SkillsPopup from '@/components/Popups/skillsPopup';
+import LoadingSpinner from '~/components/Loading/loadingSpinner';
+import SiegmeyerPopup from '~/components/Popups/siegmeyerPopup';
+import MustangPopup from '~/components/Popups/mustangPopup';
+import KeyboardPopup from '~/components/Popups/keyboardPopup';
+import SkillsPopup from '~/components/Popups/skillsPopup';
 import dynamic from 'next/dynamic';
 
-const ThreeScene = dynamic(() => import('@/components/Models/threeScene'), {
+const ThreeScene = dynamic(() => import('~/components/Models/threeScene'), {
     ssr: false,
 });
 const MobileThreeScene = dynamic(
-    () => import('@/components/Models/mobileThreeScene'),
+    () => import('~/components/Models/mobileThreeScene'),
     { ssr: false }
 );
 

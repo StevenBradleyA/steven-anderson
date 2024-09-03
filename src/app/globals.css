@@ -944,6 +944,53 @@ input[type='range'].custom-volume-slider::-ms-fill-upper {
 /* ----------    END MODAL     ----------- */
 /* ----------    END MODAL     ----------- */
 
+/* ----------     ABOUT     ----------- */
+/* ----------     ABOUT     ----------- */
+/* ----------     ABOUT     ----------- */
+
+.pulse-background {
+    background-color: #007bff;
+    z-index: 0;
+    opacity: 0.7;
+    box-shadow: 0 0 0 0 rgba(#007bff, 0.5);
+    animation: sonarPulse 2s infinite;
+}
+
+@keyframes sonarPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+        box-shadow: 0 0 0 0 rgba(#007bff, 0.5);
+    }
+    70% {
+        transform: scale(1.5);
+        opacity: 0;
+        box-shadow: 0 0 0 50px rgba(#007bff, 0);
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+        box-shadow: 0 0 0 0 rgba(#007bff, 0);
+    }
+}
+@keyframes sonarPulseBlack {
+    0% {
+        transform: scale(1);
+        opacity: 0.7;
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.5);
+    }
+    70% {
+        transform: scale(1.5);
+        opacity: 0;
+        box-shadow: 0 0 0 50px rgba(0, 0, 0);
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+        box-shadow: 0 0 0 0 rgba(0, 0, 0);
+    }
+}
+
 /* contact */
 /* 
 .contact-button {

@@ -1,10 +1,10 @@
 'use client';
-import NightSky from '@/components/Background/nightSky';
+import NightSky from '~/components/Background/nightSky';
 import { useState, useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
-import { useMobile } from '@/components/Context/mobileContext';
-import Footer from '@/components/Footer/footer';
-import MobileFooter from '@/components/Footer/mobileFooter';
+import { useMobile } from '~/components/Context/mobileContext';
+import Footer from '~/components/Footer/footer';
+import MobileFooter from '~/components/Footer/mobileFooter';
 
 export default function Contact() {
     const { isMobile } = useMobile();

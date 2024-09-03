@@ -1,14 +1,12 @@
-import { useGlobalState } from '@/components/Context/stateContext';
+import { useGlobalState } from '~/components/Context/stateContext';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import * as THREE from 'three';
 
-const MustangEffects = () => {
-    const group = useRef();
-    const { nodes } = useGLTF('/models/mustangEffects.glb');
-
+const SiegmeyerEffects = () => {
+    const { nodes } = useGLTF('/models/siegmeyerEffects.glb');
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
         side: THREE.DoubleSide,
@@ -37,7 +35,7 @@ const MustangEffects = () => {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            setModalPopup('mustang');
+            setModalPopup('siegmeyer');
         }
     };
 
@@ -53,12 +51,14 @@ const MustangEffects = () => {
         setEnterTargetY(1256);
         setIsIntersecting(false);
     };
+
     useEffect(() => {
         if (isIntersecting) {
             window.addEventListener('keydown', handleKeyPress);
         } else {
             window.removeEventListener('keydown', handleKeyPress);
         }
+
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
@@ -87,32 +87,30 @@ const MustangEffects = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    geometry={nodes.cubeCorners002.geometry}
-                    material={blueGlow}
-                    position={[-333, cubeY, 421.246]}
-                    scale={[42.161, 22.639, 42.618]}
-                />
-                <mesh
-                    geometry={nodes.cubeFaces002.geometry}
+                    geometry={nodes.cubeFaces.geometry}
                     material={blueTransparent}
-                    position={[-333, cubeY, 421.246]}
-                    scale={[42.161, 22.639, 42.618]}
+                    position={[-590.053, cubeY, 325.7]}
                 />
                 <mesh
-                    geometry={nodes.mustangEnter.geometry}
+                    geometry={nodes.cubeCorners.geometry}
+                    material={blueGlow}
+                    position={[-590.035, cubeY, 325.7]}
+                />
+                <mesh
+                    geometry={nodes.siegmeyerEnter001.geometry}
                     material={whiteTransparent}
-                    position={[-338, enterY, 367]}
+                    position={[-596, enterY, 274]}
                 />
             </group>
 
             <RigidBody
-                position={[-333, 1277, 390]}
+                position={[-590, 1277, 300]}
                 colliders={false}
                 type="fixed"
             >
                 <CuboidCollider
                     position={[0, 0, 0]}
-                    args={[60, 10, 90]}
+                    args={[60, 10, 110]}
                     rotation={[0, 0, 0]}
                     onIntersectionEnter={handleIntersectionEnter}
                     onIntersectionExit={handleIntersectionExit}
@@ -123,6 +121,6 @@ const MustangEffects = () => {
     );
 };
 
-useGLTF.preload('/models/mustangEffects.glb');
+useGLTF.preload('/models/siegmeyerEffects.glb');
 
-export default MustangEffects;
+export default SiegmeyerEffects;

@@ -1,8 +1,8 @@
 'use client';
-import NightSky from '@/components/Background/nightSky';
-import { useMobile } from '@/components/Context/mobileContext';
-import Footer from '@/components/Footer/footer';
-import MobileFooter from '@/components/Footer/mobileFooter';
+import NightSky from '~/components/Background/nightSky';
+import { useMobile } from '~/components/Context/mobileContext';
+import Footer from '~/components/Footer/footer';
+import MobileFooter from '~/components/Footer/mobileFooter';
 
 export default function CookiePolicy() {
     const { isMobile } = useMobile();

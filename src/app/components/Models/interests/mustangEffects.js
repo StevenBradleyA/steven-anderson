@@ -1,13 +1,13 @@
-import { useGlobalState } from '@/components/Context/stateContext';
+import { useGlobalState } from '~/components/Context/stateContext';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { CuboidCollider, RigidBody } from '@react-three/rapier';
 import { useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
 
-const MechanicalKeyboardEffects = () => {
+const MustangEffects = () => {
     const group = useRef();
-    const { nodes } = useGLTF('/models/mechanicalKeyboardEffects.glb');
+    const { nodes } = useGLTF('/models/mustangEffects.glb');
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
@@ -33,12 +33,11 @@ const MechanicalKeyboardEffects = () => {
     const [cubeY, setCubeY] = useState(1256);
     const [enterY, setEnterY] = useState(1256);
     const [isIntersecting, setIsIntersecting] = useState(false);
-
     const { setModalPopup } = useGlobalState();
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            setModalPopup('keyboard');
+            setModalPopup('mustang');
         }
     };
 
@@ -54,14 +53,12 @@ const MechanicalKeyboardEffects = () => {
         setEnterTargetY(1256);
         setIsIntersecting(false);
     };
-
     useEffect(() => {
         if (isIntersecting) {
             window.addEventListener('keydown', handleKeyPress);
         } else {
             window.removeEventListener('keydown', handleKeyPress);
         }
-
         return () => {
             window.removeEventListener('keydown', handleKeyPress);
         };
@@ -90,31 +87,32 @@ const MechanicalKeyboardEffects = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    geometry={nodes.cubeCorners001.geometry}
+                    geometry={nodes.cubeCorners002.geometry}
                     material={blueGlow}
-                    position={[-465.931, cubeY, 371]}
+                    position={[-333, cubeY, 421.246]}
                     scale={[42.161, 22.639, 42.618]}
                 />
                 <mesh
-                    geometry={nodes.cubeFaces001.geometry}
+                    geometry={nodes.cubeFaces002.geometry}
                     material={blueTransparent}
-                    position={[-465.931, cubeY, 371]}
+                    position={[-333, cubeY, 421.246]}
                     scale={[42.161, 22.639, 42.618]}
                 />
                 <mesh
-                    geometry={nodes.keebEnter.geometry}
+                    geometry={nodes.mustangEnter.geometry}
                     material={whiteTransparent}
-                    position={[-472, enterY, 318]}
+                    position={[-338, enterY, 367]}
                 />
             </group>
+
             <RigidBody
-                position={[-465.931, 1277, 340]}
+                position={[-333, 1277, 390]}
                 colliders={false}
                 type="fixed"
             >
                 <CuboidCollider
                     position={[0, 0, 0]}
-                    args={[60, 10, 110]}
+                    args={[60, 10, 90]}
                     rotation={[0, 0, 0]}
                     onIntersectionEnter={handleIntersectionEnter}
                     onIntersectionExit={handleIntersectionExit}
@@ -125,6 +123,6 @@ const MechanicalKeyboardEffects = () => {
     );
 };
 
-useGLTF.preload('/models/mechanicalKeyboardEffects.glb');
+useGLTF.preload('/models/mustangEffects.glb');
 
-export default MechanicalKeyboardEffects;
+export default MustangEffects;

@@ -1,62 +1,57 @@
-'use client';
+import { useGlobalState } from '~/components/Context/stateContext';
 import { useGLTF } from '@react-three/drei';
-import * as THREE from 'three';
-import React, { useEffect, useRef, useState } from 'react';
-import AnimatedAws from './animatedAws';
-import AnimatedBlender from './animatedBlender';
-import AnimatedCss from './animatedCss';
-import AnimatedDocker from './animatedDocker';
-import AnimatedFlask from './animatedFlask';
-import AnimatedGit from './animatedGit';
-import AnimatedGithub from './animatedGithub';
-import AnimatedHtml from './animatedHtml';
-import AnimatedJavascript from './animatedJs';
-import AnimatedPostgres from './animatedPostgres';
-import AnimatedPrisma from './animatedPrisma';
-import AnimatedPython from './animatedPython';
-import AnimatedReact from './animatedReact';
-import AnimatedRedux from './animatedRedux';
-import AnimatedTailwind from './animatedTailwind';
-import AnimatedVercel from './animatedVercel';
-import AnimatedTypescript from './animatedTypescript';
-import { CuboidCollider, RigidBody } from '@react-three/rapier';
-import { useGlobalState } from '@/components/Context/stateContext';
 import { useFrame } from '@react-three/fiber';
+import { CuboidCollider, RigidBody } from '@react-three/rapier';
+import { useRef, useState, useEffect } from 'react';
+import * as THREE from 'three';
 
-const Skills = () => {
+const MechanicalKeyboardEffects = () => {
     const group = useRef();
-    const { nodes, materials } = useGLTF('/models/skills/skillsGrid.glb');
+    const { nodes } = useGLTF('/models/mechanicalKeyboardEffects.glb');
 
     const blueGlow = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0x007bff),
+        side: THREE.DoubleSide,
         emissive: new THREE.Color(0x007bff),
-        emissiveIntensity: 1.8,
+        emissiveIntensity: 2.5,
     });
 
+    const blueTransparent = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x007bff),
+        side: THREE.DoubleSide,
+        opacity: 0.1,
+        transparent: true,
+    });
     const whiteTransparent = new THREE.MeshStandardMaterial({
         color: new THREE.Color(0xe7e7e7),
         opacity: 0.6,
         transparent: true,
     });
 
+    const [cubeTargetY, setCubeTargetY] = useState(1256);
     const [enterTargetY, setEnterTargetY] = useState(1256);
+    const [cubeY, setCubeY] = useState(1256);
     const [enterY, setEnterY] = useState(1256);
     const [isIntersecting, setIsIntersecting] = useState(false);
+
     const { setModalPopup } = useGlobalState();
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            setModalPopup('skills');
+            setModalPopup('keyboard');
         }
     };
 
     const handleIntersectionEnter = () => {
+        setCubeTargetY(1293);
         setEnterTargetY(1288);
+
         setIsIntersecting(true);
     };
 
     const handleIntersectionExit = () => {
-        setEnterTargetY(1278);
+        setCubeTargetY(1256);
+        setEnterTargetY(1256);
         setIsIntersecting(false);
     };
 
@@ -73,6 +68,14 @@ const Skills = () => {
     }, [isIntersecting]);
 
     useFrame(() => {
+        setCubeY((prevY) => {
+            const deltaY = cubeTargetY - prevY;
+            const step = 0.5;
+            if (Math.abs(deltaY) < step) {
+                return cubeTargetY;
+            }
+            return prevY + Math.sign(deltaY) * step;
+        });
         setEnterY((prevY) => {
             const deltaY = enterTargetY - prevY;
             const step = 0.4;
@@ -87,52 +90,41 @@ const Skills = () => {
         <>
             <group dispose={null}>
                 <mesh
-                    geometry={nodes.skillsGrid.geometry}
+                    geometry={nodes.cubeCorners001.geometry}
                     material={blueGlow}
+                    position={[-465.931, cubeY, 371]}
+                    scale={[42.161, 22.639, 42.618]}
                 />
                 <mesh
-                    geometry={nodes.skillEnter.geometry}
+                    geometry={nodes.cubeFaces001.geometry}
+                    material={blueTransparent}
+                    position={[-465.931, cubeY, 371]}
+                    scale={[42.161, 22.639, 42.618]}
+                />
+                <mesh
+                    geometry={nodes.keebEnter.geometry}
                     material={whiteTransparent}
-                    position={[-458.095, enterY, -489.896]}
-                    rotation={[-Math.PI, 0.736, -Math.PI]}
+                    position={[-472, enterY, 318]}
                 />
             </group>
-
             <RigidBody
-                position={[-458.095, 1278, -489.896]}
+                position={[-465.931, 1277, 340]}
                 colliders={false}
                 type="fixed"
             >
                 <CuboidCollider
                     position={[0, 0, 0]}
-                    args={[200, 10, 150]}
-                    rotation={[0, 0.85, 0]}
+                    args={[60, 10, 110]}
+                    rotation={[0, 0, 0]}
                     onIntersectionEnter={handleIntersectionEnter}
                     onIntersectionExit={handleIntersectionExit}
                     sensor
                 />
             </RigidBody>
-
-            <AnimatedAws />
-            <AnimatedBlender />
-            <AnimatedCss />
-            <AnimatedDocker />
-            <AnimatedFlask />
-            <AnimatedGit />
-            <AnimatedGithub />
-            <AnimatedHtml />
-            <AnimatedJavascript />
-            <AnimatedPostgres />
-            <AnimatedPrisma />
-            <AnimatedPython />
-            <AnimatedReact />
-            <AnimatedRedux />
-            <AnimatedTailwind />
-            <AnimatedTypescript />
-            <AnimatedVercel />
         </>
     );
 };
-useGLTF.preload('/models/skills/skillsGrid.glb');
 
-export default Skills;
+useGLTF.preload('/models/mechanicalKeyboardEffects.glb');
+
+export default MechanicalKeyboardEffects;
