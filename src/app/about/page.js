@@ -36,22 +36,24 @@ export default function AboutPage() {
         setTranslateX(mapProjectIndexToTranslation(projectIndex));
     }, [projectIndex]);
     return (
-        <div className="w-full min-h-screen flex flex-col   mt-60 z-50">
+        <div className="w-full min-h-screen flex flex-col mt-28 tablet:mt-40 desktop:mt-60 z-50">
             <NightSky />
 
-            <div className="px-40  flex justify-between ">
+            <div className=" px-5 laptop:px-10 desktop:px-40 flex flex-wrap tablet:justify-between ">
                 <div>
-                    <h1 className="text-5xl font-orbitron z-40 ">
-                        Full-Stack Web Developer
+                    <h1 className=" text-xl tablet:text-4xl desktop:text-5xl font-orbitron z-40 ">
+                        Full-Stack Engineer
                     </h1>
-                    <h2 className="text-9xl mt-5 z-40">Steven</h2>
-                    <h2 className="text-9xl z-40">Anderson</h2>
+                    <h2 className=" text-5xl tablet:text-9xl  mt-3 tablet:mt-5 z-40">
+                        Steven
+                    </h2>
+                    <h2 className=" text-5xl tablet:text-9xl z-40">Anderson</h2>
 
-                    <p className="border-l-2 border-white px-5 w-96 text-3xl mt-10 z-40">
+                    <p className="border-l-2 border-white px-5 w-full tablet:w-96 text-lg tablet:text-3xl mt-3 tablet:mt-10 z-40">
                         {`I'm a full-stack web developer from the Seattle area.`}
                     </p>
                 </div>
-                <div className="w-1/2 z-30 relative">
+                <div className=" w-full mt-10  tablet:w-1/2 z-30 relative">
                     <Image
                         src={steven}
                         alt="steven"
@@ -87,8 +89,9 @@ export default function AboutPage() {
                     </a>
                 </div>
             </div>
-            <div className="px-40 w-full">
-                <div className="mt-60  flex w-full gap-20 justify-between  relative ">
+
+            <div className="px-5 laptop:px-10 desktop:px-40 w-full tablet:mt-40 desktop:mt-60">
+                <div className="flex w-full gap-20 justify-between relative ">
                     <h2 className="text-6xl font-orbitron">Portfolio</h2>
                     {skillIndex === 0 && (
                         <ul className="flex gap-x-5 gap-y-3 w-96 flex-wrap text-lg absolute right-0 top-0">
@@ -704,14 +707,528 @@ export default function AboutPage() {
                     )}
                 </div>
             </div>
-            <div className="flex w-full justify-between  px-40 relative text-white/50 mt-28 ">
-                <div className="w-full h-[250px] flex justify-between z-40">
-                    <div className="bg-outerSpace w-[150px] laptop:w-[250px] desktop:w-[350px] h-full rounded-lg"></div>
-                    <div className="bg-outerSpace w-[150px] laptop:w-[250px] desktop:w-[350px] h-full rounded-lg"></div>
-                    <div className="bg-outerSpace w-[150px] laptop:w-[250px] desktop:w-[350px] h-full rounded-lg"></div>
-                    <div className="bg-outerSpace w-[150px] laptop:w-[250px] desktop:w-[350px] h-full rounded-lg"></div>
-                </div>
-                <div className="absolute right-16 top-0 z-40 flex flex-col gap-4 ">
+            <div className="flex w-full justify-between px-5 laptop:px-10 desktop:px-40 relative text-white mt-28 text-sm ">
+                {skillIndex === 0 && (
+                    <div className="w-full h-[250px] flex justify-between z-40">
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container ">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8 text-white  portfolio-card-icon"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                            >
+                                <path
+                                    fillRule="nonzero"
+                                    clipRule="nonzero"
+                                    d="M0 1.75C0 0.783501 0.783502 0 1.75 0H14.25C15.2165 0 16 0.783502 16 1.75V3.75C16 4.16421 15.6642 4.5 15.25 4.5C14.8358 4.5 14.5 4.16421 14.5 3.75V1.75C14.5 1.61193 14.3881 1.5 14.25 1.5H1.75C1.61193 1.5 1.5 1.61193 1.5 1.75V14.25C1.5 14.3881 1.61193 14.5 1.75 14.5H15.25C15.6642 14.5 16 14.8358 16 15.25C16 15.6642 15.6642 16 15.25 16H1.75C0.783501 16 0 15.2165 0 14.25V1.75ZM4.75 6.5C4.75 6.08579 5.08579 5.75 5.5 5.75H9.25C9.66421 5.75 10 6.08579 10 6.5C10 6.91421 9.66421 7.25 9.25 7.25H8.25V12.5C8.25 12.9142 7.91421 13.25 7.5 13.25C7.08579 13.25 6.75 12.9142 6.75 12.5V7.25H5.5C5.08579 7.25 4.75 6.91421 4.75 6.5ZM11.2757 6.58011C11.6944 6.08164 12.3507 5.75 13.25 5.75C14.0849 5.75 14.7148 6.03567 15.1394 6.48481C15.4239 6.78583 15.4105 7.26052 15.1095 7.54505C14.8085 7.82958 14.3338 7.81621 14.0493 7.51519C13.9394 7.39898 13.7204 7.25 13.25 7.25C12.7493 7.25 12.5306 7.41836 12.4243 7.54489C12.2934 7.70065 12.25 7.896 12.25 8C12.25 8.104 12.2934 8.29935 12.4243 8.45511C12.5306 8.58164 12.7493 8.75 13.25 8.75C13.3257 8.75 13.3988 8.76121 13.4676 8.78207C14.1307 8.87646 14.6319 9.17251 14.9743 9.58011C15.3684 10.0493 15.5 10.604 15.5 11C15.5 11.396 15.3684 11.9507 14.9743 12.4199C14.5556 12.9184 13.8993 13.25 13 13.25C12.1651 13.25 11.5352 12.9643 11.1106 12.5152C10.8261 12.2142 10.8395 11.7395 11.1405 11.4549C11.4415 11.1704 11.9162 11.1838 12.2007 11.4848C12.3106 11.601 12.5296 11.75 13 11.75C13.5007 11.75 13.7194 11.5816 13.8257 11.4551C13.9566 11.2993 14 11.104 14 11C14 10.896 13.9566 10.7007 13.8257 10.5449C13.7194 10.4184 13.5007 10.25 13 10.25C12.9243 10.25 12.8512 10.2388 12.7824 10.2179C12.1193 10.1235 11.6181 9.82749 11.2757 9.41989C10.8816 8.95065 10.75 8.396 10.75 8C10.75 7.604 10.8816 7.04935 11.2757 6.58011Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+
+                            <h3 className="text-2xl portfolio-card-title">
+                                TypeScript
+                            </h3>
+                            <p className="text-white/50">
+                                Safer, more predicatble code is why I rely on
+                                TypeScript for my front-end development.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 32 32"
+                                className="w-8 h-8 text-white/50 portfolio-card-icon bg-none"
+                                fill="none"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M13.0164 2C10.8193 2 9.03825 3.72453 9.03825 5.85185V8.51852H15.9235V9.25926H5.97814C3.78107 9.25926 2 10.9838 2 13.1111L2 18.8889C2 21.0162 3.78107 22.7407 5.97814 22.7407H8.27322V19.4815C8.27322 17.3542 10.0543 15.6296 12.2514 15.6296H19.5956C21.4547 15.6296 22.9617 14.1704 22.9617 12.3704V5.85185C22.9617 3.72453 21.1807 2 18.9836 2H13.0164ZM12.0984 6.74074C12.8589 6.74074 13.4754 6.14378 13.4754 5.40741C13.4754 4.67103 12.8589 4.07407 12.0984 4.07407C11.3378 4.07407 10.7213 4.67103 10.7213 5.40741C10.7213 6.14378 11.3378 6.74074 12.0984 6.74074Z"
+                                    fill="white"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M18.9834 30C21.1805 30 22.9616 28.2755 22.9616 26.1482V23.4815L16.0763 23.4815L16.0763 22.7408L26.0217 22.7408C28.2188 22.7408 29.9998 21.0162 29.9998 18.8889V13.1111C29.9998 10.9838 28.2188 9.25928 26.0217 9.25928L23.7266 9.25928V12.5185C23.7266 14.6459 21.9455 16.3704 19.7485 16.3704L12.4042 16.3704C10.5451 16.3704 9.03809 17.8296 9.03809 19.6296L9.03809 26.1482C9.03809 28.2755 10.8192 30 13.0162 30H18.9834ZM19.9015 25.2593C19.1409 25.2593 18.5244 25.8562 18.5244 26.5926C18.5244 27.329 19.1409 27.9259 19.9015 27.9259C20.662 27.9259 21.2785 27.329 21.2785 26.5926C21.2785 25.8562 20.662 25.2593 19.9015 25.2593Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title ">
+                                Python
+                            </h3>
+                            <p className="text-white/50">
+                                Most of my Python experience is with Flask,
+                                where its simplicity and flexibility have
+                                empowered me to build robust backend solutions.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8 text-white portfolio-card-icon"
+                                viewBox="0 0 48 48"
+                                fill="currentColor"
+                            >
+                                <g>
+                                    <g>
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="none"
+                                        />
+                                    </g>
+                                    <g>
+                                        <path d="M24,46,8.3,41.7,5,4H43L39.7,41.7ZM12,38.6l12,3.3,12-3.3L38.6,8H9.4Z" />
+                                        <path d="M14,13H34L32.2,34.3,23.9,37l-8.4-2.1-.9-7.2h4.5v3.6l4.8.9,4.4-.9V25.9H14.6l-.3-4.5a2.3,2.3,0,0,1,1.5-.6c6.9,0,12.5.6,12.5.6V17.8H14.6Z" />
+                                    </g>
+                                </g>
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title">
+                                Css
+                            </h3>
+                            <p className="text-white/50">
+                                I use CSS to create smooth animations and
+                                responsive layouts, ensuring a seamless
+                                experience from mobile to desktop.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-9 h-9 text-white portfolio-card-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <path
+                                    d="M10 5H7C5.89543 5 5 5.89543 5 7V16H19V11.5"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M15 4L13 6L15 8"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M19 4L21 6L19 8"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M3 16H21V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V16Z"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title">
+                                Learning
+                            </h3>
+                            <p className="text-white/50">
+                                {`I'm currently diving into C# and Java to broaden
+                                my expertise and enhance my development toolkit.`}
+                            </p>
+                        </div>
+                    </div>
+                )}
+                {skillIndex === 1 && (
+                    <div className="w-full h-[250px] flex justify-between z-40">
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container ">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8 text-white  portfolio-card-icon"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                            >
+                                <path
+                                    fillRule="nonzero"
+                                    clipRule="nonzero"
+                                    d="M0 1.75C0 0.783501 0.783502 0 1.75 0H14.25C15.2165 0 16 0.783502 16 1.75V3.75C16 4.16421 15.6642 4.5 15.25 4.5C14.8358 4.5 14.5 4.16421 14.5 3.75V1.75C14.5 1.61193 14.3881 1.5 14.25 1.5H1.75C1.61193 1.5 1.5 1.61193 1.5 1.75V14.25C1.5 14.3881 1.61193 14.5 1.75 14.5H15.25C15.6642 14.5 16 14.8358 16 15.25C16 15.6642 15.6642 16 15.25 16H1.75C0.783501 16 0 15.2165 0 14.25V1.75ZM4.75 6.5C4.75 6.08579 5.08579 5.75 5.5 5.75H9.25C9.66421 5.75 10 6.08579 10 6.5C10 6.91421 9.66421 7.25 9.25 7.25H8.25V12.5C8.25 12.9142 7.91421 13.25 7.5 13.25C7.08579 13.25 6.75 12.9142 6.75 12.5V7.25H5.5C5.08579 7.25 4.75 6.91421 4.75 6.5ZM11.2757 6.58011C11.6944 6.08164 12.3507 5.75 13.25 5.75C14.0849 5.75 14.7148 6.03567 15.1394 6.48481C15.4239 6.78583 15.4105 7.26052 15.1095 7.54505C14.8085 7.82958 14.3338 7.81621 14.0493 7.51519C13.9394 7.39898 13.7204 7.25 13.25 7.25C12.7493 7.25 12.5306 7.41836 12.4243 7.54489C12.2934 7.70065 12.25 7.896 12.25 8C12.25 8.104 12.2934 8.29935 12.4243 8.45511C12.5306 8.58164 12.7493 8.75 13.25 8.75C13.3257 8.75 13.3988 8.76121 13.4676 8.78207C14.1307 8.87646 14.6319 9.17251 14.9743 9.58011C15.3684 10.0493 15.5 10.604 15.5 11C15.5 11.396 15.3684 11.9507 14.9743 12.4199C14.5556 12.9184 13.8993 13.25 13 13.25C12.1651 13.25 11.5352 12.9643 11.1106 12.5152C10.8261 12.2142 10.8395 11.7395 11.1405 11.4549C11.4415 11.1704 11.9162 11.1838 12.2007 11.4848C12.3106 11.601 12.5296 11.75 13 11.75C13.5007 11.75 13.7194 11.5816 13.8257 11.4551C13.9566 11.2993 14 11.104 14 11C14 10.896 13.9566 10.7007 13.8257 10.5449C13.7194 10.4184 13.5007 10.25 13 10.25C12.9243 10.25 12.8512 10.2388 12.7824 10.2179C12.1193 10.1235 11.6181 9.82749 11.2757 9.41989C10.8816 8.95065 10.75 8.396 10.75 8C10.75 7.604 10.8816 7.04935 11.2757 6.58011Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+
+                            <h3 className="text-2xl portfolio-card-title">
+                                TypeScript
+                            </h3>
+                            <p className="text-white/50">
+                                Safer, more predicatble code is why I rely on
+                                TypeScript for my front-end development.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 32 32"
+                                className="w-8 h-8 text-white/50 portfolio-card-icon bg-none"
+                                fill="none"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M13.0164 2C10.8193 2 9.03825 3.72453 9.03825 5.85185V8.51852H15.9235V9.25926H5.97814C3.78107 9.25926 2 10.9838 2 13.1111L2 18.8889C2 21.0162 3.78107 22.7407 5.97814 22.7407H8.27322V19.4815C8.27322 17.3542 10.0543 15.6296 12.2514 15.6296H19.5956C21.4547 15.6296 22.9617 14.1704 22.9617 12.3704V5.85185C22.9617 3.72453 21.1807 2 18.9836 2H13.0164ZM12.0984 6.74074C12.8589 6.74074 13.4754 6.14378 13.4754 5.40741C13.4754 4.67103 12.8589 4.07407 12.0984 4.07407C11.3378 4.07407 10.7213 4.67103 10.7213 5.40741C10.7213 6.14378 11.3378 6.74074 12.0984 6.74074Z"
+                                    fill="white"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M18.9834 30C21.1805 30 22.9616 28.2755 22.9616 26.1482V23.4815L16.0763 23.4815L16.0763 22.7408L26.0217 22.7408C28.2188 22.7408 29.9998 21.0162 29.9998 18.8889V13.1111C29.9998 10.9838 28.2188 9.25928 26.0217 9.25928L23.7266 9.25928V12.5185C23.7266 14.6459 21.9455 16.3704 19.7485 16.3704L12.4042 16.3704C10.5451 16.3704 9.03809 17.8296 9.03809 19.6296L9.03809 26.1482C9.03809 28.2755 10.8192 30 13.0162 30H18.9834ZM19.9015 25.2593C19.1409 25.2593 18.5244 25.8562 18.5244 26.5926C18.5244 27.329 19.1409 27.9259 19.9015 27.9259C20.662 27.9259 21.2785 27.329 21.2785 26.5926C21.2785 25.8562 20.662 25.2593 19.9015 25.2593Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title ">
+                                Python
+                            </h3>
+                            <p className="text-white/50">
+                                Most of my Python experience is with Flask,
+                                where its simplicity and flexibility have
+                                empowered me to build robust backend solutions.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8 text-white portfolio-card-icon"
+                                viewBox="0 0 48 48"
+                                fill="currentColor"
+                            >
+                                <g>
+                                    <g>
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="none"
+                                        />
+                                    </g>
+                                    <g>
+                                        <path d="M24,46,8.3,41.7,5,4H43L39.7,41.7ZM12,38.6l12,3.3,12-3.3L38.6,8H9.4Z" />
+                                        <path d="M14,13H34L32.2,34.3,23.9,37l-8.4-2.1-.9-7.2h4.5v3.6l4.8.9,4.4-.9V25.9H14.6l-.3-4.5a2.3,2.3,0,0,1,1.5-.6c6.9,0,12.5.6,12.5.6V17.8H14.6Z" />
+                                    </g>
+                                </g>
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title">
+                                Css
+                            </h3>
+                            <p className="text-white/50">
+                                I use CSS to create smooth animations and
+                                responsive layouts, ensuring a seamless
+                                experience from mobile to desktop.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-9 h-9 text-white portfolio-card-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <path
+                                    d="M10 5H7C5.89543 5 5 5.89543 5 7V16H19V11.5"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M15 4L13 6L15 8"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M19 4L21 6L19 8"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M3 16H21V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V16Z"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title">
+                                Learning
+                            </h3>
+                            <p className="text-white/50">
+                                {`I'm currently diving into C# and Java to broaden
+                                my expertise and enhance my development toolkit.`}
+                            </p>
+                        </div>
+                    </div>
+                )}
+                {skillIndex === 2 && (
+                    <div className="w-full h-[250px] flex justify-between z-40">
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container ">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8 text-white  portfolio-card-icon"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                            >
+                                <path
+                                    fillRule="nonzero"
+                                    clipRule="nonzero"
+                                    d="M0 1.75C0 0.783501 0.783502 0 1.75 0H14.25C15.2165 0 16 0.783502 16 1.75V3.75C16 4.16421 15.6642 4.5 15.25 4.5C14.8358 4.5 14.5 4.16421 14.5 3.75V1.75C14.5 1.61193 14.3881 1.5 14.25 1.5H1.75C1.61193 1.5 1.5 1.61193 1.5 1.75V14.25C1.5 14.3881 1.61193 14.5 1.75 14.5H15.25C15.6642 14.5 16 14.8358 16 15.25C16 15.6642 15.6642 16 15.25 16H1.75C0.783501 16 0 15.2165 0 14.25V1.75ZM4.75 6.5C4.75 6.08579 5.08579 5.75 5.5 5.75H9.25C9.66421 5.75 10 6.08579 10 6.5C10 6.91421 9.66421 7.25 9.25 7.25H8.25V12.5C8.25 12.9142 7.91421 13.25 7.5 13.25C7.08579 13.25 6.75 12.9142 6.75 12.5V7.25H5.5C5.08579 7.25 4.75 6.91421 4.75 6.5ZM11.2757 6.58011C11.6944 6.08164 12.3507 5.75 13.25 5.75C14.0849 5.75 14.7148 6.03567 15.1394 6.48481C15.4239 6.78583 15.4105 7.26052 15.1095 7.54505C14.8085 7.82958 14.3338 7.81621 14.0493 7.51519C13.9394 7.39898 13.7204 7.25 13.25 7.25C12.7493 7.25 12.5306 7.41836 12.4243 7.54489C12.2934 7.70065 12.25 7.896 12.25 8C12.25 8.104 12.2934 8.29935 12.4243 8.45511C12.5306 8.58164 12.7493 8.75 13.25 8.75C13.3257 8.75 13.3988 8.76121 13.4676 8.78207C14.1307 8.87646 14.6319 9.17251 14.9743 9.58011C15.3684 10.0493 15.5 10.604 15.5 11C15.5 11.396 15.3684 11.9507 14.9743 12.4199C14.5556 12.9184 13.8993 13.25 13 13.25C12.1651 13.25 11.5352 12.9643 11.1106 12.5152C10.8261 12.2142 10.8395 11.7395 11.1405 11.4549C11.4415 11.1704 11.9162 11.1838 12.2007 11.4848C12.3106 11.601 12.5296 11.75 13 11.75C13.5007 11.75 13.7194 11.5816 13.8257 11.4551C13.9566 11.2993 14 11.104 14 11C14 10.896 13.9566 10.7007 13.8257 10.5449C13.7194 10.4184 13.5007 10.25 13 10.25C12.9243 10.25 12.8512 10.2388 12.7824 10.2179C12.1193 10.1235 11.6181 9.82749 11.2757 9.41989C10.8816 8.95065 10.75 8.396 10.75 8C10.75 7.604 10.8816 7.04935 11.2757 6.58011Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+
+                            <h3 className="text-2xl portfolio-card-title">
+                                TypeScript
+                            </h3>
+                            <p className="text-white/50">
+                                Safer, more predicatble code is why I rely on
+                                TypeScript for my front-end development.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 32 32"
+                                className="w-8 h-8 text-white/50 portfolio-card-icon bg-none"
+                                fill="none"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M13.0164 2C10.8193 2 9.03825 3.72453 9.03825 5.85185V8.51852H15.9235V9.25926H5.97814C3.78107 9.25926 2 10.9838 2 13.1111L2 18.8889C2 21.0162 3.78107 22.7407 5.97814 22.7407H8.27322V19.4815C8.27322 17.3542 10.0543 15.6296 12.2514 15.6296H19.5956C21.4547 15.6296 22.9617 14.1704 22.9617 12.3704V5.85185C22.9617 3.72453 21.1807 2 18.9836 2H13.0164ZM12.0984 6.74074C12.8589 6.74074 13.4754 6.14378 13.4754 5.40741C13.4754 4.67103 12.8589 4.07407 12.0984 4.07407C11.3378 4.07407 10.7213 4.67103 10.7213 5.40741C10.7213 6.14378 11.3378 6.74074 12.0984 6.74074Z"
+                                    fill="white"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M18.9834 30C21.1805 30 22.9616 28.2755 22.9616 26.1482V23.4815L16.0763 23.4815L16.0763 22.7408L26.0217 22.7408C28.2188 22.7408 29.9998 21.0162 29.9998 18.8889V13.1111C29.9998 10.9838 28.2188 9.25928 26.0217 9.25928L23.7266 9.25928V12.5185C23.7266 14.6459 21.9455 16.3704 19.7485 16.3704L12.4042 16.3704C10.5451 16.3704 9.03809 17.8296 9.03809 19.6296L9.03809 26.1482C9.03809 28.2755 10.8192 30 13.0162 30H18.9834ZM19.9015 25.2593C19.1409 25.2593 18.5244 25.8562 18.5244 26.5926C18.5244 27.329 19.1409 27.9259 19.9015 27.9259C20.662 27.9259 21.2785 27.329 21.2785 26.5926C21.2785 25.8562 20.662 25.2593 19.9015 25.2593Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title ">
+                                Python
+                            </h3>
+                            <p className="text-white/50">
+                                Most of my Python experience is with Flask,
+                                where its simplicity and flexibility have
+                                empowered me to build robust backend solutions.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8 text-white portfolio-card-icon"
+                                viewBox="0 0 48 48"
+                                fill="currentColor"
+                            >
+                                <g>
+                                    <g>
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="none"
+                                        />
+                                    </g>
+                                    <g>
+                                        <path d="M24,46,8.3,41.7,5,4H43L39.7,41.7ZM12,38.6l12,3.3,12-3.3L38.6,8H9.4Z" />
+                                        <path d="M14,13H34L32.2,34.3,23.9,37l-8.4-2.1-.9-7.2h4.5v3.6l4.8.9,4.4-.9V25.9H14.6l-.3-4.5a2.3,2.3,0,0,1,1.5-.6c6.9,0,12.5.6,12.5.6V17.8H14.6Z" />
+                                    </g>
+                                </g>
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title">
+                                Css
+                            </h3>
+                            <p className="text-white/50">
+                                I use CSS to create smooth animations and
+                                responsive layouts, ensuring a seamless
+                                experience from mobile to desktop.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-9 h-9 text-white portfolio-card-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <path
+                                    d="M10 5H7C5.89543 5 5 5.89543 5 7V16H19V11.5"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M15 4L13 6L15 8"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M19 4L21 6L19 8"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M3 16H21V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V16Z"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title">
+                                Learning
+                            </h3>
+                            <p className="text-white/50">
+                                {`I'm currently diving into C# and Java to broaden
+                                my expertise and enhance my development toolkit.`}
+                            </p>
+                        </div>
+                    </div>
+                )}
+                {skillIndex === 3 && (
+                    <div className="w-full h-[250px] flex justify-between z-40">
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container ">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8 text-white  portfolio-card-icon"
+                                viewBox="0 0 16 16"
+                                fill="none"
+                            >
+                                <path
+                                    fillRule="nonzero"
+                                    clipRule="nonzero"
+                                    d="M0 1.75C0 0.783501 0.783502 0 1.75 0H14.25C15.2165 0 16 0.783502 16 1.75V3.75C16 4.16421 15.6642 4.5 15.25 4.5C14.8358 4.5 14.5 4.16421 14.5 3.75V1.75C14.5 1.61193 14.3881 1.5 14.25 1.5H1.75C1.61193 1.5 1.5 1.61193 1.5 1.75V14.25C1.5 14.3881 1.61193 14.5 1.75 14.5H15.25C15.6642 14.5 16 14.8358 16 15.25C16 15.6642 15.6642 16 15.25 16H1.75C0.783501 16 0 15.2165 0 14.25V1.75ZM4.75 6.5C4.75 6.08579 5.08579 5.75 5.5 5.75H9.25C9.66421 5.75 10 6.08579 10 6.5C10 6.91421 9.66421 7.25 9.25 7.25H8.25V12.5C8.25 12.9142 7.91421 13.25 7.5 13.25C7.08579 13.25 6.75 12.9142 6.75 12.5V7.25H5.5C5.08579 7.25 4.75 6.91421 4.75 6.5ZM11.2757 6.58011C11.6944 6.08164 12.3507 5.75 13.25 5.75C14.0849 5.75 14.7148 6.03567 15.1394 6.48481C15.4239 6.78583 15.4105 7.26052 15.1095 7.54505C14.8085 7.82958 14.3338 7.81621 14.0493 7.51519C13.9394 7.39898 13.7204 7.25 13.25 7.25C12.7493 7.25 12.5306 7.41836 12.4243 7.54489C12.2934 7.70065 12.25 7.896 12.25 8C12.25 8.104 12.2934 8.29935 12.4243 8.45511C12.5306 8.58164 12.7493 8.75 13.25 8.75C13.3257 8.75 13.3988 8.76121 13.4676 8.78207C14.1307 8.87646 14.6319 9.17251 14.9743 9.58011C15.3684 10.0493 15.5 10.604 15.5 11C15.5 11.396 15.3684 11.9507 14.9743 12.4199C14.5556 12.9184 13.8993 13.25 13 13.25C12.1651 13.25 11.5352 12.9643 11.1106 12.5152C10.8261 12.2142 10.8395 11.7395 11.1405 11.4549C11.4415 11.1704 11.9162 11.1838 12.2007 11.4848C12.3106 11.601 12.5296 11.75 13 11.75C13.5007 11.75 13.7194 11.5816 13.8257 11.4551C13.9566 11.2993 14 11.104 14 11C14 10.896 13.9566 10.7007 13.8257 10.5449C13.7194 10.4184 13.5007 10.25 13 10.25C12.9243 10.25 12.8512 10.2388 12.7824 10.2179C12.1193 10.1235 11.6181 9.82749 11.2757 9.41989C10.8816 8.95065 10.75 8.396 10.75 8C10.75 7.604 10.8816 7.04935 11.2757 6.58011Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+
+                            <h3 className="text-2xl portfolio-card-title">
+                                TypeScript
+                            </h3>
+                            <p className="text-white/50">
+                                Safer, more predicatble code is why I rely on
+                                TypeScript for my front-end development.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 32 32"
+                                className="w-8 h-8 text-white/50 portfolio-card-icon bg-none"
+                                fill="none"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M13.0164 2C10.8193 2 9.03825 3.72453 9.03825 5.85185V8.51852H15.9235V9.25926H5.97814C3.78107 9.25926 2 10.9838 2 13.1111L2 18.8889C2 21.0162 3.78107 22.7407 5.97814 22.7407H8.27322V19.4815C8.27322 17.3542 10.0543 15.6296 12.2514 15.6296H19.5956C21.4547 15.6296 22.9617 14.1704 22.9617 12.3704V5.85185C22.9617 3.72453 21.1807 2 18.9836 2H13.0164ZM12.0984 6.74074C12.8589 6.74074 13.4754 6.14378 13.4754 5.40741C13.4754 4.67103 12.8589 4.07407 12.0984 4.07407C11.3378 4.07407 10.7213 4.67103 10.7213 5.40741C10.7213 6.14378 11.3378 6.74074 12.0984 6.74074Z"
+                                    fill="white"
+                                />
+                                <path
+                                    fillRule="evenodd"
+                                    clipRule="evenodd"
+                                    d="M18.9834 30C21.1805 30 22.9616 28.2755 22.9616 26.1482V23.4815L16.0763 23.4815L16.0763 22.7408L26.0217 22.7408C28.2188 22.7408 29.9998 21.0162 29.9998 18.8889V13.1111C29.9998 10.9838 28.2188 9.25928 26.0217 9.25928L23.7266 9.25928V12.5185C23.7266 14.6459 21.9455 16.3704 19.7485 16.3704L12.4042 16.3704C10.5451 16.3704 9.03809 17.8296 9.03809 19.6296L9.03809 26.1482C9.03809 28.2755 10.8192 30 13.0162 30H18.9834ZM19.9015 25.2593C19.1409 25.2593 18.5244 25.8562 18.5244 26.5926C18.5244 27.329 19.1409 27.9259 19.9015 27.9259C20.662 27.9259 21.2785 27.329 21.2785 26.5926C21.2785 25.8562 20.662 25.2593 19.9015 25.2593Z"
+                                    fill="currentColor"
+                                />
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title ">
+                                Python
+                            </h3>
+                            <p className="text-white/50">
+                                Most of my Python experience is with Flask,
+                                where its simplicity and flexibility have
+                                empowered me to build robust backend solutions.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-8 h-8 text-white portfolio-card-icon"
+                                viewBox="0 0 48 48"
+                                fill="currentColor"
+                            >
+                                <g>
+                                    <g>
+                                        <rect
+                                            width="48"
+                                            height="48"
+                                            fill="none"
+                                        />
+                                    </g>
+                                    <g>
+                                        <path d="M24,46,8.3,41.7,5,4H43L39.7,41.7ZM12,38.6l12,3.3,12-3.3L38.6,8H9.4Z" />
+                                        <path d="M14,13H34L32.2,34.3,23.9,37l-8.4-2.1-.9-7.2h4.5v3.6l4.8.9,4.4-.9V25.9H14.6l-.3-4.5a2.3,2.3,0,0,1,1.5-.6c6.9,0,12.5.6,12.5.6V17.8H14.6Z" />
+                                    </g>
+                                </g>
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title">
+                                Css
+                            </h3>
+                            <p className="text-white/50">
+                                I use CSS to create smooth animations and
+                                responsive layouts, ensuring a seamless
+                                experience from mobile to desktop.
+                            </p>
+                        </div>
+                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="w-9 h-9 text-white portfolio-card-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                            >
+                                <path
+                                    d="M10 5H7C5.89543 5 5 5.89543 5 7V16H19V11.5"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M15 4L13 6L15 8"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M19 4L21 6L19 8"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M3 16H21V17C21 18.1046 20.1046 19 19 19H5C3.89543 19 3 18.1046 3 17V16Z"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                            <h3 className="text-2xl portfolio-card-title">
+                                Learning
+                            </h3>
+                            <p className="text-white/50">
+                                {`I'm currently diving into C# and Java to broaden
+                                my expertise and enhance my development toolkit.`}
+                            </p>
+                        </div>
+                    </div>
+                )}
+                <div className="absolute right-16 top-0 z-40 flex flex-col gap-4 text-white/50 ">
                     <button
                         onClick={() => {
                             setSkillIndex((current) => (current - 1 + 4) % 4);
@@ -814,27 +1331,30 @@ export default function AboutPage() {
                     >
                         <div className="h-[50%] bg-white w-full rounded-lg flex-shrink-0"></div>
 
-                        <h2 className="text-3xl mt-5">Keeby</h2>
+                        <h2 className="text-3xl mt-5">Portfolio</h2>
                         <div className="flex gap-2">
                             <div className="bg-stevenBlue rounded-2xl px-2 text-xs flex justify-center items-center ">
-                                TypeScript
+                                Javascript
                             </div>
                             <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
-                                HTML
+                                Blender
                             </div>
                             <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
-                                CSS
+                                R3F
+                            </div>
+                            <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
+                                Tailwind CSS
                             </div>
                         </div>
                         <p className="h-[30%] mt-5">
-                            Keeby is a mechanical keyboard marketplace, typing
-                            game, and social media!
+                            Steven-Anderson is an 80s inspired 3D drifting game
+                            all custom modeled and built with React Three Fiber.
                         </p>
 
                         <div className="w-full flex gap-2 mt-2 ">
                             <button className="bg-gray-500 rounded-lg p-2 hover:bg-opacity-70">
                                 <a
-                                    href="https://github.com/StevenBradleyA"
+                                    href="https://github.com/StevenBradleyA/steven-anderson"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -868,7 +1388,13 @@ export default function AboutPage() {
                                 </a>
                             </button>
                             <button className="bg-stevenBlue w-full rounded-lg hover:bg-opacity-70 ">
-                                Live View
+                                <a
+                                    href="https://www.steven-anderson.com"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    Live View
+                                </a>
                             </button>
                         </div>
                     </div>
@@ -891,27 +1417,31 @@ export default function AboutPage() {
                     >
                         <div className="h-[50%] bg-white w-full rounded-lg flex-shrink-0"></div>
 
-                        <h2 className="text-3xl mt-5">Keeby</h2>
+                        <h2 className="text-3xl mt-5">Genevieve</h2>
                         <div className="flex gap-2">
                             <div className="bg-stevenBlue rounded-2xl px-2 text-xs flex justify-center items-center ">
                                 TypeScript
                             </div>
                             <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
-                                HTML
+                                CSS
                             </div>
                             <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
-                                CSS
+                                Next.js
+                            </div>
+                            <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
+                                Three.js
                             </div>
                         </div>
                         <p className="h-[30%] mt-5">
-                            Keeby is a mechanical keyboard marketplace, typing
-                            game, and social media!
+                            Genevieveclare.hair is a full booking site for a
+                            Stylist that includes reviews, pricing, showcase,
+                            and complex admin features.
                         </p>
 
                         <div className="w-full flex gap-2 mt-2 ">
                             <button className="bg-gray-500 rounded-lg p-2 hover:bg-opacity-70">
                                 <a
-                                    href="https://github.com/StevenBradleyA"
+                                    href="https://github.com/StevenBradleyA/genevieve-clare-hair"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -946,7 +1476,7 @@ export default function AboutPage() {
                             </button>
                             <button className="bg-stevenBlue w-full rounded-lg hover:bg-opacity-70">
                                 <a
-                                    href="https://www.keeby.live"
+                                    href="https://www.genevieveclare.hair/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -993,14 +1523,14 @@ export default function AboutPage() {
                             </div>
                         </div>
                         <p className="h-[30%] mt-5">
-                            Keeby is a mechanical keyboard marketplace, typing
-                            game, and social media.
+                            Keeby is a Next.js based typing game, mechanical
+                            keyboard marketplace, social media, and shop!
                         </p>
 
                         <div className="w-full flex gap-2 mt-2 ">
                             <button className="bg-gray-500 rounded-lg p-2 hover:bg-opacity-70">
                                 <a
-                                    href="https://www.keeby.live"
+                                    href="https://github.com/StevenBradleyA/keeby.live"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -1035,7 +1565,7 @@ export default function AboutPage() {
                             </button>
                             <button className="bg-stevenBlue w-full rounded-lg hover:bg-opacity-70">
                                 <a
-                                    href="https://github.com/StevenBradleyA"
+                                    href="https://www.keeby.live/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -1064,21 +1594,28 @@ export default function AboutPage() {
                     >
                         <div className="h-[50%] bg-white w-full rounded-lg flex-shrink-0"></div>
 
-                        <h2 className="text-3xl mt-5">Keeby</h2>
+                        <h2 className="text-3xl mt-5">Banter</h2>
                         <div className="flex gap-2">
                             <div className="bg-stevenBlue rounded-2xl px-2 text-xs flex justify-center items-center ">
-                                TypeScript
+                                Js
+                            </div>
+                            <div className="bg-stevenBlue rounded-2xl px-2 text-xs flex justify-center items-center ">
+                                Python
                             </div>
                             <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
-                                HTML
+                                React
                             </div>
                             <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
-                                CSS
+                                Flask
+                            </div>
+                            <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
+                                WebSockets
                             </div>
                         </div>
                         <p className="h-[30%] mt-5">
-                            Keeby is a mechanical keyboard marketplace, typing
-                            game, and social media!
+                            Banter is a real time chat messenger built on React
+                            with a Flask backend. This was an App Academy group
+                            project.
                         </p>
 
                         <div className="w-full flex gap-2 mt-2 ">
@@ -1147,21 +1684,24 @@ export default function AboutPage() {
                     >
                         <div className="h-[50%] bg-white w-full rounded-lg flex-shrink-0"></div>
 
-                        <h2 className="text-3xl mt-5">Keeby</h2>
+                        <h2 className="text-3xl mt-5">Coming Soon</h2>
                         <div className="flex gap-2">
                             <div className="bg-stevenBlue rounded-2xl px-2 text-xs flex justify-center items-center ">
                                 TypeScript
                             </div>
+                            <div className="bg-stevenBlue rounded-2xl px-2 text-xs flex justify-center items-center ">
+                                Python
+                            </div>
                             <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
-                                HTML
+                                Next.js
                             </div>
                             <div className="border-2  rounded-2xl px-2 text-xs flex justify-center items-center ">
                                 CSS
                             </div>
                         </div>
                         <p className="h-[30%] mt-5">
-                            Keeby is a mechanical keyboard marketplace, typing
-                            game, and social media!
+                            Currently working on some cool machine learning
+                            projects will be here shortly!
                         </p>
 
                         <div className="w-full flex gap-2 mt-2 ">
@@ -1201,13 +1741,7 @@ export default function AboutPage() {
                                 </a>
                             </button>
                             <button className="bg-stevenBlue w-full rounded-lg hover:bg-opacity-70">
-                                <a
-                                    href="https://github.com/StevenBradleyA"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Live View
-                                </a>
+                                Live View
                             </button>
                         </div>
                     </div>

@@ -991,6 +991,13 @@ input[type='range'].custom-volume-slider::-ms-fill-upper {
     }
 }
 
+.portfolio-card-container:hover .portfolio-card-title {
+    color: #007bff;
+}
+.portfolio-card-container:hover .portfolio-card-icon {
+    filter: drop-shadow(0 0 10px rgba(0, 123, 255, 0.7))
+        drop-shadow(0 0 20px rgba(0, 123, 255, 0.5));
+}
 /* contact */
 /* 
 .contact-button {
