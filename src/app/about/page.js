@@ -90,11 +90,13 @@ export default function AboutPage() {
                 </div>
             </div>
 
-            <div className="px-5 laptop:px-10 desktop:px-40 w-full tablet:mt-40 desktop:mt-60">
-                <div className="flex w-full gap-20 justify-between relative ">
-                    <h2 className="text-6xl font-orbitron">Portfolio</h2>
+            <div className="px-5 laptop:px-10 desktop:px-40 w-full mt-5 tablet:mt-40 desktop:mt-60 ">
+                <div className="flex w-full tablet:gap-20 flex-wrap tablet:flex-nowrap tablet:justify-between relative ">
+                    <h2 className="text-3xl tablet:text-6xl font-orbitron ">
+                        Portfolio
+                    </h2>
                     {skillIndex === 0 && (
-                        <ul className="flex gap-x-5 gap-y-3 w-96 flex-wrap text-lg absolute right-0 top-0">
+                        <ul className="flex gap-x-5 gap-y-3 w-full mt-3 tablet:mt-0 tablet:w-96 flex-wrap text-sm tablet:text-lg tablet:absolute right-0 top-0">
                             <li className="flex items-center text-white hover:text-stevenBlue ease-in">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -194,7 +196,7 @@ export default function AboutPage() {
                         </ul>
                     )}
                     {skillIndex === 1 && (
-                        <ul className="flex gap-x-5 gap-y-3 w-[45rem] desktop:w-[60rem] absolute top-0 right-0 flex-wrap text-lg ">
+                        <ul className="flex gap-x-5 gap-y-3 w-[45rem] mt-3 tablet:mt-0  desktop:w-[60rem] tablet:absolute top-0 right-0 flex-wrap text-sm tablet:text-lg ">
                             <li className="flex items-center text-white hover:text-stevenBlue ease-in">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -424,7 +426,7 @@ export default function AboutPage() {
                         </ul>
                     )}
                     {skillIndex === 2 && (
-                        <ul className="flex gap-x-5 gap-y-3 absolute top-0 right-0 w-[40rem] flex-wrap text-lg ">
+                        <ul className="flex gap-x-5 gap-y-3 tablet:absolute top-0 right-0 w-[40rem] flex-wrap text-sm tablet:text-lg mt-3 tablet:mt-0">
                             <li className="flex items-center text-white hover:text-stevenBlue ease-in">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -573,7 +575,7 @@ export default function AboutPage() {
                         </ul>
                     )}
                     {skillIndex === 3 && (
-                        <ul className="flex gap-x-5 gap-y-3  w-[45rem] desktop:w-[55rem] absolute top-0 right-0 flex-wrap text-lg ">
+                        <ul className="flex gap-x-5 gap-y-3  w-[45rem] desktop:w-[55rem] tablet:absolute top-0 right-0 flex-wrap text-sm tablet:text-lg mt-3 tablet:mt-0 ">
                             <li className="flex items-center text-white hover:text-stevenBlue ease-in">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -707,10 +709,10 @@ export default function AboutPage() {
                     )}
                 </div>
             </div>
-            <div className="flex w-full justify-between px-5 laptop:px-10 desktop:px-40 relative text-white mt-28 text-sm ">
+            <div className="flex w-full flex-wrap gap-5 tablet:gap-0 tablet:flex-nowrap tablet:justify-between px-5 laptop:px-10 desktop:px-40 relative text-white mt-3 tablet:mt-28 text-xs tablet:text-sm min-h-[100vh] ">
                 {skillIndex === 0 && (
-                    <div className="w-full h-[250px] flex justify-between z-40">
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container ">
+                    <div className="w-full h-[180px] tablet:h-[250px] flex flex-wrap gap-5 tablet:gap-0 tablet:flex-nowrap tablet:justify-between z-40">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-8 h-8 text-white  portfolio-card-icon"
@@ -725,7 +727,7 @@ export default function AboutPage() {
                                 />
                             </svg>
 
-                            <h3 className="text-2xl portfolio-card-title">
+                            <h3 className="text-base tablet:text-2xl portfolio-card-title">
                                 TypeScript
                             </h3>
                             <p className="text-white/50">
@@ -733,7 +735,7 @@ export default function AboutPage() {
                                 TypeScript for my front-end development.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 32 32"
@@ -762,7 +764,7 @@ export default function AboutPage() {
                                 empowered me to build robust backend solutions.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-8 h-8 text-white portfolio-card-icon"
@@ -792,7 +794,7 @@ export default function AboutPage() {
                                 experience from mobile to desktop.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-9 h-9 text-white portfolio-card-icon"
@@ -839,8 +841,8 @@ export default function AboutPage() {
                     </div>
                 )}
                 {skillIndex === 1 && (
-                    <div className="w-full h-[250px] flex justify-between z-40">
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container ">
+                    <div className="w-full h-[180px] tablet:h-[250px] flex flex-wrap gap-5 tablet:gap-0 tablet:flex-nowrap tablet:justify-between z-40">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-8 h-8 text-white portfolio-card-icon bg-none"
@@ -868,7 +870,7 @@ export default function AboutPage() {
                                 scalable and maintainable front-end development.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor"
@@ -887,7 +889,7 @@ export default function AboutPage() {
                                 applications.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-8 h-8 text-white portfolio-card-icon bg-none"
@@ -924,7 +926,7 @@ export default function AboutPage() {
                                 lightweight back-end services.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-8 h-8 text-white portfolio-card-icon bg-none"
@@ -946,8 +948,8 @@ export default function AboutPage() {
                     </div>
                 )}
                 {skillIndex === 2 && (
-                    <div className="w-full h-[250px] flex justify-between z-40">
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container ">
+                    <div className="w-full h-[180px] tablet:h-[250px] flex flex-wrap gap-5 tablet:gap-0 tablet:flex-nowrap tablet:justify-between z-40">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-8 h-8 text-white portfolio-card-icon bg-none"
@@ -979,7 +981,7 @@ export default function AboutPage() {
                                 S3 buckets for multi-image uploads.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor"
@@ -999,7 +1001,7 @@ export default function AboutPage() {
                                 Photoshop and Affinity.`}
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor"
@@ -1021,7 +1023,7 @@ export default function AboutPage() {
                                 for both web and creative projects.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-8 h-8 text-white portfolio-card-icon"
@@ -1047,8 +1049,8 @@ export default function AboutPage() {
                     </div>
                 )}
                 {skillIndex === 3 && (
-                    <div className="w-full h-[250px] flex justify-between z-40">
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container ">
+                    <div className="w-full h-[180px] tablet:h-[250px] flex flex-wrap gap-5 tablet:gap-0 tablet:flex-nowrap tablet:justify-between z-40">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-8 h-8 text-white/ portfolio-card-icon bg-none"
@@ -1074,7 +1076,7 @@ export default function AboutPage() {
                                 smooth development process.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor"
@@ -1092,7 +1094,7 @@ export default function AboutPage() {
                                 support robust application features.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor"
@@ -1124,7 +1126,7 @@ export default function AboutPage() {
                                 learning models using PyTorch and TensorFlow.
                             </p>
                         </div>
-                        <div className="bg-outerSpace w-[150px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-10 flex flex-col justify-between portfolio-card-container">
+                        <div className="bg-outerSpace w-[220px] laptop:w-[300px] desktop:w-[350px] h-full rounded-lg p-5 tablet:p-10 flex flex-col justify-between portfolio-card-container ">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 className="w-8 h-8 text-white portfolio-card-icon"
@@ -1161,7 +1163,7 @@ export default function AboutPage() {
                         </div>
                     </div>
                 )}
-                <div className="absolute right-16 top-0 z-40 flex flex-col gap-4 text-white/50 ">
+                <div className="absolute right-5 tablet:right-16 top-[45vh] tablet:top-0 z-40 flex flex-col gap-4 text-white/50 ">
                     <button
                         onClick={() => {
                             setSkillIndex((current) => (current - 1 + 4) % 4);
@@ -1234,7 +1236,7 @@ export default function AboutPage() {
                     </button>
                 </div>
             </div>
-            <h2 className="w-full flex justify-center mt-20 text-5xl ">
+            <h2 className="w-full flex justify-center mt-96 tablet:mt-20 text-5xl ">
                 {' '}
                 PROJECTS
             </h2>
