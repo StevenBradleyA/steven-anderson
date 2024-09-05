@@ -52,15 +52,13 @@ export default function MustangPopup() {
                 </p>
             </div> */}
             <div className="w-[750px] relative ">
-                <h1 className="text-8xl font-bebas absolute top-0 left-0 w-full">
-                    CARS CARS CARS CARS
-                </h1>
-                <div className="flex justify-center w-full mt-16 ">
-                    <div className="bg-[#77DDFF] rounded-full px-6 py-20 shadow-vapor">
+                <h1 className="text-4xl  w-full">Building Cars</h1>
+                <div className="flex justify-center w-full mt-2 ">
+                    <div className="bg-stevenBlue rounded-full px-6 py-14">
                         <div className="w-full flex justify-center">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="w-32 h-32  scale-x-[-1] -rotate-12"
+                                className="w-20 h-20  scale-x-[-1] -rotate-12"
                                 version="1.1"
                                 viewBox="0 0 512 512"
                                 fill="white"
@@ -72,7 +70,7 @@ export default function MustangPopup() {
 
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
-                                className="w-32 h-32  rotate-12 -ml-1"
+                                className="w-20 h-20  rotate-12 -ml-1"
                                 version="1.1"
                                 viewBox="0 0 512 512"
                                 fill="white"
@@ -88,23 +86,25 @@ export default function MustangPopup() {
                     <p className="w-3/4">
                         {`This Site is inspired by my drift AE86. I grew up working on cars with my grandfather. Not only do I cherish these good times but I'm thankful for the lessons I learned taking things apart and figuring out how they work. I'm currently coyote swapping a 66 mustang with my dad.  `}
                     </p>
-                    <ul className="font-bebas w-1/4 text-white/30 absolute -right-10 bottom-0">
-                        <li className="hover:text-white ease-in">
+                    <ul className="font-bebas w-1/4 text-blue-500/50 absolute -right-10 bottom-0">
+                        <li className="hover:text-stevenBlue ease-in">
                             {`FAVORITE CARS`}
                         </li>
-                        <li className="hover:text-white ease-in">
+                        <li className="hover:text-stevenBlue ease-in">
                             1936 CORD PHAETON 812
                         </li>
 
-                        <li className="hover:text-white ease-in">
+                        <li className="hover:text-stevenBlue ease-in">
                             1966 MUSTANG
                         </li>
 
-                        <li className="hover:text-white ease-in">
+                        <li className="hover:text-stevenBlue ease-in">
                             TOYOTA AE86
                         </li>
-                        <li className="hover:text-white ease-in">MAZDA RX-7</li>
-                        <li className="hover:text-white ease-in">
+                        <li className="hover:text-stevenBlue ease-in">
+                            MAZDA RX-7
+                        </li>
+                        <li className="hover:text-stevenBlue ease-in">
                             FERRARI F40
                         </li>
                     </ul>

@@ -38,7 +38,7 @@ const ModalDialog = ({ isOpen, onClose, children }) => {
         <AnimatePresence>
             {isOpen && (
                 <motion.div
-                    className="fixed inset-0 z-50 flex items-center justify-center"
+                    className="fixed inset-0 z-40 flex items-center justify-center"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -66,7 +66,7 @@ const ModalDialog = ({ isOpen, onClose, children }) => {
                         onClick={handleModalClick}
                     >
                         <button
-                            className="close-button text-sm text-white absolute top-3 right-3"
+                            className="close-button text-sm text-white absolute top-3 right-3 z-50"
                             onClick={handleClose}
                         >
                             <div className="h-8 w-8 relative">

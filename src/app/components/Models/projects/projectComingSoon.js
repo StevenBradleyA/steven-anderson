@@ -32,10 +32,7 @@ const ProjectComingSoon = () => {
 
     const handleKeyPress = (event) => {
         if (event.key === 'Enter') {
-            window.open(
-                'https://www.youtube.com/watch?v=wu4NYMmk8pk&t=23s',
-                '_blank'
-            );
+            window.open('https://github.com/StevenBradleyA', '_blank');
         }
     };
 
